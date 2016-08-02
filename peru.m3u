@@ -1,26 +1,17 @@
 #EXTM3U
 
-#EXTINF:0 tvg-logo="https://raw.githubusercontent.com/justintxu/repo/master/atv.png”,ATV
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/justintxu/repo/master/atv.png”,ATV
 http://109.123.117.212:8088/live/atrevet4666/playlist.m3u8?id=250520&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
-#EXTINF:0 tvg-logo="http://melodyradios.com/wp-content/uploads/2015/11/panamericana-logo-actual.jpg”,PANAMERICANA
+#EXTINF:-1 tvg-logo="http://melodyradios.com/wp-content/uploads/2015/11/panamericana-logo-actual.jpg”,PANAMERICANA
 http://cdnh2.iblups.com/hls/ptv.m3u8
-#EXTINF:0 tvg-logo="https://github.com/justintxu/repo/blob/master/latina.png”,LATINA
+#EXTINF:-1 tvg-logo="https://github.com/justintxu/repo/blob/master/latina.png”,LATINA
 http://ooyalahd2-f.akamaihd.net/i/latinlima01_delivery@42383/master.m3u8
-#EXTINF:0 tvg-logo="https://github.com/justintxu/repo/blob/master/goltv.png”,GolPeru
+#EXTINF:-1 tvg-logo="https://github.com/justintxu/repo/blob/master/goltv.png”,GolPeru
 http://b36642.cdn.telefonica.com/36642/ch08/3.m3u8
-#EXTINF:0 tvg-logo="http://vignette2.wikia.nocookie.net/logopedia/images/c/cd/2015-actualidadE.png”,RED TV
-http://85.17.20.69:8088/live/fulltvhdinfo3000/playlist.m3u8?id=249270&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/DirecTV_Sports_logo.svg/2000px-DirecTV_Sports_logo.svg.png”,DirectTV Sport
-http://95.211.148.133:8088/zenex/ganador9/playlist.m3u8?id=20637&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/America_Televisión-logo.svg/2000px-America_Televisión-logo.svg.png”,AmericaTV
-http://85.17.20.70:8088/zenex/tragodar563/playlist.m3u8?id=21113&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
-#EXTINF:0 tvg-logo="http://s03.s3c.es/imag/_v0/634x300/5/6/a/willaxTv-logo.jpg”,Willax
+id=21113&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
+#EXTINF:-1 tvg-logo="http://s03.s3c.es/imag/_v0/634x300/5/6/a/willaxTv-logo.jpg”,Willax
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
-#EXTINF:0 tvg-logo="http://4.bp.blogspot.com/-B2BNZ_HaRow/VFM426C341I/AAAAAAAAAR0/ZXfYMjYYL08/s1600/CANAL%2BN.png”,Canal N
-http://46.165.228.104:8088/live/fulltvhdinfo3100/playlist.m3u8?id=249860&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
-#EXTINF:0 tvg-logo="http://vignette1.wikia.nocookie.net/logopedia/images/a/a2/CMD_Logo.png”,CMD
+#EXTINF:-1 tvg-logo="http://vignette1.wikia.nocookie.net/logopedia/images/a/a2/CMD_Logo.png”,CMD
 http://b36642.cdn.telefonica.com/36642/ch07/3.m3u8
-#EXTINF:0 tvg-logo="http://vignette2.wikia.nocookie.net/logopedia/images/c/cb/Logo_TV_Perú.png”,TV Peru
-http://178.162.211.1:8088/live/fulltvhdinfo3200/playlist.m3u8?id=249861&pk=12b0ac770a6c951075cb5493f2f97278839e450479649ff96bca11c6b73e5c6a
-#EXTINF:0 tvg-logo="http://www.bibliotecaep.mil.pe/images/galeria_main/congreso.jpg”,Canal Congreso
+#EXTINF:-1 tvg-logo="http://www.bibliotecaep.mil.pe/images/galeria_main/congreso.jpg”,Canal Congreso
 http://stream.congreso.gob.pe/hls/playlist.m3u8
