@@ -1,0 +1,56 @@
+#EXTM3U
+#EXTINF:0,America TV Peru
+http://co.exabytetv.info/miix/10100101010010000010101010101/aHR0cDovL3d3dy5taXBzcGxheWVyLmNvbS96ZXl1Z2FuYWRvMjAw/exabytetv.m3u8
+#EXTINF:0,ATV
+http://co.exabytetv.info/miix/10100101010010000010101010101/aHR0cDovL3RlbGV2aXNpb24tZW52aXZvLm9yZy9hdHYtZW4tdml2by1wb3ItaW50ZXJuZXQucGhw/exabytetv.m3u8
+#EXTINF:0,BHtv
+http://cdn1.ujjina.com/iptvbhtv/livebhtvtv/playlist.m3u8
+#EXTINF:0,Canal N
+http://co.exabytetv.info/zenn/10100101010010000010101010101/aHR0cDovL3d3dy5mdWxsdHZoZC5pbmZvL3BlcnUvY2FuYWxuLnBocA==/exabytetv.m3u8
+#EXTINF:0,Capital TV Perú
+rtmp://rpplivefs.fplive.net/rpp02live-live/streamCAPTV
+#EXTINF:0,CMD HD
+http://premium.exabytetv.info/gc/10100101010010000010101010101/862/exabytetv.m3u8
+#EXTINF:0,Latina
+http://ooyalahd2-f.akamaihd.net/i/latinlima01_delivery@42383/master.m3u8
+#EXTINF:0,Monterrico TV
+http://vs8.live.opencaster.com/20100152275/jcpstream/playlist.m3u8
+#EXTINF:0,Pacífico TV
+http://cdn1.ujjina.com/iptvpacifico/livepacificotv/playlist.m3u8
+#EXTINF:0,Panamerica TV
+http://stream-12.vty.dailymotion.com/11/dm/1/x18w5up/live.isml/events(live-1472221197)/live-audio=128000-video=1200000.m3u8
+#EXTINF:0,Panamerica TV HD
+http://cdn.pixebox.com/hls/ptv.m3u8
+#EXTINF:0,Pax
+http://38.105.14.194/paxtv/smil:PC.smil/playlist.m3u8
+#EXTINF:0,Plus TV
+http://B36642.cdn.telefonica.com/36642/ch01/3.m3u8
+#EXTINF:0,Quatro TV Arequipa
+http://xvivatvcanal4arequipax.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,RBC
+http://31.14.40.20:2137/live/livestream/playlist.m3u8
+#EXTINF:0,Red TV
+http://co.exabytetv.info/zenn/10100101010010000010101010101/aHR0cDovL3d3dy56ZW5leHBsYXllci5jb20vZnVsbHRlbGV2aXNpb24yMDAw/exabytetv.m3u8
+#EXTINF:0,RPP
+rtmp://rpplivefs.fplive.net/rpp02live-live/streamRPPTV
+#EXTINF:0,Turbo Mix
+http://167.114.116.212:1935/tvinnovate/myStream/playlist.m3u8 
+#EXTINF:0,TV La Luz
+http://stream.iglesiaytecnologia.com:2077/live/tvlaluz/playlist.m3u8
+#EXTINF:0,TV Perú
+http://co.exabytetv.info/miix/10100101010010000010101010101/aHR0cDovL21pcHMudHYvZnVsbHRlbGV2aXNpb242MDA=/exabytetv.m3u8
+#EXTINF:0,TV Perú    (sólo Kodi)
+rtmp://cdnp2.iblups.com/live playpath=irtp swfUrl=http://p.iblups.com/ptv/jwplayer/jwplayer.flash.swf pageUrl=http://p.iblups.com/ live=1 swfVfy=true
+#EXTINF:0,Willax TV
+http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
+#EXTINF:0,LAtina
+http://co.exabytetv.info/miix/10100101010010000010101010101/cGVydWNoaXN0di5pbmZvL2xhdGluYWVudml2by5waHA=/exabytetv.m3u8
+#EXTINF:0,ATV
+http://co.exabytetv.info/miix/10100101010010000010101010101/aHR0cDovL21pcHMudHYvYXR2NzEyNzY=/exabytetv.m3u8
+#EXTINF:0,CMD
+http://b36642.cdn.telefonica.com/36642/ch07/3.m3u8
+#EXTINF:0,Mega TV
+http://hostreamperu.pe:1935/megatv/megatv/chunklist_w544623046.m3u8
+#EXTINF:0, Gol Peru
+http://b36642.cdn.telefonica.com/36642/ch08/3.m3u8
+
