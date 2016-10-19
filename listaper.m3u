@@ -17,6 +17,14 @@ http://latino-webtv.ml:8880/tpmariocs/CANAL527/PROFILE03.m3u8
 http://latino-webtv.ml:8880/tpmariocs/CANAL558/PROFILE03.m3u8
 #EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",ESPN 2
 http://latino-webtv.ml:8880/tpmariocs/CANAL561/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",CINECANAL
+http://latino-webtv.ml:8880/tpmariocs/CANAL430/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",GOLDEN HD
+http://latino-webtv.ml:8880/tpmariocs/CANAL436/PROFILE03.m3u8
+#EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", Fox Movies HD
+http://latino-webtv.ml:8880/tpmariocs/CANAL417/PROFILE03.m3u8?/MARIANL.ts
+
+
 
 
 
