@@ -5,6 +5,18 @@ http://latino-webtv.ml:8880/tpmariocs/CANAL416/PROFILE03.m3u8?/MARIANL.ts
 http://latino-webtv.ml:8880/tpmariocs/CANAL445/PROFILE03.m3u8?/MARIANL.ts
 #EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", TNT HD
 http://latino-webtv.ml:8880/tpmariocs/CANAL435/PROFILE03.m3u8?/PROFILE00-801/BUTV.ts
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",ESPN +
+http://latino-webtv.ml:8880/tpmariocs/CANAL516/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",ESPN 3
+http://latino-webtv.ml:8880/tpmariocs/CANAL520/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",FOX SPORTS
+http://latino-webtv.ml:8880/tpmariocs/CANAL522/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",FOX SPORTS 2
+http://latino-webtv.ml:8880/tpmariocs/CANAL527/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",ESPN
+http://latino-webtv.ml:8880/tpmariocs/CANAL558/PROFILE03.m3u8
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",ESPN 2
+http://latino-webtv.ml:8880/tpmariocs/CANAL561/PROFILE03.m3u8
 
 
 
