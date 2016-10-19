@@ -1,14 +1,4 @@
 #EXTM3U
-#EXTINF:0,CMD HD
-http://premium.exabytetv.info/gc/10100101010010000010101010101/862/exabytetv.m3u8
-#EXTINF:0,Plus TV
-http://B36642.cdn.telefonica.com/36642/ch01/3.m3u8
-#EXTINF:0,Willax TV
-http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
-#EXTINF:0,CMD
-http://b36642.cdn.telefonica.com/36642/ch07/3.m3u8
-#EXTINF:0, Gol Peru
-http://b36642.cdn.telefonica.com/36642/ch08/3.m3u8
 #EXTINF:0 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", Fox Action
 http://latino-webtv.ml:8880/tpmariocs/CANAL416/PROFILE03.m3u8?/MARIANL.ts
 #EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", Space HD
