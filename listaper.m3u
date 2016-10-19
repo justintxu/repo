@@ -23,17 +23,17 @@ http://latino-webtv.ml:8880/tpmariocs/CANAL430/PROFILE03.m3u8
 http://latino-webtv.ml:8880/tpmariocs/CANAL436/PROFILE03.m3u8
 #EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", Fox Movies HD
 http://latino-webtv.ml:8880/tpmariocs/CANAL417/PROFILE03.m3u8?/MARIANL.ts
-#EXTINF:0 tvg-logo="http://www.cmdenvivo.pe/wp-content/uploads/2015/12/cmd-vivo.png", CMD SD
+#EXTINF:1 type="stream" tvg-logo="http://www.cmdenvivo.pe/wp-content/uploads/2015/12/cmd-vivo.png", CMD SD
 http://b36642.cdn.telefonica.com/36642/ch07/1.m3u8
-#EXTINF:-1 tvg-logo="http://4.bp.blogspot.com/-s_UbiJNVxP0/Vx8SStgjpjI/AAAAAAAACfA/1dnmjlzlyYcK6jl0vOgl4dFVYUOlGiXGgCCo/s166/golperu.png", GOL PERU SD
+#EXTINF:1 type="stream" tvg-logo="http://4.bp.blogspot.com/-s_UbiJNVxP0/Vx8SStgjpjI/AAAAAAAACfA/1dnmjlzlyYcK6jl0vOgl4dFVYUOlGiXGgCCo/s166/golperu.png", GOL PERU SD
 http://b36642.cdn.telefonica.com/36642/ch08/1.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/23/Willax_Televisi%C3%B3n_PNG.png", WILLAX TV
+#EXTINF:-1 type="stream" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/2/23/Willax_Televisi%C3%B3n_PNG.png", WILLAX TV
 http://208.77.20.51:8181/WILLAXTVP/tracks-v1a1/index.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Panamericana-tv.svg/2000px-Panamericana-tv.svg.png", PANAMERICANA
+#EXTINF:-1 type="stream" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Panamericana-tv.svg/2000px-Panamericana-tv.svg.png", PANAMERICANA
 http://208.77.20.51:8181/PANAMERICANA/index.m3u8
-#EXTINF:-1 tvg-logo="http://vignette4.wikia.nocookie.net/logopedia/images/b/b9/CapitalTVPeru.png/revision/latest?cb=20150907134237", CAPITAL TV
+#EXTINF:-1 type="stream" tvg-logo="http://vignette4.wikia.nocookie.net/logopedia/images/b/b9/CapitalTVPeru.png/revision/latest?cb=20150907134237", CAPITAL TV
 http://208.77.20.51:8181/CAPITALTVPERU/index.m3u8
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_Latina_Television.jpg", LATINA
+#EXTINF:-1 type="stream" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_Latina_Television.jpg", LATINA
 http://ooyalahd2-f.akamaihd.net/i/latinlima01_delivery@42383/index_348_av-p.m3u8?sd=10&rebase=on
 
 
