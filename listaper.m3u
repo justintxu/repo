@@ -17,14 +17,19 @@ http://latino-webtv.ml:8880/tpmariocs/CANAL527/PROFILE03.m3u8
 http://latino-webtv.ml:8880/tpmariocs/CANAL558/PROFILE03.m3u8
 #EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",ESPN 2
 http://latino-webtv.ml:8880/tpmariocs/CANAL561/PROFILE03.m3u8
-#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",CINECANAL
-http://latino-webtv.ml:8880/tpmariocs/CANAL430/PROFILE03.m3u8
+#EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", Cinecanal HD
+http://latino-webtv.ml:8880/tpmariocs/CANAL480/PROFILE03.m3u8?/MARIANL.ts
 #EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",GOLDEN HD
 http://latino-webtv.ml:8880/tpmariocs/CANAL436/PROFILE03.m3u8
 #EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg", Fox Movies HD
 http://latino-webtv.ml:8880/tpmariocs/CANAL417/PROFILE03.m3u8?/MARIANL.ts
 #EXTINF:-1 type="stream" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_Latina_Television.jpg", LATINA
 http://ooyalahd2-f.akamaihd.net/i/latinlima01_delivery@42383/index_348_av-p.m3u8?sd=10&rebase=on
-
+#EXTINF:-1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",FILM ZONE
+http://latino-webtv.ml:8880/tpmariocs/CANAL440/PROFILE03.m3u8
+#EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",UFC Network
+http://190.57.234.166/V3/6/1.m3u8
+#EXTINF:1 type="stream" tvg-logo="http://mxfiles.ml/m&m.jpg",UFC Network
+http://190.57.234.166/V3/6/2.m3u8
 
 
