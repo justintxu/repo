@@ -22,4 +22,5 @@ http://premium.exabytetv.info/HLSST/3704/3704-HQUPK-1011000100101111001110000111
 http://premium.exabytetv.info/livestream.php?acc=16199200&eve=4590066&token=HQUPK-1011000100101111001110000111010-ExabyteTV&f=.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Enlace
 http://acaooyalahd2-lh.akamaihd.net/i/TBN07_delivery@186245/master.m3u8
-
+#EXTINF:0,Willax TV 
+http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
