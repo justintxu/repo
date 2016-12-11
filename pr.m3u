@@ -1,224 +1,46 @@
-#EXTM3U
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/espn.png",ESPN Argentina
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX18iuFElQRSBVE6SuaVC1SEf1nZ7Xwnd2dXuNjNqq66iJfi%2FPlHC4HoklvyZh2qpaXLJakHH5h2J3Fiax6nz4qaSMefQowZTFKo%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/espn%202.png",ESPN 2 Argentina
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX19ZkL9U4op0767fojqX1YoGlkZChOejkQK%2BMgT94tiDkPH9WTccPkOMmZtWcJximx%2Bx%2BJGlVdAN8bjO%2FAdkjXMOHPGF7arBy%2Fc%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/e12l42.jpg",ESPN 3 Argentina
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX18g6KbSjeZmd7AaGH%2FWXBxqMQe2oozAB8nQfiG1AoP0JOuNbrH0%2BO2BzWadPqLNRM73VUHRolhbIGiKhleB65FlkqGoHmVBalA%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/fox%20sports.png",Fox Sports Argentina
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX18UYEWgID%2FEDJ2W4arKTeiUZAJzOhuyqSE%2FfjqJ%2BoZgjS%2FWswFBMEPeRROTVmVIVVV%2BERA%2BWHlwX0swwkkxyqhsUhflwbGVHVw%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/5e5vgh.jpg",Fox Sports 2 Argentina
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX193808HKBzW5Gy5Cs%2FC%2BXNjVvuJNX%2FAjrrwxekW8%2Bglqnej9HQ1sP0GpllTiOwOIMR4sKAhw2m%2B7HS3ygC5VSmgjDqR96JLxHs%3D
-#EXTINF:-1 tvg-logo="http://assets.beinsports.com/2.6.39/images/logo-header__us-es.png",Bein Sports
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2FEZ963wESVF1KlgUqpXWA%2FgazaCKujBrzKeNC8fXSbQJQVPveFNFTMwoKueeTwM%2B93FTG9QaPGRA%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/5lrpqq.jpg",Fox HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2B4qs1elzQ1jWal5U2ZjqPgwnIQEjCuOhqvKio3xCAsPiLwAqIh9qAzDpC5CBJ6corzwV5D963NeA%3D%3D
-#EXTINF:-1 tvg-logo="http://i59.tinypic.com/15detc.jpg",Fox 1 HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BZZ9ZxLNuv8x1pEPhqINK6%2BVQBOxJzJOl8jcHWftj15nr09BM%2BfJRX4M3SeP6oUpdHAdyh8dNlvA%3D%3D
-#EXTINF:-1 tvg-logo="http://i59.tinypic.com/2u43ti1.jpg",Fox Action HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FCm2VxVHPZYjn2OCwiRPNwPVirT8uqtRdFsYpOPuuFSWq4cGdC3X2Yk16QJpcmhlWzXZ2cgU9U%2BA%3D%3D
-#EXTINF:-1 tvg-logo="http://i58.tinypic.com/157kyhl.jpg",Fox Movies HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19mJnEOkPvXKRy%2FbKLQW3QGneW%2FWGV4W7zwGT8Ohy%2BpunuLa2j%2FqZUIG0QEaSEhv1rEapsTS%2BNVAg%3D%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/tnt%20hd.png",TNT HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18jr17b0pzcz%2Bpe3UE8D6pKLrayWFp2i%2BPdxh0ZxjqwDZhmAV4hIe6%2BMuKjXNdiLJEwEq8%2B0K4UTQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/2yovqqh.jpg",Space HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19XXpC%2Fa2Vc7eZXh7CEKu%2BJTOnepdNWg37sIGtKW0rRvc%2F6vVw%2Fu%2FyIHKEPL4ebjn6Z6xbZ5KPlww%3D%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/cinecanal%20hd.png",Cinecanal HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19D13%2BRtbMiPpfkwpsF60pE3nI3kcojQ8H%2BLBW7i5htCrDlni6tQH94hebWIV8nsyweMeE%2Bmbl%2BFw%3D%3D
-#EXTINF:-1 tvg-logo="http://i60.tinypic.com/157opqq.jpg",AXN HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FBnc9Lvk46bPwb7junZqQ1QFizRDyaHz9qeaeTinSJoOsoH9WFPayTkERiMDLeT9gDVjHQVTWxLw%3D%3D
-#EXTINF:-1 tvg-logo="http://portal2.iptvprivateserver.tv/stalker_portal/misc/logos/320/207.png",HBO
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2BINVtxo2pLJpwLYZXWvFLvJzdI%2Buao5EaiE8X4FBvn4jBgB%2BX7IDmaeiWbd6MzeN%2FBEZ1WyFgcDg%3D%3D
-#EXTINF:-1 tvg-logo="http://i59.tinypic.com/15xthd5.jpg",Los Simpsons (24/7)
-http://latino-webtv.ml/series/simpsons.mp4
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/universal%20hd.png",Universal Channel
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19WBmm7n5F%2F5FAwEowYrGM4tiQOnjW%2F9sWdQTYstcwN%2F%2FMp7aBd8FEfQhAfq7U3KShKAS22%2BVd18A%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/r2tjx2.jpg",TNT Series
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18WeZqQkjubtiWg2opRF%2BdYWdUVL2ATw1vsHFXK0tJMRkana9a%2BoOJ5WbXOx5ad2lbfuxH0UJcU2Q%3D%3D
-#EXTINF:-1 tvg-logo="http://i57.tinypic.com/33wsh0i.jpg",FX HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19ReKZFONGSTHeqxDxdA8mHJTDgPWh8v8CF64FdAYU6qHMx%2BJAUZV9zwDRVbaYf8CUEbkjMpYHKgg%3D%3D
-#EXTINF:-1 tvg-logo="http://i60.tinypic.com/ws4gmb.jpg",Sony
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18hkkLqPzBtQ1gkfWJohK4RKM0fhJDeyTHuutycFS1qGF0elnEz3TmLjzMktg5AFVjxmmWUvk5zMg%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/j0vajn.jpg",Warner Channel
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18qJlbql5EV35OE15Fh25oPNCscEkV1u%2BH5Rx8oPK9r7ZcXEc6muyFRL2OvSe0pRpQZmjfNp88h%2Bw%3D%3D
-#EXTINF:-1 tvg-logo="http://i58.tinypic.com/ibgsc0.jpg",AMC HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Bk909XF6FidJtqVD9VnpaPEXkOIeimayoPnnhJEPAamOPjCx0pr5mO6ZtcMzfpJ0%2F2wgE3e7OfeQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/34hx7kg.jpg",Cinemax
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BPqf0I8wcEjTBW9EpyEJraESa%2BhRUM5UoRKB8di7XTFRpmK248NZ3qL1ffD83fCiHHTE9cHQRs%2FA%3D%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/golden.png",Golden HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BrGkINF1PDC1eT4PlaGyVyJ6T3nEw97n3MA0uzCgCyxO1DJKg4XNuMvQGZB6d%2Be0nxC35PGwETnA%3D%3D
-#EXTINF:-1 tvg-logo="http://i64.tinypic.com/29f8c9h.jpg",Golden Edge
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19RA%2BmrMsDemsJGguBtgynYbz2pF3ZbP5eFwdImY30tJE10U4u8cvsjPmQ3WWR4uW%2FcmCllU7LGXg%3D%3D
-#EXTINF:-1 tvg-logo="http://i59.tinypic.com/jslztc.jpg",Studio Universal
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19Yy%2FhoaRgA1j115Zv5rEmwWl%2F8ELZOGB9ORdzc3WNwLfrhQ5LkAmrB%2FEC4P1WlyohowzkU16Spgw%3D%3D
-#EXTINF:-1 tvg-logo="http://www.sat-address.com/f/pics/logotipi/Ultra-Cine-TV_o.jpg",Ultra Cine
-http://vemoxhlslive-i.akamaihd.net/hls/live/219940/vemoxchannel1/iOS/vemoxchannel1@219940/stream2/streamPlaylist.m3u8
-#EXTINF:-1 tvg-logo="http://i57.tinypic.com/2wgcf3r.jpg",MTV
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19Vfq2YXvT1t%2FpCOCjxYrviGj25Lh4ucTaofIg303DDueAPQ78S4HUr%2BquQJY5LqRYZJdJT6s8rVg%3D%3D
-#EXTINF:-1 tvg-logo="http://i57.tinypic.com/29nb9yt.jpg",BBC Entertainment
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BaqCKZjsIASJKtp1soBWhABOoWkHrh4fadr2eyRAT5ir9%2FQ4hSHsLUWg331KdzSkX9ftvctKp8zA%3D%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/syfy.png",SyFy
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19F7ypeYIwUQvGJN5HA3lnzgumAto0ylm9%2BjA1X7rp8HK32PVh7N2jVX8x%2BgTupJtH5h4%2FefvaK9Q%3D%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/tlc%20hd.png",TLC
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Bnb%2B1s0CSpcB%2FTQy%2Biiclvumof8rM6HaTEHvn4m54yhYzQjeP9VYF4VQ%2F%2FmvL%2BWreeUdPLqDIR3g%3D%3D
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/E!_Logo.png/384px-E!_Logo.png",E!
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18ocus6RzRzScPeDApnii6fQCd5R%2BDt4MLHOOgW6e6lwCe58xcdrIzIuTS9RkoT5x%2BEQPtw85%2FHRA%3D%3D
-#EXTINF:-1 tvg-logo="http://latino-webtv.com/iptv/logos/film%20zone%20hd.png",Film Zone HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19JhHOZXaeL9YymCYSPqeExLYhIDPHwMf%2B6JYDYUNMAAruiDtBd5UCigAad98XRyxsFBI3ajr4IaQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/2i4s5k.jpg",Discovery Channel
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX191gqzo1jdCzpWgL8MAx6S6%2FEEOlQViihtRNKE%2F9bCzBBy%2Bf4HxPMzPeTkKKLWNjV94StXNxHStnw%3D%3D
-#EXTINF:-1 tvg-logo="http://i57.tinypic.com/2dw7wa8.jpg",Investigacion Discovery
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19P23KCcPam9eAwopR6ccNMoIBgG2SbbHakrjJJbNTHSl3VQUBqVDZzkPhA6rGOgkXdOlkFVGmdwQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i59.tinypic.com/t5oakx.jpg",National Geographic
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BCKSFQJQADCPUGxSxm6CVVMVXOqTOsMr%2Bfr%2Fw41Ypl11bueuPX3%2FAZ0KuirauoSTQl8im7IqL56w%3D%3D
-#EXTINF:-1 tvg-logo="http://i58.tinypic.com/11ryvsw.jpg",NatGeo Wild HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18f8WdKgwUaB2bNC1nvnT4oNVaWOZM0T1r1QfzOWjRKOhA7481orDqXQyWgI6tRKKseHXXq%2FPPZXw%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/143kj0g.jpg",History HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19dir3tmM%2B3p6HDw9KRW2HPMskYp4gMx9pxFxVRFgwRRPRJovIQqdshZDpOEj2tTkUs%2BMbLN3vk5Q%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/2s8s3gl.jpg",Animal Planet
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19BJzkTCS%2BjU78qepKzQ6C0SziQcHjSGy6tjYMd9SFnhB86ZbzY15rfjqCX50XJOs4nuEDUtmb16w%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/34q9t02.jpg",Fox Life
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BgeefipzuZdiYVH4CelktIcr2bp1FE%2BIGkEE4gYPncq%2BmgUSTkmC12u3Q78Q%2Fd%2FFSGcthla7zTRQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/2py9nhx.jpg",Canal de las Estrellas
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19s%2BJWWten40LCrT1n2qyErZUElRmsgYN8hXBfECB6DiyvuYVSoFACo6GRiECtpiwF7iTKRekE4ZA%3D%3D
-#EXTINF:-1 tvg-logo="http://i66.tinypic.com/2jev779.jpg",Discovery Theather
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX199MNMUqb9JQ4TOza2GQZnRAEuJE0kTLsKTrXXwYw8RivcIsDmNTpD0LsK0EUZ8ho0Y0j%2FN%2BCsphw%3D%3D
-#EXTINF:-1 tvg-logo="http://i57.tinypic.com/r8gewg.jpg",Home and Health
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FHeUFKWr5Ldc8QsFKhLnW8mB6SyQ7zwmo%2BonqcRWPyiHtvK14Bs15PFdRxSn2cpycibsSMQCudUg%3D%3D
-#EXTINF:-1 tvg-logo="http://i60.tinypic.com/dnojyd.jpg",TruTV HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BtnXKVeFWVxne8%2FBlIUMXxWW%2BcZFRLQFJxXEQaEtBBWpowjcN2oGI9hueLH3qxEWwFtaZaIrQvEQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i63.tinypic.com/16m6ozq.jpg",Distrito Comedia
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18%2F2JnqCZRsGAanWvdqDVKasugrD%2Br8hytgj30b1vROSgDiOPDccI8OXptQp9uBRJ%2BJtyj2afYqKg%3D%3D
-#EXTINF:-1 tvg-logo="http://i59.tinypic.com/2a516qd.jpg",Tlnovelas
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Fe2uwdVns%2F%2BAQUdWR5lrlgt%2FSOQHIWtxWFjgjDodypAIoc2JZM4qdjz32B1ZpNQX0bBt1VaSjkXg%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/2psivma.jpg",Disney Channel
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19NxV0eOFJ1%2FuHLMwGYQRoQkJb2AbGgA3K87V5Zu1QPL20bJS%2Bv178lckr6mu68nvNEyxs8q5%2BDJA%3D%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/4ug93n.jpg",Cartoon Network
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FsOR3oWICR%2BwIy%2FaNhwyVrzEjeRO9%2BPruZZk68GftoXhvzWXDarzpsxy5nKKsYCXquWG2HA8q%2Fiw%3D%3D
-#EXTINF:-1 tvg-logo="http://i57.tinypic.com/312bb7l.jpg",Disney XD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FJHMxX3RP63XX%2BY87iq0x%2BTq%2F4kyc9ImU3YulyiCDE25P2%2FWHbYYBFg13ScvUqbOiY%2FeNGt6pvrw%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/2j295ww.jpg",Nickelodeon
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FiwFXRKXfbm9cjep4%2BGtXMGnM%2BNYzt1kZoMGU5Q1Ig5VqPg%2BXy8BGFVlFvaNixxBeNr8o%2B82W0rA%3D%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/23w8mrm.jpg",Nicktoons
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19jSh4nQTi8QoSItVR6g%2FcA9KGJldM1grxNXlPmDJIg9iVGR%2ByiiriS1QwyWoq3tRwGaJXZaKAn0Q%3D%3D
-#EXTINF:-1 tvg-logo="http://i58.tinypic.com/219wd4x.jpg",Boomerang
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BKchYckmo4QsUCUl%2F7NQkptkJcZXcxYcN5X9d4XmEyx0RuJc3BwE58lKQn0%2BT9jHlL6%2F27AsQ1wg%3D%3D
-#EXTINF:-1 tvg-logo="http://i61.tinypic.com/dfczug.jpg",Tooncast
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18TBDVLfeyNnCXe8XQ%2BTA6%2FxM7RgXyoKJkYSWUSIesraNvq8z4IbcVK9%2F8nnuKxKaU4vV1N14JvBg%3D%3D
-#EXTINF:-1 tvg-logo="http://i58.tinypic.com/50lbhw.jpg",Discovery Kids
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Fihz9fDWu%2FsB8mC9XqmmRxcSdgRFiysTbdmxqFBIC%2BCROGTRFqaiSXFK8C0UGFxNsfp6h5hzOU7A%3D%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/2ilo2b.jpg",Disney Jr
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Fu8CMEXyqu1E%2BhkQgglQw8RdJp8perzGRBiI79cMrOXSVbfIcYjWtoIFAM8aycR6fLkbkpX2LGrQ%3D%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/25hpt92.jpg",Azteca 7 HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19ikQVtMrpd%2B8Pf62I9zBPq52%2BkCtqdXzW2TMFGqNOC2i05FGGKgIg6pYdKBeILqtt9v7DysMergw%3D%3D
-#EXTINF:-1 tvg-logo="http://i62.tinypic.com/2py9nhx.jpg",Canal de las Estrellas HD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BDW3oB9jrOPx3h%2FuEUnaUfqxdFGMhPieHD1pB1qJoJhFyDYmF5wab8IKVvz5cjMdY18IZVRC7Edw%3D%3D
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://imaginanews.mediapro.es/rf/repo//ImaginaNews/160713/160713bein_laliga_logo.jpg" group-title="DEPORTES - SPORTS",Bein La Liga
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1938RYDS0EpaOjpUvqxSgreYEHOMu2RfdDyMIHXK5QgtQSTbWfBIZp8eJOK8GAeW7zylW6J2JRkjyDKfu9GzmvfGR3nrQ3G%2Fc0%3D
-#EXTINF:-1,BeinÑ Sports
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2B1EEkza8tlnucaciya46So0Y5bcvMtkMkjwVW4sl6KOt2DSil6BIjWWr6nZGMcdL7oZhzXTEGw5A%3D%3D
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.canalvivo.com.ar/wp-content/uploads/2013/06/directv.jpg" group-title="DEPORTES - SPORTS",Directv Sport
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2B2c1tp%2BpZA3QrMQJ9bOsmTFiq%2BGG4HTIMnHBaP5ckbHb4Jmxg0WipDDdkNcUxCZNHZN0A2SEVC3VtKL%2F0NppFwtEXV3820iPI%3D
-#EXTINF:-1 tvg-id="ESPN ARG" tvg-name="ESPN ARG" tvg-logo="http://y.cdn.entutele.com/media/channels/big/espn-hd.gif" group-title="DEPORTES - SPORTS",ESPN ARG
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX18rHS74h%2BO44lToQvEn%2BgopghF1Tqp83zUpsGS63jddpar6sb2oVdtucSFvTATAK%2F3cNNigwTuuEaAvkTEeNZJs7CSk9chtrOM%3D
-#EXTINF:-1 tvg-id="ESPN 2 ARG" tvg-name="ESPN 2 ARG" tvg-logo="http://y.cdn.entutele.com/media/channels/big/espn-2.gif" group-title="DEPORTES - SPORTS",ESPN 2 ARG
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX18ZhRA09OR14Eujj5Zvv5JGIU8xaLhCuKQenAaZEFqQbaePrnwAeJXzIFWPztmDhoCfVB6qYj50RzTcTDibLroK1pCJkWXbHi0%3D
-#EXTINF:-1 tvg-id="ESPN 3 ARG" tvg-name="ESPN 3 ARG" tvg-logo="http://y.cdn.entutele.com/media/channels/big/espn-3.gif" group-title="DEPORTES - SPORTS",ESPN 3 ARG
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2FWSbPHDyHqPJOBVbjyb%2BVYrnpqZm8Yux%2FcibC8QmnvtGjoo%2FwvxGVLUGacUHZBoUVzS0WBwLKAg8NzqD8xcchVFqm1UOepJD0%3D
-#EXTINF:-1 tvg-id="Fox Sports ARG" tvg-name="Fox Sports ARG" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox-sports.gif" group-title="DEPORTES - SPORTS",Fox Sports ARG
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX19FMQWC%2FGgB9usE4UM4mTumug3%2FKzM8es5cGW3qpYIr%2BiOuEyA%2BfjzpunYoza4xPBFOaP8JHzqcCpv4VlCO%2FEX%2FWaMA%2FI3S9Uw%3D
-#EXTINF:-1 tvg-id="Fox Sports 2 ARG" tvg-name="Fox Sports 2 ARG" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox-sports-2.gif" group-title="DEPORTES - SPORTS",Fox Sports 2 ARG
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2FBSxjICD956FysERlXjK65QsPDfAwD2wOXfoxTXFI6929tu3QQIh4ldK0rcNFl%2FeA%2BasMoOY7UaY04gI3QWXRhNb91EM3HB5s%3D
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/625.png" group-title="DEPORTES - SPORTS",UFC Network
-http://190.57.234.164/V3/6/2.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/625.png" group-title="DEPORTES - SPORTS",UFC Network Opc2
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX183yakjKBL0TRxraxFuo4eHM2TSela%2F3VHJPvDd5rzc7u2ujeE4fmdB4p1hzU6f7nDoyhLHJsoSNw%3D%3D
-#EXTINF:-1,USA-BASKET UNI.(Arizona)
-http://xrxs.net/video/live-p12ariz-1164.m3u8
-#EXTINF:-1,USA-BASKET UNI.(Los Angeles)
-http://xrxs.net/video/live-p12losa-1164.m3u8
-#EXTINF:-1,USA-BASKET UNI.(Moutain)
-http://xrxs.net/video/live-p12moun-1164.m3u8
-#EXTINF:-1,USA-BASKET UNI.(Oregon)
-http://xrxs.net/video/live-p12oreg-1164.m3u8
-#EXTINF:-1,USA-BASKET UNI.(Washington)
-http://xrxs.net/video/live-p12wash-2328.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.lyngsat-logo.com/logo/tv/ww/win_sports_co.png" group-title="DEPORTES - SPORTS",Win Sports (Colombia)
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX19ghIv9sN5dG33ToY8xEtHAfL3bAQb8iOY%2Fg7xM8kOfw%2FF28A%2BDO2%2F2WXU0I6ISKJhOBGlSRmZwtf9HqBnc8SYOkT9RVUpGKBc%3D
- 
-#EXTINF:0 group-title="Z etiquetas",[B][COLOR yellow]== ENTRETENIMIENTO ==[/COLOR][/B]
-http://streaming203.radionomy.com:80/City-Dance-Radio
-#EXTINF:-1 tvg-id="A&E" tvg-name="A&E" tvg-logo="http://z.cdn.entutele.com/media/channels/medium/ae.gif" group-title="ENTRETENIMIENTO",A&E
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18DGF9QJKQ4QQh8P8%2FiPZMaS2I%2FzHUQaZ0%2FEfCdsZpJkoxz7RGAgaxoQ4bIG0WvJNNC6XX3zMIawg%3D%3D
-#EXTINF:-1 tvg-id="BBC Entertainment" tvg-name="BBC Entertainment" tvg-logo="http://y.cdn.entutele.com/media/channels/big/bbc-entertainment.gif" group-title="ENTRETENIMIENTO",BBC Entertainment
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18fRDowQMZsXOoU5%2BlCiwj3UiLRix7zeqmWaDYy360rZvaqPCmgYdEz1tFYYF99FYkGjgN2BD%2FexA%3D%3D
-#EXTINF:-1 tvg-id="Comedy Central" tvg-name="Comedy Central" tvg-logo="http://y.cdn.entutele.com/media/channels/big/comedy-central-hd.gif" group-title="ENTRETENIMIENTO",Comedy Central
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18uPXktyrmllbwMlDgb%2BaWRRPZ1tBCdWIYrR%2FhQgJs%2BHfVWTV%2BELDjVwwjfANTg4AG3egX9eQZU3Q%3D%3D
-#EXTINF:-1 tvg-id="Distrito Comedia" tvg-name="Distrito Comedia" tvg-logo="http://y.cdn.entutele.com/media/channels/big/distrito-comedia.gif" group-title="ENTRETENIMIENTO",Distrito Comedia
-http://159.203.63.115:8081/rstm/DistritoComedia/playlist.m3u8
-#EXTINF:-1 tvg-id="E! Entertainment Television" tvg-name="E! Entertainment Television" tvg-logo="http://y.cdn.entutele.com/media/channels/big/e!-entertainment-television.gif" group-title="ENTRETENIMIENTO",E!
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BpxGnpa%2BgWfcvyNsfbq%2FMPquhAbHWFWNWXSb3zoDOpJTazFGfJoOjgyLgIVJ3%2FzK7BusbwHPuPcA%3D%3D
-#EXTINF:-1 tvg-id="El Gourmet" tvg-name="El Gourmet" tvg-logo="http://y.cdn.entutele.com/media/channels/big/el-gourmet.gif" group-title="ENTRETENIMIENTO",El Gourmet
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18OOH%2FEXtfo0X4CYSAsvSAL7nUjimYwe9fjcEYdmBS6Q8e9xREuh2nxtvcERpKTGRYb3UZPDMHquQ%3D%3D
-#EXTINF:-1 tvg-id="Fox" tvg-name="Fox" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox.gif" group-title="ENTRETENIMIENTO",Fox
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18q7SR4x7dGMquiz4ajg6H1M2v8hKKmtJODJ4q5ubbQVY4WHj4jr7qb4u3JrQfwwRJlM%2FCBv8aHRg%3D%3D
-#EXTINF:-1 tvg-id="Fox Life" tvg-name="Fox Life" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox-life.gif" group-title="ENTRETENIMIENTO",Fox Life
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19pMcjR%2BiEwxWYeKqStRyupiTuOSzdZj%2BOw%2Bz6zI51X7aCG%2F3cvs2Cn26SH7MIsSZsrzKoeP%2FANqg%3D%3D
-
-#EXTINF:-1 tvg-id="FX" tvg-name="FX" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fx.gif" group-title="ENTRETENIMIENTO",FX
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FL1SLdDp%2FsLag5G3UXEH6oQjOzCL0IXe4120N9Jr2hHxiLZAsvOyGpJSKtAwaU%2BtXhf%2B49Zz6WGQ%3D%3D
-#EXTINF:-1 tvg-id="Glitz" tvg-name="Glitz" tvg-logo="http://y.cdn.entutele.com/media/channels/big/glitz.gif" group-title="ENTRETENIMIENTO",Glitz
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BH0c5H%2FAXA5vPkbfjQbA9qaPi2yAGs%2BoUM3ccD3pWTsl%2FVtTtSgE6MZ0JlIqkf3f4yD0WcC%2Bo1UA%3D%3D
-#EXTINF:-1 tvg-id="Multimedios Monterrey" tvg-name="Multimedios Monterrey" tvg-logo="http://z.cdn.entutele.com/media/channels/big/multimedios-monterrey.gif" group-title="ENTRETENIMIENTO",Multimedios
-http://play.gvstream.net:554/e-tv-video/default.stream/chunklist_w316615179.m3u8
- 
-#EXTINF:0 group-title="Z etiquetas",[B][COLOR yellow]== INFANTILES ==[/COLOR][/B]
-http://streaming203.radionomy.com:80/City-Dance-Radio
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/139.png" group-title="INFANTILES",Baby Tv
-http://hyper.exabytetv.info/HLS/317/317-ZCWRO-1011000010100011010101101101111-ExabyteTV.m3u8
-#EXTINF:-1 tvg-id="Boomerang" tvg-name="Boomerang" tvg-logo="http://y.cdn.entutele.com/media/channels/big/boomerang.gif" group-title="INFANTILES",Boomerang
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2F600RHt4lHakSg7sPisvr2r2eUQJp5nPozKKwUBqIjTMO8W8IiN%2BSRgkbpvJ3prUIbySXCjnLhiA%3D%3D
-#EXTINF:-1 tvg-id="Cartoon Network" tvg-name="Cartoon Network" tvg-logo="http://y.cdn.entutele.com/media/channels/big/cartoon-network.gif" group-title="INFANTILES",Cartoon Network
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Be3UVXtd7sc2mvdsSejxG%2BZW3TYO5iv0keZFRos9fDTs6VKpFoll2O6h4JWw8Kj7ZUvjS1iEH2mA%3D%3D
-#EXTINF:-1 tvg-id="CBeebies" tvg-name="CBeebies" tvg-logo="http://y.cdn.entutele.com/media/channels/big/cbeebies.gif" group-title="INFANTILES",Cbeebies
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1995iYsBFZfabnRv229TZK%2B2s8EcYZ2MNsnl6xqu%2FSH%2F69%2FLECcKRZ9Bd1keUOqgonMxK3lr%2FJAZg%3D%3D
-#EXTINF:-1 tvg-id="Discovery Kids" tvg-name="Discovery Kids" tvg-logo="http://y.cdn.entutele.com/media/channels/big/discovery-kids.gif" group-title="INFANTILES",Discovery Kids
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2F7ya9Whb4LaFCB4rGbUDCjWZpRSOd9Ghpnw877104A2H5yyMsw9wfP1uFicWb2Ycz%2BXoMsNz5luw%3D%3D
-#EXTINF:-1 tvg-id="Disney Channel" tvg-name="Disney Channel" tvg-logo="http://y.cdn.entutele.com/media/channels/big/disney-channel.gif" group-title="INFANTILES",Disney Channel
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18t4QDED0XpruA9rms8%2BW%2FMOBqcLsBcNGcmulmhKXIUbkHIs37PGVs0zl2cjkA8nPsG%2FVdJeyRANw%3D%3D
-#EXTINF:-1 tvg-id="Disney Channel" tvg-name="Disney Channel" tvg-logo="http://y.cdn.entutele.com/media/channels/big/disney-channel.gif" group-title="INFANTILES",Disney Channel Opc2
-http://service1.astrovida.tv:8000/live/testapp/testapp/3712.ts
-#EXTINF:-1 tvg-id="Disney Jr" tvg-name="Disney Jr" tvg-logo="http://y.cdn.entutele.com/media/channels/big/disney-jr.gif" group-title="INFANTILES",Disney Jr
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BiurEaZQEPArNSZK9H%2FbvD5%2F5pWYMT2CQTJBWtrK7a%2FxyeyNVwAxluE2zpB8k57BYJDf5%2B%2FcCqzA%3D%3D
-#EXTINF:-1 tvg-id="Disney XD" tvg-name="Disney XD" tvg-logo="http://y.cdn.entutele.com/media/channels/big/disney-xd.gif" group-title="INFANTILES",Disney XD
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX187edGFWmkVWsvFmw4HSy7Is39KixlMRAEIfP4vmt7j7rqqYpS9PkHw1mukuleQjtSfduPvsIZR4g%3D%3D
-#EXTINF:-1 tvg-id="Nick" tvg-name="Nick" tvg-logo="http://y.cdn.entutele.com/media/channels/big/nickelodeon-(nick).gif" group-title="INFANTILES",Nick
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18yXEFBdLh0xAbcZBWck%2Fjm73SoxgEXdUHnysBkL%2F8SS2fci%2FgZd9SyRLEUCK3dYAz79Nh%2F6BNjBQ%3D%3D
-#EXTINF:-1 tvg-id="Nick 2" tvg-name="Nick 2" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Nick_2.png/330px-Nick_2.png" group-title="INFANTILES",Nick2
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18k%2F7UTBqe74TbM8%2BMnJ1hHGyLYxR3%2FD%2FgBe%2FeQsX%2F5SpvKyP18ZRduc3CN4lkWA%2Bn8zq3u8Yv0IA%3D%3D
-#EXTINF:-1 tvg-id="NickToons" tvg-name="NickToons" tvg-logo="http://y.cdn.entutele.com/media/channels/big/nicktoons.gif" group-title="INFANTILES",Nicktoons
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2FLj9uFDlFtd7TLXFa6s2%2B5pzfiin7PIbk%2FcHNGNCRI1jA4WLyxT0NCbiyd06oM7os7NT2Wv4OLgQ%3D%3D
-#EXTINF:-1 tvg-id="TIIN" tvg-name="TIIN" tvg-logo="http://y.cdn.entutele.com/media/channels/big/tiin.gif" group-title="INFANTILES",Tiin
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX19fFJonA4RM9GgyzfMpDoD2bdt3A%2Fqis2wQTH0hgvcolnmw53MgpyJOncNs2P7oN22om0%2BqhaNpnw%3D%3D
-#EXTINF:-1 tvg-id="Tooncast" tvg-name="Tooncast" tvg-logo="http://y.cdn.entutele.com/media/channels/big/tooncast.gif" group-title="INFANTILES",Tooncast
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX182bm%2BazbPB1yR2QfYRijC0R220uMFe8OgZwrKZGeFm9f5YYAqJ36gxhEB9WiH7730gjZIl%2FD0%2Ftw%3D%3D
- 
-#EXTINF:0 group-title="Z etiquetas",[B][COLOR yellow]== PELÍCULAS Y SERIES ==[/COLOR][/B]
-http://streaming203.radionomy.com:80/City-Dance-Radio
-#EXTINF:-1 tvg-id="Cinecanal (W)" tvg-name="Cinecanal (W)" tvg-logo="http://y.cdn.entutele.com/media/channels/big/cinecanal-(w).gif" group-title="PELÍCULAS Y SERIES",CineCanal
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2BsWWfszKbYgal1mx6fJMtFrtKjYz2%2BUmaE2ndikLFKsSFLhnp85xC%2BbEqyyY812vDOONZlgnuhsA%3D%3D
-#EXTINF:-1,HBO
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX18PLeklySXqD7jzLETAloVFrozMdDrAQ%2BMmjajYTmAID8xSm7zYaUNffwpxri1HRqhUi4JMItexuQ%3D%3D
-#EXTINF:-1,HBO2
-http://latino-webtv.ml/stream.m3u8?token=U2FsdGVkX1%2B9oGYLJAmivDdCxF0e9BdN15OgoWYUCrEdWA0xyL%2B0kbjzlTb3VfrwO0NaDT2Eh1cIxOcl8rakkg%3D%3D
-#EXTINF:-1 tvg-id="Fox Action HD" tvg-name="Fox Action HD" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox-action-hd.gif" group-title="PELÍCULAS Y SERIES",Fox Action
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX18HYfWIHGUT%2B9CIhKIHcwJQx1qoSGzpffRx5UJKNT4QZx%2FU9l4H12kGX1aUGwrE6dsCDcfTi%2BpOgw%3D%3D
-#EXTINF:-1 tvg-id="Space" tvg-name="Space" tvg-logo="http://y.cdn.entutele.com/media/channels/big/space.gif" group-title="PELÍCULAS Y SERIES",Space
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2B6mUBl5b%2F9ER3qELsBeUmvP98Ll2hKGQBfwDmiJ8c9LRLxUbDnlTdQjdV0ajzCE2j2nWl8jXySoQ%3D%3D
- 
-#EXTINF:0 group-title="Z etiquetas",[B][COLOR yellow]== MUNDO Y CULTURA ==[/COLOR][/B]
-http://streaming203.radionomy.com:80/City-Dance-Radio
-#EXTINF:-1 tvg-id="Discovery Channel" tvg-name="Discovery Channel" tvg-logo="http://y.cdn.entutele.com/media/channels/big/discovery-channel.gif" group-title="MUNDO Y CULTURA",Discovery Channel
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX190a80Fu5FTZi2ffOITbTmD5eUFfaSD55bft5w12IPPuY79WV0%2BJa26%2FQzagqqK5cclFa4QZ1cYKg%3D%3D
-#EXTINF:-1 tvg-id="History" tvg-name="History" tvg-logo="http://y.cdn.entutele.com/media/channels/big/history-channel.gif" group-title="MUNDO Y CULTURA",History
-http://latino-webtv.ml/index.m3u8?token=U2FsdGVkX1%2Fib4DuDFPZPXAGrj%2F9BOoEo9txUpb0N4lqsmihkQ6iL7Jh8Avxu%2BRz3V5KvmAW0haXfgqdxkyqgA%3D%3D
+#EXTINF:0,America TV Peru
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/1241/exabytetv.m3u8
+#EXTINF:0,ATV 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/945/exabytetv.m3u8
+#EXTINF:0,BHtv 
+http://cdn1.ujjina.com/iptvbhtv/livebhtvtv/playlist.m3u8
+#EXTINF:0,Canal N 
+http://co.exabytetv.info/zenn/HQUPK-1011000100101111001110000111010-ExabyteTV/aHR0cDovL3d3dy5mdWxsdHZoZC5pbmZvL3BlcnUvY2FuYWxuLnBocA==/exabytetv.m3u8
+#EXTINF:0,Capital TV Perú 
+rtmp://rpplivefs.fplive.net/rpp02live-live/streamCAPTV
+#EXTINF:0,CMD HD 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/862/exabytetv.m3u8
+#EXTINF:0,Gol Perú 
+http://streams.innova-systems.net/GOLPERUHD/index.m3u8
+#EXTINF:0,Latina 
+http://ooyalahd2-f.akamaihd.net/i/latinlima01_delivery@42383/master.m3u8
+#EXTINF:0,Monterrico TV 
+http://vs8.live.opencaster.com/20100152275/jcpstream/playlist.m3u8
+#EXTINF:0,Pacífico TV 
+http://cdn1.ujjina.com/iptvpacifico/livepacificotv/playlist.m3u8
+#EXTINF:0,Panamerica TV 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/916/exabytetv.m3u8
+#EXTINF:0,Pax 
+http://38.105.14.194/paxtv/smil:PC.smil/playlist.m3u8
+#EXTINF:0,Peru Magico 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/1702/exabytetv.m3u8
+#EXTINF:0,Plus TV 
+http://B36642.cdn.telefonica.com/36642/ch01/3.m3u8
+#EXTINF:0,Quatro TV Arequipa 
+http://xvivatvcanal4arequipax.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,RBC 
+http://31.14.40.20:2137/live/livestream/playlist.m3u8
+#EXTINF:0,Red TV 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/1553/exabytetv.m3u8
+#EXTINF:0,RPP 
+rtmp://rpplivefs.fplive.net/rpp02live-live/streamRPPTV
+#EXTINF:0,Turbo Mix 
+http://167.114.116.212:1935/tvinnovate/myStream/playlist.m3u8
+#EXTINF:0,TV La Luz 
+http://stream.iglesiaytecnologia.com:2077/live/tvlaluz/playlist.m3u8
+#EXTINF:0,TV Perú 7-3 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/953/exabytetv.m3u8
+#EXTINF:0,TV Perú HD 
+http://premium.exabytetv.info/gc/HQUPK-1011000100101111001110000111010-ExabyteTV/1353/exabytetv.m3u8
+#EXTINF:0,Willax TV 
+http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
