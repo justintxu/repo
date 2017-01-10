@@ -5,19 +5,7 @@ http://a3live-lh.akamaihd.net/i/lasexta_1@35272/master.m3u8
 #EXTINF:0 tvg-logo="http://2.bp.blogspot.com/-SXH5dPp8svM/VCluL0BKJqI/AAAAAAAAByg/0dPjREMfsvE/s1600/Antena3hd.png", Antena 3 HD
 http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/1161.png",Latina
-http://ooyalahd2-f.akamaihd.net/i/latinlima01_delivery@42383/master.m3u8
-#EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/98.png" group-title="ENTRETENIMIENTO",Univisión HD**
-http://premium.exabytetv.info/HLSST/13493/13493-HQUPK-1011000100101111001110000111010-ExabyteTV.m3u8
-#EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/3625.png" group-title="DEPORTES - SPORTS",Real Madrid TV (España)
-http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
-#EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/3257.png" group-title="DEPORTES - SPORTS",UFC Network HD (op2)
-http://190.57.234.164/V3/6/1.m3u8
-#EXTINF:-1 tvg-id="Exabyte TV Discovery Channel" tvg-name="Discovery Channel" tvg-logo="http://y.cdn.entutele.com/media/channels/big/discovery-channel.gif" group-title="MUNDO Y CULTURA",Discovery Channel (Op2)
-http://premium.exabytetv.info/HLSST/3531/3531-HQUPK-1011000100101111001110000111010-ExabyteTV.m3u8
-#EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/119.png" group-title="MUNDO Y CULTURA",H2 Latino**
-http://premium.exabytetv.info/HLSST/297/297-HQUPK-1011000100101111001110000111010-ExabyteTV.m3u8
-#EXTINF:-1 tvg-id="Exabyte TV History Channel" tvg-name="History Channel" tvg-logo="http://y.cdn.entutele.com/media/channels/big/history-channel.gif" group-title="MUNDO Y CULTURA",History Channel (Op2)
-http://premium.exabytetv.info/HLSST/3704/3704-HQUPK-1011000100101111001110000111010-ExabyteTV.m3u8
+http://cialive-live.hds.adaptive.level3.net/hls-live/ciaremux-live/_definst_/live.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Bethel TV
 http://premium.exabytetv.info/livestream.php?acc=16199200&eve=4590066&token=HQUPK-1011000100101111001110000111010-ExabyteTV&f=.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Enlace
