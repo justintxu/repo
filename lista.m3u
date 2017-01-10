@@ -16,3 +16,11 @@ https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
 #EXTINF:-1,WARNER HD
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6777.ts
+#EXTINF:-1,SONY HD
+http://158.69.127.19:8000/live/2354RT5/2354RT5/6791.ts
+#EXTINF:-1,History HD
+http://158.69.127.19:8000/live/2354RT5/2354RT5/6798.ts
+#EXTINF:-1,FOX SPORTS 2
+http://158.69.127.19:8000/live/2354RT5/2354RT5/6803.ts
+#EXTINF:-1,Fox Sport 3
+http://158.69.127.19:8000/live/2354RT5/2354RT5/6854.ts
