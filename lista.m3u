@@ -6,8 +6,8 @@ http://a3live-lh.akamaihd.net/i/lasexta_1@35272/master.m3u8
 http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/1161.png",Latina
 http://cialive-live.hds.adaptive.level3.net/hls-live/ciaremux-live/_definst_/live.m3u8
-#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/1161.png",ATV
-http://dqsz3cincv704.cloudfront.net/pe/smil:atv_mas.smil/playlist.m3u8
+#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://images1.wikia.nocookie.net/__cb20120507153411/logopedia/images/2/2a/Tv_peru.jpg",TV Peru
+http://cdnh5.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Bethel TV
 http://premium.exabytetv.info/livestream.php?acc=16199200&eve=4590066&token=HQUPK-1011000100101111001110000111010-ExabyteTV&f=.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Enlace
