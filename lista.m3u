@@ -24,7 +24,7 @@ http://158.69.127.19:8000/live/2354RT5/2354RT5/6798.ts
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6803.ts
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/127.png",Fox Sport 3
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6854.ts
-#EXTINF:-1,UFC
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/3257.png",UFC
 http://158.69.127.19:8000/live/2354RT5/2354RT5/5676.ts
 #EXTINF:-1,FOX ACTION
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6807.ts
