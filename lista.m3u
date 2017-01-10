@@ -14,11 +14,11 @@ https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcast
 https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts/146377604.secure.m3u8?dw=100&hdnea=st=1484022345~exp=1484024145~acl=/i/2675843_1839332_lsis2b69kpwobiszcov_1@380004/*~hmac=a6d640f491e3e17c0dabf8b56757bc7a1b4d64494727b56042140909c5237333
 #EXTINF:0,Willax TV 
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
-#EXTINF:-1,WARNER HD
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/warner-channel.gif",WARNER HD
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6777.ts
-#EXTINF:-1,SONY HD
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/sony.gif",SONY HD
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6791.ts
-#EXTINF:-1,History HD
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/history-channel.gif",History
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6798.ts
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://i61.tinypic.com/5e5vgh.jpg",Fox Sports 2
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6803.ts
@@ -26,8 +26,8 @@ http://158.69.127.19:8000/live/2354RT5/2354RT5/6803.ts
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6854.ts
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/3257.png",UFC
 http://158.69.127.19:8000/live/2354RT5/2354RT5/5676.ts
-#EXTINF:-1,FOX ACTION
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox-action-hd.gif",FOX ACTION
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6807.ts
-#EXTINF:-1,H2
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/119.png",H2
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6750.ts
 
