@@ -9,7 +9,7 @@ http://cialive-live.hds.adaptive.level3.net/hls-live/ciaremux-live/_definst_/liv
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/1161.png", TV Peru
 http://cdnh5.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Bethel TV
-https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/146339530.secure.m3u8?dw=100&hdnea=st=1484021673~exp=1484023473~acl=/i/16199200_4590066_lsif9ebllq0lwwttm1f_1@306167/*~hmac=cd571049b30a57347f8b388d19709be7eccf687047492f39a4bbdff8ccbb3e76
+https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/147146135.secure.m3u8?dw=100&hdnea=st=1484873954~exp=1484875754~acl=/i/16199200_4590066_lsi5rjxab9u4idpt0r8_1@413551/*~hmac=d57f330a50b986f7bda40467ef74056ebcabd1f74dd5161b7cfffbda596a6be0
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Enlace
 https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts/146377604.secure.m3u8?dw=100&hdnea=st=1484022345~exp=1484024145~acl=/i/2675843_1839332_lsis2b69kpwobiszcov_1@380004/*~hmac=a6d640f491e3e17c0dabf8b56757bc7a1b4d64494727b56042140909c5237333
 #EXTINF:0,Willax TV 
