@@ -14,8 +14,8 @@ https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcast
 https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts/146377604.secure.m3u8?dw=100&hdnea=st=1484022345~exp=1484024145~acl=/i/2675843_1839332_lsis2b69kpwobiszcov_1@380004/*~hmac=a6d640f491e3e17c0dabf8b56757bc7a1b4d64494727b56042140909c5237333
 #EXTINF:0,Willax TV 
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/warner-channel.gif",WARNER HD
-http://158.69.127.19:8000/live/2354RT5/2354RT5/6777.ts
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://tvonlinegratis.com/wp-content/uploads/2014/05/ATV-Logo.jpg",ATV
+http://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/sony.gif",SONY HD
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6791.ts
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/history-channel.gif",History
