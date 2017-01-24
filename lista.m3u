@@ -17,7 +17,7 @@ http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://tvonlinegratis.com/wp-content/uploads/2014/05/ATV-Logo.jpg",ATV
 http://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.diesl.com/wp-content/uploads/2012/05/telecinco.jpg",Telecinco
-http://portal.onlineiptv.net:5210/live/nT0uTn4Ye8/YdjdTlNAJn/8522.ts
+http://mediasethls-lh.akamaihd.net/i/telecinco/telecinco_ng@393132/master.m3u8?hdnea=st=1485240395~exp=1485240403~acl=/i/telecinco/telecinco_ng@393132/*~hmac=692923345ca3c8a1c333acfcf3b8a154ba33ee8b8c8dd364f00274bcfc0236f1
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/history-channel.gif",History
 http://158.69.127.19:8000/live/2354RT5/2354RT5/6798.ts
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://i61.tinypic.com/5e5vgh.jpg",Fox Sports 2
