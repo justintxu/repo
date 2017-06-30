@@ -16,144 +16,88 @@ https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://tvonlinegratis.com/wp-content/uploads/2014/05/ATV-Logo.jpg",ATV
 http://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
-#EXTINF:-1,Russiatoday
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/692.ts
-#EXTINF:-1,RU: Усадьба
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4044.ts
-#EXTINF:-1,RU: Точка ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4045.ts
-#EXTINF:-1,RU: ТНТ 4
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4087.ts
-#EXTINF:-1,RU: ТНТ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4088.ts
-#EXTINF:-1,RU: СТС
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4089.ts
-#EXTINF:-1,RU: Спас
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4046.ts
-#EXTINF:-1,RU: Русский экстрим
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/3982.ts
-#EXTINF:-1,RU: Русский роман
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4039.ts
-#EXTINF:-1,RU: Русский иллюзион
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4040.ts
-#EXTINF:-1,RU: Русский детектив
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4041.ts
-#EXTINF:-1,RU: Русский бестселлер
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4042.ts
-#EXTINF:-1,RU: Россия 24
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4090.ts
-#EXTINF:-1,RU: Россия 1
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4091.ts
-#EXTINF:-1,RU: Ретро
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4047.ts
-#EXTINF:-1,RU: РЕН ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4092.ts
-#EXTINF:-1,RU: Пятница!
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4093.ts
-#EXTINF:-1,RU: Психология 21
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4048.ts
-#EXTINF:-1,RU: Первый канал
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4094.ts
-#EXTINF:-1,RU: Охота и рыбалка
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4049.ts
-#EXTINF:-1,RU: НТВ HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4043.ts
-#EXTINF:-1,RU: НТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4095.ts
-#EXTINF:-1,RU: Наше новое кино
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4053.ts
-#EXTINF:-1,RU: Наше кино
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4054.ts
-#EXTINF:-1,RU: Наше HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4055.ts
-#EXTINF:-1,RU: Мульт
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4056.ts
-#EXTINF:-1,RU: Музыка первого
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4057.ts
-#EXTINF:-1,RU: Муз ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4096.ts
-#EXTINF:-1,RU: Москва 24
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4083.ts
-#EXTINF:-1,RU: Много ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4058.ts
-#EXTINF:-1,RU: Мир сериала
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4059.ts
-#EXTINF:-1,RU: Мир HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4060.ts
-#EXTINF:-1,RU: Матч Футбол 3
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4061.ts
-#EXTINF:-1,RU: Матч Футбол 2
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4062.ts
-#EXTINF:-1,RU: Матч Футбол 1
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4063.ts
-#EXTINF:-1,RU: Матч ТВ HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4064.ts
-#EXTINF:-1,RU: Матч Планета
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4065.ts
-#EXTINF:-1,RU: Матч Наш спорт
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4066.ts
-#EXTINF:-1,RU: Матч Игра HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4067.ts
-#EXTINF:-1,RU: Матч Игра
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4068.ts
-#EXTINF:-1,RU: Матч Боец
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4069.ts
-#EXTINF:-1,RU: Матч Арена HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4070.ts
-#EXTINF:-1,RU: Матч Арена
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4071.ts
-#EXTINF:-1,RU: МАТЧ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4072.ts
-#EXTINF:-1,RU: Любимое кино
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4073.ts
-#EXTINF:-1,RU: КХЛ ТВ HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4074.ts
-#EXTINF:-1,RU: Кухня ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4097.ts
-#EXTINF:-1,RU: Кинохит
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4075.ts
-#EXTINF:-1,RU: Кинопоказ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4076.ts
-#EXTINF:-1,RU: Киноклуб
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4077.ts
-#EXTINF:-1,RU: Кино премиум HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4078.ts
-#EXTINF:-1,RU: Кино плюс
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4079.ts
-#EXTINF:-1,RU: Здоровое ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4098.ts
-#EXTINF:-1,RU: Евроспорт 2
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4099.ts
-#EXTINF:-1,RU: Еврокино
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4100.ts
-#EXTINF:-1,RU: Драйв
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4050.ts
-#EXTINF:-1,RU: Домашний
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4101.ts
-#EXTINF:-1,RU: Домашние животные
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4051.ts
-#EXTINF:-1,RU: Дом кино премиум HD
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4082.ts
-#EXTINF:-1,RU: Дом кино
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4102.ts
-#EXTINF:-1,RU: Детский мир
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4080.ts
-#EXTINF:-1,RU: Вопросы и ответы
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4052.ts
-#EXTINF:-1,RU: Бокс ТВ
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4081.ts
-#EXTINF:-1,RU: TV1000 русское кино
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4084.ts
-#EXTINF:-1,RU: TV1000 Action
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4085.ts
-#EXTINF:-1,RU: TV1000
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4086.ts
-#EXTINF:-1,RU: RU.TV
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4103.ts
-#EXTINF:-1,RU: Nat Geo Wild
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4104.ts
-#EXTINF:-1,RU: Disney
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4105.ts
-#EXTINF:-1,RU: Da Vinci Learning
-http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4106.ts
+#EXTINF:-1,UKR: STB
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4802.ts
+#EXTINF:-1,UKR: I????
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4801.ts
+#EXTINF:-1,UKR: 5 ?????
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4800.ts
+#EXTINF:-1,UKR: ICTV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4799.ts
+#EXTINF:-1,UKR: 2+2
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4798.ts
+#EXTINF:-1,UKR: ????? 2
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4797.ts
+#EXTINF:-1,UKR: ????? 1
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4796.ts
+#EXTINF:-1,UKR: ???
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4752.ts
+#EXTINF:-1,UKR: ZOOM
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4686.ts
+#EXTINF:-1,UKR: UNIAN TV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4688.ts
+#EXTINF:-1,UKR: STB MUSIC BOX
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4695.ts
+#EXTINF:-1,UKR: PERVIY DELOVOY
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4693.ts
+#EXTINF:-1,UKR: PERSHIY UKRAINE
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4694.ts
+#EXTINF:-1,UKR: OTV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4689.ts
+#EXTINF:-1,UKR: NEWS 24
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4692.ts
+#EXTINF:-1,UKR: MEGA
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4685.ts
+#EXTINF:-1,UKR: M2
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4691.ts
+#EXTINF:-1,UKR: KIEV TV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4690.ts
+#EXTINF:-1,UKR: ?????? 2
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4684.ts
+#EXTINF:-1,UKR: ?????? 1
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4683.ts
+#EXTINF:-1,UKR: ENTER FILM
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4687.ts
+#EXTINF:-1,UKR: 360 TUNE BOX
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5376.ts
+#EXTINF:-1,UKR: 3S TV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5377.ts
+#EXTINF:-1,UKR: 7 ????? HD
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5378.ts
+#EXTINF:-1,UKR: A-ONE UA
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5379.ts
+#EXTINF:-1,UKR: ATR
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5381.ts
+#EXTINF:-1,UKR: BUSINESS CHANNELS
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5382.ts
+#EXTINF:-1,UKR: CNL UKRAINE
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5383.ts
+#EXTINF:-1,UKR: ECO TV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5386.ts
+#EXTINF:-1,UKR: GNEWS
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5393.ts
+#EXTINF:-1,UKR: GTV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5394.ts
+#EXTINF:-1,UKR: M1
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5396.ts
+#EXTINF:-1,UKR: M2 ???????
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5397.ts
+#EXTINF:-1,UKR: MAXXI TV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5398.ts
+#EXTINF:-1,UKR: MILADY
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5399.ts
+#EXTINF:-1,UKR: NEWS NETWORK
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5400.ts
+#EXTINF:-1,UKR: NEWS ONE
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5401.ts
+#EXTINF:-1,UKR: PLUS
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5402.ts
+#EXTINF:-1,UKR: PRO ???
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5403.ts
+#EXTINF:-1,UKR: QTV
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5404.ts
+#EXTINF:-1,UKR: RTI
+http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5405.ts
+
+
 
