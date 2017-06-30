@@ -16,18 +16,144 @@ https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://tvonlinegratis.com/wp-content/uploads/2014/05/ATV-Logo.jpg",ATV
 http://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.diesl.com/wp-content/uploads/2012/05/telecinco.jpg",Telecinco
-http://mediasethls-lh.akamaihd.net/i/telecinco/telecinco_ng@393132/master.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://pbs.twimg.com/profile_images/459116046637473792/IMvoPTva.jpeg",MYHYV
-http://miteleooyala-vh.akamaihd.net/i/xlMmcxOTE6xgX99ify3MLbaCFjR13LTr/,DOcJ-FxaFrRg4gtDEwOjkzOjBhOwBM4Z,DOcJ-FxaFrRg4gtDEwOm84OjBrOz0bxa,DOcJ-FxaFrRg4gtDEwOjEwYjowODE7je,DOcJ-FxaFrRg4gtDEwOjFsaTowODE7WX,DOcJ-FxaFrRg4gtDEwOjI5cDowODE7AZ,DOcJ-FxaFrRg4gtDEwOjRpOmc3O_GF-z,.csmil/master.m3u8?hdnea=st=1485280074~exp=1485280164~acl=/i/xlMmcxOTE6xgX99ify3MLbaCFjR13LTr/,DOcJ-FxaFrRg4gtDEwOjkzOjBhOwBM4Z,DOcJ-FxaFrRg4gtDEwOm84OjBrOz0bxa,DOcJ-FxaFrRg4gtDEwOjEwYjowODE7je,DOcJ-FxaFrRg4gtDEwOjFsaTowODE7WX,DOcJ-FxaFrRg4gtDEwOjI5cDowODE7AZ,DOcJ-FxaFrRg4gtDEwOjRpOmc3O_GF-z,.csmil/*~hmac=fa94e16807b5049e420756af74b1061b98da8c351f6cb571045d52c7536cb78d
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://i61.tinypic.com/5e5vgh.jpg",Fox Sports 2
-http://158.69.127.19:8000/live/2354RT5/2354RT5/6803.ts
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/127.png",Fox Sport 3
-http://158.69.127.19:8000/live/2354RT5/2354RT5/6854.ts
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/3257.png",UFC
-http://158.69.127.19:8000/live/2354RT5/2354RT5/5676.ts
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://y.cdn.entutele.com/media/channels/big/fox-action-hd.gif",FOX ACTION
-http://158.69.127.19:8000/live/2354RT5/2354RT5/6807.ts
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/119.png",H2
-http://158.69.127.19:8000/live/2354RT5/2354RT5/6750.ts
+#EXTINF:-1,Russiatoday
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/692.ts
+#EXTINF:-1,RU: Усадьба
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4044.ts
+#EXTINF:-1,RU: Точка ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4045.ts
+#EXTINF:-1,RU: ТНТ 4
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4087.ts
+#EXTINF:-1,RU: ТНТ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4088.ts
+#EXTINF:-1,RU: СТС
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4089.ts
+#EXTINF:-1,RU: Спас
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4046.ts
+#EXTINF:-1,RU: Русский экстрим
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/3982.ts
+#EXTINF:-1,RU: Русский роман
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4039.ts
+#EXTINF:-1,RU: Русский иллюзион
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4040.ts
+#EXTINF:-1,RU: Русский детектив
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4041.ts
+#EXTINF:-1,RU: Русский бестселлер
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4042.ts
+#EXTINF:-1,RU: Россия 24
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4090.ts
+#EXTINF:-1,RU: Россия 1
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4091.ts
+#EXTINF:-1,RU: Ретро
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4047.ts
+#EXTINF:-1,RU: РЕН ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4092.ts
+#EXTINF:-1,RU: Пятница!
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4093.ts
+#EXTINF:-1,RU: Психология 21
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4048.ts
+#EXTINF:-1,RU: Первый канал
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4094.ts
+#EXTINF:-1,RU: Охота и рыбалка
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4049.ts
+#EXTINF:-1,RU: НТВ HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4043.ts
+#EXTINF:-1,RU: НТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4095.ts
+#EXTINF:-1,RU: Наше новое кино
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4053.ts
+#EXTINF:-1,RU: Наше кино
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4054.ts
+#EXTINF:-1,RU: Наше HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4055.ts
+#EXTINF:-1,RU: Мульт
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4056.ts
+#EXTINF:-1,RU: Музыка первого
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4057.ts
+#EXTINF:-1,RU: Муз ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4096.ts
+#EXTINF:-1,RU: Москва 24
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4083.ts
+#EXTINF:-1,RU: Много ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4058.ts
+#EXTINF:-1,RU: Мир сериала
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4059.ts
+#EXTINF:-1,RU: Мир HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4060.ts
+#EXTINF:-1,RU: Матч Футбол 3
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4061.ts
+#EXTINF:-1,RU: Матч Футбол 2
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4062.ts
+#EXTINF:-1,RU: Матч Футбол 1
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4063.ts
+#EXTINF:-1,RU: Матч ТВ HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4064.ts
+#EXTINF:-1,RU: Матч Планета
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4065.ts
+#EXTINF:-1,RU: Матч Наш спорт
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4066.ts
+#EXTINF:-1,RU: Матч Игра HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4067.ts
+#EXTINF:-1,RU: Матч Игра
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4068.ts
+#EXTINF:-1,RU: Матч Боец
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4069.ts
+#EXTINF:-1,RU: Матч Арена HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4070.ts
+#EXTINF:-1,RU: Матч Арена
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4071.ts
+#EXTINF:-1,RU: МАТЧ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4072.ts
+#EXTINF:-1,RU: Любимое кино
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4073.ts
+#EXTINF:-1,RU: КХЛ ТВ HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4074.ts
+#EXTINF:-1,RU: Кухня ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4097.ts
+#EXTINF:-1,RU: Кинохит
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4075.ts
+#EXTINF:-1,RU: Кинопоказ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4076.ts
+#EXTINF:-1,RU: Киноклуб
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4077.ts
+#EXTINF:-1,RU: Кино премиум HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4078.ts
+#EXTINF:-1,RU: Кино плюс
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4079.ts
+#EXTINF:-1,RU: Здоровое ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4098.ts
+#EXTINF:-1,RU: Евроспорт 2
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4099.ts
+#EXTINF:-1,RU: Еврокино
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4100.ts
+#EXTINF:-1,RU: Драйв
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4050.ts
+#EXTINF:-1,RU: Домашний
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4101.ts
+#EXTINF:-1,RU: Домашние животные
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4051.ts
+#EXTINF:-1,RU: Дом кино премиум HD
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4082.ts
+#EXTINF:-1,RU: Дом кино
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4102.ts
+#EXTINF:-1,RU: Детский мир
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4080.ts
+#EXTINF:-1,RU: Вопросы и ответы
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4052.ts
+#EXTINF:-1,RU: Бокс ТВ
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4081.ts
+#EXTINF:-1,RU: TV1000 русское кино
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4084.ts
+#EXTINF:-1,RU: TV1000 Action
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4085.ts
+#EXTINF:-1,RU: TV1000
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4086.ts
+#EXTINF:-1,RU: RU.TV
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4103.ts
+#EXTINF:-1,RU: Nat Geo Wild
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4104.ts
+#EXTINF:-1,RU: Disney
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4105.ts
+#EXTINF:-1,RU: Da Vinci Learning
+http://sang.dynsite.tm:8080/live/naeem_dsjsdlkj03343lskd/dsklj4kdtkc9s36dsk/4106.ts
 
