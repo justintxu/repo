@@ -7,7 +7,7 @@ http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://mw1.iptv66.tv/stalker_portal/misc/logos/320/1161.png",Latina
 http://cialive-live.hds.adaptive.level3.net/hls-live/ciaremux-live/_definst_/live.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
-http://cdnh5.iblups.com/hls/R9WtilpKKB.m3u8
+http://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Bethel TV
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/147146135.secure.m3u8?dw=100&hdnea=st=1484873954~exp=1484875754~acl=/i/16199200_4590066_lsi5rjxab9u4idpt0r8_1@413551/*~hmac=d57f330a50b986f7bda40467ef74056ebcabd1f74dd5161b7cfffbda596a6be0
 #EXTINF:-1 tvg-id="Exabyte TV " tvg-name="" tvg-logo="" group-title="RELIGIÓN",Enlace
@@ -16,88 +16,3 @@ https://player-api.new.livestream.com/accounts/2675843/events/1839332/broadcasts
 http://movil.mediastream.pe/vv_willax/livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://tvonlinegratis.com/wp-content/uploads/2014/05/ATV-Logo.jpg",ATV
 http://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
-#EXTINF:-1,UKR: STB
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4802.ts
-#EXTINF:-1,UKR: I????
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4801.ts
-#EXTINF:-1,UKR: 5 ?????
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4800.ts
-#EXTINF:-1,UKR: ICTV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4799.ts
-#EXTINF:-1,UKR: 2+2
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4798.ts
-#EXTINF:-1,UKR: ????? 2
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4797.ts
-#EXTINF:-1,UKR: ????? 1
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4796.ts
-#EXTINF:-1,UKR: ???
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4752.ts
-#EXTINF:-1,UKR: ZOOM
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4686.ts
-#EXTINF:-1,UKR: UNIAN TV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4688.ts
-#EXTINF:-1,UKR: STB MUSIC BOX
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4695.ts
-#EXTINF:-1,UKR: PERVIY DELOVOY
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4693.ts
-#EXTINF:-1,UKR: PERSHIY UKRAINE
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4694.ts
-#EXTINF:-1,UKR: OTV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4689.ts
-#EXTINF:-1,UKR: NEWS 24
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4692.ts
-#EXTINF:-1,UKR: MEGA
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4685.ts
-#EXTINF:-1,UKR: M2
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4691.ts
-#EXTINF:-1,UKR: KIEV TV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4690.ts
-#EXTINF:-1,UKR: ?????? 2
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4684.ts
-#EXTINF:-1,UKR: ?????? 1
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4683.ts
-#EXTINF:-1,UKR: ENTER FILM
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/4687.ts
-#EXTINF:-1,UKR: 360 TUNE BOX
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5376.ts
-#EXTINF:-1,UKR: 3S TV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5377.ts
-#EXTINF:-1,UKR: 7 ????? HD
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5378.ts
-#EXTINF:-1,UKR: A-ONE UA
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5379.ts
-#EXTINF:-1,UKR: ATR
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5381.ts
-#EXTINF:-1,UKR: BUSINESS CHANNELS
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5382.ts
-#EXTINF:-1,UKR: CNL UKRAINE
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5383.ts
-#EXTINF:-1,UKR: ECO TV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5386.ts
-#EXTINF:-1,UKR: GNEWS
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5393.ts
-#EXTINF:-1,UKR: GTV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5394.ts
-#EXTINF:-1,UKR: M1
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5396.ts
-#EXTINF:-1,UKR: M2 ???????
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5397.ts
-#EXTINF:-1,UKR: MAXXI TV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5398.ts
-#EXTINF:-1,UKR: MILADY
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5399.ts
-#EXTINF:-1,UKR: NEWS NETWORK
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5400.ts
-#EXTINF:-1,UKR: NEWS ONE
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5401.ts
-#EXTINF:-1,UKR: PLUS
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5402.ts
-#EXTINF:-1,UKR: PRO ???
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5403.ts
-#EXTINF:-1,UKR: QTV
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5404.ts
-#EXTINF:-1,UKR: RTI
-http://edge.xstreamers.net:8000/live/MaxxFiber/68998Pe6KhNXC2SFJ77p/5405.ts
-
-
-
