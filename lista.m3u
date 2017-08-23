@@ -5,7 +5,7 @@ http://a3live-lh.akamaihd.net/i/lasexta_1@35272/master.m3u8
 #EXTINF:0 tvg-logo="http://2.bp.blogspot.com/-SXH5dPp8svM/VCluL0BKJqI/AAAAAAAAByg/0dPjREMfsvE/s1600/Antena3hd.png", Antena 3 HD
 http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://live-tv-channels.net/pt-data/uploads/logo/latina_pe.png",Latina
-http://cialive-live.hds.adaptive.level3.net/hls-live/ciaremux-live/_definst_/live.m3u8
+https://cialivesec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live.m3u8?hash=0e4e386be292548840cc3
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
 http://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel TV
@@ -22,30 +22,3 @@ https://manifest.googlevideo.com/api/manifest/hls_variant/file/index.m3u8?playli
 https://manifest.googlevideo.com/api/manifest/hls_variant/file/index.m3u8?playlist_type=DVR&expire=1501194404&hfr=1&requiressl=yes&sparams=ei%2Cgcr%2Cgo%2Chfr%2Cid%2Cip%2Cipbits%2Citag%2Cmaudio%2Cplaylist_type%2Cratebypass%2Crequiressl%2Csource%2Cexpire&maudio=1&signature=C3334202DAC59398FA51F50605387D10E4395343.8A864DE642EB47C8D20231FA0EEA2ADC4F207322&dover=8&gcr=pe&itag=0&id=R8vUGCixdek.0&ei=QxR6WdjHOsLw-QXjlIGAAw&key=yt6&ip=179.7.86.172&ipbits=0&go=1&keepalive=yes&ratebypass=yes&source=yt_live_broadcast&cpn=jNSNZPWYYSIK1vX-&ibw=10370000&c=WEB&cver=1.20170720&ptk=AIRPremium_managed&oid=Xv7AUokabCFXrn9eQbNzTQ&ptchn=kyrSWEcjZKpIwMxiPfOcgg&pltype=contentlive
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://1.bp.blogspot.com/--TBUnq20y5Y/US5cRoICmBI/AAAAAAAAKJE/p4W9pgOn2qU/s1600/Novy_TV_logo.jpg",Novy TV
 http://stream3.seetv.tv:8081/livetv/66newtv5/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDc6MDU6MjUgUE0maGFzaF92YWx1ZT0vb05BZXZVcmswdUNOclQ5bXpWY1RBPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE1
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/en/7/7f/Ictv_ua.png", ICTV
-http://stream3.seetv.tv:8081/livetv/rtictvt6/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NDE6MjMgUE0maGFzaF92YWx1ZT11Tnl0dytZbjJzK3p2dWpoT2tucmVRPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE1
-#EXTINF:0 tvg-logo="http://www.gagarinplus.com.ua/images/stories/1articles/ukraina_sd.jpg", ТРК Украина
-http://stream3.seetv.tv:8081/livetv/ettrkua3/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NDQ6MTIgUE0maGFzaF92YWx1ZT1rWVRrTWtVcG9hTCs3NXNMWkc0WVZBPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE1
-#EXTINF:0 tvg-logo="https://static3.1tv.ru/assets/web/zaglushka-live-soc-seti-2-537x240-08be6a481fcf49900f30d17500817e55.jpg", Интер
-http://stream3.seetv.tv:8081/livetv/87inter5/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NDc6MjYgUE0maGFzaF92YWx1ZT12WTJGRVhMUDVvOFljdWZJaklDcUR3PT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE1
-#EXTINF:0 tvg-logo="https://i.ytimg.com/vi/DvERiKycpEQ/maxresdefault.jpg", Music Box
-http://stream3.seetv.tv:8081/livetv/55boxua44/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDY6MTY6MjIgUE0maGFzaF92YWx1ZT1STkhvV29PVnlQOEJSbzljMXFPazdBPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE2
-#EXTINF:0 tvg-logo="http://seetv.tv/uploads/small/45a96e15b6f9f31f568feafbcf7d727d.jpg", THT4
-http://stream3.seetv.tv:8081/livetv/ercomed45/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NTY6MzkgUE0maGFzaF92YWx1ZT1GMmxxeC9maTBYOFJvTXJ4VWdsak53PT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE2
-#EXTINF:0 tvg-logo="https://s-media-cache-ak0.pinimg.com/originals/13/36/16/133616197d561d2e7c0fe6db424f0b9e.jpg", Discovery
-http://stream3.seetv.tv:8081/livetv/57diskchy7/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6Mzk6MzQgUE0maGFzaF92YWx1ZT12Si9qNVVKZHJXWkNzWHdRbUVLSTBnPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE3
-#EXTINF:0 tvg-logo="http://www.nationalgeographic.com/content/dam/magazine/Logos/national-geographic.ngsversion.1475151192637.adapt.1900.1.jpg", National Geographic
-http://stream3.seetv.tv:8081/livetv/87natgeoc/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NTA6MjAgUE0maGFzaF92YWx1ZT1WSjhlSitsTmFjWHF2UlVTVCsrZXpRPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE2
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/d6/Nat_Geo_Wild_logo.png", NatGeo Wild
-http://stream3.seetv.tv:8081/livetv/65natgeo/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NTI6MjggUE0maGFzaF92YWx1ZT16eUMrQnJwcWp2ZWZHcGdHZE4rSVl3PT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE1
-#EXTINF:0 tvg-logo="http://logodatabases.com/wp-content/uploads/2012/06/animal-planet-logo.jpg", Animal Planet
-http://stream3.seetv.tv:8081/livetv/45animal4/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDY6MTM6MzggUE0maGFzaF92YWx1ZT1TR2dxQ013aGxaK1B6eXVEMm5Sd213PT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE2
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Viasat_History_Logo.jpg/1200px-Viasat_History_Logo.jpg", Viasat History HD
-http://stream3.seetv.tv:8081/livetv/25historyff/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDY6MTQ6NDUgUE0maGFzaF92YWx1ZT1reG82WCtDUWZyNWJVTmxSY2w5eGl3PT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE4
-#EXTINF:0 tvg-logo="https://vignette3.wikia.nocookie.net/logopedia/images/a/a9/TV1000_Megahit.png/revision/latest?cb=20121008133038", MegaHit TV 1000 HD
-http://stream3.seetv.tv:8081/livetv/2megahithd6/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDU6NTk6NTEgUE0maGFzaF92YWx1ZT1jaTNEZnpXWTFpN3ZockppbmVQazZnPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE4
-#EXTINF:0 tvg-logo="http://4.bp.blogspot.com/-uUFBMfsnTc4/UGsQ6jM_H9I/AAAAAAAANpY/pCboesXz8s8/s1600/TV1000+Premium+HD+logo+2012.png", Premium TV 1000 HD
-http://stream3.seetv.tv:8081/livetv/2premiumhd2/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDY6MDY6MDcgUE0maGFzaF92YWx1ZT1GRytIZFVnNmpsaU5GaEgyL0hUNU9BPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE4
-#EXTINF:0 tvg-logo="http://vignette2.wikia.nocookie.net/tvkanal/images/c/c6/TV1000.png/revision/latest?cb=20100308163331&path-prefix=da", TV 1000
-http://stream3.seetv.tv:8081/livetv/tv1000ru3t/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ny8yNy8yMDE3IDY6MTg6MjggUE0maGFzaF92YWx1ZT1LKytFMzNpNHlIOXNkWmtmc1BSbnNBPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE3
-
