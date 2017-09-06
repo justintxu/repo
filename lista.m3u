@@ -8,8 +8,8 @@ http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 https://cialivesec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live.m3u8?hash=0c1cb04d5e0222555080d
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
 http://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel TV
-https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/159783262.secure.m3u8?dw=100&hdnea=st=1500243218~exp=1500245018~acl=/i/16199200_4590066_lsinrpvpx89ue2ynvi6_1@413642/*~hmac=513ae9e30799585ec761eee3d16b91a88adc1ae52b2217eab2a2a725f0bb8f24
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",CMD
+https://66.201.186.102
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
 http://cdnh15.iblups.com/hls/ptv.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
