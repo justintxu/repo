@@ -5,7 +5,7 @@ http://a3live-lh.akamaihd.net/i/lasexta_1@35272/master.m3u8
 #EXTINF:0 tvg-logo="http://2.bp.blogspot.com/-SXH5dPp8svM/VCluL0BKJqI/AAAAAAAAByg/0dPjREMfsvE/s1600/Antena3hd.png", Antena 3 HD
 http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://live-tv-channels.net/pt-data/uploads/logo/latina_pe.png",Latina
-https://cialivesec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live.m3u8?hash=0b113f481bf232d4bea0c
+https://cialivesec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live.m3u8?hash=08ef484138cdaae6b60cb
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
 http://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",CMD
