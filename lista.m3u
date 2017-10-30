@@ -12,8 +12,8 @@ http://mset-prod-1.live-delivery.ooyala.com/out/u/3vkkbgnvsm2r5/104951/RsZXlnNTE
 https://cialivesec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live.m3u8?hash=08ef484138cdaae6b60cb
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
 http://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",CMD
-https://66.201.186.102
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
+https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/165162964.secure.m3u8?dw=100&hdnea=st=1509402898~exp=1509404698~acl=/i/16199200_4590066_lsif7w1jb7zndci4xid_1@447002/*~hmac=c9b471a3497327481319df1efd90c548d2aacd2396dfb25e052091d9aab3e2ef
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png",ATV
 http://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
