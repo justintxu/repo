@@ -9,7 +9,7 @@ http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8
 #EXTINF:0 tvg-logo="http://kal-images.ono.es/app_posters/205c230554f143698840d5228a7b9924_302X170.png", Telecinco HD
 http://mset-prod-1.live-delivery.ooyala.com/out/u/3vkkbgnvsm2r5/104951/RsZXlnNTE6re1fFuFEI0UrdA2Uj7pNGM/cn/5d62490854b545598f64eaa84709400b.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://live-tv-channels.net/pt-data/uploads/logo/latina_pe.png",Latina
-https://cialivetec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live/stream4.m3u8
+ttps://cialivetec-hls.secure.footprint.net/hls-live/streams/ciaremux-live/events/_definst_/live/stream4Num23707.ts
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
 https://ooyalasecurehd3-f.akamaihd.net/i/americatvAksec_d@500580/master.m3u8?hdnea=st=1509405561~exp=1509405651~acl=/i/americatvAksec_d@500580/*~hmac=368285a85972fa72dd8fdfc1b26405d5de5dd3968ca357598a9816253bcd7c97
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
