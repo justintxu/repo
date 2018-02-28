@@ -11,3 +11,29 @@ https://www.dropbox.com/s/wtsq55bwaclbvh4/Google%20Play%20Services_com.google.an
 https://www.dropbox.com/s/yflusb2ht0dzvr9/Google%20Play%20Store_com.android.vending.apk?dl=0
 
 
+La merfi
+
+Google Account Manager
+
+https://www.apkmirror.com/apk/google-inc/google-account-manager/google-account-manager-5-1-1743759-release/google-account-manager-5-1-1743759-android-apk-download/
+
+https://www.dropbox.com/s/bo0wdcrtopq9v9b/com.google.android.gsf.login_5.1-1743759-22_minAPI21%28nodpi%29_apkmirror.com.apk?dl=0
+
+Google Services Framework
+
+https://www.apkmirror.com/apk/google-inc/google-services-framework/google-services-framework-5-1-1743759-release/google-services-framework-5-1-1743759-android-apk-download/
+
+https://www.dropbox.com/s/lfo46fk5g3ydlrj/com.google.android.gsf_5.1-1743759-22_minAPI22%28nodpi%29_apkmirror.com.apk?dl=0
+
+Google Play Services
+
+https://www.apkmirror.com/apk/google-inc/google-play-services/google-play-services-9-8-77-release/google-play-services-9-8-77-230-135396225-android-apk-download/
+
+https://www.dropbox.com/s/5idas7krttrtw03/com.google.android.gms_9.8.77_%28230-135396225%29-9877230_minAPI21%28armeabi-v7a%29%28nodpi%29_apkmirror.com.apk?dl=0
+
+Google Play Store
+
+https://www.apkmirror.com/apk/google-inc/google-play-store/google-play-store-7-0-25-h-all-0-release/google-play-store-7-0-25-h-0-android-apk-download/
+
+https://www.dropbox.com/s/ata4ik3850eq8pz/com.android.vending_7.0.25.H-all_0_-80702500_minAPI14%28nodpi%29_apkmirror.com.apk?dl=0
+
