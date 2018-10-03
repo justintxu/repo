@@ -15,7 +15,7 @@ http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://live-tv-channels.net/pt-data/uploads/logo/latina_pe.png",Latina
 https://cialivetec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live/stream4.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
-https://ooyalasecurehd3-f.akamaihd.net/i/americatvAksec_d@500580/master.m3u8?hdnea=st=1519857133~exp=1519857223~acl=/i/americatvAksec_d@500580/*~hmac=d0ebdb2be0a42e9d1a62fd4f74f5143420a19b2fea42a0b7609b4121660e32e2
+https://ooyalasecurehd3-f.akamaihd.net/i/americatvAksec_d@500580/master.m3u8?hdnea=st=1538577767~exp=1538577857~acl=/i/americatvAksec_d@500580/*~hmac=691e57e45f62eee934c7e868ac1c769d110ad6351249d1b99683768a9fb2288f
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
 https://cdnhd.iblups.com/hls/ptv2.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
