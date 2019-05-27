@@ -58,3 +58,5 @@ http://unilivemtveu-lh.akamaihd.net/i/mtvno_1@346424/master.m3u8
 https://dcunilive2-lh.akamaihd.net/i/dclive_1@390829/master.m3u8
 #EXTINF:-1 tvg-logo="https://cdn.radioplay.se/img/original/4c80dac8dc9e9921.png" group-title="MUSICA", The Voice
 http://stream.1music.hu/stream/1music.m3u8
+#EXTINF:-1 tvg-logo="http://puu.sh/reJpA/bdc45a314f.png" group-title="CULTURA", Animal Planet
+http://161.0.157.5/PLTV/88888888/224/3221226253/index.m3u8
