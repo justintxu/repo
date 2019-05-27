@@ -28,7 +28,7 @@ https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcast
 http://acaooyalahd2-lh.akamaihd.net/i/TBN07_delivery@186245/index_1728_av-b.m3u8?sd=10&rebase=on
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
 https://secure-playlist.livestream.com/streams/26619010_7987650_lsigtgn8pgr283yp62h_1/media/26619010_7987650_lsigtgn8pgr283yp62h_1@2756000p.m3u8?dw=14400&token=1538758316_8c857179daf907637f1bc103763f5c72b95c4da4&ts=1538582400
-#EXTINF:-1 tvg-logo="https://www.foromedios.com/uploads/gallery/category_7/gallery_11278_7_58130.png" group-title="España", TVE
-http://162.220.164.62/extract.php?n=TVE%20SD&f=.m3u8
+#EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/entretenimiento/15.png" group-title="CINE", Universal Channel
+http://161.0.157.9/PLTV/88888888/224/3221226828/index.m3u8
 #EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
 https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
