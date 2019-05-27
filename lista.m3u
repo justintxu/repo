@@ -30,7 +30,5 @@ http://acaooyalahd2-lh.akamaihd.net/i/TBN07_delivery@186245/index_1728_av-b.m3u8
 https://secure-playlist.livestream.com/streams/26619010_7987650_lsigtgn8pgr283yp62h_1/media/26619010_7987650_lsigtgn8pgr283yp62h_1@2756000p.m3u8?dw=14400&token=1538758316_8c857179daf907637f1bc103763f5c72b95c4da4&ts=1538582400
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/1_plus_1_logo.svg/2000px-1_plus_1_logo.svg.png",1 Plus 1
 https://stream2g03-f23.ovva.tv/189931/smil:189931.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://www.tvsa.co.za/images/uploads/thumbs/0050418.png",Discovery Channel
-http://stream3.seetv.tv:8081/livetv/57diskchy7/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Mi8yNC8yMDE4IDQ6NDk6MjcgQU0maGFzaF92YWx1ZT1SZlg2bWNFN0g3ZW1mM0ZGTWJzdkZRPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE3
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://1.bp.blogspot.com/--TBUnq20y5Y/US5cRoICmBI/AAAAAAAAKJE/p4W9pgOn2qU/s1600/Novy_TV_logo.jpg",Novy TV
-http://stream3.seetv.tv:8081/livetv/66newtv5/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yNS8yMDE4IDI6Mzc6MTcgQU0maGFzaF92YWx1ZT02OGV6RjRNVVBqNU1nTnZjaTJ4ZWJRPT0mdmFsaWRtaW51dGVzPTIwJnN0cm1fbGVuPTE1
+#EXTINF:-1 tvg-logo="https://2.bp.blogspot.com/-4nPcTUkoq4A/UuKeHfN-8eI/AAAAAAAAhB0/hCCk5zvfp8g/s1600/tnt_hd.png" group-title="España", TNT España
+http://iptv.wtf:25461/live/liehuwpt/xvXFd963d4/13264.m3u8
