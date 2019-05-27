@@ -5,13 +5,13 @@ https://lakewoodhds-lh.akamaihd.net/i/LWLIVE_HD@178855/master.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png", La Sexta HD
 https://livestartover.atresmedia.com/lasexta/master.m3u8
 #EXTINF:0 tvg-logo="http://2.bp.blogspot.com/-SXH5dPp8svM/VCluL0BKJqI/AAAAAAAAByg/0dPjREMfsvE/s1600/Antena3hd.png", Antena 3 HD
-https://livestartover.atresmedia.com/antena3/bitrate_4.m3u8
+https://livestartover.atresmedia.com/geoantena3/master.m3u8
 #EXTINF:0 tvg-logo="http://1.bp.blogspot.com/-4EkwfMcookI/VYxmBe5wHiI/AAAAAAAAH5s/TMSsCxcc1NQ/s1600/mega-logo-atresmedia.jpg", MEGA HD
 https://livestartover.atresmedia.com/mega/master.m3u8
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309", Real Madrid TV HD
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://live-tv-channels.net/pt-data/uploads/logo/latina_pe.png",Latina
-https://cialivetec-hls.secure.footprint.net/hls-live/ciaremux-live/_definst_/live/stream4.m3u8
+#EXTINF:-1 tvg-logo="http://puu.sh/mb4wQ/6cd02167d4.png" group-title="CINE", Fox Cinema
+http://161.0.157.7/PLTV/88888888/224/3221226793/03.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
 https://ooyalasecurehd3-f.akamaihd.net/i/americatvAksec_d@500580/master.m3u8?hdnea=st=1538578345~exp=1538578435~acl=/i/americatvAksec_d@500580/*~hmac=c58fecae5a4a3867079941df308f1977a57e8d5617b96c2ee24e0cab73199d8f
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
@@ -24,8 +24,8 @@ https://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
 https://dqsz3cincv704.cloudfront.net/pe/smil:atv_mas.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/181383349.secure.m3u8?dw=80&hdnea=st=1538918414~exp=1538920214~acl=/i/16199200_4590066_lsiw2yllbgrlp33u7aw_1@407573/*~hmac=31bc43b9ab8bd7d9069c400991c3fed48eabace60aba440d0a97bc430179dfb5
-#EXTINF:-1, tvg-logo="http://enl2015.wpengine.com/wp-content/uploads/2015/09/enlace3.png",Enlace TV
-http://acaooyalahd2-lh.akamaihd.net/i/TBN07_delivery@186245/index_1728_av-b.m3u8?sd=10&rebase=on
+#EXTINF:-1 tvg-logo="http://y.cdn.entutele.com/media/channels/big/cartoon-network.gif" group-title="Infantiles", Cartoon Network
+http://161.0.157.9/PLTV/88888888/224/3221226843/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
 https://secure-playlist.livestream.com/streams/26619010_7987650_lsigtgn8pgr283yp62h_1/media/26619010_7987650_lsigtgn8pgr283yp62h_1@2756000p.m3u8?dw=14400&token=1538758316_8c857179daf907637f1bc103763f5c72b95c4da4&ts=1538582400
 #EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/entretenimiento/15.png" group-title="CINE", Universal Channel
