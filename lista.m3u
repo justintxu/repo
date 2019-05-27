@@ -50,3 +50,5 @@ https://stitcher.pluto.tv/stitch/hls/channel/59976841a09fd13c9b590ce8/master.m3u
 http://kissfm-cires21-video.secure.footprint.net/hittv/bitrate_3.m3u8
 #EXTINF:-1 tvg-logo="http://puu.sh/nsWwi/c18fe4842e.png" group-title="MUSICA", m2o TV
 http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8?sd=10&rebase=on
+#EXTINF:-1 tvg-logo="http://tvonline.com.do/images/sobipro/entries/42/img_mango-tv-canal%2059.jpg" group-title="MUSICA", Mango Tv
+http://mangotv01.streamprolive.com/hls/live.m3u8
