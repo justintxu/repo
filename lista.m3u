@@ -6,7 +6,7 @@ https://lakewoodhds-lh.akamaihd.net/i/LWLIVE_HD@178855/master.m3u8
 https://livestartover.atresmedia.com/lasexta/master.m3u8
 #EXTINF:0 tvg-logo="http://2.bp.blogspot.com/-SXH5dPp8svM/VCluL0BKJqI/AAAAAAAAByg/0dPjREMfsvE/s1600/Antena3hd.png", Antena 3 HD
 https://livestartover.atresmedia.com/geoantena3/master.m3u8
-#EXTINF:0,TVE 24H
+#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png", TVE 24H
 http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309", Real Madrid TV HD
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
