@@ -30,5 +30,5 @@ http://acaooyalahd2-lh.akamaihd.net/i/TBN07_delivery@186245/index_1728_av-b.m3u8
 https://secure-playlist.livestream.com/streams/26619010_7987650_lsigtgn8pgr283yp62h_1/media/26619010_7987650_lsigtgn8pgr283yp62h_1@2756000p.m3u8?dw=14400&token=1538758316_8c857179daf907637f1bc103763f5c72b95c4da4&ts=1538582400
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/1_plus_1_logo.svg/2000px-1_plus_1_logo.svg.png",1 Plus 1
 https://stream2g03-f23.ovva.tv/189931/smil:189931.smil/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://2.bp.blogspot.com/-4nPcTUkoq4A/UuKeHfN-8eI/AAAAAAAAhB0/hCCk5zvfp8g/s1600/tnt_hd.png" group-title="España", TNT España
-http://iptv.wtf:25461/live/liehuwpt/xvXFd963d4/13264.m3u8
+#EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
+https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
