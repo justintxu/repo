@@ -26,7 +26,9 @@ https://2221.janjua.pw:8088/adfree/fox0112/playlist.m3u8?id=88701&pk=8eb3a5d005c
 https://2221.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=89728&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309", Real Madrid TV
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png", La Sexta HD
+#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png", La Sexta
+https://livestartover.atresmedia.com/lasexta/master.m3u8
+#EXTINF:0 tvg-logo="https://tarotdemariarosales.com/wp-content/uploads/2018/09/logo-antena-3.png", Antena 3
 https://livestartover.atresmedia.com/lasexta/master.m3u8
 #EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
 https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
