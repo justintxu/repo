@@ -35,7 +35,7 @@ http://161.0.157.7/PLTV/88888888/224/3221226793/03.m3u8
 #EXTINF:-1 tvg-logo="https://banner2.kisspng.com/20180404/avq/kisspng-cartoon-network-logo-television-animation-cartoon-network-5ac59e4556f2f6.8778586515229005493562.jpg" group-title="Infantiles", Cartoon Network
 http://161.0.157.9/PLTV/88888888/224/3221226843/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
-https://secure-playlist.livestream.com/streams/26619010_7987650_lsigtgn8pgr283yp62h_1/media/26619010_7987650_lsigtgn8pgr283yp62h_1@2756000p.m3u8?dw=14400&token=1538758316_8c857179daf907637f1bc103763f5c72b95c4da4&ts=1538582400
+https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/191835938.secure.m3u8?dw=80&hdnea=st=1559196739~exp=1559198539~acl=/i/26619010_7987650_lsi6e2bgdfi76jwh34d_1@446941/*~hmac=feac334392d35174087da178a3b6f726068e0274a1ca773f3523cf1fd8b3b6f0&token=5cef78f3_ed9b6af2d29c1e6484c748fb33afd0b3d8e40288
 #EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/entretenimiento/15.png" group-title="CINE", Universal Channel
 http://161.0.157.9/PLTV/88888888/224/3221226828/index.m3u8
 #EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/fox/fox-movies-hd.png" group-title="CINE", Fox Movies
