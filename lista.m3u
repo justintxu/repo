@@ -16,6 +16,8 @@ https://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
 https://dqsz3cincv704.cloudfront.net/pe/smil:atv_mas.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/191838363.secure.m3u8?dw=80&hdnea=st=1559195083~exp=1559196883~acl=/i/16199200_4590066_lsiyewbu6pzw30y7aof_1@408252/*~hmac=eae7b774dba421da5550edcd493284f7fb2fd33e695a470f47be3221172ed1a9&token=5cef727b_d0388159607383dca969fdd7e96119210dc0cecf
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
+https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/191835938.secure.m3u8?dw=80&hdnea=st=1559196739~exp=1559198539~acl=/i/26619010_7987650_lsi6e2bgdfi76jwh34d_1@446941/*~hmac=feac334392d35174087da178a3b6f726068e0274a1ca773f3523cf1fd8b3b6f0&token=5cef78f3_ed9b6af2d29c1e6484c748fb33afd0b3d8e40288
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://2.bp.blogspot.com/-Cpi6jX6FYlo/V8R8tYREHPI/AAAAAAAAFYk/f30bQSZzIHI3adhkTnU_rrlWseuD7k_gACLcB/s1600/gol%2Bperu.jpg",GOL Perú
 https://2221.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=88824&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/pt/d/dd/Fox_Sports_Logo.png",FoxSports
@@ -34,8 +36,6 @@ http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_a
 http://161.0.157.7/PLTV/88888888/224/3221226793/03.m3u8
 #EXTINF:-1 tvg-logo="https://banner2.kisspng.com/20180404/avq/kisspng-cartoon-network-logo-television-animation-cartoon-network-5ac59e4556f2f6.8778586515229005493562.jpg" group-title="Infantiles", Cartoon Network
 http://161.0.157.9/PLTV/88888888/224/3221226843/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
-https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/191835938.secure.m3u8?dw=80&hdnea=st=1559196739~exp=1559198539~acl=/i/26619010_7987650_lsi6e2bgdfi76jwh34d_1@446941/*~hmac=feac334392d35174087da178a3b6f726068e0274a1ca773f3523cf1fd8b3b6f0&token=5cef78f3_ed9b6af2d29c1e6484c748fb33afd0b3d8e40288
 #EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/entretenimiento/15.png" group-title="CINE", Universal Channel
 http://161.0.157.9/PLTV/88888888/224/3221226828/index.m3u8
 #EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/fox/fox-movies-hd.png" group-title="CINE", Fox Movies
