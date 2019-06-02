@@ -68,97 +68,159 @@ https://dcunilive2-lh.akamaihd.net/i/dclive_1@390829/master.m3u8
 http://stream.1music.hu/stream/1music.m3u8
 #EXTINF:-1 tvg-logo="http://puu.sh/reJpA/bdc45a314f.png" group-title="CULTURA", Animal Planet
 http://161.0.157.5/PLTV/88888888/224/3221226253/index.m3u8
-#EXTINF:-1,Cartoon Network Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23416.m3u8
-#EXTINF:-1,Cinecanal Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23409.m3u8
-#EXTINF:-1,Claro Sports Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23385.m3u8
-#EXTINF:-1,Claro Sports Latinoamerica Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23384.m3u8
-#EXTINF:-1,Comedy Central Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23375.m3u8
-#EXTINF:-1,Concert Channel Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23383.m3u8
-#EXTINF:-1,DHE Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23392.m3u8
-#EXTINF:-1,Discovery Channel Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23352.m3u8
-#EXTINF:-1,Discovery Home and Health Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23351.m3u8
-#EXTINF:-1,Discovery Kids Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23350.m3u8
-#EXTINF:-1,Discovery Theater Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23349.m3u8
-#EXTINF:-1,Discovery TLC Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23353.m3u8
-#EXTINF:-1,Discovery World Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23348.m3u8
-#EXTINF:-1,Disney Chanel Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23421.m3u8
-#EXTINF:-1,Espn 2 Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23398.m3u8
-#EXTINF:-1,Espn 3 Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23397.m3u8
-#EXTINF:-1,Espn Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23396.m3u8
-#EXTINF:-1,Espn Plus Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23395.m3u8
-#EXTINF:-1,FOX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23380.m3u8
-#EXTINF:-1,Fox Life Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23415.m3u8
-#EXTINF:-1,Fox MX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23370.m3u8
-#EXTINF:-1,Fox Premium Action Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23365.m3u8
-#EXTINF:-1,Fox Premium Cinema Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23364.m3u8
-#EXTINF:-1,Fox Premium Classics Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23363.m3u8
-#EXTINF:-1,Fox Premium Comedy Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23362.m3u8
-#EXTINF:-1,Fox Premium Family Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23367.m3u8
-#EXTINF:-1,Fox Premium Movies Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23366.m3u8
-#EXTINF:-1,Fox Premium Series Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23368.m3u8
-#EXTINF:-1,Fox Sports 1 Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23359.m3u8
-#EXTINF:-1,Fox Sports 1 MX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23391.m3u8
-#EXTINF:-1,Fox Sports 2 Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23361.m3u8
-#EXTINF:-1,Fox Sports 2 MX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23390.m3u8
-#EXTINF:-1,Fox Sports 3 Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23360.m3u8
-#EXTINF:-1,Fox Sports 3 MX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23389.m3u8
-#EXTINF:-1,FX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23374.m3u8
-#EXTINF:-1,FXM Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23369.m3u8
-#EXTINF:-1,FXM MX Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23404.m3u8
-#EXTINF:-1,Golden Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23403.m3u8
-#EXTINF:-1,Golden Premier Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23402.m3u8
-#EXTINF:-1,Golf Channel Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23401.m3u8
-#EXTINF:-1,Gourmet Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23414.m3u8
-#EXTINF:-1,HBO 2 Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23358.m3u8
-#EXTINF:-1,HBO Family Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23357.m3u8
-#EXTINF:-1,HBO Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23356.m3u8
-#EXTINF:-1,HBO Plus Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23355.m3u8
-#EXTINF:-1,HBO Signature Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23354.m3u8
-#EXTINF:-1,History Channel Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23408.m3u8
+#EXTINF:-1,A&E Mundo HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23486.m3u8
+#EXTINF:-1,Animal Planet HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23477.m3u8
+#EXTINF:-1,AXN HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23423.m3u8
+#EXTINF:-1,Az Corazón HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23487.m3u8
+#EXTINF:-1,Az Mundo HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23465.m3u8
+#EXTINF:-1,Canal Claro HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23489.m3u8
+#EXTINF:-1,Cartoon Network HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23464.m3u8
+#EXTINF:-1,Cinecanal HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23476.m3u8
+#EXTINF:-1,Claro Sports HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23483.m3u8
+#EXTINF:-1,Claro Sports Latinoamerica HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23482.m3u8
+#EXTINF:-1,Comedy Central HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23422.m3u8
+#EXTINF:-1,Concert Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23481.m3u8
+#EXTINF:-1,DHE HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23429.m3u8
+#EXTINF:-1,Discovery Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23441.m3u8
+#EXTINF:-1,Discovery Home and Health HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23440.m3u8
+#EXTINF:-1,Discovery Kids HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23439.m3u8
+#EXTINF:-1,Discovery Theater HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23438.m3u8
+#EXTINF:-1,Discovery TLC HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23454.m3u8
+#EXTINF:-1,Discovery World HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23437.m3u8
+#EXTINF:-1,Disney Chanel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23463.m3u8
+#EXTINF:-1,Espn 2 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23434.m3u8
+#EXTINF:-1,Espn 3 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23433.m3u8
+#EXTINF:-1,Espn HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23435.m3u8
+#EXTINF:-1,Espn Plus HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23432.m3u8
+#EXTINF:-1,FOX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23478.m3u8
+#EXTINF:-1,Fox Life HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23471.m3u8
+#EXTINF:-1,Fox MX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23480.m3u8
+#EXTINF:-1,Fox Premium Action HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23447.m3u8
+#EXTINF:-1,Fox Premium Cinema HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23446.m3u8
+#EXTINF:-1,Fox Premium Classics HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23445.m3u8
+#EXTINF:-1,Fox Premium Comedy HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23444.m3u8
+#EXTINF:-1,Fox Premium Family HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23452.m3u8
+#EXTINF:-1,Fox Premium Movies HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23451.m3u8
+#EXTINF:-1,Fox Premium Series HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23453.m3u8
+#EXTINF:-1,Fox Sports 1 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23450.m3u8
+#EXTINF:-1,Fox Sports 1 MX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23428.m3u8
+#EXTINF:-1,Fox Sports 2 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23449.m3u8
+#EXTINF:-1,Fox Sports 2 MX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23427.m3u8
+#EXTINF:-1,Fox Sports 3 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23448.m3u8
+#EXTINF:-1,Fox Sports 3 MX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23426.m3u8
+#EXTINF:-1,FX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23499.m3u8
+#EXTINF:-1,FXM HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23479.m3u8
+#EXTINF:-1,FXM MX HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23475.m3u8
+#EXTINF:-1,Golden HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23495.m3u8
+#EXTINF:-1,Golden Premier HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23494.m3u8
+#EXTINF:-1,Golf Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23493.m3u8
+#EXTINF:-1,El Gourmet HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23470.m3u8
+#EXTINF:-1,HBO 2 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23459.m3u8
+#EXTINF:-1,HBO Family HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23458.m3u8
+#EXTINF:-1,HBO HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23457.m3u8
+#EXTINF:-1,HBO Plus HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23456.m3u8
+#EXTINF:-1,HBO Signature HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23455.m3u8
+#EXTINF:-1,History Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23469.m3u8
+#EXTINF:-1,Hola TV HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23498.m3u8
+#EXTINF:-1,Investigation Discovery HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23436.m3u8
+#EXTINF:-1,Más Chic HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23497.m3u8
+#EXTINF:-1,MAX Prime HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23443.m3u8
+#EXTINF:-1,MAX Up HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23442.m3u8
+#EXTINF:-1,MTV HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23484.m3u8
+#EXTINF:-1,MTV Live HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23425.m3u8
+#EXTINF:-1,Natgeo HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23474.m3u8
+#EXTINF:-1,Natgeo Kids HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23473.m3u8
+#EXTINF:-1,Natgeo Wild HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23472.m3u8
+#EXTINF:-1,Nick 2 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23467.m3u8
+#EXTINF:-1,Nick JR HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23466.m3u8
+#EXTINF:-1,Nickelodeon HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23468.m3u8
+#EXTINF:-1,Paramount Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23492.m3u8
+#EXTINF:-1,Pasiones HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23431.m3u8
+#EXTINF:-1,Sony HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23485.m3u8
+#EXTINF:-1,Space HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23488.m3u8
+#EXTINF:-1,Sundance Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23491.m3u8
+#EXTINF:-1,TNT HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23462.m3u8
+#EXTINF:-1,TNT Series HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23461.m3u8
+#EXTINF:-1,TruTV HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23496.m3u8
+#EXTINF:-1,Universal Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23460.m3u8
+#EXTINF:-1,VH1 HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23424.m3u8
+#EXTINF:-1,Warner Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23490.m3u8
+
+
