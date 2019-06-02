@@ -68,5 +68,5 @@ https://dcunilive2-lh.akamaihd.net/i/dclive_1@390829/master.m3u8
 http://stream.1music.hu/stream/1music.m3u8
 #EXTINF:-1 tvg-logo="http://puu.sh/reJpA/bdc45a314f.png" group-title="CULTURA", Animal Planet
 http://161.0.157.5/PLTV/88888888/224/3221226253/index.m3u8
-#EXTINF:-1 tvg-logo="http://puu.sh/reJpA/bdc45a314f.png" group-title="CULTURA", Discovery Theater Full HD
+#EXTINF:-1 tvg-logo="https://vignette.wikia.nocookie.net/logopedia/images/d/d8/Discovery_HD_Theather_2013.png" group-title="CULTURA", Discovery Theater Full HD
 http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23349.m3u8
