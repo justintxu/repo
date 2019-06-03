@@ -56,6 +56,10 @@ http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/70.m3u8
 http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/78.m3u8
 #EXTINF:-1,Discovery Channel
 http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/56.m3u8
+#EXTINF:-1,Discovery Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23441.m3u8
+#EXTINF:-1,Discovery Channel Full HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23352.m3u8
 #EXTINF:-1,Discovery Civilization
 http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/62.m3u8
 #EXTINF:-1,Discovery Home & Health
