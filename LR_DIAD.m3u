@@ -1,0 +1,104 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg" group-title="CINE", Latina
+https://2220.janjua.pw:8088/adfree/latinahd1/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
+https://2223.janjua.pw:8088/adfree/amer3/playlist.m3u8?id=89207&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
+https://cdnhd.iblups.com/hls/ptv2.m3u8
+#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
+https://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png",ATV
+https://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png",ATV+
+https://dqsz3cincv704.cloudfront.net/pe/smil:atv_mas.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
+https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/191838363.secure.m3u8?dw=80&hdnea=st=1559231697~exp=1559233497~acl=/i/16199200_4590066_lsiyewbu6pzw30y7aof_1@408252/*~hmac=e0cb89b529797d8fc361f0afe22b9ba6785afa46f0086230955cefe6b5c6a947&token=5cf00181_43c5758b36bc13221a39b6c4ec1721b2b25a2d32
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
+https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/192039086.secure.m3u8?dw=80&hdnea=st=1559594110~exp=1559595910~acl=/i/26619010_7987650_lsijsq0kt4k5388tk4g_1@413669/*~hmac=9c0f691af3e6f7c93f87b2cb8158cd3072467f2da0c562f1e3653f70f2c5afd4&token=5cf5892e_8a88356041f8de31ec5da88b1dd092eb93fa76da
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://2.bp.blogspot.com/-Cpi6jX6FYlo/V8R8tYREHPI/AAAAAAAAFYk/f30bQSZzIHI3adhkTnU_rrlWseuD7k_gACLcB/s1600/gol%2Bperu.jpg",GOL Perú
+https://2221.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=88824&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/pt/d/dd/Fox_Sports_Logo.png",FoxSports
+https://2223.janjua.pw:8088/adfree/fox0112/playlist.m3u8?id=88701&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://www.pngfind.com/pngs/m/204-2047658_urmdp-tv-directv-sports-logo-png-transparent-png.png",DirecTV Sports
+https://2220.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=89728&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+#EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309", Real Madrid TV
+http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
+#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png", La Sexta
+https://livestartover.atresmedia.com/lasexta/master.m3u8
+#EXTINF:0 tvg-logo="https://tarotdemariarosales.com/wp-content/uploads/2018/09/logo-antena-3.png", Antena 3
+https://livestartover.atresmedia.com/antena3/master.m3u8
+#EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
+https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
+#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png", TVE 24H
+http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
+#EXTINF:-1,A&E
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/21.m3u8
+#EXTINF:-1,AMC
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/75.m3u8
+#EXTINF:-1,Animal Planet
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/57.m3u8
+#EXTINF:-1,TYC SPORTS
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/9170.m3u8
+#EXTINF:-1,AXN
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/152.m3u8
+#EXTINF:-1,Boomerang
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/49.m3u8
+#EXTINF:-1,Cartoon Network
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/47.m3u8
+#EXTINF:-1,Cinecanal
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/77.m3u8
+#EXTINF:-1,Cinecanal 2
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/70.m3u8
+#EXTINF:-1,Cinemax
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/78.m3u8
+#EXTINF:-1,Discovery Channel
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/56.m3u8
+#EXTINF:-1,Discovery Channel HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23441.m3u8
+#EXTINF:-1,Discovery Channel Full HD.
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23352.m3u8
+#EXTINF:-1,Discovery Civilization
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/62.m3u8
+#EXTINF:-1,Discovery Home & Health
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/58.m3u8
+#EXTINF:-1,Discovery Kids
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/39.m3u8
+#EXTINF:-1,Discovery Science
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/61.m3u8
+#EXTINF:-1,Discovery Theater
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/52.m3u8
+#EXTINF:-1,Discovery Turbo
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/63.m3u8
+#EXTINF:-1,Discovery World
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/55.m3u8
+#EXTINF:-1,Disney Channel
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/43.m3u8
+#EXTINF:-1,Disney Junior
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/41.m3u8
+#EXTINF:-1,Disney XD
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/48.m3u8
+#EXTINF:-1,ES: AMC
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/348.m3u8
+#EXTINF:-1,ES: HISTORIA
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/305.m3u8
+#EXTINF:-1,H2
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/140.m3u8
+#EXTINF:-1,HBO 2
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/125.m3u8
+#EXTINF:-1,HBO FAMILY
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/124.m3u8
+#EXTINF:-1,HBO
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/123.m3u8
+#EXTINF:-1,HBO PLUS
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/126.m3u8
+#EXTINF:-1,HBO PLUS OESTE
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/122.m3u8
+#EXTINF:-1,HBO Signature
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/112.m3u8
+#EXTINF:-1,HTV
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/7481.m3u8
+#EXTINF:-1,History
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/53.m3u8
+#EXTINF:-1,Investigation Discovery
+http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/31.m3u8
