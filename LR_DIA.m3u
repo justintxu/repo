@@ -1,9 +1,9 @@
 #EXTM3U
 
 #EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg" group-title="CINE", Latina
-https://2d01.janjua.pw:8088/adfree/latinahd1/playlist.m3u8?id=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+https://2d01.janjua.pw:8088/adfree/latinahd1/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
-https://2222.janjua.pw:8088/adfree/amer3/playlist.m3u8?id=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+https://2222.janjua.pw:8088/adfree/amer3/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
 https://cdnhd.iblups.com/hls/ptv2.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
@@ -13,11 +13,11 @@ https://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png",ATV+
 https://dqsz3cincv704.cloudfront.net/pe/smil:atv_mas.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://2.bp.blogspot.com/-Cpi6jX6FYlo/V8R8tYREHPI/AAAAAAAAFYk/f30bQSZzIHI3adhkTnU_rrlWseuD7k_gACLcB/s1600/gol%2Bperu.jpg",GOL Perú
-https://2203.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+https://2203.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/pt/d/dd/Fox_Sports_Logo.png",FoxSports
-https://2223.janjua.pw:8088/adfree/fox0112/playlist.m3u8?id=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+https://2223.janjua.pw:8088/adfree/fox0112/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://www.pngfind.com/pngs/m/204-2047658_urmdp-tv-directv-sports-logo-png-transparent-png.png",DirecTV Sports
-https://2220.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+https://2220.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309", Real Madrid TV
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png", La Sexta
