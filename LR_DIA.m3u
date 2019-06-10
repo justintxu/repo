@@ -33,7 +33,7 @@ https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png", TVE 24H
 http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
 #EXTINF:0 tvg-logo="http://1.bp.blogspot.com/-2p8fwmxSCeI/VQHGF0DJFXI/AAAAAAAAAKM/VEvNL-wu0qU/s1600/AE_2014_blue_rgb_FIN-1.png", A&E
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/21.m3u8
+http://disfruta.net:8000/live/jsolano21/bSYdBzH4eW/23486.m3u8
 #EXTINF:-1,AMC
 http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/75.m3u8
 #EXTINF:-1,Animal Planet
