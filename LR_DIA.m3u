@@ -16,7 +16,7 @@ https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8
 https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/193730356.secure.m3u8?dw=80&hdnea=st=1563125614~exp=1563127414~acl=/i/16199200_4590066_lsildxa1iddgbqrqs6x_1@408532/*~hmac=db3abe21f5ab40519b015a9caa741215725a3043b83bad9ca859bcdd519b96fa&token=5d2b6c1e_d2bbe9af2d45a3644d4691ddde86aae13821c636
-willax
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Willax
 https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/193722232.secure.m3u8?dw=80&hdnea=st=1563133689~exp=1563135489~acl=/i/26619010_7987650_lsi2ifq6tdksp4gpoli_1@407969/*~hmac=acd2eb0fe0aade2a20af7579f261ed833777ff8d5bba65c41dad1fee7f217da5&token=5d2b8ba9_07a8db7739de8d9f34a4dae4dddf987eb3e0fc0c
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://2.bp.blogspot.com/-Cpi6jX6FYlo/V8R8tYREHPI/AAAAAAAAFYk/f30bQSZzIHI3adhkTnU_rrlWseuD7k_gACLcB/s1600/gol%2Bperu.jpg",GOL Perú
 https://2203.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=87232&pk=
