@@ -1,7 +1,7 @@
 #EXTM3U
 
 #EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg" group-title="CINE", Latina
-https://2222.janjua.pw:8088/adfree/latinahd1/playlist.m3u8?id=87232&pk=b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
+https://usher.ttvnw.net/api/channel/hls/transxxxxx.m3u8?allow_source=true&baking_bread=false&baking_brownies=false&baking_brownies_timeout=1050&fast_bread=true&p=4983490&player_backend=hls&playlist_include_framerate=true&reassignments_supported=true&sig=dfdadd2a30cba320f098b2ff6d907383695851c1&token=%7B%22adblock%22%3Afalse%2C%22authorization%22%3A%7B%22forbidden%22%3Afalse%2C%22reason%22%3A%22%22%7D%2C%22blackout_enabled%22%3Afalse%2C%22channel%22%3A%22transxxxxx%22%2C%22channel_id%22%3A444457877%2C%22chansub%22%3A%7B%22restricted_bitrates%22%3A%5B%5D%2C%22view_until%22%3A1924905600%7D%2C%22ci_gb%22%3Afalse%2C%22geoblock_reason%22%3A%22%22%2C%22device_id%22%3Anull%2C%22expires%22%3A1563123807%2C%22game%22%3A%22%22%2C%22hide_ads%22%3Afalse%2C%22https_required%22%3Afalse%2C%22mature%22%3Afalse%2C%22partner%22%3Afalse%2C%22platform%22%3A%22mobile_web%22%2C%22player_type%22%3A%22embed%22%2C%22private%22%3A%7B%22allowed_to_view%22%3Atrue%7D%2C%22privileged%22%3Afalse%2C%22server_ads%22%3Afalse%2C%22show_ads%22%3Atrue%2C%22subscriber%22%3Afalse%2C%22turbo%22%3Afalse%2C%22user_id%22%3Anull%2C%22user_ip%22%3A%22181.66.118.99%22%2C%22version%22%3A2%7D
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
 https://2222.janjua.pw:8088/adfree/amer3/playlist.m3u8?id=87232&pk=
 b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
@@ -32,73 +32,5 @@ https://livestartover.atresmedia.com/antena3/master.m3u8
 https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png", TVE 24H
 http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
-#EXTINF:0 tvg-logo="http://1.bp.blogspot.com/-2p8fwmxSCeI/VQHGF0DJFXI/AAAAAAAAAKM/VEvNL-wu0qU/s1600/AE_2014_blue_rgb_FIN-1.png", A&E
-http://disfruta.net:8000/live/jsolano21/bSYdBzH4eW/23486.m3u8
-#EXTINF:-1,AMC
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/75.m3u8
-#EXTINF:-1,Animal Planet
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/57.m3u8
-#EXTINF:-1,TYC SPORTS
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/9170.m3u8
-#EXTINF:-1,AXN
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/152.m3u8
-#EXTINF:-1,Boomerang
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/49.m3u8
-#EXTINF:-1,Cartoon Network
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/47.m3u8
-#EXTINF:-1,Cinecanal
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/77.m3u8
-#EXTINF:-1,Cinecanal 2
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/70.m3u8
-#EXTINF:-1,Cinemax
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/78.m3u8
-#EXTINF:-1,Discovery Channel
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/56.m3u8
-#EXTINF:-1,Discovery Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23441.m3u8
-#EXTINF:-1,Discovery Channel Full HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23352.m3u8
-#EXTINF:-1,Discovery Civilization
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/62.m3u8
-#EXTINF:-1,Discovery Home & Health
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/58.m3u8
-#EXTINF:-1,Discovery Kids
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/39.m3u8
-#EXTINF:-1,Discovery Science
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/61.m3u8
-#EXTINF:-1,Discovery Theater
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/52.m3u8
-#EXTINF:-1,Discovery Turbo
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/63.m3u8
-#EXTINF:-1,Discovery World
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/55.m3u8
-#EXTINF:-1,Disney Channel
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/43.m3u8
-#EXTINF:-1,Disney Junior
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/41.m3u8
-#EXTINF:-1,Disney XD
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/48.m3u8
-#EXTINF:-1,ES: AMC
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/348.m3u8
-#EXTINF:-1,ES: HISTORIA
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/305.m3u8
-#EXTINF:-1,H2
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/140.m3u8
-#EXTINF:-1,HBO 2
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/125.m3u8
-#EXTINF:-1,HBO FAMILY
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/124.m3u8
-#EXTINF:-1,HBO
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/123.m3u8
-#EXTINF:-1,HBO PLUS
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/126.m3u8
-#EXTINF:-1,HBO PLUS OESTE
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/122.m3u8
-#EXTINF:-1,HBO Signature
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/112.m3u8
-#EXTINF:-1,HTV
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/7481.m3u8
-#EXTINF:-1,History
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/53.m3u8
-#EXTINF:-1,Investigation Discovery
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/31.m3u8
+#EXTINF:0 tvg-logo="https://www.chicksonright.com/wp-content/uploads/2017/12/History-channel-logo.jpg", History Channel
+http://23.237.22.207/livestream/history.m3u8?token=Cs2WUtiqoN_lJFHixocMiw&ip=181.66.118.99&expires=1563140878
