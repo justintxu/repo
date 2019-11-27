@@ -71,3 +71,17 @@ http://62.210.139.229:25461/ott-tv/gangatv/22
 http://62.210.139.229:25461/ott-tv/gangatv/24
 #EXTINF:-1 tvg-id="" tvg-name="DISCOVERY CIVILIZATION" tvg-logo="http://mylatinotv.com/images/mexico/discoveryciv.png" group-title="",DISCOVERY CIVILIZATION
 http://62.210.139.229:25461/ott-tv/gangatv/27
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY SCI" tvg-logo="http://mylatinotv.com/images/mexico/discoveryscience.png" group-title="",DISCOVERY SCI
+http://62.210.139.229:25461/ott-tv/gangatv/28
+#EXTINF:-1 tvg-id="" tvg-name="FOOD NETWORK" tvg-logo="http://mylatinotv.com/images/mexico/foodnetwork.png" group-title="",FOOD NETWORK
+http://62.210.139.229:25461/ott-tv/gangatv/29
+#EXTINF:-1 tvg-id="" tvg-name="NAT GEO" tvg-logo="http://mylatinotv.com/images/mexico/natgeo.png" group-title="",NAT GEO
+http://62.210.139.229:25461/ott-tv/gangatv/30
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY H&H" tvg-logo="http://mylatinotv.com/images/mexico/homeandhealth.png" group-title="",DISCOVERY H&H
+http://62.210.139.229:25461/ott-tv/gangatv/31
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY CHANNEL" tvg-logo="http://mylatinotv.com/images/mexico/discoverychannel.png" group-title="",DISCOVERY CHANNEL
+http://62.210.139.229:25461/ott-tv/gangatv/32
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY WORLD" tvg-logo="http://mylatinotv.com/images/mexico/world.png" group-title="",DISCOVERY WORLD
+http://62.210.139.229:25461/ott-tv/gangatv/33
+#EXTINF:-1 tvg-id="" tvg-name="NAT GEO WILD" tvg-logo="http://mylatinotv.com/images/mexico/natwild.png" group-title="",NAT GEO WILD
+http://62.210.139.229:25461/ott-tv/gangatv/34
