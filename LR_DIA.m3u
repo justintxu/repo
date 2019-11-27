@@ -65,3 +65,5 @@ http://62.210.139.229:25461/ott-tv/gangatv/13
 http://62.210.139.229:25461/ott-tv/gangatv/14
 #EXTINF:-1 tvg-id="" tvg-name="TP Cinemax" tvg-logo="" group-title="",TP Cinemax
 http://62.210.139.229:25461/ott-tv/gangatv/15
+#EXTINF:-1 tvg-id="" tvg-name="CINECANAL" tvg-logo="http://mylatinotv.com/images/mexico/cinecanal.png" group-title="",CINECANAL
+http://62.210.139.229:25461/ott-tv/gangatv/22
