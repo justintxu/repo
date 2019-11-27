@@ -67,3 +67,7 @@ http://62.210.139.229:25461/ott-tv/gangatv/14
 http://62.210.139.229:25461/ott-tv/gangatv/15
 #EXTINF:-1 tvg-id="" tvg-name="CINECANAL" tvg-logo="http://mylatinotv.com/images/mexico/cinecanal.png" group-title="",CINECANAL
 http://62.210.139.229:25461/ott-tv/gangatv/22
+#EXTINF:-1 tvg-id="" tvg-name="FOX SERIES" tvg-logo="http://mylatinotv.com/images/mexico/foxseries.png" group-title="",FOX SERIES
+http://62.210.139.229:25461/ott-tv/gangatv/24
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY CIVILIZATION" tvg-logo="http://mylatinotv.com/images/mexico/discoveryciv.png" group-title="",DISCOVERY CIVILIZATION
+http://62.210.139.229:25461/ott-tv/gangatv/27
