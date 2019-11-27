@@ -105,3 +105,36 @@ http://62.210.139.229:25461/ott-tv/gangatv/46
 http://62.210.139.229:25461/ott-tv/gangatv/48
 #EXTINF:-1 tvg-id="" tvg-name="FOX LIFE" tvg-logo="http://mylatinotv.com/images/mexico/fl.png" group-title="",FOX LIFE
 http://62.210.139.229:25461/ott-tv/gangatv/51
+#EXTINF:-1 tvg-id="" tvg-name="TNT SERIES" tvg-logo="http://mylatinotv.com/images/mexico/tntseries.png" group-title="",TNT SERIES
+http://62.210.139.229:25461/ott-tv/gangatv/54
+#EXTINF:-1 tvg-id="" tvg-name="SYFY" tvg-logo="http://mylatinotv.com/images/mexico/syfy.png" group-title="",SYFY
+http://62.210.139.229:25461/ott-tv/gangatv/55
+#EXTINF:-1 tvg-id="" tvg-name="E!" tvg-logo="http://mylatinotv.com/images/mexico/e.png" group-title="",E!
+http://62.210.139.229:25461/ott-tv/gangatv/56
+#EXTINF:-1 tvg-id="" tvg-name="TLC" tvg-logo="http://mylatinotv.com/images/mexico/tlc.png" group-title="",TLC
+http://62.210.139.229:25461/ott-tv/gangatv/59
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY TURBO" tvg-logo="http://mylatinotv.com/images/mexico/turbo.png" group-title="",DISCOVERY TURBO
+http://62.210.139.229:25461/ott-tv/gangatv/60
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY KIDS" tvg-logo="http://mylatinotv.com/images/mexico/discoverkids.png" group-title="",DISCOVERY KIDS
+http://62.210.139.229:25461/ott-tv/gangatv/61
+#EXTINF:-1 tvg-id="" tvg-name="DISCOVERY ID" tvg-logo="http://mylatinotv.com/images/mexico/id.png" group-title="",DISCOVERY ID
+http://62.210.139.229:25461/ott-tv/gangatv/62
+#EXTINF:-1 tvg-id="" tvg-name="AXN" tvg-logo="http://mylatinotv.com/images/mexico/axn.png" group-title="",AXN
+http://62.210.139.229:25461/ott-tv/gangatv/87
+#EXTINF:-1 tvg-id="" tvg-name="FX" tvg-logo="http://mylatinotv.com/images/mexico/fx.png" group-title="",FX
+http://62.210.139.229:25461/ott-tv/gangatv/89
+#EXTINF:-1 tvg-id="" tvg-name="UNIVERSAL" tvg-logo="http://mylatinotv.com/images/mexico/universal.png" group-title="",UNIVERSAL
+http://62.210.139.229:25461/ott-tv/gangatv/92
+#EXTINF:-1 tvg-id="" tvg-name="WARNER CH" tvg-logo="http://mylatinotv.com/images/mexico/warner.png" group-title="",WARNER CH
+http://62.210.139.229:25461/ott-tv/gangatv/96
+#EXTINF:-1 tvg-id="" tvg-name="SONY" tvg-logo="http://mylatinotv.com/images/mexico/sony.png" group-title="",SONY
+http://62.210.139.229:25461/ott-tv/gangatv/97
+#EXTINF:-1 tvg-id="" tvg-name="CNN ESP_" tvg-logo="http://mylatinotv.com/images/mexico/cnn.png" group-title="",CNN ESP_
+http://62.210.139.229:25461/ott-tv/gangatv/113
+#EXTINF:-1,GOL PERU  
+https://2221.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=88824&wowzasessionid=971175888&pk=ae568b29a41ecaa430df1b6e7e24fb5c07ffa9e2f494f81346380fbf76535bb4
+#EXTINF:-1, DIRECTV SPORTS
+https://2222.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=89728&pk=2f968c9b22c18c9da2072f2806c731eac6ce5241307a13ea8dc8edddb91360d4 
+#EXTINF:-1, FOX SPORTS
+#EXTINF:-1,ESPN 3
+http://194.67.208.149/hls/104.m3u8
