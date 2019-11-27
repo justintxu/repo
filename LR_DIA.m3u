@@ -85,3 +85,23 @@ http://62.210.139.229:25461/ott-tv/gangatv/32
 http://62.210.139.229:25461/ott-tv/gangatv/33
 #EXTINF:-1 tvg-id="" tvg-name="NAT GEO WILD" tvg-logo="http://mylatinotv.com/images/mexico/natwild.png" group-title="",NAT GEO WILD
 http://62.210.139.229:25461/ott-tv/gangatv/34
+#EXTINF:-1 tvg-id="" tvg-name="BOOMERANG" tvg-logo="http://mylatinotv.com/images/mexico/boomerang.png" group-title="",BOOMERANG
+http://62.210.139.229:25461/ott-tv/gangatv/38
+#EXTINF:-1 tvg-id="" tvg-name="DISNEY XD" tvg-logo="http://mylatinotv.com/images/mexico/disneyxd.png" group-title="",DISNEY XD
+http://62.210.139.229:25461/ott-tv/gangatv/39
+#EXTINF:-1 tvg-id="" tvg-name="CARTOON NETWORK" tvg-logo="http://mylatinotv.com/images/colombia/Cartoon_Network.png" group-title="",CARTOON NETWORK
+http://62.210.139.229:25461/ott-tv/gangatv/40
+#EXTINF:-1 tvg-id="" tvg-name="NICK" tvg-logo="http://mylatinotv.com/images/mexico/nick.png" group-title="",NICK
+http://62.210.139.229:25461/ott-tv/gangatv/42
+#EXTINF:-1 tvg-id="" tvg-name="NICKTOONS" tvg-logo="http://mylatinotv.com/images/mexico/nicktoons.png" group-title="",NICKTOONS
+http://62.210.139.229:25461/ott-tv/gangatv/43
+#EXTINF:-1 tvg-id="" tvg-name="DISNEY CHANNEL" tvg-logo="http://mylatinotv.com/images/mexico/disney.png" group-title="",DISNEY CHANNEL
+http://62.210.139.229:25461/ott-tv/gangatv/44
+#EXTINF:-1 tvg-id="" tvg-name="NICK JR" tvg-logo="http://mylatinotv.com/images/mexico/nickjr.png" group-title="",NICK JR
+http://62.210.139.229:25461/ott-tv/gangatv/45
+#EXTINF:-1 tvg-id="" tvg-name="DISNEY JR" tvg-logo="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/012014/logo_disney_junior.png" group-title="",DISNEY JR
+http://62.210.139.229:25461/ott-tv/gangatv/46
+#EXTINF:-1 tvg-id="" tvg-name="TELENOVELAS" tvg-logo="" group-title="",TELENOVELAS
+http://62.210.139.229:25461/ott-tv/gangatv/48
+#EXTINF:-1 tvg-id="" tvg-name="FOX LIFE" tvg-logo="http://mylatinotv.com/images/mexico/fl.png" group-title="",FOX LIFE
+http://62.210.139.229:25461/ott-tv/gangatv/51
