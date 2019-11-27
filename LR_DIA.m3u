@@ -71,3 +71,13 @@ http://tvporinternet.eshost.com.ar/m3u/a&e.m3u8
 http://tvporinternet.eshost.com.ar/m3u/axn.m3u8
 #EXTINF:-1,Cinecanal Full HD [Dual audio]
 http://tvporinternet.eshost.com.ar/m3u/cinecanal.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TCM" tvg-logo="http://mylatinotv.com/images/mexico/tcm.png" group-title="",TCM
+http://62.210.139.229:25461/ott-tv/gangatv/11
+#EXTINF:-1 tvg-id="" tvg-name="I SAT" tvg-logo="" group-title="",I SAT
+http://62.210.139.229:25461/ott-tv/gangatv/12
+#EXTINF:-1 tvg-id="" tvg-name="SPACE" tvg-logo="http://mylatinotv.com/images/mexico/Space.png" group-title="",SPACE
+http://62.210.139.229:25461/ott-tv/gangatv/13
+#EXTINF:-1 tvg-id="" tvg-name="TP AMC" tvg-logo="" group-title="",TP AMC
+http://62.210.139.229:25461/ott-tv/gangatv/14
+#EXTINF:-1 tvg-id="" tvg-name="TP Cinemax" tvg-logo="" group-title="",TP Cinemax
+http://62.210.139.229:25461/ott-tv/gangatv/15
