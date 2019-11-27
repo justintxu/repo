@@ -131,10 +131,3 @@ http://62.210.139.229:25461/ott-tv/gangatv/96
 http://62.210.139.229:25461/ott-tv/gangatv/97
 #EXTINF:-1 tvg-id="" tvg-name="CNN ESP_" tvg-logo="http://mylatinotv.com/images/mexico/cnn.png" group-title="",CNN ESP_
 http://62.210.139.229:25461/ott-tv/gangatv/113
-#EXTINF:-1,GOL PERU  
-https://2221.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=88824&wowzasessionid=971175888&pk=ae568b29a41ecaa430df1b6e7e24fb5c07ffa9e2f494f81346380fbf76535bb4
-#EXTINF:-1, DIRECTV SPORTS
-https://2222.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=89728&pk=2f968c9b22c18c9da2072f2806c731eac6ce5241307a13ea8dc8edddb91360d4 
-#EXTINF:-1, FOX SPORTS
-#EXTINF:-1,ESPN 3
-http://194.67.208.149/hls/104.m3u8
