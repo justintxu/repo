@@ -41,3 +41,5 @@ http://23.237.22.207/livestream/history.m3u8?token=Cs2WUtiqoN_lJFHixocMiw&ip=181
 http://23.237.22.207/livestream/tnt.m3u8?token=vTyrgWjsJIQdg0uLElMM7Q&ip=181.66.118.99&expires=1563145710
 #EXTINF:0 tvg-logo="https://www.trzcacak.rs/myfile/detail/181-1815028_fox-channel-germany-logo-fox-tv.png", FOX
 http://psrv.io:80/patrick/123456/18667
+#EXTINF:-1 tvg-logo="https://i.imgur.com/tzckTA4.png" group-title="PERU",Top Latino TV
+http://online.radiodifusion.net:1935/livetv/latinoSD.stream/chunklist_w430979689.m3u8
