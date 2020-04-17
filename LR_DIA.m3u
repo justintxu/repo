@@ -13,7 +13,7 @@ https://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png",ATV
 https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png",ATV+
-https://redirector.gvt1.com/api/manifest/hls_variant/requiressl/yes/source/gfp_video_ads/id/5544c38e1650dfc0/itag/0/playlist_type/LIVE/acao/yes/mime/application%2Fx-mpegURL/ctier/L/ip/0.0.0.0/ipbits/0/expire/1618627884/sparams/ip,ipbits,expire,requiressl,source,id,itag,playlist_type,acao,mime,ctier/signature/01A969F6B14C47521A2D95C2A15202D958D9E137.638E241C22C24CE13504AF44FA30255009FF7903/key/ck2/file/index.m3u8
+https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=eyJwYXJhbXMiOnsiZXhwIjoxNTg3MTc4NzA1LCJzZXNzaW9uIjoiMTkwLjQzLjkyLjExIiwid2hpdGVsaXN0IjpbIjE5MC40My45Mi4xMSJdfSwic2lnbmF0dXJlIjoiNmNjMTRjODg0NjUwNTViOTEyM2YzYzIzODlmYjA2NzllMmM1YmYyMSJ9
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/200059736.secure.m3u8?dw=80&hdnea=st=1576862711~exp=1576864511~acl=/i/16199200_4590066_lsinpot6mvakmu674zg_1@72052/*~hmac=7d0d1ea098470cda9d487eb84721e7a434647e6a53bfd57391460dccb3b09647&token=5dfd0523_2acb8892e3db7cbbb19fac88a4144d3a4fb6660d
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax
