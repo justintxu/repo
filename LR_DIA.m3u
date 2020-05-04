@@ -35,7 +35,7 @@ https://livestartover.atresmedia.com/antena3/master.m3u8
 https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png" group-title="España", TVE 24H
 http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
-#EXTINF:-1,DIVINITY
+#EXTINF:-1 tvg-logo="https://unika.fm/wp-content/uploads/2020/04/divinity1.jpg" group-title="España", DIVINITY
 http://mdslivehls-i.akamaihd.net/hls/live/571648/divinity/bitrate_4.m3u8
 #EXTINF:-1,ENERGY
 https://mdslivehlsb-i.akamaihd.net/hls/live/623617/energy/bitrate_4.m3u8
