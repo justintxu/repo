@@ -36,3 +36,5 @@ https://mdslivehlsb-i.akamaihd.net/hls/live/623617/energy/bitrate_4.m3u8
 http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8?sd=10&amp;rebase=on
 #EXTINF:-1 tvg-logo="https://directostv.teleame.com/wp-content/uploads/2017/10/Wow-TV-en-vivo-Online.png" group-title="Cable", WOW TV
 http://cdn.elsalvadordigital.com:1935/wowtv/wowtv/chunklist_w84588335.m3u8
+#EXTINF:-1 tvg-logo="https://bhtv.pe/wp-content/uploads/2019/04/bhtv-logo-web-300x219.png" group-title="Cable", BH TV
+http://cdn2.ujjina.com:1935/iptvbhtv/livebhtvtv/media_w554966584.m3u8
