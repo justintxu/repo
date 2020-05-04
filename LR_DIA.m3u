@@ -42,3 +42,5 @@ http://cdn2.ujjina.com:1935/iptvbhtv/livebhtvtv/media_w554966584.m3u8
 http://186.155.200.118:1935/live/MelodyChannel/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://66.media.tumblr.com/0c0ec1040fd4400e8709cb0d4b5d3d0a/tumblr_n79uw3RLMH1tsxfu3o1_1280.png" group-title="Música", MTV México
 http://161.0.157.9/PLTV/88888888/224/3221226825/index.m3u8?fluxustv.m3u8
+#EXTINF:-1 tvg-logo="https://store-images.microsoft.com/image/apps.18818.9007199266470242.3113d4d8-5209-41c9-aae6-21adbea92ad7.433451c9-7a47-4471-85df-a36f5e8a65ac?mode=scale&q=90&h=200&w=200&background=%2363BD2B" group-title="Cable", RT Latam
+https://rt-esp.secure.footprint.net/1102.m3u8?fluxustv.m3u8
