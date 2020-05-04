@@ -1,30 +1,23 @@
 #EXTM3U
 
-#EXTINF:0 tvg-logo="http://www.frankscalescreative.com/wp-content/uploads/2011/04/Lakewood_Church_logo.gif", Lakewood HD
+#EXTINF:0 tvg-logo="http://www.frankscalescreative.com/wp-content/uploads/2011/04/Lakewood_Church_logo.gif" group-title="Cristiano", Lakewood HD
 https://lakewoodhds-lh.akamaihd.net/i/LWLIVE_HD@178855/master.m3u8
-#EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg", Latina
+#EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg" group-title="Perú", Latina
 https://live-normal-entel-hls.latina.pe/egress/bhandler/cialatina/live/manifest.m3u8?nva=1596345566&ttl=432000&ip=132.184.131.42&hash=0e1b447f378f694d2b2bf
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg" group-title="Perú", America TV
 https://mdstrm.com/live-stream-playlist/5c51e67df4d3c6698b02bbee.m3u8?uid=MxEk7gH9OP4MBxTYhXtrX3gwNXzRpzxY&sid=2xJNUS3TMpS8ihEMdn214GeISrOJdvc7&pid=3nyDqCbmUUWTSwlgGHdm6cyZ9wzYrhEb&an=screen&at=web-app&av=v5.0.383&ref=&res=940x529&dnt=true&access_token=OlYfbgkKGi3wp1vEqVOJRYCeFnjoaNgzSiYMUt48V0FVXNpXZy3q8HY4VrX6tvuol01MtqVBRKS
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg" group-title="Perú", Panamericana TV
 https://cdnhd.iblups.com/hls/ptv2.m3u8
-#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
+#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
 https://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png",ATV
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
 https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png",ATV+
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png" group-title="Perú", ATV+
 https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=eyJwYXJhbXMiOnsiZXhwIjoxNTg3MTc4NzA1LCJzZXNzaW9uIjoiMTkwLjQzLjkyLjExIiwid2hpdGVsaXN0IjpbIjE5MC40My45Mi4xMSJdfSwic2lnbmF0dXJlIjoiNmNjMTRjODg0NjUwNTViOTEyM2YzYzIzODlmYjA2NzllMmM1YmYyMSJ9
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/200059736.secure.m3u8?dw=80&hdnea=st=1576862711~exp=1576864511~acl=/i/16199200_4590066_lsinpot6mvakmu674zg_1@72052/*~hmac=7d0d1ea098470cda9d487eb84721e7a434647e6a53bfd57391460dccb3b09647&token=5dfd0523_2acb8892e3db7cbbb19fac88a4144d3a4fb6660d
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg" group-title="Perú", Willax
 https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/193722232.secure.m3u8?dw=80&hdnea=st=1563133689~exp=1563135489~acl=/i/26619010_7987650_lsi2ifq6tdksp4gpoli_1@407969/*~hmac=acd2eb0fe0aade2a20af7579f261ed833777ff8d5bba65c41dad1fee7f217da5&token=5d2b8ba9_07a8db7739de8d9f34a4dae4dddf987eb3e0fc0c
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://2.bp.blogspot.com/-Cpi6jX6FYlo/V8R8tYREHPI/AAAAAAAAFYk/f30bQSZzIHI3adhkTnU_rrlWseuD7k_gACLcB/s1600/gol%2Bperu.jpg",GOL Perú
-https://2d02.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=88824&pk=aa21f496cef20b45d0b5abd5123fc5061204a45aa31af9411bc35b75dfdb7a1b
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/pt/d/dd/Fox_Sports_Logo.png",FoxSports
-https://2223.janjua.pw:8088/adfree/fox0112/playlist.m3u8?id=88701&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://www.pngfind.com/pngs/m/204-2047658_urmdp-tv-directv-sports-logo-png-transparent-png.png",DirecTV Sports
-https://2220.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=87232&pk=
-b90a7c3af96784184f41b0522a753e1e5679350b46484efac9b00637a0a7285f
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309" group-title="España", Real Madrid TV
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png" group-title="España", La Sexta
@@ -37,7 +30,7 @@ https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
 http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
 #EXTINF:-1 tvg-logo="https://unika.fm/wp-content/uploads/2020/04/divinity1.jpg" group-title="España", DIVINITY
 http://mdslivehls-i.akamaihd.net/hls/live/571648/divinity/bitrate_4.m3u8
-#EXTINF:-1,ENERGY
+#EXTINF:-1 tvg-logo="https://www.formulatv.com/images/noticias/22800/22845/2.jpg" group-title="España", ENERGY
 https://mdslivehlsb-i.akamaihd.net/hls/live/623617/energy/bitrate_4.m3u8
-#EXTINF:-1,RADIO M2O
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/geonsey/Free2ViewTV/master/images/logos/logo_m2o_1024x1024.png" group-title="Música", RADIO M2O
 http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8?sd=10&amp;rebase=on
