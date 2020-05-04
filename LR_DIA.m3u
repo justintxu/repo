@@ -38,3 +38,5 @@ http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8?sd=10&amp;reba
 http://cdn.elsalvadordigital.com:1935/wowtv/wowtv/chunklist_w84588335.m3u8
 #EXTINF:-1 tvg-logo="https://bhtv.pe/wp-content/uploads/2019/04/bhtv-logo-web-300x219.png" group-title="Cable", BH TV
 http://cdn2.ujjina.com:1935/iptvbhtv/livebhtvtv/media_w554966584.m3u8
+#EXTINF:-1 tvg-logo="http://www.cxtv.com.br/img/Tvs/Logo/8686a630362f5b20fb1b670a9cfd8559.png" group-title="Música", Melody Channel
+http://186.155.200.118:1935/live/MelodyChannel/playlist.m3u8
