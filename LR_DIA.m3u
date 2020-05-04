@@ -44,3 +44,5 @@ http://186.155.200.118:1935/live/MelodyChannel/playlist.m3u8
 http://161.0.157.9/PLTV/88888888/224/3221226825/index.m3u8?fluxustv.m3u8
 #EXTINF:-1 tvg-logo="https://store-images.microsoft.com/image/apps.18818.9007199266470242.3113d4d8-5209-41c9-aae6-21adbea92ad7.433451c9-7a47-4471-85df-a36f5e8a65ac?mode=scale&q=90&h=200&w=200&background=%2363BD2B" group-title="Cable", RT Latam
 https://rt-esp.secure.footprint.net/1102.m3u8?fluxustv.m3u8
+#EXTINF:-1 tvg-logo="https://live-tv-channels.org/pt-data/uploads/logo/us-telemusica-tv.jpg" group-title="Música", Tele Música
+http://186.155.200.118:1935/live/telemusica_web/chunklist_w1469736820.m3u8
