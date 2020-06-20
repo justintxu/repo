@@ -11,7 +11,7 @@ https://cdnhd.iblups.com/hls/ptv2.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
 https://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
-https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8
+https://pe-atv-atv-live.ned.media/atv/smil:atv.smil/playlist.m3u8?iut=eyJwYXJhbXMiOnsiZXhwIjoxNTkyNzA1MTg5LCJzZXNzaW9uIjoiMTkwLjIzOS4yMDYuNCIsIndoaXRlbGlzdCI6WyIxOTAuMjM5LjIwNi40Il19LCJzaWduYXR1cmUiOiI5ZGM3M2YyYzdiMzdiZjE2MDZiOTkyMDY2NjVlNDQ2ODM3NjExYWQ3In0=
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png" group-title="Perú", ATV+
 https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=eyJwYXJhbXMiOnsiZXhwIjoxNTg3MTc4NzA1LCJzZXNzaW9uIjoiMTkwLjQzLjkyLjExIiwid2hpdGVsaXN0IjpbIjE5MC40My45Mi4xMSJdfSwic2lnbmF0dXJlIjoiNmNjMTRjODg0NjUwNTViOTEyM2YzYzIzODlmYjA2NzllMmM1YmYyMSJ9
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
