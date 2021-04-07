@@ -17,7 +17,7 @@ https://pe-atv-atv-mas-live.ned.media/atv/smil:atv-mas.smil/playlist.m3u8?iut=ey
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/200059736.secure.m3u8?dw=80&hdnea=st=1576862711~exp=1576864511~acl=/i/16199200_4590066_lsinpot6mvakmu674zg_1@72052/*~hmac=7d0d1ea098470cda9d487eb84721e7a434647e6a53bfd57391460dccb3b09647&token=5dfd0523_2acb8892e3db7cbbb19fac88a4144d3a4fb6660d
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg" group-title="Perú", Willax
-https://www.dailymotion.com/cdn/live/video/x7x4dgx.m3u8?sec=VsdA0So2pMm9RZA3XkLA0SJi2u8LHmypI6FoecgHLaO7yraqY6cTE7Jtfqt3EA5YcZ09gj83XNpP2ynVpg5AHQ&progressive=1
+https://www.dailymotion.com/cdn/live/video/x7x4dgx.m3u8?sec=VsdA0So2pMm9RZA3XkLA0aIzcmbR_WyyI0b3_1qcQ48FbCddYePW4iSlhDf0VzoDvHy7hB5mm9wQxtTw16M9Kg&progressive=1
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309" group-title="España", Real Madrid TV
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png" group-title="España", La Sexta
