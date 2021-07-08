@@ -23,7 +23,7 @@ https://directo.atresmedia.com/e070e53e221dccf94f9c868fca8daac44739ece1_16250529
 #EXTINF:0 tvg-logo="https://tarotdemariarosales.com/wp-content/uploads/2018/09/logo-antena-3.png" group-title="España", Antena 3
 https://directo.atresmedia.com/d800ce9b87359549830a464cc58a84a636306b4a_1625053235/antena3/master.m3u8
 #EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
-https://redirector.gvt1.com/api/manifest/hls_variant/requiressl/yes/source/dclk_video_ads/id/87b6a72cc04c67c6/itag/0/playlist_type/LIVE/acao/yes/mime/application%2Fx-mpegURL/ctier/L/ip/0.0.0.0/ipbits/0/expire/1656560756/sparams/ip,ipbits,expire,requiressl,source,id,itag,playlist_type,acao,mime,ctier/signature/3BD3159CB3112D5BFB6AAB44A685FB6241ECF489.1110986CDBF962180404E79F2724A8A9939131CD/key/ck2/file/index.m3u8
+https://live.telecinco.es/hls/live/2004101/telecinco/master.m3u8?hdnts=st=1625786589~exp=1625786678~acl=/*~hmac=42fc51f2df813330839e5c8bcd73fe84cbea5458aa48ad0c2c8d60b72b6f529f
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png" group-title="España", TVE 24H
 https://rtvelivestreamv3.akamaized.net/24h_main.m3u8
 #EXTINF:-1 tvg-logo="https://unika.fm/wp-content/uploads/2020/04/divinity1.jpg" group-title="España", TVE 1
