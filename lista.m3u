@@ -1,226 +1,50 @@
 #EXTM3U
 
-#EXTINF:0 tvg-logo="http://www.frankscalescreative.com/wp-content/uploads/2011/04/Lakewood_Church_logo.gif", Lakewood HD
+#EXTINF:0 tvg-logo="http://www.frankscalescreative.com/wp-content/uploads/2011/04/Lakewood_Church_logo.gif" group-title="Cristiano", Lakewood HD
 https://lakewoodhds-lh.akamaihd.net/i/LWLIVE_HD@178855/master.m3u8
-#EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg" group-title="CINE", Latina
-https://2222.janjua.pw:8088/adfree/latinahd1/playlist.m3u8?id=87232&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://1.bp.blogspot.com/-AlaQbIRm8SE/WXEkESZRQAI/AAAAAAAA-hM/xSwec9TtdcE7oFpW-sWQiL8kko5cGdYhgCLcBGAs/s1600/america-tv.jpg",America TV
-https://2220.janjua.pw:8088/adfree/amer3/playlist.m3u8?id=89207&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg",Panamericana TV
-https://cdnhd.iblups.com/hls/ptv2.m3u8
-#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png", TV Peru
-https://cdnh15.iblups.com/hls/R9WtilpKKB.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png",ATV
-https://dqsz3cincv704.cloudfront.net/pe/smil:canal_atv.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png",ATV+
-https://dqsz3cincv704.cloudfront.net/pe/smil:atv_mas.smil/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png",Bethel HD
-https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/191838363.secure.m3u8?dw=80&hdnea=st=1559231697~exp=1559233497~acl=/i/16199200_4590066_lsiyewbu6pzw30y7aof_1@408252/*~hmac=e0cb89b529797d8fc361f0afe22b9ba6785afa46f0086230955cefe6b5c6a947&token=5cf00181_43c5758b36bc13221a39b6c4ec1721b2b25a2d32
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg",Willax TV 
-https://player-api.new.livestream.com/accounts/26619010/events/7987650/broadcasts/191835938.secure.m3u8?dw=80&hdnea=st=1559196739~exp=1559198539~acl=/i/26619010_7987650_lsi6e2bgdfi76jwh34d_1@446941/*~hmac=feac334392d35174087da178a3b6f726068e0274a1ca773f3523cf1fd8b3b6f0&token=5cef78f3_ed9b6af2d29c1e6484c748fb33afd0b3d8e40288
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://2.bp.blogspot.com/-Cpi6jX6FYlo/V8R8tYREHPI/AAAAAAAAFYk/f30bQSZzIHI3adhkTnU_rrlWseuD7k_gACLcB/s1600/gol%2Bperu.jpg",GOL Perú
-https://2220.janjua.pw:8088/adfree/golpe01a/playlist.m3u8?id=88824&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/pt/d/dd/Fox_Sports_Logo.png",FoxSports
-https://2223.janjua.pw:8088/adfree/fox0112/playlist.m3u8?id=88701&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://www.pngfind.com/pngs/m/204-2047658_urmdp-tv-directv-sports-logo-png-transparent-png.png",DirecTV Sports
-https://2221.janjua.pw:8088/adfree/Directv01/playlist.m3u8?id=89728&pk=8eb3a5d005c5abdd229de1695d2728d188b0ea329c0a4550514d3ab0d4617d26
-#EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309", Real Madrid TV
+#EXTINF:-1 tvg-logo="http://www.brandemia.org/sites/default/files/sites/default/files/logo_latina_brandlab.jpg" group-title="Perú", Latina
+https://mdstrm.com/live-stream-playlist/5fdbcdf0c7588f09f6e50e4a.m3u8?uid=gN70wMVcw16VYgAWJYj0MauReJKhtz5O&sid=JAkmNHBLzKPl31thMhs6SgKSPZ7qrL0B&pid=nZTudzfknGoz7kxyS4WSR5lVsK0WwHEM&an=Media%20Stream%20Player%20Qatar&at=web-app&av=v5.2.297&ref=https%3A%2F%2Fwww.latina.pe%2F&res=375x395&without_cookies=false&listenerid=&dnt=true
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg" group-title="Perú", Panamericana TV
+https://cdnh71.iblups.com/hls/ptv2.m3u8
+#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
+https://cdnh79.iblups.com/hls/R9WtilpKKB.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
+https://dysmuyxh5vstv.cloudfront.net/hls/live.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png" group-title="Perú", ATV+
+https://gcdn.2mdn.net/videoplayback/id/95bb4dbf6d6f1c3d/itag/342/source/web_video_ads/ctier/L/acao/yes/ip/0.0.0.0/ipbits/0/expire/3816614573/sparams/id,itag,source,ctier,acao,ip,ipbits,expire/signature/54AC185DDE572366DA82B74871A816995B30E69F.BA865D5C0CBFAC2D53D4FD8FEAB22A83C5BF41F6/key/ck2/file/file.mp4?cpn=3tcuA2-drzB5pcqp
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
+https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/200059736.secure.m3u8?dw=80&hdnea=st=1576862711~exp=1576864511~acl=/i/16199200_4590066_lsinpot6mvakmu674zg_1@72052/*~hmac=7d0d1ea098470cda9d487eb84721e7a434647e6a53bfd57391460dccb3b09647&token=5dfd0523_2acb8892e3db7cbbb19fac88a4144d3a4fb6660d
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg" group-title="Perú", Willax
+https://www.dailymotion.com/cdn/live/video/x7x4dgx.m3u8?sec=VsdA0So2pMm9RZA3XkLA0WZXvqBmrFYsWjAzDpGg9dWPr60Veum1e_QzMDFBwra5cGElR-diwZOeNouxVjNjQQ&progressive=1
+#EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309" group-title="España", Real Madrid TV
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png", La Sexta
-https://livestartover.atresmedia.com/lasexta/master.m3u8
-#EXTINF:0 tvg-logo="https://tarotdemariarosales.com/wp-content/uploads/2018/09/logo-antena-3.png", Antena 3
-https://livestartover.atresmedia.com/antena3/master.m3u8
+#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png" group-title="España", La Sexta
+https://directo.atresmedia.com/e070e53e221dccf94f9c868fca8daac44739ece1_1625052921/lasexta/master.m3u8
+#EXTINF:0 tvg-logo="https://tarotdemariarosales.com/wp-content/uploads/2018/09/logo-antena-3.png" group-title="España", Antena 3
+https://directo.atresmedia.com/d800ce9b87359549830a464cc58a84a636306b4a_1625053235/antena3/master.m3u8
 #EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
-https://livehlsdai-i.akamaihd.net/hls/live/571640/telecinco/bitrate_4.m3u8
-#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png", TVE 24H
-http://rtvev4-live.hss.adaptive.level3.net/egress/ahandler/rtvegl0/irtve01_lv3_aosv4_gl0/irtve01_lv3_aosv4_gl0.isml/irtve01_lv3_aosv4_gl0-audio=128000-video=400000.m3u8
-#EXTINF:-1 tvg-logo="http://puu.sh/mb4wQ/6cd02167d4.png" group-title="CINE", Fox Cinema
-http://161.0.157.7/PLTV/88888888/224/3221226793/03.m3u8
-#EXTINF:-1 tvg-logo="https://banner2.kisspng.com/20180404/avq/kisspng-cartoon-network-logo-television-animation-cartoon-network-5ac59e4556f2f6.8778586515229005493562.jpg" group-title="Infantiles", Cartoon Network
-http://161.0.157.9/PLTV/88888888/224/3221226843/index.m3u8
-#EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/entretenimiento/15.png" group-title="CINE", Universal Channel
-http://161.0.157.9/PLTV/88888888/224/3221226828/index.m3u8
-#EXTINF:-1 tvg-logo="http://www.totalplay.com.mx/images/logos/canales/fox/fox-movies-hd.png" group-title="CINE", Fox Movies
-http://161.0.157.6/PLTV/88888888/224/3221226321/index.m3u8
-#EXTINF:-1 tvg-logo="https://www.cnt.gob.ec/tv/wp-content/uploads/sites/5/2014/10/FOX-Comedy-Logo-01.png" group-title="CINE", Fox Comedy
-http://161.0.157.9/PLTV/88888888/224/3221226800/index.m3u8
-#EXTINF:-1 tvg-logo="http://exorbeo.com/wp-content/uploads/blogger/-Atdq5-hrhmg/TvtVTY_6bRI/AAAAAAAAAxM/0NEOw_seIho/s1600/maxprime.jpg" group-title="CINE", Max Prime
-http://161.0.157.9/PLTV/88888888/224/3221226834/index.m3u8
-#EXTINF:-1 tvg-logo="http://i68.tinypic.com/3129x1z_th.jpg" group-title="CINE", Zee mundo
-https://y5w8j4a9.ssl.hwcdn.net/mundohd/tracks-v1a1/index.m3u8
-#EXTINF:-1 tvg-logo="http://pluto.tv.s3.amazonaws.com/assets/images/channels/2c4af0a3-b851-f212-1806-52cfe91abd28-Horror247_featured.jpg" group-title="CINE",Cine Horror 24/7
-https://stitcher.pluto.tv/stitch/hls/channel/569546031a619b8f07ce6e25/master.m3u8?deviceType=web&deviceMake=Chrome&deviceModel=Chrome&sid=6e360db0-724b-11e8-be77-bf4d1417b012&deviceId=889540f0-712d-11e8-b9ec-8ba319deeadf&deviceVersion=37.0.2049.0&appVersion=2.0.0&deviceDNT=0&userId=&advertisingId=&deviceLat=38.5783&deviceLon=-90.6666&app_name=&appName=&appStoreUrl=&serverSideAds=true
-#EXTINF:-1, Pluto TV Movies 1
-https://stitcher.pluto.tv/stitch/hls/channel/564b9ed65fbbbca07e8d09d2/master.m3u8?deviceType=web&deviceMake=Chrome&deviceModel=Chrome&sid=4eeea560-71a7-11e8-bcb5-a1b59b812cd7&deviceId=889540f0-712d-11e8-b9ec-8ba319deeadf&deviceVersion=37.0.2049.0&appVersion=2.0.0&deviceDNT=0&userId=&advertisingId=&deviceLat=38.5783&deviceLon=-90.6666&app_name=&appName=&appStoreUrl=&serverSideAds=true
-#EXTINF:-1, Pluto TV Movies 2
-https://stitcher.pluto.tv/stitch/hls/channel/59976841a09fd13c9b590ce8/master.m3u8?deviceType=web&deviceMake=Chrome&deviceModel=Chrome&sid=4eeea560-71a7-11e8-bcb5-a1b59b812cd7&deviceId=889540f0-712d-11e8-b9ec-8ba319deeadf&deviceVersion=37.0.2049.0&appVersion=2.0.0&deviceDNT=0&userId=&advertisingId=&deviceLat=38.5783&deviceLon=-90.6666&app_name=&appName=&appStoreUrl=&serverSideAds=true
-#EXTINF:-1 tvg-logo="http://puu.sh/nsW7K/e33f64daeb.png" group-title="MUSICA", Hit TV
-http://kissfm-cires21-video.secure.footprint.net/hittv/bitrate_3.m3u8
-#EXTINF:-1 tvg-logo="http://puu.sh/nsWwi/c18fe4842e.png" group-title="MUSICA", m2o TV
-http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8?sd=10&rebase=on
-#EXTINF:-1 tvg-logo="http://tvonline.com.do/images/sobipro/entries/42/img_mango-tv-canal%2059.jpg" group-title="MUSICA", Mango Tv
-http://mangotv01.streamprolive.com/hls/live.m3u8
-#EXTINF:-1 tvg-logo="http://magneticproductions.files.wordpress.com/2010/11/mtv-dance.png" group-title="MUSICA", MTV Dance
-http://unilivemtveu-lh.akamaihd.net/i/mtvno_1@346424/master.m3u8
-#EXTINF:-1 tvg-logo="http://www.cocolatv.com/pictures/thecountrynetwork.png" group-title="MUSICA", The Country Network
-https://dcunilive2-lh.akamaihd.net/i/dclive_1@390829/master.m3u8
-#EXTINF:-1 tvg-logo="https://cdn.radioplay.se/img/original/4c80dac8dc9e9921.png" group-title="MUSICA", The Voice
-http://stream.1music.hu/stream/1music.m3u8
-#EXTINF:-1 tvg-logo="http://puu.sh/reJpA/bdc45a314f.png" group-title="CULTURA", Animal Planet
-http://161.0.157.5/PLTV/88888888/224/3221226253/index.m3u8
-#EXTINF:-1,A&E Mundo HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23486.m3u8
-#EXTINF:-1,Animal Planet HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23477.m3u8
-#EXTINF:-1,AXN HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23423.m3u8
-#EXTINF:-1,Az Corazón HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23487.m3u8
-#EXTINF:-1,Az Mundo HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23465.m3u8
-#EXTINF:-1,Canal Claro HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23489.m3u8
-#EXTINF:-1,Cartoon Network HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23464.m3u8
-#EXTINF:-1,Cinecanal HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23476.m3u8
-#EXTINF:-1,Claro Sports HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23483.m3u8
-#EXTINF:-1,Claro Sports Latinoamerica HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23482.m3u8
-#EXTINF:-1,Comedy Central HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23422.m3u8
-#EXTINF:-1,Concert Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23481.m3u8
-#EXTINF:-1,DHE HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23429.m3u8
-#EXTINF:-1,Discovery Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23441.m3u8
-#EXTINF:-1,Discovery Home and Health HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23440.m3u8
-#EXTINF:-1,Discovery Kids HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23439.m3u8
-#EXTINF:-1,Discovery Theater HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23438.m3u8
-#EXTINF:-1,Discovery TLC HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23454.m3u8
-#EXTINF:-1,Discovery World HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23437.m3u8
-#EXTINF:-1,Disney Chanel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23463.m3u8
-#EXTINF:-1,Espn 2 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23434.m3u8
-#EXTINF:-1,Espn 3 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23433.m3u8
-#EXTINF:-1,Espn HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23435.m3u8
-#EXTINF:-1,Espn Plus HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23432.m3u8
-#EXTINF:-1,FOX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23478.m3u8
-#EXTINF:-1,Fox Life HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23471.m3u8
-#EXTINF:-1,Fox MX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23480.m3u8
-#EXTINF:-1,Fox Premium Action HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23447.m3u8
-#EXTINF:-1,Fox Premium Cinema HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23446.m3u8
-#EXTINF:-1,Fox Premium Classics HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23445.m3u8
-#EXTINF:-1,Fox Premium Comedy HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23444.m3u8
-#EXTINF:-1,Fox Premium Family HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23452.m3u8
-#EXTINF:-1,Fox Premium Movies HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23451.m3u8
-#EXTINF:-1,Fox Premium Series HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23453.m3u8
-#EXTINF:-1,Fox Sports 1 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23450.m3u8
-#EXTINF:-1,Fox Sports 1 MX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23428.m3u8
-#EXTINF:-1,Fox Sports 2 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23449.m3u8
-#EXTINF:-1,Fox Sports 2 MX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23427.m3u8
-#EXTINF:-1,Fox Sports 3 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23448.m3u8
-#EXTINF:-1,Fox Sports 3 MX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23426.m3u8
-#EXTINF:-1,FX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23499.m3u8
-#EXTINF:-1,FXM HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23479.m3u8
-#EXTINF:-1,FXM MX HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23475.m3u8
-#EXTINF:-1,Golden HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23495.m3u8
-#EXTINF:-1,Golden Premier HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23494.m3u8
-#EXTINF:-1,Golf Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23493.m3u8
-#EXTINF:-1,El Gourmet HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23470.m3u8
-#EXTINF:-1,HBO 2 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23459.m3u8
-#EXTINF:-1,HBO Family HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23458.m3u8
-#EXTINF:-1,HBO HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23457.m3u8
-#EXTINF:-1,HBO Plus HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23456.m3u8
-#EXTINF:-1,HBO Signature HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23455.m3u8
-#EXTINF:-1,History Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23469.m3u8
-#EXTINF:-1,Hola TV HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23498.m3u8
-#EXTINF:-1,Investigation Discovery HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23436.m3u8
-#EXTINF:-1,Más Chic HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23497.m3u8
-#EXTINF:-1,MAX Prime HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23443.m3u8
-#EXTINF:-1,MAX Up HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23442.m3u8
-#EXTINF:-1,MTV HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23484.m3u8
-#EXTINF:-1,MTV Live HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23425.m3u8
-#EXTINF:-1,Natgeo HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23474.m3u8
-#EXTINF:-1,Natgeo Kids HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23473.m3u8
-#EXTINF:-1,Natgeo Wild HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23472.m3u8
-#EXTINF:-1,Nick 2 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23467.m3u8
-#EXTINF:-1,Nick JR HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23466.m3u8
-#EXTINF:-1,Nickelodeon HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23468.m3u8
-#EXTINF:-1,Paramount Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23492.m3u8
-#EXTINF:-1,Pasiones HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23431.m3u8
-#EXTINF:-1,Sony HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23485.m3u8
-#EXTINF:-1,Space HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23488.m3u8
-#EXTINF:-1,Sundance Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23491.m3u8
-#EXTINF:-1,TNT HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23462.m3u8
-#EXTINF:-1,TNT Series HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23461.m3u8
-#EXTINF:-1,TruTV HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23496.m3u8
-#EXTINF:-1,Universal Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23460.m3u8
-#EXTINF:-1,VH1 HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23424.m3u8
-#EXTINF:-1,Warner Channel HD.
-http://disfruta.net:8000/live/gutty01/pMn9KvJ5J5/23490.m3u8
-
-
+https://live.telecinco.es/hls/live/2004101/telecinco/master.m3u8?hdnts=st=1625786589~exp=1625786678~acl=/*~hmac=42fc51f2df813330839e5c8bcd73fe84cbea5458aa48ad0c2c8d60b72b6f529f
+#EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png" group-title="España", TVE 24H
+https://rtvelivestreamv3.akamaized.net/24h_main.m3u8
+#EXTINF:-1 tvg-logo="https://unika.fm/wp-content/uploads/2020/04/divinity1.jpg" group-title="España", TVE 1
+http://ztnr.rtve.es/ztnr/1688877.m3u8
+#EXTINF:-1 tvg-logo="https://www.formulatv.com/images/noticias/22800/22845/2.jpg" group-title="España", ENERGY
+https://mdslivehlsb-i.akamaihd.net/hls/live/623617/energy/bitrate_4.m3u8
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/geonsey/Free2ViewTV/master/images/logos/logo_m2o_1024x1024.png" group-title="Música", RADIO M2O
+http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8?sd=10&amp;rebase=on
+#EXTINF:-1 tvg-logo="https://directostv.teleame.com/wp-content/uploads/2017/10/Wow-TV-en-vivo-Online.png" group-title="Cable", WOW TV
+http://cdn.elsalvadordigital.com:1935/wowtv/wowtv/chunklist_w84588335.m3u8
+#EXTINF:-1 tvg-logo="https://bhtv.pe/wp-content/uploads/2019/04/bhtv-logo-web-300x219.png" group-title="Cable", BH TV
+http://cdn2.ujjina.com:1935/iptvbhtv/livebhtvtv/media_w554966584.m3u8
+#EXTINF:-1 tvg-logo="http://www.cxtv.com.br/img/Tvs/Logo/8686a630362f5b20fb1b670a9cfd8559.png" group-title="Música", Melody Channel
+http://186.155.200.118:1935/live/MelodyChannel/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://66.media.tumblr.com/0c0ec1040fd4400e8709cb0d4b5d3d0a/tumblr_n79uw3RLMH1tsxfu3o1_1280.png" group-title="Música", MTV México
+http://161.0.157.9/PLTV/88888888/224/3221226825/index.m3u8?fluxustv.m3u8
+#EXTINF:-1 tvg-logo="https://store-images.microsoft.com/image/apps.18818.9007199266470242.3113d4d8-5209-41c9-aae6-21adbea92ad7.433451c9-7a47-4471-85df-a36f5e8a65ac?mode=scale&q=90&h=200&w=200&background=%2363BD2B" group-title="Cable", RT Latam
+https://rt-esp.secure.footprint.net/1102.m3u8?fluxustv.m3u8
+#EXTINF:-1 tvg-logo="https://live-tv-channels.org/pt-data/uploads/logo/us-telemusica-tv.jpg" group-title="Música", Tele Música
+http://186.155.200.118:1935/live/telemusica_web/chunklist_w1469736820.m3u8
+#EXTINF:-1 tvg-logo="data:image/png;base64,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" group-title="Música", Music TOP
+http://live-edge01.telecentro.net.ar/live/msctphd-720/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://tvlive.altervista.org/wp-content/uploads/2019/05/Central-TV-Chosica-250x180.png" group-title="Cable", Central TV
+http://cdn2.ujjina.com:1935/iptvcentraltv/livecentraltvtv/playlist.m3u8
