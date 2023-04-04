@@ -9,7 +9,7 @@ https://cdnh71.iblups.com/hls/ptv2.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
 https://cdnh79.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
-https://redirector.gvt1.com/api/manifest/hls_variant/requiressl/yes/source/dclk_video_ads/id/c9f601fccdfd37e0/itag/0/playlist_type/LIVE/acao/yes/mime/application%2Fx-mpegURL/ctier/L/ip/0.0.0.0/ipbits/0/expire/1712160772/sparams/ip,ipbits,expire,requiressl,source,id,itag,playlist_type,acao,mime,ctier/signature/A0F5CE99DD8E699E14C09B2EA433F4F0CA3EB760.8FB9CBB7BA9B8781DD4857E2C6AAA2A38ACB3793/key/ck2/file/index.m3u8
+https://dysmuyxh5vstv.cloudfront.net/hls/autofaallbackatv.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png" group-title="Perú", ATV+
 https://dysmuyxh5vstv.cloudfront.net/hls/atv2.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
