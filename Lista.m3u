@@ -21,7 +21,7 @@ http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png" group-title="España", La Sexta
 https://atres-live.atresmedia.com/9fa867b9fd9ca94dd63ffd864f002b358bc19bc8_ES_1696460948_1696489688/h264/live/lasexta/master.m3u8
 #EXTINF:0 tvg-logo="https://tarotdemariarosales.com/wp-content/uploads/2018/09/logo-antena-3.png" group-title="España", Antena 3
-https://directo.atresmedia.com/d800ce9b87359549830a464cc58a84a636306b4a_1625053235/antena3/master.m3u8
+https://atres-live.atresmedia.com/2f86ffcdeeffdb443a3d3ec9b12a3c6e9a00cf39_ES_1696462463_1696491203/h264/live/antena3/master.m3u8
 #EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
 https://live.telecinco.es/hls/live/2004101/telecinco/master.m3u8?hdnts=st=1625786589~exp=1625786678~acl=/*~hmac=42fc51f2df813330839e5c8bcd73fe84cbea5458aa48ad0c2c8d60b72b6f529f
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png" group-title="España", TVE 24H
