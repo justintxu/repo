@@ -9,7 +9,7 @@ https://cdnh71.iblups.com/hls/ptv2.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
 https://cdnh79.iblups.com/hls/R9WtilpKKB.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
-https://atvperu.akamaized.net/hls/live/2100630/atv/autobloqueoatv.m3u8
+https://rr1---sn-ja5gv2x-aphs.googlevideo.com/videoplayback?expire=1696481127&ei=584dZZ_FFNSI-LAPu82J4As&ip=2800:200:f828:8571:d1d7:f5cd:1cf3:5c8d&id=e4c359b439f0fe71&itag=22&source=youtube&requiressl=yes&xpc=Eghovf3BOnoBAQ==&mh=24&mm=31&mn=sn-ja5gv2x-aphs&ms=au&mv=m&mvi=1&pl=49&susc=gvp&acao=yes&ctier=L&mime=video/mp4&vprv=1&dur=15.069&lmt=1696141971957227&mt=1696452089&cpn=K8f2bw00o0Kn4Kte&txp=5318224&sparams=expire,ei,ip,id,itag,source,requiressl,xpc,susc,acao,ctier,mime,vprv,dur,lmt&sig=AOq0QJ8wRgIhANwyMz9bYegbewVU-qgzeWNS0sDzed0Qu58jAd_hctZdAiEAlb54D3vglpUyQhxBYjBCVrZuFN50ZuI9yXvuD3ukLwE=&lsparams=mh,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIhANJL5x7UVFvojBAJN3jOpE2RgPxhnsZBCKUuT1mASR9RAiAHjbH0h0qrHvT9C85hTgHFThMWge9ctqy4u_XnwhKmmw==
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png" group-title="Perú", ATV+
 https://atvmas.akamaized.net/hls/live/2101282/atvmas/master.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
