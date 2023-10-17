@@ -6,7 +6,7 @@ https://lakewoodhds-lh.akamaihd.net/i/LWLIVE_HD@178855/master.m3u8
 https://mdstrm.com/live-stream-playlist/5ce7109c7398b977dc0744cd.m3u8?uid=AW3sVUl14GHXxBHeLp47SyGtctPBy5Vw&sid=mHJ3QIzIRC15nlY2WzOdvnQ4iCjCrD3A&pid=4PvqkIyEGDlrFHkmUTqvSu7hiSOvk2gk&an=Media%20Stream%20TV%20en%20vivo&at=web-app&av=v5.2.343&ref=https%3A%2F%2Fwww.latina.pe%2F&res=375x395&without_cookies=false&listenerid=&dnt=true
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.consejosgratis.es/wp-content/uploads/2011/08/panamericana-tv.jpg" group-title="Perú", Panamericana TV
 https://cdn75.iblups.com/hls/stream.m3u8
-#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
+#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru Noticias
 https://d10tjjjvbn1fcu.cloudfront.net/out/v1/902c1a0395264f269f1160efa00660e4/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
 https://d3krdjs7is1y42.cloudfront.net/ATVpe/df13ed57843877b21ad969184ab6888f.sdp/playlist.m3u8
@@ -14,8 +14,8 @@ https://d3krdjs7is1y42.cloudfront.net/ATVpe/df13ed57843877b21ad969184ab6888f.sdp
 https://d3krdjs7is1y42.cloudfront.net/ATVmas/74ee4169b59e6f987ae3d77317309109.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.seattleclouds.com/myapplications/internetpastor/ipointstbupdate/bethelhdparafondoclaro.png" group-title="Cristiano", Bethel HD
 https://player-api.new.livestream.com/accounts/16199200/events/4590066/broadcasts/200059736.secure.m3u8?dw=80&hdnea=st=1576862711~exp=1576864511~acl=/i/16199200_4590066_lsinpot6mvakmu674zg_1@72052/*~hmac=7d0d1ea098470cda9d487eb84721e7a434647e6a53bfd57391460dccb3b09647&token=5dfd0523_2acb8892e3db7cbbb19fac88a4144d3a4fb6660d
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://3.bp.blogspot.com/-X4ZzWX0VfFw/WJNhgBA-ROI/AAAAAAAA5hM/uIBkm7wkGnIDSVGJH4OOtiNKuYPXW3O9ACLcB/s1600/willax-tv2.jpg" group-title="Perú", Willax
-https://www.dailymotion.com/cdn/live/video/x7x4dgx.m3u8?sec=DcTPX3JZopEHrzL3WpiDma-1drXMxf-Np02QYFMU4Kf2nNLdMl6JzB47UvD_9fLF&dmTs=214848&dmV1st=eb240efc-7fe5-4a2a-a200-8de6de11297f&progressive=1
+#EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
+https://d6vls0u25arys.cloudfront.net/out/v1/777b4d4cc0984575a7d14f6ee57dbcaf/index.m3u8
 #EXTINF:0 tvg-logo="https://www.adslzone.tv/app/uploads/2013/05/Sin-t%C3%ADtulo8.jpg?x=634&y=309" group-title="España", Real Madrid TV
 http://rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/master.m3u8
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/0a/LaSexta_HD_Logo_2016.png" group-title="España", La Sexta
