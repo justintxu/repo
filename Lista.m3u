@@ -25,7 +25,7 @@ https://atres-live.atresmedia.com/2f86ffcdeeffdb443a3d3ec9b12a3c6e9a00cf39_ES_16
 #EXTINF:-1 tvg-logo="https://i2.wp.com/iptvsmartv.files.wordpress.com/2017/04/telecinco_circular_500.png?ssl=1&w=450" group-title="España", Telecinco
 https://live.telecinco.es/hls/live/2004101/telecinco/master.m3u8?hdnts=st=1625786589~exp=1625786678~acl=/*~hmac=42fc51f2df813330839e5c8bcd73fe84cbea5458aa48ad0c2c8d60b72b6f529f
 #EXTINF:0 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Logo_TVE-24h.svg/1200px-Logo_TVE-24h.svg.png" group-title="España", TVE 24H
-https://rtvelivestreamv3.akamaized.net/24h_main.m3u8
+https://ztnr.rtve.es/ztnr/1694255.m3u8
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_TVE-Internacional.svg/702px-Logo_TVE-Internacional.svg.png" group-title="España", TVE 1
 https://ztnr.rtve.es/ztnr/1688877.m3u8
 #EXTINF:-1 tvg-logo="https://www.formulatv.com/images/noticias/22800/22845/2.jpg" group-title="España", ENERGY
