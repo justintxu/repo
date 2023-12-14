@@ -9,7 +9,7 @@ https://cdnhd.iblups.com/hls/ee2450c81e554f4cae0e6292106993c2.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru
 https://d6vls0u25arys.cloudfront.net/out/v1/777b4d4cc0984575a7d14f6ee57dbcaf/index.m3u8
 #EXTINF:0 tvg-id="" tvg-name="" tvg-logo="http://www.tvperu.gob.pe/sites/all/themes/stability/images/tvperu_avatar.png" group-title="Perú", TV Peru Noticias
-https://d10tjjjvbn1fcu.cloudfront.net/out/v1/902c1a0395264f269f1160efa00660e4/index.m3u8
+https://cdnhd.iblups.com/hls/902c1a0395264f269f1160efa00660e4.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://seeklogo.com/images/A/atv-peru-logo-E0FD3BBF05-seeklogo.com.png" group-title="Perú", ATV
 https://d3krdjs7is1y42.cloudfront.net/ATVpe/df13ed57843877b21ad969184ab6888f.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/ATV%2B_%28Peru%29_-_2018_logo.png/1200px-ATV%2B_%28Peru%29_-_2018_logo.png" group-title="Perú", ATV+
