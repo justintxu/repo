@@ -22,7 +22,7 @@ https://ztnr.rtve.es/ztnr/1688877.m3u8
 http://live-edge01.telecentro.net.ar/live/msctphd-720/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://tvlive.altervista.org/wp-content/uploads/2019/05/Central-TV-Chosica-250x180.png" group-title="Cable", Central TV
 http://cdn2.ujjina.com:1935/iptvcentraltv/livecentraltvtv/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://asset.brandfetch.io/id3YOrG_fI/idewH5Tcsf.jpeg" group-title="Cable", Cinemax Latin America
+#EXTINF:-1 tvg-logo="https://asset.brandfetch.io/id3YOrG_fI/idewH5Tcsf.jpeg" group-title="Cable", Cinemax
 http://170.254.18.106/CINEMAX/index.m3u8
 #EXTINF:-1 tvg-id="ClanInternacional.es" tvg-logo="https://i.imgur.com/03jFV68.png" group-title="Cable",Clan TVE Internacional (1080p)
 https://rtvelivestream.akamaized.net/rtvesec/int/clan_int_main.m3u8
