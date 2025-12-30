@@ -49,7 +49,7 @@ https://azt-mun.otteravision.com/azt/mun/mun.m3u8
 #EXTINF:-1 tvg-id="Noticias" tvg-logo="https://i.imgur.com/ZnmAXVv.png" group-title="Noticias",France 24 Español (1080p)
 https://ythls.armelin.one/channel/UCUdOoVWuWmgo1wByzcsyKDQ.m3u8
 #EXTINF:-1 tvg-id="GoldenPlus.mx" tvg-logo="https://i.imgur.com/OOEkyM2.png" group-title="Perú",Willax
-https://www.dailymotion.com/cdn/live/video/x7x4dgx.m3u8?sec=vd_BvZYzAP85b-IaiTsNgdq4P8y-GfcQlPAXLwKvA3EcVs0Bgpo6lTu4mJKDXMWOpGMJlzXwtDr7gO4vW5cxAA&dmTs=867102&dmV1st=d4dbd500-9f62-6fdc-81a4-4cba5e53fd47
+https://cdndirector.dailymotion.com/cdn/live/video/x9s3ad6.m3u8?sec=yC3pnA9o4IJWt8b1B33WZ2NuPpU0JjyMJmuQRgwgLzpMJqE_9r3D-BkLxAkAPL3xFC-GJweEntYTZP5obFJBNu6-QxFBaCgf6MFWz6eV-YE&dmTs=939923&dmV1st=6966a0ae-e21a-f94b-8875-e13cd1ea625e
 #EXTINF:-1 tvg-id="GoldenPremier.mx" tvg-logo="https://i.imgur.com/JMa7jws.png" group-title="Cable",Golden Premier (576p)
 https://linear-411.frequency.stream/dist/vix/411/hls/master/playlist.m3u8
 #EXTINF:-1 tvg-id="https://raw.githubusercontent.com/justintxu/repo/master/pandamaxtv.png" group-title="Cable",Pandamax Channel (1080p)
