@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11 LTSC</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0078D4;
+    --blue-dark: #005a9e;
+    --blue-light: #e8f2fb;
+    --gray-50: #fafafa;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--gray-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-900);
+    letter-spacing: -0.2px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    font-family: 'DM Mono', monospace;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--gray-900);
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 strong { font-weight: 600; color: var(--blue); }
+  .hero p {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 40px;
+    max-width: 900px;
+    margin: 0 auto 28px;
+  }
+  .section-label span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: #d1d5db;
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.19s; }
+  .card:nth-child(4) { animation-delay: 0.26s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-icon svg { width: 22px; height: 22px; }
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-400);
+    background: var(--gray-100);
+    padding: 3px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* LANG SECTION */
+  .lang-section { display: flex; flex-direction: column; gap: 12px; }
+  .lang-row {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .lang-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-800);
+    min-width: 110px;
+  }
+  .lang-label .flag { font-size: 18px; }
+  .lang-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* BUTTONS */
+  .card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    border: none;
+  }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .btn-archive { background: #1a1a1a; color: white; }
+  .btn-archive:hover { background: #333; }
+
+  .btn-mega { background: #d9272e; color: white; }
+  .btn-mega:hover { background: #b31e24; }
+
+  .btn-drive { background: white; color: #374151; border: 1px solid var(--gray-200); }
+  .btn-drive:hover { background: var(--gray-50); border-color: var(--gray-400); }
+
+  .btn-mediafire { background: #1565c0; color: white; }
+  .btn-mediafire:hover { background: #0d47a1; }
+
+  .btn-buy-gvg {
+    background: linear-gradient(135deg, #00b4aa, #e05a6b);
+    color: white;
+    font-weight: 600;
+  }
+  .btn-buy-gvg:hover { opacity: 0.9; }
+
+  .btn-web { background: var(--blue); color: white; }
+  .btn-web:hover { background: var(--blue-dark); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .footer-inner { display: flex; align-items: flex-start; gap: 14px; }
+  .footer-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; color: var(--gray-400); }
+  footer p { font-size: 12.5px; color: var(--gray-400); line-height: 1.7; }
+  footer p strong { color: var(--gray-600); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <rect x="0" y="0" width="9" height="9" fill="#F25022"/>
+      <rect x="11" y="0" width="9" height="9" fill="#7FBA00"/>
+      <rect x="0" y="11" width="9" height="9" fill="#00A4EF"/>
+      <rect x="11" y="11" width="9" height="9" fill="#FFB900"/>
+    </svg>
+    Windows 11 LTSC
+  </div>
+  <ul class="nav-links">
+    <li><a href="https://apps.microsoft.com/home?hl=es-US&gl=US" target="_blank">Software</a></li>
+    <li><a href="https://apps.microsoft.com/collections/curated/most-popular-utility-apps?hasHeroImage=true&fromPills=true%3Fhl%3Des-ES&gl=US&hl=es-US" target="_blank">Herramientas</a></li>
+    <li><a href="https://www.premiumcdkeys.com/search?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=last&q=microsoft" target="_blank">Licencias</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="3"/></svg>
+    Recursos verificados
+  </div>
+  <h1>Descarga las herramientas<br><strong>esenciales para Windows 11</strong></h1>
+  <p>Software, utilidades y licencias seleccionados para entornos corporativos y uso personal. Todo en un solo lugar.</p>
+</section>
+
+<!-- CARDS -->
+<div class="section-label" id="software">
+  <span>Software disponible</span>
+</div>
+
+<div class="cards-grid">
+
+  <!-- CARD 1: Win 11 LTSC 2024 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="9" height="9" fill="#F25022"/>
+          <rect x="12" y="1" width="9" height="9" fill="#7FBA00"/>
+          <rect x="1" y="12" width="9" height="9" fill="#00A4EF"/>
+          <rect x="12" y="12" width="9" height="9" fill="#FFB900"/>
+        </svg>
+      </div>
+      <span class="card-tag">ISO • 64-bit</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Windows 11 Enterprise LTSC 2024</div>
+      <div class="card-desc">Sistema operativo empresarial de largo soporte. Estable, seguro y sin aplicaciones innecesarias. Disponible en múltiples idiomas.</div>
+    </div>
+    <div class="lang-section">
+      <div class="lang-row">
+        <div class="lang-label"><span class="flag">🇪🇸</span> Español</div>
+        <div class="lang-btns">
+          <a href="https://archive.isdn.network/windows/es-es_windows_11_enterprise_ltsc_2024_x64_dvd_77392d61.iso" target="_blank" class="btn btn-archive">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3v2l8 8v6l2 2v-8l8-8V3z"/></svg>
+            Archive
+          </a>
+          <a href="https://mega.nz/file/Xbx3gS7T#OeFAYuRHBMflEEyh9H9LOwhq0cryrP0XVTZFsYECy8I" target="_blank" class="btn btn-mega">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+            MEGA
+          </a>
+          <a href="https://drive.google.com/file/d/1EegRmsLT9gvUqAjjb6tSPdhfRdu5y25m/view" target="_blank" class="btn btn-drive">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+              <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+              <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+            </svg>
+            Drive
+          </a>
+        </div>
+      </div>
+      <div class="lang-row">
+        <div class="lang-label"><span class="flag">🇺🇦</span> Ucraniano</div>
+        <div class="lang-btns">
+          <a href="https://dn710103.ca.archive.org/0/items/uk-ua_windows_11_enterprise_ltsc_2024_x64_dvd_b3f00872/uk-ua_windows_11_enterprise_ltsc_2024_x64_dvd_b3f00872.iso" target="_blank" class="btn btn-archive">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3v2l8 8v6l2 2v-8l8-8V3z"/></svg>
+            Archive
+          </a>
+          <a href="https://mega.nz/file/7GJkhQzC#jgdOOa9R7pv9Ktk3Ku2U7b4FCP-xyMht-7OZOU1tAzc" target="_blank" class="btn btn-mega">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+            MEGA
+          </a>
+          <a href="https://drive.google.com/file/d/1OvucMvumFVsikbIRJ4SenQuZMN17_N5F/view" target="_blank" class="btn btn-drive">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+              <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+              <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+            </svg>
+            Drive
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Parche KB5054156 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 2a9 9 0 100 18A9 9 0 0011 2z" stroke="#0078D4" stroke-width="1.5"/>
+          <path d="M8 11l2 2 4-4" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="card-tag">Parche • Windows 11</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Parche Oficial de Microsoft KB5054156</div>
+      <div class="card-desc">Actualización de seguridad y rendimiento oficial de Microsoft para Windows 11 Enterprise LTSC 2024. Instalación manual recomendada.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://mega.nz/file/XShRVL6J#qnhsIgGe68PNpRN3RKMMaPqDhnsKciHFvS37lpDN03I" target="_blank" class="btn btn-mega">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+          MEGA
+        </a>
+        <a href="https://drive.google.com/file/d/1x4EfF6r6XH8nYjXVEmLQmbK55jUDO0pw/view" target="_blank" class="btn btn-drive">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+            <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+            <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+          </svg>
+          Google Drive
+        </a>
+        <a href="https://www.mediafire.com/file/hfl8sdnm1efb3qg/Windows11.0-KB5054156-x64.msu/file" target="_blank" class="btn btn-mediafire">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          MediaFire
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: Licencia Win 11 LTSC -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="4" width="16" height="14" rx="2" stroke="#0078D4" stroke-width="1.5"/>
+          <path d="M7 9h8M7 12h5" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="15.5" cy="13.5" r="3" fill="#0078D4"/>
+          <path d="M14.5 13.5l.8.8 1.5-1.5" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="card-tag">Licencia • 1 PC</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Licencia Windows 11 Enterprise LTSC 2024</div>
+      <div class="card-desc">Adquiere tu licencia original para activar Windows 11 Enterprise LTSC 2024. Activación garantizada para 1 PC a través de GVGMall.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group" style="align-items:center;">
+        <a href="https://es.gvgmall.com/key/202504171452536424.html?urd=LTSC24" target="_blank" class="btn btn-buy-gvg">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          Comprar en GVGMall
+        </a>
+        <div style="display:flex;flex-direction:column;gap:3px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:#92610a;letter-spacing:0.5px;text-transform:uppercase;">Código de descuento</span>
+          <span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:600;background:#fff7e0;color:#92610a;border:1px dashed #f0b429;padding:6px 12px;border-radius:8px;letter-spacing:1px;">🏷️ SFD20</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 4: Win 11 LTSC Tools -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4l4 4M18 4l-4 4M4 18l4-4M18 18l-4-4" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="3" stroke="#0078D4" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="card-tag">Tools • Windows 11</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Windows 11 Enterprise LTSC 2024 Tools</div>
+      <div class="card-desc">Conjunto de herramientas y utilidades esenciales para configurar, optimizar y personalizar Windows 11 Enterprise LTSC 2024.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://massgrave.dev/" target="_blank" class="btn btn-web">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+          </svg>
+          Visitar sitio web
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- INSTRUCCIONES OPCIONALES -->
+<div style="max-width:900px;margin:0 auto 48px;padding:0 40px;">
+  <div style="border:1px solid #e5e7eb;border-radius:12px;padding:28px;background:#fafafa;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="width:36px;height:36px;background:#e8f2fb;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+      </div>
+      <h2 style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:#111827;letter-spacing:-0.3px;">Instrucciones Opcionales</h2>
+    </div>
+    <p style="font-family:'DM Sans',sans-serif;font-size:13.5px;color:#4b5563;margin-bottom:16px;">Abrir CMD como administrador y ejecutar los siguientes comandos en orden:</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="font-family:'DM Mono',monospace;font-size:13px;background:#1f2937;color:#e5e7eb;padding:11px 16px;border-radius:8px;letter-spacing:0.3px;user-select:all;">slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D</div>
+      <div style="font-family:'DM Mono',monospace;font-size:13px;background:#1f2937;color:#e5e7eb;padding:11px 16px;border-radius:8px;letter-spacing:0.3px;user-select:all;">slmgr /skms kms8.msguides.com</div>
+      <div style="font-family:'DM Mono',monospace;font-size:13px;background:#1f2937;color:#e5e7eb;padding:11px 16px;border-radius:8px;letter-spacing:0.3px;user-select:all;">slmgr /ato</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 8v4M12 16h.01"/>
+    </svg>
+    <p><strong>Aviso legal:</strong> Este sitio es de carácter informativo y educativo. Descarga software únicamente de fuentes oficiales y asegúrate de contar con las licencias correspondientes antes de instalar cualquier producto. Windows es una marca registrada de Microsoft Corporation.</p>
+  </div>
+</footer>
+
+</body>
+</html>
