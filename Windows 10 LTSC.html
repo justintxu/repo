@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 10 LTSC</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0078D4;
+    --blue-dark: #005a9e;
+    --blue-light: #e8f2fb;
+    --gray-50: #fafafa;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--gray-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-900);
+    letter-spacing: -0.2px;
+  }
+  .nav-logo svg { flex-shrink: 0; }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    font-family: 'DM Mono', monospace;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--gray-900);
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 strong { font-weight: 600; color: var(--blue); }
+  .hero p {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+    border-top: 1px solid var(--gray-200);
+    margin-bottom: 48px;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 40px;
+    max-width: 860px;
+    margin: 0 auto 28px;
+  }
+  .section-label span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+    max-width: 860px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: var(--gray-300, #d1d5db);
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.19s; }
+  .card:nth-child(4) { animation-delay: 0.26s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-icon svg { width: 22px; height: 22px; }
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-400);
+    background: var(--gray-100);
+    padding: 3px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .card-body {}
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* BUTTONS */
+  .card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--blue-dark); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gray-700, #374151);
+    border: 1px solid var(--gray-200);
+  }
+  .btn-outline:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-400);
+  }
+
+  .btn-mega {
+    background: #d9272e;
+    color: white;
+  }
+  .btn-mega:hover { background: #b31e24; }
+
+  .btn-drive {
+    background: white;
+    color: var(--gray-700, #374151);
+    border: 1px solid var(--gray-200);
+  }
+  .btn-drive:hover { background: var(--gray-50); border-color: var(--gray-400); }
+
+  .btn-archive {
+    background: #1a1a1a;
+    color: white;
+  }
+  .btn-archive:hover { background: #333; }
+
+  .btn-buy {
+    background: #f9c22e;
+    color: #111;
+    font-weight: 600;
+  }
+  .btn-buy:hover { background: #e6b01a; }
+
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 40px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .footer-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--gray-400);
+  }
+  footer p {
+    font-size: 12.5px;
+    color: var(--gray-400);
+    line-height: 1.7;
+  }
+  footer p strong { color: var(--gray-600); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <rect x="0" y="0" width="9" height="9" fill="#F25022"/>
+      <rect x="11" y="0" width="9" height="9" fill="#7FBA00"/>
+      <rect x="0" y="11" width="9" height="9" fill="#00A4EF"/>
+      <rect x="11" y="11" width="9" height="9" fill="#FFB900"/>
+    </svg>
+    Windows 10 LTSC
+  </div>
+  <ul class="nav-links">
+    <li><a href="https://apps.microsoft.com/home?hl=es-US&gl=US" target="_blank">Software</a></li>
+    <li><a href="https://apps.microsoft.com/collections/curated/most-popular-utility-apps?hasHeroImage=true&fromPills=true%3Fhl%3Des-ES&gl=US&hl=es-US" target="_blank">Herramientas</a></li>
+    <li><a href="https://www.premiumcdkeys.com/search?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=last&q=microsoft" target="_blank">Licencias</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="3"/></svg>
+    Recursos verificados
+  </div>
+  <h1>Descarga las herramientas<br><strong>esenciales para Windows</strong></h1>
+  <p>Software, utilidades y licencias seleccionados para entornos corporativos y uso personal. Todo en un solo lugar.</p>
+</section>
+
+<!-- CARDS -->
+<div class="section-label" id="software">
+  <span>Software disponible</span>
+</div>
+
+<div class="cards-grid">
+
+  <!-- CARD 1: Win 10 LTSC -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="9" height="9" fill="#F25022"/>
+          <rect x="12" y="1" width="9" height="9" fill="#7FBA00"/>
+          <rect x="1" y="12" width="9" height="9" fill="#00A4EF"/>
+          <rect x="12" y="12" width="9" height="9" fill="#FFB900"/>
+        </svg>
+      </div>
+      <span class="card-tag">ISO • 64-bit</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Windows 10 Enterprise LTSC 2021</div>
+      <div class="card-desc">Sistema operativo empresarial de largo soporte (LTSC). Estable, seguro y sin aplicaciones innecesarias. Ideal para entornos corporativos que requieren máxima estabilidad.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://dn720704.ca.archive.org/0/items/windows-10-enterprise-ltsc-2021-x-64-dvd-esp/Windows_10_enterprise_ltsc_2021_x64_dvd_es-es_51d721ea.iso" target="_blank" class="btn btn-archive">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3v2l8 8v6l2 2v-8l8-8V3z"/></svg>
+          Internet Archive
+        </a>
+        <a href="https://mega.nz/file/zKxAUJiK#mUGRz6Bv7a-7fAXO7BmfsyprOsW5Qb8cXFxwASVIfOA" target="_blank" class="btn btn-mega">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          MEGA
+        </a>
+        <a href="https://drive.google.com/file/d/13HNzzLfOv5rbNmtD5q0-aqXF9351G1IZ/view" target="_blank" class="btn btn-drive">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.5 21L1 10.5 7.5 0h9L23 10.5 16.5 21z" fill="none"/>
+            <path d="M1 10.5h22" stroke="#4285F4" stroke-width="1.5"/>
+            <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="1.5"/>
+            <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="1.5"/>
+          </svg>
+          Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Tienda de Windows -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 2C6 2 2 6 2 11s4 9 9 9 9-4 9-9-4-9-9-9z" fill="#0078D4" opacity="0.15"/>
+          <path d="M8 7h6l1 8H7L8 7z" fill="#0078D4"/>
+          <path d="M9 7V6a2 2 0 014 0v1" stroke="#0078D4" stroke-width="1.5" fill="none"/>
+          <circle cx="9.5" cy="12" r="1" fill="white"/>
+          <circle cx="12.5" cy="12" r="1" fill="white"/>
+        </svg>
+      </div>
+      <span class="card-tag">App • Windows 10/11</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Tienda de Windows (Microsoft Store)</div>
+      <div class="card-desc">Restaura o instala la Microsoft Store en tu sistema Windows 10/11. Accede a todas las aplicaciones oficiales del ecosistema Microsoft sin complicaciones.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://mega.nz/file/DMIBBLaC#_AEPzFairBsMDdoVU5fswrTjdSxbDVwQuww7z5_d8ds" target="_blank" class="btn btn-mega">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+          MEGA
+        </a>
+        <a href="https://drive.google.com/file/d/1lXSppcEfeEpSFxwJZDOEEJvP3O09YR68/view" target="_blank" class="btn btn-drive">
+          <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+            <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+            <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+            <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+          </svg>
+          Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: Licencia -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="4" width="16" height="14" rx="2" stroke="#0078D4" stroke-width="1.5"/>
+          <path d="M7 9h8M7 12h5" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="15.5" cy="13.5" r="3" fill="#0078D4"/>
+          <path d="M14.5 13.5l.8.8 1.5-1.5" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="card-tag">Licencia • 1 PC</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Licencia Windows 10 Enterprise LTSC 2021</div>
+      <div class="card-desc">Adquiere tu licencia oficial para activar Windows 10 Enterprise LTSC 2021. Activación garantizada para 1 PC a través de un proveedor de confianza.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://www.premiumcdkeys.com/es/products/windows-10-enterprise-2021-ltsc-key-global?_pos=1&_sid=0f9c565fb&_ss=r&_gl=1*nxrsjm*_up*MQ..*_gs*MQ..&gclid=CjwKCAiA95fLBhBPEiwATXUsxOl-yzfXxLjST3DRz2Kzd1YhISRxSTIO3IrrFhWfeLXplthWWbof_BoCJ8cQAvD_BwE&gbraid=0AAAAAqBbGqKqzdJD7TQvuFDE4it8oruBi" target="_blank" class="btn btn-buy">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          Comprar en PremiumCDKeys
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 4: Desactivar Actualizaciones -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 3a8 8 0 100 16A8 8 0 0011 3z" stroke="#0078D4" stroke-width="1.5"/>
+          <path d="M8 8l6 6M14 8l-6 6" stroke="#0078D4" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="card-tag">Herramienta • Windows 10/11</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Desactivar Actualizaciones Automáticas</div>
+      <div class="card-desc">Herramienta para controlar y desactivar las actualizaciones automáticas de Windows. Mantén el control total de tu sistema y decide cuándo actualizar.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://mega.nz/file/CKIECCLb#XaB0L_XvYliz_vNMCR9xktY7UloWO4NQJLo3DjeH7AE" target="_blank" class="btn btn-mega">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+          MEGA
+        </a>
+        <a href="https://drive.google.com/file/d/18swB3XyAoBr1IIYLYXc0TmbmJr0zgKIP/view" target="_blank" class="btn btn-drive">
+          <svg viewBox="0 0 24 24" fill="none" width="15" height="15">
+            <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+            <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+            <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+          </svg>
+          Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COMMAND TEXT -->
+<div style="max-width: 860px; margin: 0 auto 48px; padding: 0 40px;">
+  <p style="font-family: 'DM Mono', monospace; font-size: 14px; color: var(--gray-800); background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px 20px; display: inline-block; letter-spacing: 0.3px; user-select: all;">slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 8v4M12 16h.01"/>
+    </svg>
+    <p><strong>Aviso legal:</strong> Este sitio es de carácter informativo y educativo. Descarga software únicamente de fuentes oficiales y asegúrate de contar con las licencias correspondientes antes de instalar cualquier producto. Windows es una marca registrada de Microsoft Corporation.</p>
+  </div>
+</footer>
+
+</body>
+</html>
