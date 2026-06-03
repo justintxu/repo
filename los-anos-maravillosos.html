@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Años Maravillosos — Serie Completa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #faf7f2;
+  --warm-white: #fffef9;
+  --brown-dark: #2c1a0e;
+  --brown-mid: #6b3f1f;
+  --amber: #d4780a;
+  --amber-light: #f5a623;
+  --amber-pale: #fdf1d8;
+  --mega-red: #d9272e;
+  --text: #2c1a0e;
+  --text-muted: #8a6a4a;
+  --border: #e8dcc8;
+  --shadow: 0 4px 24px rgba(44,26,14,0.08);
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--brown-dark);
+  position: relative;
+  overflow: hidden;
+  padding: 70px 40px 60px;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(212,120,10,0.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(245,166,35,0.10) 0%, transparent 50%);
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(212,120,10,0.2);
+  border: 1px solid rgba(212,120,10,0.4);
+  color: var(--amber-light);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  position: relative;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--amber-light);
+}
+.hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+  position: relative;
+  margin-bottom: 32px;
+}
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hero-meta-item .val {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--amber-light);
+}
+.hero-meta-item .lbl {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.hero-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.12);
+  align-self: center;
+}
+
+/* ── NAV SEASONS ── */
+.season-nav {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.season-nav::-webkit-scrollbar { display: none; }
+.season-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.season-nav a:hover, .season-nav a.active {
+  color: var(--amber);
+  border-bottom-color: var(--amber);
+}
+.season-nav a .ep-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: var(--amber-pale);
+  color: var(--amber);
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+/* ── MAIN CONTENT ── */
+.content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+/* ── SEASON BLOCK ── */
+.season-block {
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+.season-block:nth-child(1) { animation-delay: 0.05s; }
+.season-block:nth-child(2) { animation-delay: 0.1s; }
+.season-block:nth-child(3) { animation-delay: 0.15s; }
+.season-block:nth-child(4) { animation-delay: 0.2s; }
+.season-block:nth-child(5) { animation-delay: 0.25s; }
+.season-block:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.season-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.season-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--amber);
+  background: var(--amber-pale);
+  border: 1px solid rgba(212,120,10,0.2);
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.season-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brown-dark);
+  letter-spacing: -0.3px;
+}
+.season-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── EPISODE LIST ── */
+.episode-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.episode-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+  border: 1px solid transparent;
+}
+.episode-row:hover {
+  background: var(--warm-white);
+  border-color: var(--border);
+}
+.ep-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 28px;
+  opacity: 0.6;
+}
+.ep-name {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 400;
+}
+.ep-name.no-name {
+  color: var(--text-muted);
+  font-style: italic;
+}
+.ep-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--mega-red);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.18s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.ep-download:hover {
+  background: #b31e24;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(217,39,46,0.3);
+}
+.ep-download svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--brown-dark);
+  padding: 32px 40px;
+  text-align: center;
+}
+footer p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+footer p strong { color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">The Wonder Years • 1988–1993</div>
+  <h1>Los Años <em>Maravillosos</em></h1>
+  <p class="hero-sub">Serie completa en Español Latino — 1080p Ripeado</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="val">6</span><span class="lbl">Temporadas</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item"><span class="val">115</span><span class="lbl">Episodios</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item"><span class="val">1080p</span><span class="lbl">Calidad</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item"><span class="val">MEGA</span><span class="lbl">Servidor</span></div>
+  </div>
+</section>
+
+<!-- SEASON NAV -->
+<nav class="season-nav">
+  <a href="#t1" class="active">Temporada 1 <span class="ep-count">6 ep</span></a>
+  <a href="#t2">Temporada 2 <span class="ep-count">17 ep</span></a>
+  <a href="#t3">Temporada 3 <span class="ep-count">23 ep</span></a>
+  <a href="#t4">Temporada 4 <span class="ep-count">23 ep</span></a>
+  <a href="#t5">Temporada 5 <span class="ep-count">23 ep</span></a>
+  <a href="#t6">Temporada 6 <span class="ep-count">22 ep</span></a>
+</nav>
+
+<!-- CONTENT -->
+<main class="content">
+
+<!-- TEMPORADA 1 -->
+<div class="season-block" id="t1">
+  <div class="season-header">
+    <span class="season-number">Temporada 1</span>
+    <span class="season-title">1988</span>
+  </div>
+  <div class="episode-list">
+    <div class="episode-row"><span class="ep-num">01</span><span class="ep-name">Piloto</span><a href="https://mega.nz/file/fZs2hBAR#hnyCh7TyW3xloGP5UjZxYurrNy8ycCb95iMImsRMeSk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">02</span><span class="ep-name">Intercambios</span><a href="https://mega.nz/file/CBNlxT4T#Uq9rcYR2gK4O0l__jPDOBg3eXEReAcZ-6yZn1hvYqOU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03</span><span class="ep-name">La Oficina de mi Padre</span><a href="https://mega.nz/file/7RlEwJ4R#k_E2XUkHeLKB5LGEIAv9c1_KovsSRp1APNHDDee8SzA" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04</span><span class="ep-name">Ángel</span><a href="https://mega.nz/file/nJMV1bgb#OBioROxpOup8p169WxAk9nq6UtY4h0TO2oy0zv-Jmxk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04b</span><span class="ep-name">La Llamada Telefónica</span><a href="https://mega.nz/file/qd8m1CwT#RNg804DD02DFNEVC9pYsKOt5-qvd0dG688Qvm8Jzgwc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">05</span><span class="ep-name">Baila Conmigo</span><a href="https://mega.nz/file/PBlTgTpD#2lkBrQfyOFQWYK9yXkstDamVbYmoLt_gL6yaHlrbWaE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+  </div>
+</div>
+
+<!-- TEMPORADA 2 -->
+<div class="season-block" id="t2">
+  <div class="season-header">
+    <span class="season-number">Temporada 2</span>
+    <span class="season-title">1988–1989</span>
+  </div>
+  <div class="episode-list">
+    <div class="episode-row"><span class="ep-num">01</span><span class="ep-name">En plena oscuridad</span><a href="https://mega.nz/file/fUNwCCJC#tjluOVYPKi-aNqxnRrincxqYWl_Vse6wJRscx5D20W0" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">02</span><span class="ep-name">Nuestra señorita White</span><a href="https://mega.nz/file/2dEWHbra#DUvB4w89wFw6ZBssMkHbMnnZ_QmEW-Qr2mIvjqlC9pU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03</span><span class="ep-name">Feliz navidad</span><a href="https://mega.nz/file/uQcCTbpL#6USd95AYiz_cOTV_HXfODDdGfalU3zZ1i42eaEZumwU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04</span><span class="ep-name">Mi primera novia</span><a href="https://mega.nz/file/iB0hCDLI#ftXPHgZWtp7uZ3w0WBveqTS4A2OhG3i9hU0mkVPzvOo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">05</span><span class="ep-name">Solo entre tú y yo</span><a href="https://mega.nz/file/qQEDGDyR#vw3HGfAp3a9l8UjDRw0cV7QukYdJVtZfUxkidZkUL1w" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">06</span><span class="ep-name">La alfarería no te lleva a nada bueno</span><a href="https://mega.nz/file/aFMRzY6B#5zqzU6JG6VLjlFY1LSnya2R_F4tZarCLNyOVfQZ8V7I" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">07</span><span class="ep-name">La dignidad de mi amigo</span><a href="https://mega.nz/file/eNsWgIIK#8ZY2V03J9VmxhoTrFfLk0GD8EgfBMlFfwlhiKEc535s" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">08</span><span class="ep-name">Mi hermano Hiroshima</span><a href="https://mega.nz/file/XMMR2QpI#ObCdVOdtfgZIIIqcMfZLq7NcWqQY_OGPNeNPV1OAEEo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">09</span><span class="ep-name">Perdedores</span><a href="https://mega.nz/file/WclHRBpR#bRA9O4plGm0hduUflWqszG1J6RZQ017vcx3UFVASTq8" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">10</span><span class="ep-name">La huelga</span><a href="https://mega.nz/file/nQE0mRrL#ZoGGnewK-aMf70WqGBsmnr2LJoSMcA1Juduz9t88lps" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">11</span><span class="ep-name">La venganza</span><a href="https://mega.nz/file/zAVW2aBI#j2CbZtsOyylteEpee4kuetLey7ID9CUfieryEjoFiew" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">12</span><span class="ep-name">El destino</span><a href="https://mega.nz/file/XAVjkbpC#TChIQLYaGKrba68mJG1AQ9we5CAgwg0Q6th1pi_E7iM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">13</span><span class="ep-name">Feliz cumpleaños</span><a href="https://mega.nz/file/jNtwWAjL#qkTKf93o-fBbkoBd7N0HRJn7IeNvUoob0VBRJbEtQsc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">14</span><span class="ep-name">Aprendiendo a volar</span><a href="https://mega.nz/file/TIU0RAbK#-uWwp4WJ5lD1-asDO_oKud78CBeaAwWJpExVf9oypLQ" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">15</span><span class="ep-name">Baile de figuras</span><a href="https://mega.nz/file/WM8mSAqR#KquAFji5c3ueIT3_TS-eYf1avCKAyD9W2j6vC7k9wIE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">16</span><span class="ep-name">¿De quién son estos árboles?</span><a href="https://mega.nz/file/SMFnACoZ#gHp7mzN2L-0cXuKFtKWCLcqRSTEbP7vT9-gTuInrtww" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">17</span><span class="ep-name">Cómo estoy pasando mis vacaciones de verano</span><a href="https://mega.nz/file/6F0SjaiZ#jrvdFXHKOmdwMeT_Z-4bSD5CfMY4pcCUeN2q16zKIcQ" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+  </div>
+</div>
+
+<!-- TEMPORADA 3 -->
+<div class="season-block" id="t3">
+  <div class="season-header">
+    <span class="season-number">Temporada 3</span>
+    <span class="season-title">1989–1990</span>
+  </div>
+  <div class="episode-list">
+    <div class="episode-row"><span class="ep-num">01</span><span class="ep-name">Canción de verano</span><a href="https://mega.nz/file/DMk0GTRS#1gDRx56KYxJDqSeHT1hvd4wUwAHDiUgWkRifE-9Eigk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">02</span><span class="ep-name">Clase de matemáticas</span><a href="https://mega.nz/file/DZ0iXTAB#IxQuOajPlMDWE-LFQQgGljsWup_HZxeTTZ3gpYWr3FU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03</span><span class="ep-name">Wayne sobre ruedas</span><a href="https://mega.nz/file/rB0jGKCK#jgB3XO1aQ7dwLnnKE8YKVEfalI05wjbaYxjqNLmriik" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04</span><span class="ep-name">La guerra contra mamá</span><a href="https://mega.nz/file/OB1FRbpa#iiDCX0JNBO1RO0ZbZGJ2BsWEmX4ckucSLGcr6ZPKPYM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">05</span><span class="ep-name">En escena</span><a href="https://mega.nz/file/ycN2SLJA#UUqI8Crd2WoSaR2IsQWmn3WkyzjXqtwJ2-MUY9Uf9kM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">06</span><span class="ep-name">Hombres sin pareja</span><a href="https://mega.nz/file/KcV1QKzK#dNmtsLn6E0IvBL4eDvuTJPudYbQt9yt-df-KxALc7vk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">07</span><span class="ep-name">El auto de la familia</span><a href="https://mega.nz/file/HEsQQRQQ#EgPMILTJ0jsFTe4Un2zzM9CfZywwB3e9HbG541WGzIQ" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">08</span><span class="ep-name">Cambio</span><a href="https://mega.nz/file/yVcFEIIA#mAXYLKkZ0jAomfvSOgJ85Smnxr1t5Z_MTrB6bLMBhmE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">09</span><span class="ep-name">Matemáticas avanzadas</span><a href="https://mega.nz/file/mVdGQKhb#6Ml2nF2tngxFIlDLM31GOzRu-DpARHymBKAfxlrErSY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">10</span><span class="ep-name">El grupo de rock</span><a href="https://mega.nz/file/rVUCWCAY#sKboVehRzx3eXaa2Bdfawn1oAKWzT1vitk7dXHXZ55U" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">11</span><span class="ep-name">No sabes nada de las mujeres</span><a href="https://mega.nz/file/nUVSwIIA#BJVGP74XYs5ZHXjJjMvvC-hwcih-9vvczHXN4g0t9io" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">12</span><span class="ep-name">Padres, hijos y abuelos</span><a href="https://mega.nz/file/bI9yBYRB#9K6gZiqRM2XZwmg8AE77xsyNiIV2VGcXDpXhhh168yg" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">13</span><span class="ep-name">Ella, mi amigo y yo</span><a href="https://mega.nz/file/zJ0VyCpR#FjkfnyCgq6kZCY4aCmJ2LiVPd8KXYEPxE2S1TG1I0Ko" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">14</span><span class="ep-name">San Valentín</span><a href="https://mega.nz/file/HJd1kTAQ#_z5fgip53LfUs0gyU5BqwPI9WIX5RHX3io6kxdhLTUE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">15</span><span class="ep-name">La casita de madera</span><a href="https://mega.nz/file/vEtkRLDS#luXWiHG7xBj6U9MXC63vBpgfvv7vD_27VBTxvIbqqgw" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">16</span><span class="ep-name">El coro</span><a href="https://mega.nz/file/vB0DAJ6Q#XW3jmJ8K5RWQyXh2mUq27cI1M4ixgzuzYuJSdb52sZY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">17</span><span class="ep-name">La fiesta</span><a href="https://mega.nz/file/aMEXgYZC#X7LvbokPXWHwYeAEkIktUxyLZQt3KqVj2AgUMMBJtlk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">18</span><span class="ep-name">Fe</span><a href="https://mega.nz/file/KIFRXTAa#s90fni4pi_055MafzXXdYu_65TUlJ_Nzvba3-ULGPig" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">19</span><span class="ep-name">Lo sobrenatural</span><a href="https://mega.nz/file/LE8XUBpI#GFDYFG_GmVYMkIofBmEzez_fQjRHl9OsPHTnwIx5PN8" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">20</span><span class="ep-name">Adiós maestros</span><a href="https://mega.nz/file/iAMmlS4Q#8UXGBVBPbD1aDkEzvls2cqG8n2EJbV39W7zcyWSb4Jo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">21</span><span class="ep-name">Chocolate y amigos</span><a href="https://mega.nz/file/XYEEwbxI#eC9gVhPjWbZjeOsbL8_Y2ZJMsK3vXP_rZdWdPDqVi6o" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">22</span><span class="ep-name">La consentida de papá</span><a href="https://mega.nz/file/CI9y3CyT#fhCniiWX8pBS9XFc_UMk-MJ7dCiPNLuhG9ffZr2TuRI" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">23</span><span class="ep-name">La mudanza</span><a href="https://mega.nz/file/SIdjkLTI#1ZrbyYssJR9Ak63Bv-08kz8p9KwjItXHMV1HNyt_-3Q" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+  </div>
+</div>
+
+<!-- TEMPORADA 4 -->
+<div class="season-block" id="t4">
+  <div class="season-header">
+    <span class="season-number">Temporada 4</span>
+    <span class="season-title">1990–1991</span>
+  </div>
+  <div class="episode-list">
+    <div class="episode-row"><span class="ep-num">01</span><span class="ep-name">Madurando</span><a href="https://mega.nz/file/HcMUSAQD#IjNZpXwA6u6fAarHMGPJI6Gg7GZ85ZA6xfyJIOyMUv0" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">02</span><span class="ep-name">El hombre de tercero de secundaria</span><a href="https://mega.nz/file/CZ0GzZZB#sV5dN_rpH-XO3ap7M_do6We6uyH9Bbq507-dvHIaUVc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03</span><span class="ep-name">La misión</span><a href="https://mega.nz/file/fN1DmTYJ#nkESQy2mi-kaz1s551XkQSrh8xTZIe4SrbC1Tp4BuXg" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04</span><span class="ep-name">El costo de la vida</span><a href="https://mega.nz/file/PA1liCjI#_CANEtU9c7uaeXZCV9NduEN1y9kEJQsJvM7SJ8hQ9a4" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">05</span><span class="ep-name">El loco mundo de Madeleine</span><a href="https://mega.nz/file/WU0hWL7C#0QgSXBEPiu2b3VuGjo2z1iY1RgxpOadxwFluX3IRUXo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">06</span><span class="ep-name">La pequeña Debbie</span><a href="https://mega.nz/file/Dd9mkbCJ#AjsUNE5mkrEvsv4NSbM8l9tVV6zd58fSZwtq503DZkk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">07</span><span class="ep-name">Vínculos que atan</span><a href="https://mega.nz/file/7BVmhTYC#xM7Dzyu3pkMapmij2FdA3WdhuQOkyqpbUqQMUb_1VRY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">08</span><span class="ep-name">El sexto hombre</span><a href="https://mega.nz/file/TNV3GAxL#WNNmUMhMUptrkAuYwowOzTdBB9Y7UKqvw0in080phtI" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">09</span><span class="ep-name">Una navidad a lo Cutlip</span><a href="https://mega.nz/file/jBk1RbwD#1bXsG6WCDowRoMYIntlzg4gbEG2whUM9QyKsqDLFYsY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">10</span><span class="ep-name">El candidato</span><a href="https://mega.nz/file/vREDUTRS#yEeP6rvUHrwmLyoVj9Az6BjzkPUa1LtWoY44lHcJZ-E" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">11</span><span class="ep-name">Corazón roto</span><a href="https://mega.nz/file/yEVyhQpZ#Gj4RZ8ZdQIGeVFD2gCkBwJYvhu6YSq9Jwviu7RXi8xE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">12</span><span class="ep-name">La aceptación</span><a href="https://mega.nz/file/mA1W0YBJ#lVESGw6mkPm3Ao6Oit32b0LeBpfsZttnc9nNosVOeGw" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">13</span><span class="ep-name">¿Quién es la tía Rose?</span><a href="https://mega.nz/file/XMM21ZDC#6m3hxG_-KKj8BOKZEHq-YNGpuuNZxxFfuED4u9Hi5hE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">14</span><span class="ep-name">El valor</span><a href="https://mega.nz/file/qUMFFYSK#NYb5ao9YW1gSpx9B3bH7ijys2ig6AMBBIZWxC27aDuY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">15</span><span class="ep-name">Peluche</span><a href="https://mega.nz/file/mNdzgYTA#gnmn5sigkmCg6D1hGKrzjDcXsyiOLYnuzp2cdDTeZLA" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">16</span><span class="ep-name">El gran paseo</span><a href="https://mega.nz/file/LMVHBQYQ#F6BUBxKVSE6n3NUtuemabPdE1KxT01TrZSd2BJ7_Ooo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">17</span><span class="ep-name">Cuando los mundos chocan</span><a href="https://mega.nz/file/GA0g2boQ#7oH_yTJKGo8g9zPMHmilRWoN1DblSOYuiTczMuO7Bzk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">18</span><span class="ep-name">Cuartos separados</span><a href="https://mega.nz/file/KFVzEIDI#yv_bGiTiPfwsU1OSWHlCTdLNesW4RnPx_6LUbBfDe4Q" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">19</span><span class="ep-name">El anuario</span><a href="https://mega.nz/file/bAlHAYJD#ItoCcbsM32qProcWHgnKyH0sJbdHrvmwfcKcl2CQtA8" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">20</span><span class="ep-name">El accidente</span><a href="https://mega.nz/file/zZ9VSJDZ#yk3GaA7ZgmCxx8drLTxqa3kxCfxXMbWeq3bNnje1QqU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">21</span><span class="ep-name">La casa que construyó papá</span><a href="https://mega.nz/file/qI01ELyI#a-HbrhjYjdD5bHqiQpc-Zj2QY2mHBsNcBtf7Cdo9g1M" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">22</span><span class="ep-name">La graduación</span><a href="https://mega.nz/file/qIt22YjT#V0QLHSnclVXRxqcW6tOryeJ969jb7RLN80TsXU42v1U" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">23</span><span class="ep-name">Recordando los años maravillosos</span><a href="https://mega.nz/file/qc8xSJpL#9KB34uh_-q7ijJymPNQQezSjagihuwEoxPOdY-hCbAM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+  </div>
+</div>
+
+<!-- TEMPORADA 5 -->
+<div class="season-block" id="t5">
+  <div class="season-header">
+    <span class="season-number">Temporada 5</span>
+    <span class="season-title">1991–1992</span>
+  </div>
+  <div class="episode-list">
+    <div class="episode-row"><span class="ep-num">01</span><span class="ep-name">El lago</span><a href="https://mega.nz/file/7JlnGBbJ#mmthZh3DU5zF8A_7e6eswRl_WwGWOz8KEOEtZSvKMXA" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">02</span><span class="ep-name">El primer día</span><a href="https://mega.nz/file/rYt0CC4T#NjlEDd1pB8uNn0I2_32zqksQnfMHiNFEnzaZgtPXx7Q" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03</span><span class="ep-name">La ferretería</span><a href="https://mega.nz/file/rJsGBKiL#hA7c-uxVLecahWwvwn3_eQI3WwGSe15bSpH4lRQfKdY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03b</span><span class="ep-name">La ferretería (alt.)</span><a href="https://mega.nz/file/LMdxRaZR#-RD-DFpQfq1bQO6fBfDlO7GoZXHXQDhTX3KK9-vwEMg" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04</span><span class="ep-name">Frank y Denise</span><a href="https://mega.nz/file/ONdyhC5S#_ySmFeJSkmb3QlFZr_pNE2DEBpkT43YPKvNskLB7d_M" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">05</span><span class="ep-name">Noche de aventuras</span><a href="https://mega.nz/file/vI02kQYY#apClE7EgqmtSXpsWoM7kD645NQcToQcse6CbLjEOVIE" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">06</span><span class="ep-name">El triángulo</span><a href="https://mega.nz/file/nVlEXYzZ#6oQmpirT4RdzBcYM7E56p0xwWRFeyiXBjGjqO0an-Vw" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">07</span><span class="ep-name">El equipo de fútbol soccer</span><a href="https://mega.nz/file/OEdgSLxS#krFYzOpq6Qjk-V7XaPFegoCXJRWaOXgyPE0PgvLf7yo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">08</span><span class="ep-name">El cumpleaños de papá</span><a href="https://mega.nz/file/2dsCgTIa#hjTl6ybwRyDCpOkPfKqT8Jl-jT9Q79njHGA_6BbmWSc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">09</span><span class="ep-name">La fiesta de Navidad</span><a href="https://mega.nz/file/vQEFkaZL#YTjTsC1brLxsu-tZU_cUDspoo7AOz41DBoSd492yXNU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">10</span><span class="ep-name">La riqueza de los Pfeiffer</span><a href="https://mega.nz/file/HI1UEDJS#1uvXblwmhY82Sds2mdywHrA2_Sh80KkzNbarhvJSvRM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">11</span><span class="ep-name">Aprendiendo a conducir</span><a href="https://mega.nz/file/CAdTAArS#jD3eplaRcI_KE8Y_dEA6lhMTIwvZKgvSKNfakN_dD8I" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">12</span><span class="ep-name">El auto del abuelo</span><a href="https://mega.nz/file/iRMllaDa#4Dssczbd9Qjjv44C7Ea3US1d4vbIN4nVHQ5rfKXfOXU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">13</span><span class="ep-name">La maestra de literatura</span><a href="https://mega.nz/file/KVkRQa7Q#pPrpYKH8p9dtHuMAbs4iEjW0h9bruo5OtcUkAhfdvPc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">14</span><span class="ep-name">Mi tonto particular</span><a href="https://mega.nz/file/7RUGTA6C#LxrvuqyyNz2Jp7RO2e7Ni12Udo-jb_ryyF11Dvg8yMc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">15</span><span class="ep-name">Hablando de mastodontes y hombres</span><a href="https://mega.nz/file/6BMGUIhK#SHER_RkN08PUfAHGTkmzFEfkItkMBVJ23ZOkMod5ykU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">16</span><span class="ep-name">Salida en parejas</span><a href="https://mega.nz/file/3F90SABR#jgqdHEtdN6EHuEOeQ6PbtxUb0SiVfFHHOCbRCxnF7Gw" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">17</span><span class="ep-name">Todo un héroe</span><a href="https://mega.nz/file/3cshzKAQ#QH7QAxFkqP4UMs13IQVc7hYYij-JD21uxkB5TMtONJ8" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">18</span><span class="ep-name">La hora del almuerzo</span><a href="https://mega.nz/file/LFNTwZAS#fvAbS8hTob2_PP9nWAtNZFxeUuiyoxIC9kLgR2nM-XQ" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">19</span><span class="ep-name">Conciencia carnal</span><a href="https://mega.nz/file/jIcQFSAI#Un859jaiiHXu6Tena8KiiBoA3A7vQl2xKvOB0H1Y2c4" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">20</span><span class="ep-name">Perdido el fin de semana</span><a href="https://mega.nz/file/PEMgUAQC#2YDZ0BiLd4d3W6Zb7FqXmmI_9EprctB3IWL6C11yC8U" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">21</span><span class="ep-name">Problemas tormentosos</span><a href="https://mega.nz/file/6cc3zKQa#ptO0WsHLqk73FxplUe2dKa3mp-MRVDJGB9CkN3cX4Fc" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">22</span><span class="ep-name">La boda</span><a href="https://mega.nz/file/7M0wEZSI#GB67kijF7bYw6z9ZLo0bNP45nsrJvdCP7knjBXntCPA" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">23</span><span class="ep-name">Regreso al lago</span><a href="https://mega.nz/file/rR11zCYS#QXwkHLB7X3PyaXuyS58s9xTa2g5C1wY0_OXg0uyea_Q" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+  </div>
+</div>
+
+<!-- TEMPORADA 6 -->
+<div class="season-block" id="t6">
+  <div class="season-header">
+    <span class="season-number">Temporada 6</span>
+    <span class="season-title">1992–1993 — Final de la Serie</span>
+  </div>
+  <div class="episode-list">
+    <div class="episode-row"><span class="ep-num">01</span><span class="ep-name">Regreso a casa</span><a href="https://mega.nz/file/aRNi2YBD#2EYFnDb2eynfL1GFgTxYHJQeCD-cMOz8u0Ih4RPq-Kw" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">02</span><span class="ep-name">El día de pesca</span><a href="https://mega.nz/file/vZlwxSJC#jQNJmLCEVy_62mjIy1VIOKOvcE9wJRmnDB1qI3qFGak" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">03</span><span class="ep-name">Escenas de una boda</span><a href="https://mega.nz/file/jcEngQAZ#oO5UgSw8GUc1RqsqC7eruSA9WaqBLdPhugOxrUhOPVw" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">04</span><span class="ep-name">El sexo y la economía</span><a href="https://mega.nz/file/2Q8C2b4T#T0bNE4KytdjWsMq7mjTdH4_piVM9G5rX4OjotD7zg4k" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">05</span><span class="ep-name">La política como siempre</span><a href="https://mega.nz/file/XBt1WLRQ#P0_bs88DXNXQrvafu7pZ2C_89xpGe_joAkxrecD5dDM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">06</span><span class="ep-name">Mentiras blancas</span><a href="https://mega.nz/file/vA8VjR4D#R1yIjWlVOWDBk63t-Bb1tKbJXovp-hTSxlm0CHV7XWg" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">07</span><span class="ep-name">Wayne y Bonnie</span><a href="https://mega.nz/file/qRFEUYBY#LljpFmn4B5794r48aLSHQOf-wOsDX3Xl9sL5kneN3WM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">08</span><span class="ep-name">Kevin el repartidor</span><a href="https://mega.nz/file/DQlUxbTC#NN0VdPlY1QmEGljjzQvH3BfZ4pZHk3FsPwuRCh76qKo" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">09</span><span class="ep-name">La prueba</span><a href="https://mega.nz/file/uYNnWTLJ#AeGxYiT0-HHuK99gB7cM_TicdRnqLMCfSJiu1eqsY5Y" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">10</span><span class="ep-name">Que nada te desanime</span><a href="https://mega.nz/file/vJFjUKgY#v4L4NzZ5xooj__esZCBx5wtpb6YL53VDptnLPxbf-Zs" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">11</span><span class="ep-name">El año nuevo</span><a href="https://mega.nz/file/PUlUSYrJ#dkXidT0CPwgeaZQpx5R6JOJJHe5tYMCGQnd70rCajMU" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">12</span><span class="ep-name">Alicia en el país de los automóviles</span><a href="https://mega.nz/file/mUtBjK5S#QPr-ovqhfeDcCVzW-kSjS76vrb83G4AoVs1rWLGHBZk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">13</span><span class="ep-name">Damas y caballeros: Los Rolling Stones</span><a href="https://mega.nz/file/6FcWFb5B#vOVVcxSDGbZjQ3XWA8Wj1VG14gPHnUzwyae-TCxaOVY" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">14</span><span class="ep-name">Desempacando</span><a href="https://mega.nz/file/jB0nlDbD#qnzA9vuokVL1cp-rMccSUTkoRrRAflL7P5onbFjZBP8" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">15</span><span class="ep-name">El gran Arnold</span><a href="https://mega.nz/file/uYdmiJ6B#MFVOtSleAhWxvQ5RZAeXoJGXny9F7EeJdJs9lHtiiyM" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">16</span><span class="ep-name">La nariz</span><a href="https://mega.nz/file/PVVkRDAL#WozoWGUBOAIMoROaYP2AY2kNaTFggc_8w6QEMW3XTfI" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">17</span><span class="ep-name">El eclipse</span><a href="https://mega.nz/file/XY8HRLqK#junYHMmWGSxSBSP5S0Ee29GlriMClQkN-QmPCPG2wNs" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">18</span><span class="ep-name">El póker</span><a href="https://mega.nz/file/iI1VHY5Q#k4AVdg-Gdhux-c5rbFYUaBlMJQGqmEiublmEllRPXbA" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">19</span><span class="ep-name">Las mujercitas</span><a href="https://mega.nz/file/OJ8FGQaB#frN6j34Z5P7Wzdra5VzgeGnX3UhTFkvYkqP_5YDqKQk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">21</span><span class="ep-name">El verano</span><a href="https://mega.nz/file/jFNVVQoB#Uyu16XNPD01QZbqdxeLVJ4g49wx41c7I73cAa-FoOws" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+    <div class="episode-row"><span class="ep-num">22</span><span class="ep-name">El día de la independencia</span><a href="https://mega.nz/file/mJdQgA6D#U25rkHe8BtOYeIvqS6k0rb4ZOFdHSG7Jrs96-7h0yJk" target="_blank" class="ep-download"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>MEGA</a></div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Los Años Maravillosos</strong> — The Wonder Years (1988–1993). Este sitio es de carácter informativo. Todo el contenido pertenece a sus respectivos propietarios.</p>
+</footer>
+
+<script>
+// Active season nav on scroll
+const sections = document.querySelectorAll('.season-block');
+const navLinks = document.querySelectorAll('.season-nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const id = entry.target.id;
+      const active = document.querySelector(`.season-nav a[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
