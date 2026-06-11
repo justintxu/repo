@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Office 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0078D4;
+    --blue-dark: #005a9e;
+    --blue-light: #e8f2fb;
+    --purple: #7719aa;
+    --purple-light: #f3e6fa;
+    --gray-50: #fafafa;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--gray-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-900);
+    letter-spacing: -0.2px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 40px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    font-family: 'DM Mono', monospace;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    color: var(--gray-900);
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 strong { font-weight: 600; color: var(--purple); }
+  .hero p {
+    font-size: 16px;
+    color: var(--gray-600);
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 400;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 40px;
+    max-width: 900px;
+    margin: 0 auto 28px;
+  }
+  .section-label span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 40px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--purple-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-400);
+    background: var(--gray-100);
+    padding: 3px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  /* APPS PILLS */
+  .apps-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .app-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    background: var(--gray-50);
+  }
+  .app-pill span { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+
+  /* LANG SECTION */
+  .lang-section { display: flex; flex-direction: column; gap: 10px; }
+  .lang-row {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .lang-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-800);
+    min-width: 110px;
+  }
+  .lang-label .flag { font-size: 18px; }
+  .lang-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* BUTTONS */
+  .card-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    border: none;
+  }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .btn-store { background: #f3f4f6; color: #374151; border: 1px solid var(--gray-200); }
+  .btn-store:hover { background: #e5e7eb; }
+
+  .btn-mega { background: #d9272e; color: white; }
+  .btn-mega:hover { background: #b31e24; }
+
+  .btn-drive { background: white; color: #374151; border: 1px solid var(--gray-200); }
+  .btn-drive:hover { background: var(--gray-50); border-color: var(--gray-400); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 32px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .footer-inner { display: flex; align-items: flex-start; gap: 14px; }
+  .footer-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; color: var(--gray-400); }
+  footer p { font-size: 12.5px; color: var(--gray-400); line-height: 1.7; }
+  footer p strong { color: var(--gray-600); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <!-- Office logo -->
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" fill="#7719aa" opacity="0.15"/>
+      <path d="M14 2v6h6" stroke="#7719aa" stroke-width="1.5" fill="none"/>
+      <path d="M8 13h8M8 17h5" stroke="#7719aa" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    Microsoft Office 2024
+  </div>
+  <ul class="nav-links">
+    <li><a href="https://apps.microsoft.com/home?hl=es-US&gl=US" target="_blank">Software</a></li>
+    <li><a href="https://apps.microsoft.com/collections/curated/most-popular-utility-apps?hasHeroImage=true&fromPills=true%3Fhl%3Des-ES&gl=US&hl=es-US" target="_blank">Herramientas</a></li>
+    <li><a href="https://www.premiumcdkeys.com/search?type=product&options%5Bunavailable_products%5D=last&options%5Bprefix%5D=last&q=microsoft" target="_blank">Licencias</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="3"/></svg>
+    Recursos verificados
+  </div>
+  <h1>Descarga <strong>Microsoft Office 2024</strong><br>Professional Plus</h1>
+  <p>Suite ofimática completa para entornos corporativos y uso personal. Incluye Word, Excel, PowerPoint, Outlook, OneNote y Access.</p>
+</section>
+
+<!-- APPS INCLUIDAS -->
+<div class="section-label">
+  <span>Aplicaciones incluidas</span>
+</div>
+<div style="max-width:900px;margin:0 auto 40px;padding:0 40px;">
+  <div class="apps-row">
+    <div class="app-pill"><span style="background:#185abd;"></span>Word</div>
+    <div class="app-pill"><span style="background:#107c41;"></span>Excel</div>
+    <div class="app-pill"><span style="background:#c43e1c;"></span>PowerPoint</div>
+    <div class="app-pill"><span style="background:#0f6cbd;"></span>Outlook</div>
+    <div class="app-pill"><span style="background:#7719aa;"></span>OneNote</div>
+    <div class="app-pill"><span style="background:#a4373a;"></span>Access</div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="section-label">
+  <span>Software disponible</span>
+</div>
+
+<div class="cards-grid">
+
+  <!-- CARD 1: Office 2024 Pro Plus -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="3" width="20" height="18" rx="2" fill="#7719aa" opacity="0.15"/>
+          <path d="M8 8h8M8 12h8M8 16h5" stroke="#7719aa" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="card-tag">ISO • 64-bit</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Microsoft Office 2024 Professional Plus</div>
+      <div class="card-desc">Suite ofimática empresarial completa. Instalación offline sin necesidad de suscripción. Disponible en español y ucraniano.</div>
+    </div>
+    <div class="lang-section">
+      <div class="lang-row">
+        <div class="lang-label"><span class="flag">🇪🇸</span> Español</div>
+        <div class="lang-btns">
+          <a href="https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/es-es/ProPlus2024Retail.img" target="_blank" class="btn btn-store">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+            Microsoft
+          </a>
+          <a href="https://mega.nz/file/eWx22DAS#uqR54-VqeuxBXMeQDzTcGFw_2wQG8ItOgTzaKFPlc8w" target="_blank" class="btn btn-mega">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+            MEGA
+          </a>
+          <a href="https://drive.google.com/file/d/1yqFzzw7qGeAW_tzYZt-SxKSjoUeFPxvp/view" target="_blank" class="btn btn-drive">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+              <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+              <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+            </svg>
+            Drive
+          </a>
+        </div>
+      </div>
+      <div class="lang-row">
+        <div class="lang-label"><span class="flag">🇺🇦</span> Ucraniano</div>
+        <div class="lang-btns">
+          <a href="https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/uk-ua/ProPlus2024Retail.img" target="_blank" class="btn btn-store">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+            Microsoft
+          </a>
+          <a href="https://mega.nz/file/vXxjGJqD#DpHbYt67_IKMgq3Vc2pVRWjG9NmBoMV4yX8hfgVeOEo" target="_blank" class="btn btn-mega">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+            MEGA
+          </a>
+          <a href="https://drive.google.com/file/d/1v9ghmHVtoA87jR8VOFbtmciWFvrA4zqW/view" target="_blank" class="btn btn-drive">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+              <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+              <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+            </svg>
+            Drive
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Configuración Opcional -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#7719aa" stroke-width="1.5"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#7719aa" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="card-tag">Config • Windows</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">Configuración Opcional</div>
+      <div class="card-desc">Herramienta de configuración y personalización para Microsoft Office 2024. Permite ajustes avanzados de instalación y activación.</div>
+    </div>
+    <div class="card-actions">
+      <div class="btn-group">
+        <a href="https://mega.nz/file/veYWRQib#H3gw_aUOEjsix1Cu6pdRke7Ejkx7uYqr0owNSzBkM_Q" target="_blank" class="btn btn-mega">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+          MEGA
+        </a>
+        <a href="https://drive.google.com/file/d/1Mq7RpkPEOUnOXQhyT07OZV-b2wzVVVBa/view" target="_blank" class="btn btn-drive">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M1 10.5h22" stroke="#4285F4" stroke-width="2"/>
+            <path d="M7.5 0l5.5 10.5L7.5 21" stroke="#34A853" stroke-width="2"/>
+            <path d="M16.5 0L11 10.5l5.5 10.5" stroke="#EA4335" stroke-width="2"/>
+          </svg>
+          Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 8v4M12 16h.01"/>
+    </svg>
+    <p><strong>Aviso legal:</strong> Este sitio es de carácter informativo y educativo. Descarga software únicamente de fuentes oficiales y asegúrate de contar con las licencias correspondientes antes de instalar cualquier producto. Microsoft Office es una marca registrada de Microsoft Corporation.</p>
+  </div>
+</footer>
+
+</body>
+</html>
