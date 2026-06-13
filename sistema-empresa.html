@@ -1196,7 +1196,8 @@ function filtrarEjecVenta() {
 function seleccionarProductoVenta(codigo) {
   const p = db.inventario.find(x => x.codigo === codigo);
   if (!p) return;
-  // Agregar nueva fila con el producto seleccionado
+  // Eliminar filas vacías antes de agregar
+  rowsVenta = rowsVenta.filter(r => r.codigo && r.codigo.trim() !== '');
   rowsVenta.push({ codigo: p.codigo, cantidad: '1', producto: p.producto, precio: p.precio, total: '' });
   const idx = rowsVenta.length - 1;
   calcRowVenta(idx);
@@ -1207,7 +1208,7 @@ function seleccionarProductoVenta(codigo) {
 function procesarVenta() {
   const cliente=document.getElementById('clienteVenta').value||'Sin nombre';
   const fecha=fechaHoy();
-  const filas=rowsVenta.filter(r=>r.codigo&&r.cantidad);
+  const filas=rowsVenta.filter(r=>r.codigo&&r.codigo.trim()&&r.cantidad);
   if(!filas.length){toast('⚠️ Agrega al menos un producto');return;}
   filas.forEach(r=>{
     db.ventas.push({fecha,cliente,codigo:r.codigo,producto:r.producto,cantidad:parseFloat(r.cantidad)||0,precio:parseFloat(r.precio)||0,total:parseFloat(r.total)||0});
@@ -1294,6 +1295,8 @@ function filtrarEjecCompra() {
 function seleccionarProductoCompra(codigo) {
   const p = db.inventario.find(x => x.codigo === codigo);
   if (!p) return;
+  // Eliminar filas vacías antes de agregar
+  rowsCompra = rowsCompra.filter(r => r.codigo && r.codigo.trim() !== '');
   rowsCompra.push({ codigo: p.codigo, cantidad: '1', producto: p.producto, precio: p.precioCompra||p.precio||'', total: '' });
   const idx = rowsCompra.length - 1;
   calcRowCompra(idx);
@@ -1304,7 +1307,7 @@ function seleccionarProductoCompra(codigo) {
 function procesarCompra(){
   const proveedor=document.getElementById('proveedorCompra').value||'Sin nombre';
   const fecha=fechaHoy();
-  const filas=rowsCompra.filter(r=>r.codigo&&r.cantidad);
+  const filas=rowsCompra.filter(r=>r.codigo&&r.codigo.trim()&&r.cantidad);
   if(!filas.length){toast('⚠️ Agrega al menos un producto');return;}
   filas.forEach(r=>{
     db.compras.push({fecha,proveedor,codigo:r.codigo,producto:r.producto,cantidad:parseFloat(r.cantidad)||0,precio:parseFloat(r.precio)||0,total:parseFloat(r.total)||0});
@@ -1477,7 +1480,9 @@ async function cargarDesdeGitHub() {
     try {
       const res = await ghGet(path);
       const text = decodeURIComponent(escape(atob(res.content)));
+      console.log(`📊 ${tipo} raw (primeros 200):`, text.substring(0,200));
       const parsed = parseCSV(text);
+      console.log(`📊 ${tipo} parsed:`, parsed.length, 'filas');
       if (parsed.length) { db[tipo] = parsed; cargados++; }
     } catch(e) { console.warn(`No se pudo cargar ${tipo}:`, e.message); }
   }
@@ -1665,7 +1670,8 @@ function csvCell(val) {
 }
 
 function parseCSV(text) {
-  const lines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
+  // Normalizar saltos de línea Windows (\r\n) y Mac (\r)
+  const lines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim().split('\n').map(l => l.trim()).filter(Boolean);
   if (lines.length < 2) return [];
   const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g,'').trim());
   return lines.slice(1).map(line => {
