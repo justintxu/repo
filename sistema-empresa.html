@@ -1230,8 +1230,10 @@ function renderRegVentas() {
   const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q));
   const tbody=document.getElementById('tbodyRegVentas');
   tbody.innerHTML=items.length?items.map(v=>`<tr>
-    <td>${v.fecha}</td><td>${v.cliente}</td><td>${v.producto}</td><td>${v.codigo}</td>
-    <td>${v.cantidad}</td><td>S/ ${(v.precio||0).toFixed(2)}</td><td>S/ ${(v.total||0).toFixed(2)}</td>
+    <td>${v.fecha||''}</td><td>${v.cliente||''}</td><td>${v.producto||''}</td><td>${v.codigo||''}</td>
+    <td style="text-align:center;">${v.cantidad||0}</td>
+    <td style="text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
+    <td style="text-align:right;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="7" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 }
 
@@ -1325,8 +1327,10 @@ function renderRegCompras(){
   const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q));
   const tbody=document.getElementById('tbodyRegCompras');
   tbody.innerHTML=items.length?items.map(c=>`<tr>
-    <td>${c.fecha}</td><td>${c.proveedor}</td><td>${c.producto}</td><td>${c.codigo}</td>
-    <td>${c.cantidad}</td><td>S/ ${(c.precio||0).toFixed(2)}</td><td>S/ ${(c.total||0).toFixed(2)}</td>
+    <td>${c.fecha||''}</td><td>${c.proveedor||''}</td><td>${c.producto||''}</td><td>${c.codigo||''}</td>
+    <td style="text-align:center;">${c.cantidad||0}</td>
+    <td style="text-align:right;">S/ ${parseFloat(c.precio||0).toFixed(2)}</td>
+    <td style="text-align:right;">S/ ${parseFloat(c.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="7" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 }
 
