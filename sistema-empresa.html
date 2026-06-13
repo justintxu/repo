@@ -340,7 +340,6 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
     <button class="btn btn-edit" onclick="editarAlmacen()">✏️ Editar</button>
     <button class="btn btn-save" onclick="guardarAlmacen()">💾 Guardar</button>
     <button class="btn" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
-    <button class="btn" style="background:#6d28d9;color:white;" onclick="abrirModalCambiarClave()">🔑 Cambiar Clave</button>
     <button class="btn" style="background:#374151;color:white;" onclick="irA('page-configuraciones')">⚙️ Configuraciones</button>
   </div>
 </div>
@@ -429,6 +428,29 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
 
         <!-- Subir Todo -->
         <button class="btn btn-save" style="align-self:flex-start;font-size:15px;padding:12px 24px;" onclick="subirTodoGitHub()">☁️ Subir Todo a GitHub</button>
+      </div>
+    </div>
+
+    <!-- Cambiar Clave -->
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">🔑 Cambiar Contraseña de Acceso</h2>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">La nueva contraseña se guardará automáticamente en <b>psswdsm.csv</b> en GitHub.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:420px;">
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Contraseña actual</label>
+          <input type="password" id="cfgClaveActual" placeholder="Contraseña actual" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Nueva contraseña</label>
+          <input type="password" id="cfgClaveNueva" placeholder="Nueva contraseña" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Confirmar nueva contraseña</label>
+          <input type="password" id="cfgClaveConfirmar" placeholder="Repite la nueva contraseña" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+        </div>
+        <div id="cfgClaveError" style="color:#ef4444;font-size:13px;font-weight:700;display:none;"></div>
+        <button class="btn" style="background:#6d28d9;color:white;align-self:flex-start;" onclick="guardarClaveDesdeConfig()">💾 Guardar Nueva Clave</button>
+        <div id="cfgClaveStatus" style="font-size:13px;font-weight:600;color:#6b7280;"></div>
       </div>
     </div>
 
@@ -1500,7 +1522,56 @@ async function subirTodoGitHub() {
   toast('✅ Todo sincronizado con GitHub');
 }
 
-// ═══════════════════════════ MODAL AJUSTES GITHUB (legacy) ═════
+// Wrapper para cambiar clave desde Configuraciones (usa campos propios)
+function guardarClaveDesdeConfig() {
+  const errEl    = document.getElementById('cfgClaveError');
+  const statusEl = document.getElementById('cfgClaveStatus');
+  errEl.style.display = 'none';
+  statusEl.textContent = '';
+
+  // Reutiliza guardarNuevaClave pero con los campos de Configuraciones
+  const actual    = document.getElementById('cfgClaveActual').value;
+  const nueva     = document.getElementById('cfgClaveNueva').value;
+  const confirmar = document.getElementById('cfgClaveConfirmar').value;
+
+  if (actual !== claveAcceso) { errEl.textContent = '❌ La contraseña actual es incorrecta'; errEl.style.display = 'block'; return; }
+  if (nueva.length < 3)       { errEl.textContent = '❌ La contraseña debe tener al menos 3 caracteres'; errEl.style.display = 'block'; return; }
+  if (nueva !== confirmar)    { errEl.textContent = '❌ Las contraseñas no coinciden'; errEl.style.display = 'block'; return; }
+
+  claveAcceso = nueva;
+  localStorage.setItem('claveAcceso', nueva);
+  statusEl.textContent = '⏳ Guardando en GitHub...';
+
+  document.getElementById('cfgClaveActual').value   = '';
+  document.getElementById('cfgClaveNueva').value    = '';
+  document.getElementById('cfgClaveConfirmar').value = '';
+
+  const size = Math.ceil(nueva.length / 3);
+  const p1 = nueva.substring(0, size);
+  const p2 = nueva.substring(size, size * 2);
+  const p3 = nueva.substring(size * 2);
+  const content = `p1,p2,p3\n${p1},${p2},${p3}`;
+
+  if (!getToken()) { statusEl.textContent = '✅ Guardada localmente (sin token GitHub)'; return; }
+
+  (async () => {
+    try {
+      const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/${GH_PSSWD_SM}`;
+      let sha;
+      const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+      if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+      const putBody = { message: 'Update psswdsm.csv', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+      if (sha) putBody.sha = sha;
+      const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+      if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+      statusEl.textContent = '✅ Contraseña guardada en GitHub';
+      toast('✅ Contraseña actualizada');
+    } catch(e) {
+      statusEl.textContent = `❌ Error GitHub: ${e.message}`;
+      toast('⚠️ Guardada localmente');
+    }
+  })();
+}
 function abrirAjustesGitHub() { irA('page-configuraciones'); }
 function cerrarAjustesGitHub() {}
 function guardarToken() { guardarConfigGitHub(); }
