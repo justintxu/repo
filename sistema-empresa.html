@@ -486,11 +486,11 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:16px;">
-      <div class="header-date">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
         <span class="date-label">Fecha</span>
         <span class="date-value" id="fechaEjecVenta"></span>
       </div>
-      <div class="header-date">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
         <span class="date-label">Hora</span>
         <span class="date-value" id="horaEjecVenta"></span>
       </div>
@@ -508,8 +508,23 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
     </div>
   </div>
   <div class="table-wrap" style="margin-top:12px;">
-    <table class="data-table">
-      <thead><tr><th>Código</th><th>Cantidad</th><th style="min-width:200px;">Producto</th><th>Precio</th><th>Total</th><th></th></tr></thead>
+    <table class="data-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:110px;">
+        <col style="width:100px;">
+        <col>
+        <col style="width:130px;">
+        <col style="width:130px;">
+        <col style="width:40px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Código</th>
+        <th style="text-align:center;">Cantidad</th>
+        <th style="text-align:center;">Producto</th>
+        <th style="text-align:center;">Precio</th>
+        <th style="text-align:center;">Total</th>
+        <th></th>
+      </tr></thead>
       <tbody id="tbodyEjecVenta"></tbody>
       <tfoot><tr>
         <td colspan="4" style="text-align:right;padding:8px 12px;font-weight:800;">TOTAL VENTA:</td>
@@ -519,7 +534,6 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
     </table>
   </div>
   <div style="display:flex;justify-content:flex-end;padding:16px 32px;gap:12px;">
-    <button class="btn btn-new" onclick="addRowVenta()">➕ Agregar fila</button>
     <button class="btn btn-process" onclick="procesarVenta()">✅ Procesar Venta</button>
   </div>
 </div>
@@ -544,8 +558,27 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
     </div>
   </div>
   <div class="table-wrap">
-    <table class="reg-table">
-      <thead><tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Producto</th><th>Código</th><th>Cant.</th><th>Precio</th><th>Total</th></tr></thead>
+    <table class="reg-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:110px;">
+        <col style="width:95px;">
+        <col style="width:240px;">
+        <col style="width:110px;">
+        <col style="width:60px;">
+        <col>
+        <col style="width:100px;">
+        <col style="width:100px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Fecha</th>
+        <th style="text-align:center;">Hora</th>
+        <th>Cliente</th>
+        <th style="text-align:center;">Código</th>
+        <th style="text-align:center;">Cant.</th>
+        <th>Producto</th>
+        <th style="text-align:right;">Precio</th>
+        <th style="text-align:right;">Total</th>
+      </tr></thead>
       <tbody id="tbodyRegVentas"></tbody>
     </table>
   </div>
@@ -603,8 +636,23 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
     </div>
   </div>
   <div class="table-wrap" style="margin-top:12px;">
-    <table class="data-table">
-      <thead><tr><th>Código</th><th>Cantidad</th><th style="min-width:200px;">Producto</th><th>Precio</th><th>Total</th><th></th></tr></thead>
+    <table class="data-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:110px;">
+        <col style="width:100px;">
+        <col>
+        <col style="width:130px;">
+        <col style="width:130px;">
+        <col style="width:40px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Código</th>
+        <th style="text-align:center;">Cantidad</th>
+        <th style="text-align:center;">Producto</th>
+        <th style="text-align:center;">Precio</th>
+        <th style="text-align:center;">Total</th>
+        <th></th>
+      </tr></thead>
       <tbody id="tbodyEjecCompra"></tbody>
       <tfoot><tr>
         <td colspan="4" style="text-align:right;padding:8px 12px;font-weight:800;">TOTAL COMPRA:</td>
@@ -614,7 +662,6 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
     </table>
   </div>
   <div style="display:flex;justify-content:flex-end;padding:16px 32px;gap:12px;">
-    <button class="btn btn-new" onclick="addRowCompra()">➕ Agregar fila</button>
     <button class="btn btn-process" onclick="procesarCompra()">✅ Procesar Compra</button>
   </div>
 </div>
@@ -988,9 +1035,26 @@ function fechaHoy() {
   const d = new Date();
   return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
 }
+function formatHora(h) {
+  if (!h) return '';
+  // Si ya tiene AM/PM devuelve igual
+  if (h.includes('AM') || h.includes('PM')) return h;
+  // Convertir de 24h a 12h
+  const parts = h.trim().split(':');
+  if (parts.length < 2) return h;
+  let hh = parseInt(parts[0]);
+  const mm = parts[1].substring(0,2);
+  const ampm = hh >= 12 ? 'PM' : 'AM';
+  hh = hh % 12 || 12;
+  return `${String(hh).padStart(2,'0')}:${mm} ${ampm}`;
+}
 function horaHoy() {
   const d = new Date();
-  return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  let h = d.getHours();
+  const m = String(d.getMinutes()).padStart(2,'0');
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return `${String(h).padStart(2,'0')}:${m} ${ampm}`;
 }
 
 // ═══════════════════════════ NAVEGACIÓN ════════════════════════
@@ -1163,11 +1227,11 @@ function renderEjecVenta() {
   tbody.innerHTML = '';
   rowsVenta.forEach((r,i) => {
     tbody.innerHTML += `<tr>
-      <td><input class="cell-input" style="max-width:80px;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
-      <td><input class="cell-input" style="max-width:80px;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
-      <td><input class="cell-input" value="${r.producto}" readonly style="background:#d1e8a8;"></td>
-      <td><input class="cell-input" style="max-width:90px;" value="${r.precio}" readonly style="background:#d1e8a8;"></td>
-      <td><div class="total-cell">${r.total||'0.00'}</div></td>
+      <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
+      <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
+      <td><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
+      <td><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
+      <td><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td><button class="delete-btn" onclick="delRowVenta(${i})">✕</button></td>
     </tr>`;
   });
@@ -1248,8 +1312,12 @@ function renderRegVentas() {
   const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q));
   const tbody=document.getElementById('tbodyRegVentas');
   tbody.innerHTML=items.length?items.map(v=>`<tr>
-    <td>${v.fecha||''}</td><td style="text-align:center;">${v.hora||''}</td><td>${v.cliente||''}</td><td>${v.producto||''}</td><td>${v.codigo||''}</td>
+    <td style="text-align:center;">${v.fecha||''}</td>
+    <td style="text-align:center;">${formatHora(v.hora)}</td>
+    <td>${v.cliente||''}</td>
+    <td style="text-align:center;">${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
+    <td>${v.producto||''}</td>
     <td style="text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
     <td style="text-align:right;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
@@ -1268,11 +1336,11 @@ function renderEjecCompra() {
   tbody.innerHTML='';
   rowsCompra.forEach((r,i)=>{
     tbody.innerHTML+=`<tr>
-      <td><input class="cell-input" style="max-width:80px;" value="${r.codigo}" onchange="onCodigoCompra(${i},this.value)" placeholder="Cód."></td>
-      <td><input class="cell-input" style="max-width:80px;" value="${r.cantidad}" oninput="onCantCompra(${i},this.value)" type="number" min="0"></td>
-      <td><input class="cell-input" value="${r.producto}" readonly style="background:#d1e8a8;"></td>
-      <td><input class="cell-input" style="max-width:90px;background:#d1e8a8;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)"></td>
-      <td><div class="total-cell">${r.total||'0.00'}</div></td>
+      <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoCompra(${i},this.value)" placeholder="Cód."></td>
+      <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantCompra(${i},this.value)" type="number" min="0"></td>
+      <td><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
+      <td><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)"></td>
+      <td><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td><button class="delete-btn" onclick="delRowCompra(${i})">✕</button></td>
     </tr>`;
   });
