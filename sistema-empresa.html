@@ -490,6 +490,10 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
         <span class="date-label">Fecha</span>
         <span class="date-value" id="fechaEjecVenta"></span>
       </div>
+      <div class="header-date">
+        <span class="date-label">Hora</span>
+        <span class="date-value" id="horaEjecVenta"></span>
+      </div>
       <button class="back-btn" onclick="irA('page-ventas')">‹</button>
     </div>
   </div>
@@ -541,7 +545,7 @@ input.cell-input.readonly { background: var(--gray-100); color: var(--gray-600);
   </div>
   <div class="table-wrap">
     <table class="reg-table">
-      <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th><th>Código</th><th>Cant.</th><th>Precio</th><th>Total</th></tr></thead>
+      <thead><tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Producto</th><th>Código</th><th>Cant.</th><th>Precio</th><th>Total</th></tr></thead>
       <tbody id="tbodyRegVentas"></tbody>
     </table>
   </div>
@@ -984,6 +988,10 @@ function fechaHoy() {
   const d = new Date();
   return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
 }
+function horaHoy() {
+  const d = new Date();
+  return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
 
 // ═══════════════════════════ NAVEGACIÓN ════════════════════════
 function irA(pageId) {
@@ -993,7 +1001,16 @@ function irA(pageId) {
   if (pageId === 'page-almacen') renderAlmacen();
   if (pageId === 'page-inventario') renderInventario();
   if (pageId === 'page-proveedores') { renderProveedores(); document.getElementById('fechaProveedores').textContent = fechaHoy(); }
-  if (pageId === 'page-ejec-venta') { initEjecVenta(); document.getElementById('fechaEjecVenta').textContent = fechaHoy(); }
+  if (pageId === 'page-ejec-venta') {
+    initEjecVenta();
+    document.getElementById('fechaEjecVenta').textContent = fechaHoy();
+    document.getElementById('horaEjecVenta').textContent = horaHoy();
+    clearInterval(window._ventaClockInterval);
+    window._ventaClockInterval = setInterval(() => {
+      const el = document.getElementById('horaEjecVenta');
+      if (el) el.textContent = horaHoy();
+    }, 1000);
+  }
   if (pageId === 'page-ejec-compra') { initEjecCompra(); document.getElementById('fechaEjecCompra').textContent = fechaHoy(); }
   if (pageId === 'page-reg-ventas') renderRegVentas();
   if (pageId === 'page-reg-compras') renderRegCompras();
@@ -1208,17 +1225,17 @@ function seleccionarProductoVenta(codigo) {
 function procesarVenta() {
   const cliente=document.getElementById('clienteVenta').value||'Sin nombre';
   const fecha=fechaHoy();
+  const hora=horaHoy();
   const filas=rowsVenta.filter(r=>r.codigo&&r.codigo.trim()&&r.cantidad);
   if(!filas.length){toast('⚠️ Agrega al menos un producto');return;}
   filas.forEach(r=>{
-    db.ventas.push({fecha,cliente,codigo:r.codigo,producto:r.producto,cantidad:parseFloat(r.cantidad)||0,precio:parseFloat(r.precio)||0,total:parseFloat(r.total)||0});
     const p=db.inventario.find(x=>x.codigo===r.codigo);
+    db.ventas.push({fecha,hora,cliente,codigo:r.codigo,cantidad:parseFloat(r.cantidad)||0,producto:r.producto,precio:parseFloat(r.precio)||0,total:parseFloat(r.total)||0});
     if(p) p.cantidad=Math.max(0,(parseFloat(p.cantidad)||0)-(parseFloat(r.cantidad)||0));
   });
   save();
   toast('✅ Venta procesada — sincronizando...');
   initEjecVenta();
-  // Subir secuencialmente para evitar conflicto de SHA
   (async () => {
     await subirAGitHub('ventas');
     await subirAGitHub('inventario');
@@ -1228,14 +1245,14 @@ function procesarVenta() {
 // ═══════════════════════════ REGISTRO VENTAS ══════════════════
 function renderRegVentas() {
   const q=(document.getElementById('searchRegVentas').value||'').toLowerCase();
-  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q));
+  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q));
   const tbody=document.getElementById('tbodyRegVentas');
   tbody.innerHTML=items.length?items.map(v=>`<tr>
-    <td>${v.fecha||''}</td><td>${v.cliente||''}</td><td>${v.producto||''}</td><td>${v.codigo||''}</td>
+    <td>${v.fecha||''}</td><td style="text-align:center;">${v.hora||''}</td><td>${v.cliente||''}</td><td>${v.producto||''}</td><td>${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
     <td style="text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
     <td style="text-align:right;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
-  </tr>`).join(''):`<tr><td colspan="7" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
+  </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 }
 
 // ═══════════════════════════ EJECUCIÓN COMPRA ═════════════════
@@ -1691,7 +1708,7 @@ function parseCSV(text) {
 
 const CSV_SCHEMAS = {
   inventario:  ['codigo','cantidad','producto','descripcion','precio','ubicacion','precioCompra','ultimoProveedor','imagen'],
-  ventas:      ['fecha','cliente','codigo','producto','cantidad','precio','total'],
+  ventas:      ['fecha','hora','cliente','codigo','cantidad','producto','precio','total'],
   compras:     ['fecha','proveedor','codigo','producto','cantidad','precio','total'],
   proveedores: ['nombre','telefono','celular','email','direccion']
 };
