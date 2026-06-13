@@ -968,7 +968,7 @@ async function saveAndSync(tipo) {
   save();
   if (getToken()) {
     try { await subirAGitHub(tipo); }
-    catch(e) { console.warn('Sync GitHub silencioso falló:', e.message); }
+    catch(e) { console.warn('Sync GitHub falló:', e.message); }
   }
 }
 
@@ -1215,10 +1215,13 @@ function procesarVenta() {
     if(p) p.cantidad=Math.max(0,(parseFloat(p.cantidad)||0)-(parseFloat(r.cantidad)||0));
   });
   save();
-  toast('✅ Venta procesada');
-  saveAndSync('ventas');
-  saveAndSync('inventario');
+  toast('✅ Venta procesada — sincronizando...');
   initEjecVenta();
+  // Subir secuencialmente para evitar conflicto de SHA
+  (async () => {
+    await subirAGitHub('ventas');
+    await subirAGitHub('inventario');
+  })();
 }
 
 // ═══════════════════════════ REGISTRO VENTAS ══════════════════
@@ -1307,9 +1310,14 @@ function procesarCompra(){
     if(p){p.cantidad=(parseFloat(p.cantidad)||0)+(parseFloat(r.cantidad)||0);p.precioCompra=r.precio;p.ultimoProveedor=proveedor;}
   });
   save();
-  toast('✅ Compra procesada');
-  saveAndSync('compras');
-  saveAndSync('inventario');
+  toast('✅ Compra procesada — sincronizando...');
+  initEjecCompra();
+  // Subir secuencialmente para evitar conflicto de SHA
+  (async () => {
+    await subirAGitHub('compras');
+    await subirAGitHub('inventario');
+  })();
+}
   initEjecCompra();
 }
 
