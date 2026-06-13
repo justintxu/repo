@@ -1380,21 +1380,29 @@ function guardarConfigGitHub() {
   const repo  = document.getElementById('cfgGhRepo').value.trim();
   const token = document.getElementById('cfgGhToken').value.trim();
   if (!user || !repo || !token) { document.getElementById('cfgGhStatus').textContent = '⚠️ Completa todos los campos'; return; }
+
+  // Primero guardar en localStorage para que ghGet/ghPut tengan las credenciales
   localStorage.setItem('ghUser',  user);
   localStorage.setItem('ghRepo',  repo);
   localStorage.setItem('ghToken', token);
-  // Actualizar psswd.csv en GitHub con las nuevas credenciales
+
+  const statusEl = document.getElementById('cfgGhStatus');
+  statusEl.textContent = '⏳ Guardando en psswd.csv...';
+
   const content = `user,repo,token\n${user},${repo},${token}`;
   (async () => {
     try {
-      let sha; try { const ex = await ghGet(GH_PSSWD); sha = ex.sha; } catch(e) {}
+      let sha;
+      try { const ex = await ghGet(GH_PSSWD); sha = ex.sha; } catch(e) {}
       await ghPut(GH_PSSWD, content, sha);
-      document.getElementById('cfgGhStatus').innerHTML = '✅ Guardado y sincronizado con psswd.csv';
+      statusEl.innerHTML = '✅ Guardado y sincronizado con psswd.csv';
+      toast('✅ Configuración guardada en GitHub');
     } catch(e) {
-      document.getElementById('cfgGhStatus').innerHTML = '✅ Guardado localmente (psswd.csv no actualizado)';
+      statusEl.innerHTML = `⚠️ Guardado localmente — Error al escribir psswd.csv: ${e.message}`;
+      toast('⚠️ Guardado local, no se pudo actualizar psswd.csv');
+      console.error(e);
     }
   })();
-  toast('✅ Configuración GitHub guardada');
 }
 
 async function subirTodoGitHub() {
