@@ -1242,17 +1242,20 @@ function calcularEstadistica(tipo){
 }
 
 // ═══════════════════════════ GITHUB CONFIG ═════════════════════
-const GH_USER  = 'justintxu';
-const GH_REPO  = 'repo';
+const GH_USER_DEFAULT = 'justintxu';
+const GH_REPO_DEFAULT = 'repo';
 const GH_BRANCH = 'master';
-const GH_FILES = {
+const GH_PSSWD  = 'data/psswd.csv';
+const GH_FILES  = {
   inventario:  'data/inventario.csv',
   ventas:      'data/ventas.csv',
   compras:     'data/compras.csv',
   proveedores: 'data/proveedores.csv'
 };
 
-function getToken() { return localStorage.getItem('ghToken') || ''; }
+function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
+function getGhRepo()  { return localStorage.getItem('ghRepo')  || GH_REPO_DEFAULT; }
+function getToken()   { return localStorage.getItem('ghToken') || ''; }
 
 // ═══════════════════════════ GITHUB API ════════════════════════
 async function ghGet(path) {
@@ -1271,10 +1274,38 @@ async function ghPut(path, content, sha) {
   return r.json();
 }
 
+// Lee psswd.csv usando URL raw pública (sin token) para obtener credenciales
+async function cargarCredencialesDesdeGitHub() {
+  try {
+    const rawUrl = `https://raw.githubusercontent.com/${GH_USER_DEFAULT}/${GH_REPO_DEFAULT}/${GH_BRANCH}/${GH_PSSWD}?t=${Date.now()}`;
+    const r = await fetch(rawUrl);
+    if (!r.ok) throw new Error('No se pudo leer psswd.csv');
+    const text = await r.text();
+    const rows = parseCSV(text);
+    if (rows.length && rows[0].user && rows[0].token) {
+      localStorage.setItem('ghUser',  rows[0].user.trim());
+      localStorage.setItem('ghRepo',  rows[0].repo.trim());
+      localStorage.setItem('ghToken', rows[0].token.trim());
+      console.log('✅ Credenciales cargadas desde psswd.csv');
+      return true;
+    }
+  } catch(e) { console.warn('psswd.csv no disponible:', e.message); }
+  return false;
+}
+
 // ═══════════════════════════ CARGA INICIAL GITHUB ══════════════
 async function cargarDesdeGitHub() {
-  if (!getToken()) { toast('⚠️ Configura el token GitHub en Ajustes'); return; }
-  mostrarLoader('Sincronizando con GitHub...');
+  mostrarLoader('Conectando con GitHub...');
+  // 1. Intentar cargar credenciales desde psswd.csv
+  const credOk = await cargarCredencialesDesdeGitHub();
+  if (!credOk && !getToken()) {
+    ocultarLoader();
+    toast('⚠️ Sin credenciales. Configúralas en Almacén → Configuraciones');
+    actualizarBranding();
+    return;
+  }
+  // 2. Cargar tablas de datos
+  mostrarLoader('Cargando datos desde GitHub...');
   let cargados = 0;
   for (const [tipo, path] of Object.entries(GH_FILES)) {
     try {
@@ -1287,7 +1318,7 @@ async function cargarDesdeGitHub() {
   save();
   ocultarLoader();
   if (cargados > 0) toast(`✅ ${cargados} tablas cargadas desde GitHub`);
-  else toast('ℹ️ Sin datos en GitHub aún — usando datos locales');
+  else toast('ℹ️ GitHub conectado — tablas vacías');
   actualizarBranding();
 }
 
@@ -1352,7 +1383,17 @@ function guardarConfigGitHub() {
   localStorage.setItem('ghUser',  user);
   localStorage.setItem('ghRepo',  repo);
   localStorage.setItem('ghToken', token);
-  document.getElementById('cfgGhStatus').innerHTML = '✅ Configuración guardada correctamente';
+  // Actualizar psswd.csv en GitHub con las nuevas credenciales
+  const content = `user,repo,token\n${user},${repo},${token}`;
+  (async () => {
+    try {
+      let sha; try { const ex = await ghGet(GH_PSSWD); sha = ex.sha; } catch(e) {}
+      await ghPut(GH_PSSWD, content, sha);
+      document.getElementById('cfgGhStatus').innerHTML = '✅ Guardado y sincronizado con psswd.csv';
+    } catch(e) {
+      document.getElementById('cfgGhStatus').innerHTML = '✅ Guardado localmente (psswd.csv no actualizado)';
+    }
+  })();
   toast('✅ Configuración GitHub guardada');
 }
 
