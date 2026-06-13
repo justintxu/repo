@@ -1,4 +1,4 @@
-fecha,hora,proveedor,codigo,cantidad,producto,precio,total
-13/06/2026,01:41 PM,JR,ICLA4440,12,LA4440,4,48
-13/06/2026,01:41 PM,JR,ICTEA2025,10,TEA2025,2.5,25
-13/06/2026,01:42 PM,Arroyo,ACATV6,10,Amplficador CATV de 6 vías,75,750
+fecha,hora,proveedor,codigo,cantidad,producto,precio,total,tipo,numero,emision
+13/06/2026,01:41 PM,JR,ICLA4440,12,LA4440,4,48,Factura,F1-0200,07/06/2026
+13/06/2026,01:41 PM,JR,ICTEA2025,10,TEA2025,2.5,25,Factura,F1-0200,07/06/2026
+13/06/2026,01:42 PM,Arroyo,ACATV6,10,Amplficador CATV de 6 vías,75,750,Boleta,B2-0330,07/06/2026
