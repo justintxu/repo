@@ -1381,7 +1381,6 @@ function guardarConfigGitHub() {
   const token = document.getElementById('cfgGhToken').value.trim();
   if (!user || !repo || !token) { document.getElementById('cfgGhStatus').textContent = '⚠️ Completa todos los campos'; return; }
 
-  // Primero guardar en localStorage para que ghGet/ghPut tengan las credenciales
   localStorage.setItem('ghUser',  user);
   localStorage.setItem('ghRepo',  repo);
   localStorage.setItem('ghToken', token);
@@ -1390,17 +1389,48 @@ function guardarConfigGitHub() {
   statusEl.textContent = '⏳ Guardando en psswd.csv...';
 
   const content = `user,repo,token\n${user},${repo},${token}`;
+
   (async () => {
     try {
+      // Obtener SHA usando la API con el token recién guardado
+      const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/data/psswd.csv`;
       let sha;
-      try { const ex = await ghGet(GH_PSSWD); sha = ex.sha; } catch(e) {}
-      await ghPut(GH_PSSWD, content, sha);
-      statusEl.innerHTML = '✅ Guardado y sincronizado con psswd.csv';
+      const getRes = await fetch(apiUrl, {
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+      });
+      if (getRes.ok) {
+        const data = await getRes.json();
+        sha = data.sha;
+      } else if (getRes.status !== 404) {
+        const err = await getRes.json();
+        throw new Error(`GET psswd.csv: ${err.message}`);
+      }
+
+      // Escribir el archivo
+      const putBody = {
+        message: 'Update psswd.csv',
+        content: btoa(unescape(encodeURIComponent(content))),
+        branch: GH_BRANCH
+      };
+      if (sha) putBody.sha = sha;
+
+      const putRes = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(putBody)
+      });
+
+      if (!putRes.ok) {
+        const err = await putRes.json();
+        throw new Error(`PUT psswd.csv (${putRes.status}): ${err.message}`);
+      }
+
+      statusEl.innerHTML = '✅ psswd.csv actualizado en GitHub';
       toast('✅ Configuración guardada en GitHub');
     } catch(e) {
-      statusEl.innerHTML = `⚠️ Guardado localmente — Error al escribir psswd.csv: ${e.message}`;
-      toast('⚠️ Guardado local, no se pudo actualizar psswd.csv');
-      console.error(e);
+      statusEl.innerHTML = `❌ Error: ${e.message}`;
+      toast('❌ No se pudo actualizar psswd.csv');
+      console.error('psswd.csv error:', e);
     }
   })();
 }
