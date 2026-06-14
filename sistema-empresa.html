@@ -1665,8 +1665,24 @@ function abrirModal() {
 function cerrarModal() { document.getElementById('modalEmpresa').classList.remove('active'); }
 function guardarEmpresa() {
   db.empresa.nombre = document.getElementById('modalNombreEmpresa').value || 'Nombre de la Empresa';
-  db.empresa.logo = document.getElementById('modalLogoUrl').value;
-  save(); cerrarModal(); actualizarBranding(); toast('✅ Empresa actualizada');
+  db.empresa.logo   = document.getElementById('modalLogoUrl').value;
+  save(); cerrarModal(); actualizarBranding(); toast('✅ Empresa actualizada — sincronizando...');
+  // Guardar en emn.csv en GitHub
+  if (getToken()) {
+    (async () => {
+      try {
+        const content = `nombre,logo\n${db.empresa.nombre},${db.empresa.logo}`;
+        const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/data/emn.csv`;
+        let sha;
+        const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+        if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+        const putBody = { message: 'Update emn.csv', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+        if (sha) putBody.sha = sha;
+        await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+        toast('✅ Empresa guardada en GitHub');
+      } catch(e) { toast('⚠️ Empresa guardada localmente'); }
+    })();
+  }
 }
 
 // ═══════════════════════════ ALMACÉN ═══════════════════════════
@@ -2091,7 +2107,8 @@ const GH_FILES  = {
   inventario:  'data/inventario.csv',
   ventas:      'data/ventas.csv',
   compras:     'data/compras.csv',
-  proveedores: 'data/proveedores.csv'
+  proveedores: 'data/proveedores.csv',
+  emn:         'data/emn.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -2173,7 +2190,15 @@ async function cargarDesdeGitHub() {
       console.log(`📊 ${tipo} raw (primeros 200):`, text.substring(0,200));
       const parsed = parseCSV(text);
       console.log(`📊 ${tipo} parsed:`, parsed.length, 'filas');
-      if (parsed.length) { db[tipo] = parsed; cargados++; }
+      if (tipo === 'emn') {
+        // Cargar nombre y logo de empresa
+        if (parsed.length && parsed[0].nombre !== undefined) {
+          db.empresa.nombre = parsed[0].nombre || db.empresa.nombre;
+          db.empresa.logo   = parsed[0].logo   || db.empresa.logo;
+        }
+      } else {
+        if (parsed.length) { db[tipo] = parsed; cargados++; }
+      }
     } catch(e) { console.warn(`No se pudo cargar ${tipo}:`, e.message); }
   }
   save();
