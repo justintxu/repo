@@ -585,6 +585,118 @@ html.dark .toggle-slider:before {
       </div>
     </div>
 
+    <!-- Facturación -->
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">🧾 Botón de Facturación</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Activa o desactiva el botón de Facturación en el menú de Ventas. Configura cada botón con nombre, ícono y link.</p>
+
+      <!-- Toggle activación -->
+      <div class="theme-toggle" style="display:inline-flex;margin-bottom:24px;">
+        <span style="font-weight:700;font-size:14px;color:var(--text-primary);">Facturación</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggleFacturacion" onchange="cambiarFacturacion(this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+        <span style="font-weight:700;font-size:14px;color:var(--text-primary);" id="labelFacturacion">OFF</span>
+      </div>
+
+      <!-- 6 botones configurables -->
+      <div style="display:flex;flex-direction:column;gap:16px;" id="configBotonesFacturacion">
+        <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 1</span>
+            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn1" onchange="cambiarEstadoBtn(1,this.checked)"><span class="toggle-slider"></span></label>
+            <span id="labelBtn1" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt1n" type="text" placeholder="ej: Factura Sunat" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt1i" type="text" placeholder="🧾" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt1l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+          </div>
+        </div>
+        <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 2</span>
+            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn2" onchange="cambiarEstadoBtn(2,this.checked)"><span class="toggle-slider"></span></label>
+            <span id="labelBtn2" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt2n" type="text" placeholder="ej: Boleta" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt2i" type="text" placeholder="🧾" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt2l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+          </div>
+        </div>
+        <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 3</span>
+            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn3" onchange="cambiarEstadoBtn(3,this.checked)"><span class="toggle-slider"></span></label>
+            <span id="labelBtn3" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt3n" type="text" placeholder="ej: Nota de Crédito" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt3i" type="text" placeholder="📄" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt3l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+          </div>
+        </div>
+        <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 4</span>
+            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn4" onchange="cambiarEstadoBtn(4,this.checked)"><span class="toggle-slider"></span></label>
+            <span id="labelBtn4" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt4n" type="text" placeholder="ej: Guía de Remisión" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt4i" type="text" placeholder="📦" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt4l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+          </div>
+        </div>
+        <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 5</span>
+            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn5" onchange="cambiarEstadoBtn(5,this.checked)"><span class="toggle-slider"></span></label>
+            <span id="labelBtn5" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt5n" type="text" placeholder="ej: Liquidación" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt5i" type="text" placeholder="💼" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt5l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+          </div>
+        </div>
+        <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 6</span>
+            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn6" onchange="cambiarEstadoBtn(6,this.checked)"><span class="toggle-slider"></span></label>
+            <span id="labelBtn6" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt6n" type="text" placeholder="ej: Consultas" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt6i" type="text" placeholder="🔍" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt6l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-save" style="margin-top:16px;" onclick="guardarFactonoff()">💾 Guardar Configuración</button>
+      <div id="cfgFactStatus" style="margin-top:10px;font-size:13px;font-weight:600;color:var(--text-muted);"></div>
+    </div>
+
+    <!-- Impuesto -->
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">🧾 Impuesto a las Ventas</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Se guarda en <b>txs.csv</b> y se usa para calcular la Utilidad Neta.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
+        <div style="flex:1;min-width:160px;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Nombre del impuesto</label>
+          <input id="cfgTaxNombre" type="text" placeholder="ej: IGV" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
+        </div>
+        <div style="flex:1;min-width:120px;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Porcentaje (%)</label>
+          <input id="cfgTaxPct" type="number" placeholder="ej: 18" min="0" max="100" step="0.01" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
+        </div>
+      </div>
+      <button class="btn btn-save" onclick="guardarImpuesto()">💾 Guardar Impuesto</button>
+      <div id="cfgTaxStatus" style="margin-top:10px;font-size:13px;font-weight:600;color:var(--text-muted);"></div>
+    </div>
+
     <!-- GitHub Config -->
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
       <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">☁️ Conexión GitHub</h2>
@@ -698,7 +810,23 @@ html.dark .toggle-slider:before {
   <div class="menu-grid" style="max-width:600px;margin:40px auto;">
     <button class="menu-card" onclick="irA('page-ejec-venta')"><div class="card-icon">💰</div>Ejecución de Venta</button>
     <button class="menu-card" onclick="irA('page-reg-ventas')"><div class="card-icon">📋</div>Registro de Ventas</button>
+    <button class="menu-card" id="btnFacturacion" onclick="irA('page-facturacion')" style="display:none;grid-column:span 2;"><div class="card-icon">🧾</div>Facturación</button>
   </div>
+</div>
+
+<!-- ═══════════════════════════════════════ FACTURACIÓN ══════════ -->
+<div class="page" id="page-facturacion">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoFacturacionWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="facturacionNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title">🧾 Facturación</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-ventas')">‹</button>
+  </div>
+  <div id="gridFacturacion" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px;max-width:700px;margin:0 auto;"></div>
 </div>
 
 <!-- ═══════════════════════════════════════ EJECUCIÓN VENTA ══════ -->
@@ -781,6 +909,33 @@ html.dark .toggle-slider:before {
     <div class="search-input-wrap">
       <input class="search-input" id="searchRegVentas" placeholder="Fecha - Cliente" oninput="renderRegVentas()">
       <span class="search-icon">🔍</span>
+    </div>
+    <button class="btn" style="background:#059669;color:white;margin-left:16px;" onclick="abrirCalendarioVentas()">📅 Ver Calendario</button>
+  </div>
+
+  <!-- Modal Calendario Ventas -->
+  <div id="modalCalendarioVentas" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
+    <div style="background:var(--modal-bg);border-radius:18px;padding:28px;width:380px;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:1px solid var(--header-border);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <button onclick="cambiarMesCalVentas(-1)" style="background:none;border:none;font-size:22px;cursor:pointer;color:#059669;">‹</button>
+        <span id="tituloCalVentas" style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:var(--text-primary);"></span>
+        <button onclick="cambiarMesCalVentas(1)" style="background:none;border:none;font-size:22px;cursor:pointer;color:#059669;">›</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px;">
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Lu</div>
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Ma</div>
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Mi</div>
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Ju</div>
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Vi</div>
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Sa</div>
+        <div style="text-align:center;font-size:12px;font-weight:800;color:#9ca3af;">Do</div>
+      </div>
+      <div id="gridCalVentas" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;"></div>
+      <div style="margin-top:16px;display:flex;gap:10px;align-items:center;font-size:12px;color:#6b7280;font-family:'Nunito',sans-serif;">
+        <div style="width:28px;height:28px;background:#059669;border-radius:50%;"></div><span>Con ventas</span>
+        <div style="width:28px;height:28px;background:#f3f4f6;border-radius:50%;border:1px solid #e5e7eb;"></div><span>Sin ventas</span>
+      </div>
+      <button onclick="cerrarCalendarioVentas()" style="margin-top:16px;width:100%;padding:10px;background:#e5e7eb;color:#374151;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">Cerrar</button>
     </div>
   </div>
   <div class="table-wrap">
@@ -1015,7 +1170,7 @@ html.dark .toggle-slider:before {
   </div>
   <div class="table-wrap">
     <table class="data-table">
-      <thead><tr><th>Nombre</th><th>Teléfono</th><th>Celular</th><th>Email</th><th style="min-width:160px;">Dirección</th><th></th></tr></thead>
+      <thead><tr><th>Nombre</th><th>Teléfono</th><th>Celular</th><th>Email</th><th style="min-width:160px;">Dirección</th><th style="min-width:160px;">Sitio Web</th><th></th></tr></thead>
       <tbody id="tbodyProveedores"></tbody>
     </table>
   </div>
@@ -1053,6 +1208,197 @@ html.dark .toggle-slider:before {
     </div>
     <div class="est-card" onclick="irA('page-clientes-recurrentes')">
       👥 Lista de Clientes más recurrentes
+    </div>
+    <div class="est-card" onclick="irA('page-utilidad-bruta')">
+      💰 Utilidad Bruta
+    </div>
+    <div class="est-card" onclick="irA('page-utilidad-neta')">
+      📊 Utilidad Neta
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ UTILIDAD NETA ═══════ -->
+<div class="page" id="page-utilidad-neta">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoUtilidadNetaWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="utilidadNetaNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title">📊 Utilidad Neta</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-estadisticas')">‹</button>
+  </div>
+
+  <!-- Filtros -->
+  <div style="display:flex;align-items:center;gap:12px;padding:20px 32px 0;flex-wrap:wrap;">
+    <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Período:</span>
+    <select id="selectPeriodoUN" onchange="onPeriodoUNChange()" style="padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:120px;">
+      <option value="total">Total</option>
+    </select>
+    <button id="btnCalUN" onclick="abrirCalUN()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">📅 Mes</button>
+    <select id="selectMesUN" onchange="renderUtilidadNeta()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:140px;"></select>
+    <!-- Impuesto activo -->
+    <div id="badgeImpuesto" style="margin-left:auto;padding:8px 16px;border-radius:10px;background:var(--total-cell-bg);border:1px solid var(--header-border);font-size:14px;font-weight:700;color:var(--text-primary);"></div>
+  </div>
+
+  <!-- Contadores -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:28px 32px 12px;">
+    <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">🧾</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">N° ÍTEMS VENDIDOS</div>
+      <div id="unItems" style="font-size:48px;font-weight:800;color:var(--text-primary);line-height:1;">0</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">transacciones</div>
+    </div>
+    <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">📦</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">PRODUCTOS DISTINTOS</div>
+      <div id="unProductos" style="font-size:48px;font-weight:800;color:var(--text-primary);line-height:1;">0</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">referencias únicas</div>
+    </div>
+    <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">💵</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">TOTAL VENTAS</div>
+      <div id="unTotalBruto" style="font-size:28px;font-weight:800;color:var(--text-muted);line-height:1;">S/ 0.00</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">bruto</div>
+    </div>
+  </div>
+
+  <!-- Desglose impuesto -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 32px 28px;">
+    <div style="background:var(--stat-bg);border:2px solid #ef4444;border-radius:16px;padding:24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:8px;">🧾</div>
+      <div id="unNombreImpuesto" style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:6px;">IMPUESTO</div>
+      <div id="unMontoImpuesto" style="font-size:32px;font-weight:800;color:#ef4444;">S/ 0.00</div>
+      <div id="unPorcentaje" style="font-size:12px;color:var(--text-muted);margin-top:4px;">0%</div>
+    </div>
+    <div style="background:var(--stat-bg);border:2px solid #059669;border-radius:16px;padding:24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:8px;">✅</div>
+      <div style="font-size:13px;font-weight:700;color:#059669;margin-bottom:6px;">UTILIDAD NETA</div>
+      <div id="unTotalNeto" style="font-size:32px;font-weight:800;color:#059669;">S/ 0.00</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">después de impuesto</div>
+    </div>
+  </div>
+
+  <!-- Modal mes -->
+  <div id="modalCalUN" onclick="cerrarCalUN()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
+    <div onclick="event.stopPropagation()" style="background:var(--modal-bg);border-radius:18px;padding:24px;width:340px;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:1px solid var(--header-border);">
+      <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--text-primary);margin-bottom:16px;">Selecciona un mes:</p>
+      <div id="gridMesesUN" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
+      <button onclick="cerrarCalUN()" style="margin-top:16px;width:100%;padding:10px;background:var(--table-hover);color:var(--text-primary);border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ DETALLE VENTAS DÍA ══ -->
+<div class="page" id="page-detalle-ventas-dia">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoDetalleVentasDiaWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="detalleVentasDiaNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" id="tituloDetalleVentasDia">Ventas del día</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-reg-ventas')">‹</button>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:16px;padding:20px 32px 0;flex-wrap:wrap;">
+    <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Cliente:</span>
+    <select id="selectClienteDia" onchange="renderDetalleVentasDia()" style="padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:200px;">
+      <option value="">Todos los clientes</option>
+    </select>
+    <div style="margin-left:auto;">
+      <button class="btn" style="background:#059669;color:white;" onclick="imprimirDetalleVentasDia()">🖨️ Imprimir</button>
+    </div>
+  </div>
+
+  <div style="padding:16px 32px;overflow-x:auto;">
+    <table class="reg-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:95px;"><col style="width:190px;"><col style="width:110px;">
+        <col style="width:60px;"><col><col style="width:100px;"><col style="width:100px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Hora</th>
+        <th>Cliente</th>
+        <th style="text-align:center;">Código</th>
+        <th style="text-align:center;">Cant.</th>
+        <th>Producto</th>
+        <th style="text-align:right;">Precio</th>
+        <th style="text-align:right;">Total</th>
+      </tr></thead>
+      <tbody id="tbodyDetalleVentasDia"></tbody>
+      <tfoot>
+        <tr id="tfootDetalleVentasDia" style="background:#d1fae5;font-weight:800;">
+          <td colspan="5" style="padding:10px 12px;text-align:right;">TOTAL:</td>
+          <td style="padding:10px 12px;text-align:center;" id="totalUnidadesVentaDia"></td>
+          <td style="padding:10px 12px;text-align:right;color:#059669;" id="totalMontoVentaDia"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ UTILIDAD BRUTA ══════ -->
+<div class="page" id="page-utilidad-bruta">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoUtilidadBrutaWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="utilidadBrutaNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title">💰 Utilidad Bruta</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-estadisticas')">‹</button>
+  </div>
+
+  <!-- Filtros -->
+  <div style="display:flex;align-items:center;gap:12px;padding:20px 32px 0;flex-wrap:wrap;">
+    <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Período:</span>
+    <select id="selectPeriodoUB" onchange="onPeriodoUBChange()" style="padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:120px;">
+      <option value="total">Total</option>
+    </select>
+    <button id="btnCalUB" onclick="abrirCalUB()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">📅 Mes</button>
+    <select id="selectMesUB" onchange="renderUtilidadBruta()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:140px;"></select>
+  </div>
+
+  <!-- Contadores -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:28px 32px;" id="contadoresUB">
+
+    <!-- Items vendidos -->
+    <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">🧾</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">N° ÍTEMS VENDIDOS</div>
+      <div id="ubItems" style="font-size:48px;font-weight:800;color:var(--text-primary);line-height:1;">0</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">transacciones</div>
+    </div>
+
+    <!-- Productos distintos -->
+    <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">📦</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">PRODUCTOS DISTINTOS</div>
+      <div id="ubProductos" style="font-size:48px;font-weight:800;color:var(--text-primary);line-height:1;">0</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">referencias únicas</div>
+    </div>
+
+    <!-- Total dinero -->
+    <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">💵</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">TOTAL VENTAS</div>
+      <div id="ubTotal" style="font-size:38px;font-weight:800;color:#059669;line-height:1;">S/ 0.00</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">soles</div>
+    </div>
+
+  </div>
+
+  <!-- Mini calendario modal para mes -->
+  <div id="modalCalUB" onclick="cerrarCalUB()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
+    <div onclick="event.stopPropagation()" style="background:var(--modal-bg);border-radius:18px;padding:24px;width:340px;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:1px solid var(--header-border);">
+      <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--text-primary);margin-bottom:16px;">Selecciona un mes:</p>
+      <div id="gridMesesUB" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
+      <button onclick="cerrarCalUB()" style="margin-top:16px;width:100%;padding:10px;background:var(--table-hover);color:var(--text-primary);border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">Cerrar</button>
     </div>
   </div>
 </div>
@@ -1542,7 +1888,9 @@ let db = {
   inventario: [],
   ventas: [],
   compras: [],
-  proveedores: []
+  proveedores: [],
+  txs: [],
+  factonoff: {}
 };
 
 let almacenIdx = -1;
@@ -1637,6 +1985,9 @@ function irA(pageId) {
   if (pageId === 'page-mas-comprado') initMasComprado();
   if (pageId === 'page-proveedor-usado') initProveedorUsado();
   if (pageId === 'page-clientes-recurrentes') initClientesRecurrentes();
+  if (pageId === 'page-ventas') aplicarFactonoff();
+  if (pageId === 'page-facturacion') renderFacturacion();
+  if (pageId === 'page-utilidad-neta') initUtilidadNeta();
   if (pageId === 'page-configuraciones') cargarConfigGitHub();
 }
 
@@ -1647,7 +1998,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -2052,18 +2403,22 @@ function renderProveedores(){
   items.forEach((p,i)=>{
     const orig=db.proveedores.indexOf(p);
     const dis=!provEditando;
+    const siteLink = p.site && !provEditando
+      ? `<a href="${p.site.startsWith('http')?p.site:'https://'+p.site}" target="_blank" rel="noopener" style="color:#3b82f6;font-weight:700;text-decoration:underline;font-size:13px;">🌐 ${p.site}</a>`
+      : `<input class="cell-input" value="${p.site||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'site',this.value)" placeholder="https://...">`;
     tbody.innerHTML+=`<tr data-idx="${orig}">
       <td><input class="cell-input" value="${p.nombre||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'nombre',this.value)"></td>
       <td><input class="cell-input" value="${p.telefono||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'telefono',this.value)" style="max-width:110px;"></td>
       <td><input class="cell-input" value="${p.celular||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'celular',this.value)" style="max-width:110px;"></td>
       <td><input class="cell-input" value="${p.email||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'email',this.value)"></td>
       <td><input class="cell-input" value="${p.direccion||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'direccion',this.value)"></td>
+      <td style="min-width:160px;">${siteLink}</td>
       <td><button class="delete-btn" onclick="eliminarProv(${orig})">✕</button></td>
     </tr>`;
   });
 }
 function updateProv(i,f,v){db.proveedores[i][f]=v;}
-function nuevoProveedor(){provEditando=true;db.proveedores.push({nombre:'',telefono:'',celular:'',email:'',direccion:''});provIdx=db.proveedores.length-1;renderProveedores();toast('➕ Nuevo proveedor');}
+function nuevoProveedor(){provEditando=true;db.proveedores.push({nombre:'',telefono:'',celular:'',email:'',direccion:'',site:''});provIdx=db.proveedores.length-1;renderProveedores();toast('➕ Nuevo proveedor');}
 function eliminarProv(i){db.proveedores.splice(i,1);saveAndSync('proveedores');renderProveedores();toast('🗑️ Proveedor eliminado');}
 function editarProveedores(){provEditando=!provEditando;renderProveedores();toast(provEditando?'✏️ Modo edición':'👁️ Modo lectura');}
 function guardarProveedores(){saveAndSync('proveedores');provEditando=false;renderProveedores();toast('💾 Proveedores guardados y sincronizando...');}
@@ -2108,7 +2463,9 @@ const GH_FILES  = {
   ventas:      'data/ventas.csv',
   compras:     'data/compras.csv',
   proveedores: 'data/proveedores.csv',
-  emn:         'data/emn.csv'
+  emn:         'data/emn.csv',
+  txs:         'data/txs.csv',
+  factonoff:   'data/factonoff.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -2191,11 +2548,14 @@ async function cargarDesdeGitHub() {
       const parsed = parseCSV(text);
       console.log(`📊 ${tipo} parsed:`, parsed.length, 'filas');
       if (tipo === 'emn') {
-        // Cargar nombre y logo de empresa
         if (parsed.length && parsed[0].nombre !== undefined) {
           db.empresa.nombre = parsed[0].nombre || db.empresa.nombre;
           db.empresa.logo   = parsed[0].logo   || db.empresa.logo;
         }
+      } else if (tipo === 'txs') {
+        if (parsed.length) db.txs = parsed;
+      } else if (tipo === 'factonoff') {
+        if (parsed.length) { db.factonoff = parsed[0]; aplicarFactonoff(); }
       } else {
         if (parsed.length) { db[tipo] = parsed; cargados++; }
       }
@@ -2282,6 +2642,42 @@ function cargarConfigGitHub() {
   // Sync toggle
   const oscuro = localStorage.getItem('temaOscuro') === '1';
   document.getElementById('toggleTema').checked = oscuro;
+  // Load tax
+  const tax = getTax();
+  if (tax) {
+    document.getElementById('cfgTaxNombre').value = tax.nombre;
+    document.getElementById('cfgTaxPct').value    = tax.porcentaje;
+  }
+  document.getElementById('cfgTaxStatus').textContent = '';
+  // Load factonoff
+  cargarConfigFactonoff();
+  document.getElementById('cfgFactStatus').textContent = '';
+}
+
+async function guardarImpuesto() {
+  const nombre = document.getElementById('cfgTaxNombre').value.trim();
+  const pct    = document.getElementById('cfgTaxPct').value.trim();
+  const statusEl = document.getElementById('cfgTaxStatus');
+  if (!nombre || pct === '') { statusEl.textContent = '⚠️ Completa nombre y porcentaje'; return; }
+  db.txs = [{ nombre, porcentaje: parseFloat(pct) }];
+  save();
+  statusEl.textContent = '⏳ Guardando en txs.csv...';
+  if (!getToken()) { statusEl.textContent = '✅ Guardado localmente (sin token GitHub)'; return; }
+  try {
+    const content = `nombre,porcentaje\n${nombre},${pct}`;
+    const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/data/txs.csv`;
+    let sha;
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+    if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+    const putBody = { message: 'Update txs.csv', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+    statusEl.textContent = `✅ ${nombre} ${pct}% guardado en txs.csv`;
+    toast('✅ Impuesto guardado en GitHub');
+  } catch(e) {
+    statusEl.textContent = `❌ Error: ${e.message}`;
+  }
 }
 
 function guardarConfigGitHub() {
@@ -2431,7 +2827,7 @@ const CSV_SCHEMAS = {
   inventario:  ['codigo','cantidad','producto','descripcion','precio','ubicacion','precioCompra','ultimoProveedor','imagen'],
   ventas:      ['fecha','hora','cliente','codigo','cantidad','producto','precio','total'],
   compras:     ['fecha','hora','proveedor','codigo','cantidad','producto','precio','total','tipo','numero','emision'],
-  proveedores: ['nombre','telefono','celular','email','direccion']
+  proveedores: ['nombre','telefono','celular','email','direccion','site']
 };
 
 function exportarCSV(tipo) {
@@ -2472,6 +2868,199 @@ function importarCSV(tipo) {
     reader.readAsText(file, 'UTF-8');
   };
   csvFileInput.click();
+}
+
+// ═══════════════════════════ CALENDARIO VENTAS ═════════════════
+let calVentasMes = new Date().getMonth();
+let calVentasAnio = new Date().getFullYear();
+let diaDetalleVentas = '';
+
+function abrirCalendarioVentas() {
+  calVentasMes = new Date().getMonth();
+  calVentasAnio = new Date().getFullYear();
+  renderCalVentas();
+  document.getElementById('modalCalendarioVentas').style.display = 'flex';
+}
+function cerrarCalendarioVentas() {
+  document.getElementById('modalCalendarioVentas').style.display = 'none';
+}
+function cambiarMesCalVentas(dir) {
+  calVentasMes += dir;
+  if (calVentasMes > 11) { calVentasMes = 0; calVentasAnio++; }
+  if (calVentasMes < 0)  { calVentasMes = 11; calVentasAnio--; }
+  renderCalVentas();
+}
+
+function renderCalVentas() {
+  const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  document.getElementById('tituloCalVentas').textContent = `${meses[calVentasMes]} ${calVentasAnio}`;
+  const mm = String(calVentasMes+1).padStart(2,'0');
+  const yyyy = String(calVentasAnio);
+  const diasConVentas = new Set();
+  db.ventas.forEach(v => {
+    if (!v.fecha) return;
+    const p = v.fecha.split('/');
+    if (p.length===3 && p[1]===mm && p[2]===yyyy) diasConVentas.add(p[0]);
+  });
+  const primerDia = new Date(calVentasAnio, calVentasMes, 1).getDay();
+  const diasMes = new Date(calVentasAnio, calVentasMes+1, 0).getDate();
+  const offset = primerDia===0 ? 6 : primerDia-1;
+  let html = '';
+  for (let i=0; i<offset; i++) html += '<div></div>';
+  for (let d=1; d<=diasMes; d++) {
+    const dd = String(d).padStart(2,'0');
+    const tiene = diasConVentas.has(dd);
+    html += tiene
+      ? `<div onclick="abrirDetalleVentasDia('${dd}/${mm}/${yyyy}')" style="text-align:center;padding:6px 2px;border-radius:50%;background:#059669;color:white;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:transform 0.1s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">${d}</div>`
+      : `<div style="text-align:center;padding:6px 2px;border-radius:50%;background:#f3f4f6;color:#9ca3af;font-family:'Nunito',sans-serif;font-size:14px;">${d}</div>`;
+  }
+  document.getElementById('gridCalVentas').innerHTML = html;
+}
+
+function abrirDetalleVentasDia(fecha) {
+  diaDetalleVentas = fecha;
+  cerrarCalendarioVentas();
+  const ventasDia = db.ventas.filter(v => v.fecha === fecha);
+  const clientes = [...new Set(ventasDia.map(v => v.cliente).filter(Boolean))].sort();
+  const sel = document.getElementById('selectClienteDia');
+  sel.innerHTML = '<option value="">Todos los clientes</option><option value="listado">📋 Listado Total</option>' + clientes.map(c=>`<option value="${c}">${c}</option>`).join('');
+  document.getElementById('tituloDetalleVentasDia').textContent = `Ventas del ${fecha}`;
+  irA('page-detalle-ventas-dia');
+  setTimeout(() => renderDetalleVentasDia(), 50);
+}
+
+function renderDetalleVentasDia() {
+  const cliente = document.getElementById('selectClienteDia').value;
+  let items = db.ventas.filter(v => v.fecha === diaDetalleVentas);
+  if (cliente && cliente !== 'listado') items = items.filter(v => v.cliente === cliente);
+  const tbody = document.getElementById('tbodyDetalleVentasDia');
+  tbody.innerHTML = items.length ? items.map(v=>`<tr style="border-bottom:1px solid #f3f4f6;">
+    <td style="padding:9px 12px;text-align:center;">${formatHora(v.hora)}</td>
+    <td style="padding:9px 12px;">${v.cliente||''}</td>
+    <td style="padding:9px 12px;text-align:center;">${v.codigo||''}</td>
+    <td style="padding:9px 12px;text-align:center;">${v.cantidad||0}</td>
+    <td style="padding:9px 12px;">${v.producto||''}</td>
+    <td style="padding:9px 12px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
+    <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+  </tr>`).join('') : '<tr><td colspan="7" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas</td></tr>';
+  const totalMonto = items.reduce((s,v)=>s+parseFloat(v.total||0),0);
+  const totalUnid  = items.reduce((s,v)=>s+parseFloat(v.cantidad||0),0);
+  document.getElementById('totalUnidadesVentaDia').textContent = totalUnid.toFixed(0)+' und.';
+  document.getElementById('totalMontoVentaDia').textContent = 'S/ '+totalMonto.toFixed(2);
+}
+
+function imprimirDetalleVentasDia() {
+  const clienteVal = document.getElementById('selectClienteDia').value;
+  let items = db.ventas.filter(v => v.fecha === diaDetalleVentas);
+  if (clienteVal && clienteVal !== 'listado') items = items.filter(v => v.cliente === clienteVal);
+  const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
+  const totalMonto = items.reduce((s,v)=>s+parseFloat(v.total||0),0);
+  const totalUnid  = items.reduce((s,v)=>s+parseFloat(v.cantidad||0),0);
+
+  let contenidoHTML = '';
+
+  if (clienteVal === 'listado') {
+    // Listado Total: tabla plana sin agrupar por cliente
+    const filas = items.map(v=>`<tr style="border-bottom:1px solid #e5e7eb;">
+      <td style="padding:7px 10px;text-align:center;">${formatHora(v.hora)}</td>
+      <td style="padding:7px 10px;text-align:center;">${v.codigo||''}</td>
+      <td style="padding:7px 10px;text-align:center;">${v.cantidad||0}</td>
+      <td style="padding:7px 10px;">${v.producto||''}</td>
+      <td style="padding:7px 10px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
+      <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+    </tr>`).join('');
+    contenidoHTML = `
+      <div style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+        <div style="background:#059669;color:white;padding:10px 16px;font-size:14px;font-weight:800;">👥 Cliente: Todos</div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:#f0fdf4;">
+            <th style="padding:8px 10px;text-align:center;">Hora</th>
+            <th style="padding:8px 10px;text-align:center;">Código</th>
+            <th style="padding:8px 10px;text-align:center;">Cant.</th>
+            <th style="padding:8px 10px;">Producto</th>
+            <th style="padding:8px 10px;text-align:right;">Precio</th>
+            <th style="padding:8px 10px;text-align:right;">Total</th>
+          </tr></thead>
+          <tbody>${filas}</tbody>
+          <tfoot><tr style="background:#d1fae5;font-weight:800;">
+            <td colspan="2" style="padding:8px 10px;text-align:right;">Total</td>
+            <td style="padding:8px 10px;text-align:center;">${totalUnid.toFixed(0)}</td>
+            <td></td><td></td>
+            <td style="padding:8px 10px;text-align:right;color:#059669;">S/ ${totalMonto.toFixed(2)}</td>
+          </tfoot>
+        </table>
+      </div>`;
+  } else {
+    // Todos o cliente específico: agrupar por cliente
+    const grupos = {};
+    items.forEach(v => {
+      const key = v.cliente || 'Sin nombre';
+      if (!grupos[key]) grupos[key] = { cliente: key, items: [] };
+      grupos[key].items.push(v);
+    });
+    Object.values(grupos).forEach(g => {
+      const subtotal = g.items.reduce((s,v)=>s+parseFloat(v.total||0),0);
+      const subUnid  = g.items.reduce((s,v)=>s+parseFloat(v.cantidad||0),0);
+      const filas = g.items.map(v=>`<tr style="border-bottom:1px solid #e5e7eb;">
+        <td style="padding:7px 10px;text-align:center;">${formatHora(v.hora)}</td>
+        <td style="padding:7px 10px;text-align:center;">${v.codigo||''}</td>
+        <td style="padding:7px 10px;text-align:center;">${v.cantidad||0}</td>
+        <td style="padding:7px 10px;">${v.producto||''}</td>
+        <td style="padding:7px 10px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
+        <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+      </tr>`).join('');
+      contenidoHTML += `
+        <div style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+          <div style="background:#059669;color:white;padding:10px 16px;font-size:14px;font-weight:800;">👤 Cliente: ${g.cliente}</div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px;">
+            <thead><tr style="background:#f0fdf4;">
+              <th style="padding:8px 10px;text-align:center;">Hora</th>
+              <th style="padding:8px 10px;text-align:center;">Código</th>
+              <th style="padding:8px 10px;text-align:center;">Cant.</th>
+              <th style="padding:8px 10px;">Producto</th>
+              <th style="padding:8px 10px;text-align:right;">Precio</th>
+              <th style="padding:8px 10px;text-align:right;">Total</th>
+            </tr></thead>
+            <tbody>${filas}</tbody>
+            <tfoot><tr style="background:#d1fae5;font-weight:800;">
+              <td colspan="2" style="padding:8px 10px;text-align:right;">Subtotal</td>
+              <td style="padding:8px 10px;text-align:center;">${subUnid.toFixed(0)}</td>
+              <td></td><td></td>
+              <td style="padding:8px 10px;text-align:right;color:#059669;">S/ ${subtotal.toFixed(2)}</td>
+            </tfoot>
+          </table>
+        </div>`;
+    });
+  }
+
+  const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+  <title>Ventas del ${diaDetalleVentas}</title>
+  <style>
+    body{font-family:'Segoe UI',sans-serif;margin:0;padding:30px;color:#1f2937;}
+    @media print{body{padding:15px;}.no-print{display:none;}}
+    h1{color:#059669;font-size:20px;margin:0;}
+    h2{color:#374151;font-size:15px;margin:4px 0 0;font-weight:400;}
+    .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #059669;padding-bottom:14px;margin-bottom:20px;}
+    .meta{text-align:right;font-size:13px;color:#6b7280;}
+    .grand-total{text-align:right;font-size:15px;font-weight:800;color:#059669;margin-top:12px;padding:10px 16px;background:#d1fae5;border-radius:8px;}
+    .footer{margin-top:20px;padding-top:12px;border-top:2px solid #e5e7eb;display:flex;justify-content:space-between;font-size:13px;color:#6b7280;font-weight:700;}
+    button{background:#059669;color:white;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:20px;}
+  </style></head><body>
+  <button class="no-print" onclick="window.print()">🖨️ Imprimir</button>
+  <div class="header">
+    <div>
+      <h1>${empresa}</h1>
+      <h2>Ventas del ${diaDetalleVentas}${clienteVal && clienteVal !== 'listado' ? ' — Cliente: '+clienteVal : clienteVal === 'listado' ? ' — Listado Total' : ''}</h2>
+    </div>
+    <div class="meta"><div>Emisión: ${fechaHoy()} ${horaHoy()}</div></div>
+  </div>
+  ${contenidoHTML}
+  <div class="grand-total">TOTAL GENERAL: S/ ${totalMonto.toFixed(2)}</div>
+  <div class="footer"><span>${empresa}</span><span>${diaDetalleVentas}</span></div>
+  </body></html>`;
+  const w = window.open('','_blank');
+  w.document.write(html);
+  w.document.close();
 }
 
 // ═══════════════════════════ CALENDARIO COMPRAS ════════════════
@@ -2655,6 +3244,327 @@ function imprimirDetalleComprasDia() {
   const w = window.open('','_blank');
   w.document.write(html);
   w.document.close();
+}
+
+// ═══════════════════════════ FACTURACIÓN ═══════════════════════
+function getFact() { return db.factonoff || {}; }
+
+function aplicarFactonoff() {
+  const f = getFact();
+  const activo = f.situacion === '1';
+  const btn = document.getElementById('btnFacturacion');
+  if (btn) btn.style.display = activo ? 'block' : 'none';
+}
+
+function renderFacturacion() {
+  const f = getFact();
+  const grid = document.getElementById('gridFacturacion');
+  let html = '';
+  for (let n = 1; n <= 6; n++) {
+    const activo = f[`bt${n}s`] === '1';
+    const nombre = f[`bt${n}n`] || `Botón ${n}`;
+    const icono  = n === 1 ? (f['bti'] || '🧾') : (f[`bt${n}i`] || '🧾');
+    const link   = f[`bt${n}l`] || '';
+    if (!activo) continue;
+    html += `<button class="menu-card" onclick="abrirLink('${link.replace(/'/g,"\\'")}')">
+      <div class="card-icon">${icono}</div>${nombre}
+    </button>`;
+  }
+  grid.innerHTML = html || '<p style="color:var(--text-muted);font-family:Nunito,sans-serif;grid-column:span 3;text-align:center;padding:40px;">No hay botones activos configurados.</p>';
+}
+
+function abrirLink(url) {
+  if (!url) { toast('⚠️ Sin link configurado'); return; }
+  window.open(url.startsWith('http') ? url : 'https://'+url, '_blank');
+}
+
+function cargarConfigFactonoff() {
+  const f = getFact();
+  const activo = f.situacion === '1';
+  const tog = document.getElementById('toggleFacturacion');
+  if (tog) { tog.checked = activo; document.getElementById('labelFacturacion').textContent = activo ? 'ON' : 'OFF'; }
+  for (let n = 1; n <= 6; n++) {
+    const bActivo = f[`bt${n}s`] === '1';
+    const togB = document.getElementById(`toggleBtn${n}`);
+    if (togB) { togB.checked = bActivo; document.getElementById(`labelBtn${n}`).textContent = bActivo ? 'ON' : 'OFF'; }
+    const ni = document.getElementById(`cfgBt${n}n`); if (ni) ni.value = f[`bt${n}n`] || '';
+    const ii = document.getElementById(`cfgBt${n}i`); if (ii) ii.value = (n === 1 ? f['bti'] : f[`bt${n}i`]) || '';
+    const li = document.getElementById(`cfgBt${n}l`); if (li) li.value = f[`bt${n}l`] || '';
+  }
+}
+
+function cambiarFacturacion(activo) {
+  document.getElementById('labelFacturacion').textContent = activo ? 'ON' : 'OFF';
+}
+
+function cambiarEstadoBtn(n, activo) {
+  document.getElementById(`labelBtn${n}`).textContent = activo ? 'ON' : 'OFF';
+}
+
+async function guardarFactonoff() {
+  const statusEl = document.getElementById('cfgFactStatus');
+  // Construir objeto
+  const situacion = document.getElementById('toggleFacturacion').checked ? '1' : '0';
+  const data = { situacion };
+  for (let n = 1; n <= 6; n++) {
+    data[`bt${n}s`] = document.getElementById(`toggleBtn${n}`).checked ? '1' : '0';
+    data[`bt${n}n`] = document.getElementById(`cfgBt${n}n`).value.trim();
+    data[`bt${n}l`] = document.getElementById(`cfgBt${n}l`).value.trim();
+    // ícono: botón 1 usa 'bti', resto usan bt2i, bt3i...
+    const icoKey = n === 1 ? 'bti' : `bt${n}i`;
+    data[icoKey] = document.getElementById(`cfgBt${n}i`).value.trim();
+  }
+  // Reordenar según columnas del CSV original
+  const ordered = {
+    situacion: data.situacion,
+    bt1s: data.bt1s, bt1n: data.bt1n, bt1l: data.bt1l, bti: data.bti,
+    bt2s: data.bt2s, bt2n: data.bt2n, bt2l: data.bt2l, bt2i: data.bt2i,
+    bt3s: data.bt3s, bt3n: data.bt3n, bt3l: data.bt3l, bt3i: data.bt3i,
+    bt4s: data.bt4s, bt4n: data.bt4n, bt4l: data.bt4l, bt4i: data.bt4i,
+    bt5s: data.bt5s, bt5n: data.bt5n, bt5l: data.bt5l, bt5i: data.bt5i,
+    bt6s: data.bt6s, bt6n: data.bt6n, bt6l: data.bt6l, bt6i: data.bt6i,
+  };
+  db.factonoff = ordered;
+  save();
+  aplicarFactonoff();
+
+  const headers = Object.keys(ordered);
+  const values  = headers.map(k => csvCell(ordered[k]||''));
+  const content = headers.join(',') + '\n' + values.join(',');
+
+  if (!getToken()) { statusEl.textContent = '✅ Guardado localmente (sin token GitHub)'; return; }
+  statusEl.textContent = '⏳ Guardando en factonoff.csv...';
+  try {
+    const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/data/factonoff.csv`;
+    let sha;
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+    if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+    const putBody = { message: 'Update factonoff.csv', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+    statusEl.textContent = '✅ factonoff.csv guardado en GitHub';
+    toast('✅ Configuración de Facturación guardada');
+  } catch(e) {
+    statusEl.textContent = `❌ Error: ${e.message}`;
+  }
+}
+
+// ═══════════════════════════ UTILIDAD NETA ═════════════════════
+function getTax() {
+  // Retorna { nombre, porcentaje } del primer impuesto en txs, o null
+  if (!db.txs || !db.txs.length) return null;
+  const t = db.txs[0];
+  return { nombre: t.nombre || 'Impuesto', porcentaje: parseFloat(t.porcentaje || 0) };
+}
+
+function initUtilidadNeta() {
+  const anios = new Set();
+  db.ventas.forEach(v => {
+    if (!v.fecha) return;
+    const p = v.fecha.split('/');
+    if (p.length === 3) anios.add(p[2]);
+  });
+  const sortedAnios = [...anios].sort().reverse();
+  const anioActual = String(new Date().getFullYear());
+  const sel = document.getElementById('selectPeriodoUN');
+  sel.innerHTML = '<option value="total">Total</option>' +
+    sortedAnios.map(a => `<option value="${a}" ${a===anioActual?'selected':''}>${a}</option>`).join('');
+  const hayAnio = sortedAnios.includes(anioActual);
+  document.getElementById('btnCalUN').style.display = hayAnio ? 'inline-block' : 'none';
+  document.getElementById('selectMesUN').style.display = 'none';
+  renderUtilidadNeta();
+}
+
+function onPeriodoUNChange() {
+  const val = document.getElementById('selectPeriodoUN').value;
+  document.getElementById('btnCalUN').style.display = val !== 'total' ? 'inline-block' : 'none';
+  document.getElementById('selectMesUN').style.display = 'none';
+  renderUtilidadNeta();
+}
+
+function abrirCalUN() {
+  const anio = document.getElementById('selectPeriodoUN').value;
+  const mesesNombres = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const mesesConVentas = new Set();
+  db.ventas.forEach(v => {
+    if (!v.fecha) return;
+    const p = v.fecha.split('/');
+    if (p.length === 3 && p[2] === anio) mesesConVentas.add(parseInt(p[1]));
+  });
+  document.getElementById('gridMesesUN').innerHTML = mesesNombres.map((m, i) => {
+    const mm = i + 1;
+    const tiene = mesesConVentas.has(mm);
+    const mmStr = String(mm).padStart(2,'0');
+    return tiene
+      ? `<button onclick="seleccionarMesUN('${mmStr}','${anio}')" style="padding:10px;border-radius:10px;background:var(--card-bg);color:var(--text-primary);border:2px solid var(--header-border);font-family:'Nunito',sans-serif;font-weight:800;cursor:pointer;">${m}</button>`
+      : `<button disabled style="padding:10px;border-radius:10px;background:var(--total-cell-bg);color:var(--text-muted);border:1px solid var(--table-border);font-family:'Nunito',sans-serif;font-weight:600;cursor:default;">${m}</button>`;
+  }).join('');
+  document.getElementById('modalCalUN').style.display = 'flex';
+}
+function cerrarCalUN() { document.getElementById('modalCalUN').style.display = 'none'; }
+function seleccionarMesUN(mm, yyyy) {
+  cerrarCalUN();
+  const mesesNombres = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const sel = document.getElementById('selectMesUN');
+  sel.innerHTML = `<option value="${mm}/${yyyy}">${mesesNombres[parseInt(mm)]} ${yyyy}</option>`;
+  sel.style.display = 'inline-block';
+  renderUtilidadNeta();
+}
+
+function renderUtilidadNeta() {
+  const periodo  = document.getElementById('selectPeriodoUN').value;
+  const mesVal   = document.getElementById('selectMesUN').value;
+  const mesVisible = document.getElementById('selectMesUN').style.display !== 'none' && mesVal;
+
+  let ventas = db.ventas;
+  if (mesVisible) {
+    const [mm, yyyy] = mesVal.split('/');
+    ventas = ventas.filter(v => { const p=(v.fecha||'').split('/'); return p.length===3 && p[1]===mm && p[2]===yyyy; });
+  } else if (periodo !== 'total') {
+    ventas = ventas.filter(v => { const p=(v.fecha||'').split('/'); return p.length===3 && p[2]===periodo; });
+  }
+
+  const items    = ventas.length;
+  const productos = new Set(ventas.map(v => v.codigo).filter(Boolean)).size;
+  const totalBruto = ventas.reduce((s,v) => s + parseFloat(v.total||0), 0);
+
+  const tax = getTax();
+  const pct = tax ? tax.porcentaje : 0;
+  const montoImpuesto = totalBruto * (pct / 100);
+  const totalNeto = totalBruto - montoImpuesto;
+
+  // Badge impuesto
+  const badge = document.getElementById('badgeImpuesto');
+  badge.textContent = tax ? `${tax.nombre}: ${pct}%` : '⚠️ Sin impuesto configurado en txs.csv';
+
+  // Actualizar cards
+  animarContador('unItems', items, false);
+  animarContador('unProductos', productos, false);
+  document.getElementById('unTotalBruto').textContent = 'S/ ' + totalBruto.toFixed(2);
+  document.getElementById('unNombreImpuesto').textContent = tax ? tax.nombre.toUpperCase() : 'IMPUESTO';
+  document.getElementById('unPorcentaje').textContent = pct + '%';
+  document.getElementById('unMontoImpuesto').textContent = 'S/ ' + montoImpuesto.toFixed(2);
+  document.getElementById('unTotalNeto').textContent = 'S/ ' + totalNeto.toFixed(2);
+}
+
+// ═══════════════════════════ UTILIDAD BRUTA ════════════════════
+function initUtilidadBruta() {
+  const anios = new Set();
+  db.ventas.forEach(v => {
+    if (!v.fecha) return;
+    const p = v.fecha.split('/');
+    if (p.length === 3) anios.add(p[2]);
+  });
+  const sortedAnios = [...anios].sort().reverse();
+  const anioActual = String(new Date().getFullYear());
+  const sel = document.getElementById('selectPeriodoUB');
+  sel.innerHTML = '<option value="total">Total</option>' +
+    sortedAnios.map(a => `<option value="${a}" ${a===anioActual?'selected':''}>${a}</option>`).join('');
+  // Mostrar botón de mes si hay año seleccionado
+  const hayAnio = sortedAnios.includes(anioActual);
+  document.getElementById('btnCalUB').style.display = hayAnio ? 'inline-block' : 'none';
+  document.getElementById('selectMesUB').style.display = 'none';
+  renderUtilidadBruta();
+}
+
+function onPeriodoUBChange() {
+  const val = document.getElementById('selectPeriodoUB').value;
+  const esAnio = val !== 'total';
+  document.getElementById('btnCalUB').style.display = esAnio ? 'inline-block' : 'none';
+  document.getElementById('selectMesUB').style.display = 'none';
+  renderUtilidadBruta();
+}
+
+function abrirCalUB() {
+  const anio = document.getElementById('selectPeriodoUB').value;
+  // Buscar qué meses tienen ventas en ese año
+  const mesesNombres = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const mesesConVentas = new Set();
+  db.ventas.forEach(v => {
+    if (!v.fecha) return;
+    const p = v.fecha.split('/');
+    if (p.length === 3 && p[2] === anio) mesesConVentas.add(parseInt(p[1]));
+  });
+  const grid = document.getElementById('gridMesesUB');
+  grid.innerHTML = mesesNombres.map((m, i) => {
+    const mm = i + 1;
+    const tiene = mesesConVentas.has(mm);
+    const mmStr = String(mm).padStart(2,'0');
+    return tiene
+      ? `<button onclick="seleccionarMesUB('${mmStr}','${anio}')" style="padding:10px;border-radius:10px;background:var(--card-bg);color:var(--text-primary);border:2px solid var(--header-border);font-family:'Nunito',sans-serif;font-weight:800;cursor:pointer;">${m}</button>`
+      : `<button disabled style="padding:10px;border-radius:10px;background:var(--total-cell-bg);color:var(--text-muted);border:1px solid var(--table-border);font-family:'Nunito',sans-serif;font-weight:600;cursor:default;">${m}</button>`;
+  }).join('');
+  document.getElementById('modalCalUB').style.display = 'flex';
+}
+
+function cerrarCalUB() {
+  document.getElementById('modalCalUB').style.display = 'none';
+}
+
+function seleccionarMesUB(mm, yyyy) {
+  cerrarCalUB();
+  const mesesNombres = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const sel = document.getElementById('selectMesUB');
+  sel.innerHTML = `<option value="${mm}/${yyyy}">${mesesNombres[parseInt(mm)]} ${yyyy}</option>`;
+  sel.style.display = 'inline-block';
+  renderUtilidadBruta();
+}
+
+function renderUtilidadBruta() {
+  const periodo = document.getElementById('selectPeriodoUB').value;
+  const mesVal  = document.getElementById('selectMesUB').value;
+  const mesVisible = document.getElementById('selectMesUB').style.display !== 'none' && mesVal;
+
+  let ventas = db.ventas;
+
+  if (mesVisible) {
+    const [mm, yyyy] = mesVal.split('/');
+    ventas = ventas.filter(v => {
+      const p = (v.fecha||'').split('/');
+      return p.length === 3 && p[1] === mm && p[2] === yyyy;
+    });
+  } else if (periodo !== 'total') {
+    ventas = ventas.filter(v => {
+      const p = (v.fecha||'').split('/');
+      return p.length === 3 && p[2] === periodo;
+    });
+  }
+
+  const items    = ventas.length;
+  const productos = new Set(ventas.map(v => v.codigo).filter(Boolean)).size;
+  const total    = ventas.reduce((s, v) => s + parseFloat(v.total||0), 0);
+
+  // Animación de contadores
+  animarContador('ubItems', items, false);
+  animarContador('ubProductos', productos, false);
+  animarContadorMonto('ubTotal', total);
+}
+
+function animarContador(id, target, esMonto) {
+  const el = document.getElementById(id);
+  const dur = 800, fps = 40, steps = dur / (1000/fps);
+  let cur = 0, step = 0;
+  clearInterval(el._interval);
+  el._interval = setInterval(() => {
+    step++;
+    cur = Math.round(target * (step / steps));
+    el.textContent = esMonto ? 'S/ ' + cur.toFixed(2) : cur.toLocaleString();
+    if (step >= steps) { el.textContent = esMonto ? 'S/ ' + target.toFixed(2) : target.toLocaleString(); clearInterval(el._interval); }
+  }, 1000/fps);
+}
+
+function animarContadorMonto(id, target) {
+  const el = document.getElementById(id);
+  const dur = 900, fps = 40, steps = dur / (1000/fps);
+  let step = 0;
+  clearInterval(el._interval);
+  el._interval = setInterval(() => {
+    step++;
+    const cur = target * (step / steps);
+    el.textContent = 'S/ ' + cur.toFixed(2);
+    if (step >= steps) { el.textContent = 'S/ ' + target.toFixed(2); clearInterval(el._interval); }
+  }, 1000/fps);
 }
 
 // ═══════════════════════════ CLIENTES RECURRENTES ══════════════
