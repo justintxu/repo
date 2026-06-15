@@ -3880,7 +3880,7 @@ function imprimirDetalleComprasDia() {
 }
 
 // ═══════════════════════════ INGRESAR SERVICIO ═════════════════
-const CSV_SCHEMA_SERTECPEN = ['artefacto','cliente','telefono','fechent','hora','tecnico','estado','foto1','foto2','foto3','foto4','foto5'];
+const CSV_SCHEMA_SERTECPEN = ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5'];
 
 function initIngresarServicio() {
   document.getElementById('fechaIngServicio').textContent = fechaHoy();
@@ -3907,7 +3907,7 @@ async function ingresarServicio() {
   const tecnico  = document.getElementById('srvTecnico').value.trim();
   const estado   = document.getElementById('srvEstado').value.trim();
   const fechent  = fechaHoy();
-  const hora     = horaHoy();
+  const hora1    = horaHoy();
   const foto1    = document.getElementById('srvFoto1').value.trim();
   const foto2    = document.getElementById('srvFoto2').value.trim();
   const foto3    = document.getElementById('srvFoto3').value.trim();
@@ -3916,7 +3916,7 @@ async function ingresarServicio() {
 
   if (!cliente) { toast('⚠️ Ingresa el nombre del cliente'); return; }
 
-  const nuevo = { artefacto, cliente, telefono, fechent, hora, tecnico, estado, foto1, foto2, foto3, foto4, foto5 };
+  const nuevo = { artefacto, cliente, telefono, fechent, hora1, tecnico, estado, foto1, foto2, foto3, foto4, foto5 };
   db.sertecpen.push(nuevo);
   save();
   statusEl.textContent = '⏳ Guardando en sertecpen.csv...';
@@ -5180,7 +5180,7 @@ function renderSertecfin() {
       <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
-      <td><input class="cell-input blue-cell" value="${escHtml(r.hora||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.hora1||'')}" readonly style="width:100%;text-align:center;"></td>
     </tr>`;
   }).join('');
 }
@@ -5245,7 +5245,7 @@ function renderSertecpen() {
       <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
-      <td><input class="cell-input blue-cell" value="${escHtml(r.hora||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.hora1||'')}" readonly style="width:100%;text-align:center;"></td>
     </tr>`;
   }).join('');
 }
@@ -5310,7 +5310,7 @@ function initSertecDetalle() {
   document.getElementById('sdet_cliente').value      = r.cliente      || '';
   document.getElementById('sdet_telefono').value     = r.telefono     || '';
   document.getElementById('sdet_fechent').value      = r.fechent      || '';
-  document.getElementById('sdet_hora').value         = r.hora         || '';
+  document.getElementById('sdet_hora').value         = r.hora1         || '';
   document.getElementById('sdet_tecnico').value      = r.tecnico      || '';
   document.getElementById('sdet_hontec').value       = r.hontec       || '';
   document.getElementById('sdet_cotizacion').value   = r.cotizacion   || '';
@@ -5483,11 +5483,6 @@ async function finalizarServicio() {
   // Construir registro finalizado: copia completa + campos de entrega
   const registroFin = Object.assign({}, r);
   delete registroFin._sel;
-  // sertecpen usa "hora", sertecfin usa "hora1"
-  if (registroFin.hora !== undefined) {
-    registroFin.hora1 = registroFin.hora;
-    delete registroFin.hora;
-  }
   registroFin.fechfin = fechaHoy();
   registroFin.hora2   = horaHoy();
 
@@ -5592,7 +5587,7 @@ async function eliminarSertecpenSeleccion() {
 
 async function subirSertecpenAGitHub() {
   // Schema fijo para sertecpen — siempre en este orden, incluye todos los campos posibles
-  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora'];
+  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora1'];
   const data = db.sertecpen;
   const content = schema.join(',') + '\n' +
     data.map(item => schema.map(k => csvCell(item[k] !== undefined ? item[k] : '')).join(',')).join('\n');
