@@ -1430,19 +1430,23 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Filtros -->
-  <div style="display:flex;align-items:center;gap:12px;padding:20px 32px 0;flex-wrap:wrap;">
+  <div style="display:flex;align-items:center;gap:10px;padding:20px 32px 0;flex-wrap:wrap;">
     <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Período:</span>
-    <select id="selectPeriodoUN" onchange="onPeriodoUNChange()" style="padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:120px;">
-      <option value="total">Total</option>
+    <select id="selectNivelUN" onchange="onNivelUNChange()" style="padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">
+      <option value="total">Todo</option>
+      <option value="anual">Anual</option>
+      <option value="mensual">Mensual</option>
+      <option value="semanal" selected>Semanal</option>
     </select>
-    <button id="btnCalUN" onclick="abrirCalUN()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">📅 Mes</button>
-    <select id="selectMesUN" onchange="renderUtilidadNeta()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:140px;"></select>
+    <select id="selectAnioUN" onchange="onAnioUNChange()" style="display:none;padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);"></select>
+    <select id="selectMesUN" onchange="onMesUNChange()" style="display:none;padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:120px;"></select>
+    <select id="selectSemanaUN" onchange="renderUtilidadNeta()" style="display:none;padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:200px;"></select>
     <!-- Impuesto activo -->
     <div id="badgeImpuesto" style="margin-left:auto;padding:8px 16px;border-radius:10px;background:var(--total-cell-bg);border:1px solid var(--header-border);font-size:14px;font-weight:700;color:var(--text-primary);"></div>
   </div>
 
   <!-- Contadores -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:28px 32px 12px;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 32px 12px;">
     <div style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
       <div style="font-size:40px;margin-bottom:12px;">🧾</div>
       <div style="font-size:14px;font-weight:700;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.5px;">N° ÍTEMS VENDIDOS</div>
@@ -1461,32 +1465,59 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <div id="unTotalBruto" style="font-size:28px;font-weight:800;color:var(--text-muted);line-height:1;">S/ 0.00</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">bruto</div>
     </div>
+    <div id="unCardSertecBruto" style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
+      <div style="font-size:40px;margin-bottom:12px;">🔧</div>
+      <div style="font-size:14px;font-weight:700;color:#059669;margin-bottom:8px;letter-spacing:0.5px;">TOTAL SERVICIO TÉCNICO</div>
+      <div id="unTotalSertecBruto" style="font-size:28px;font-weight:800;color:#059669;line-height:1;">S/ 0.00</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">bruto (utinet)</div>
+    </div>
   </div>
 
   <!-- Desglose impuesto -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 32px 28px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;padding:0 32px 28px;">
     <div style="background:var(--stat-bg);border:2px solid #ef4444;border-radius:16px;padding:24px;text-align:center;">
       <div style="font-size:28px;margin-bottom:8px;">🧾</div>
-      <div id="unNombreImpuesto" style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:6px;">IMPUESTO</div>
+      <div id="unNombreImpuesto" style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:6px;">IGV VENTAS</div>
       <div id="unMontoImpuesto" style="font-size:32px;font-weight:800;color:#ef4444;">S/ 0.00</div>
       <div id="unPorcentaje" style="font-size:12px;color:var(--text-muted);margin-top:4px;">0%</div>
     </div>
-    <div style="background:var(--stat-bg);border:2px solid #059669;border-radius:16px;padding:24px;text-align:center;">
+    <div id="unCardIgvSertec" style="background:var(--stat-bg);border:2px solid #f97316;border-radius:16px;padding:24px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:8px;">🔧</div>
+      <div style="font-size:13px;font-weight:700;color:#f97316;margin-bottom:6px;">IGV SERVICIO TÉCNICO</div>
+      <div id="unMontoImpuestoSertec" style="font-size:32px;font-weight:800;color:#f97316;">S/ 0.00</div>
+      <div id="unPorcentajeSertec" style="font-size:12px;color:var(--text-muted);margin-top:4px;">0%</div>
+    </div>
+    <div id="unCardIgvTotal" style="background:var(--stat-bg);border:2px solid #059669;border-radius:16px;padding:24px;text-align:center;">
       <div style="font-size:28px;margin-bottom:8px;">✅</div>
-      <div style="font-size:13px;font-weight:700;color:#059669;margin-bottom:6px;">UTILIDAD NETA</div>
+      <div style="font-size:13px;font-weight:700;color:#059669;margin-bottom:6px;">IGV TOTAL</div>
       <div id="unTotalNeto" style="font-size:32px;font-weight:800;color:#059669;">S/ 0.00</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">después de impuesto</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">IGV ventas + IGV sertec</div>
+    </div>
+  </div>
+
+  <!-- Desglose Ventas vs Servicio Técnico -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;padding:0 32px 28px;">
+    <div style="background:var(--stat-bg);border:2px solid #3b82f6;border-radius:16px;padding:20px;text-align:center;">
+      <div style="font-size:26px;margin-bottom:6px;">🛒</div>
+      <div style="font-size:12px;font-weight:700;color:#3b82f6;margin-bottom:6px;letter-spacing:0.5px;">UTILIDAD NETA VENTAS</div>
+      <div id="unNetoVentas" style="font-size:26px;font-weight:800;color:#3b82f6;">S/ 0.00</div>
+      <div id="unPctVentas" style="font-size:13px;color:var(--text-muted);margin-top:4px;">0%</div>
+    </div>
+    <div id="unCardNetoSertec" style="background:var(--stat-bg);border:2px solid #f59e0b;border-radius:16px;padding:20px;text-align:center;">
+      <div style="font-size:26px;margin-bottom:6px;">🔧</div>
+      <div style="font-size:12px;font-weight:700;color:#f59e0b;margin-bottom:6px;letter-spacing:0.5px;">UTILIDAD NETA SERVICIO TÉCNICO</div>
+      <div id="unNetoSertec" style="font-size:26px;font-weight:800;color:#f59e0b;">S/ 0.00</div>
+      <div id="unPctSertec" style="font-size:13px;color:var(--text-muted);margin-top:4px;">0%</div>
+    </div>
+    <div id="unCardNetoCombinado" style="background:var(--stat-bg);border:2px solid #059669;border-radius:16px;padding:20px;text-align:center;">
+      <div style="font-size:26px;margin-bottom:6px;">✅</div>
+      <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:6px;letter-spacing:0.5px;">TOTAL NETO COMBINADO</div>
+      <div id="unNetoCombinado" style="font-size:26px;font-weight:800;color:#059669;">S/ 0.00</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">ventas + servicios (neto)</div>
     </div>
   </div>
 
   <!-- Modal mes -->
-  <div id="modalCalUN" onclick="cerrarCalUN()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
-    <div onclick="event.stopPropagation()" style="background:var(--modal-bg);border-radius:18px;padding:24px;width:340px;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:1px solid var(--header-border);">
-      <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--text-primary);margin-bottom:16px;">Selecciona un mes:</p>
-      <div id="gridMesesUN" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
-      <button onclick="cerrarCalUN()" style="margin-top:16px;width:100%;padding:10px;background:var(--table-hover);color:var(--text-primary);border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">Cerrar</button>
-    </div>
-  </div>
 </div>
 
 <!-- ═══════════════════════════════════════ DETALLE VENTAS DÍA ══ -->
@@ -1553,13 +1584,17 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Filtros -->
-  <div style="display:flex;align-items:center;gap:12px;padding:20px 32px 0;flex-wrap:wrap;">
+  <div style="display:flex;align-items:center;gap:10px;padding:20px 32px 0;flex-wrap:wrap;">
     <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Período:</span>
-    <select id="selectPeriodoUB" onchange="onPeriodoUBChange()" style="padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:120px;">
-      <option value="total">Total</option>
+    <select id="selectNivelUB" onchange="onNivelUBChange()" style="padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">
+      <option value="total">Todo</option>
+      <option value="anual">Anual</option>
+      <option value="mensual">Mensual</option>
+      <option value="semanal" selected>Semanal</option>
     </select>
-    <button id="btnCalUB" onclick="abrirCalUB()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">📅 Mes</button>
-    <select id="selectMesUB" onchange="renderUtilidadBruta()" style="display:none;padding:8px 16px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:140px;"></select>
+    <select id="selectAnioUB" onchange="onAnioUBChange()" style="display:none;padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);"></select>
+    <select id="selectMesUB" onchange="onMesUBChange()" style="display:none;padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:120px;"></select>
+    <select id="selectSemanaUB" onchange="renderUtilidadBruta()" style="display:none;padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);min-width:200px;"></select>
   </div>
 
   <!-- Contadores -->
@@ -1591,14 +1626,28 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 
   </div>
 
-  <!-- Mini calendario modal para mes -->
-  <div id="modalCalUB" onclick="cerrarCalUB()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
-    <div onclick="event.stopPropagation()" style="background:var(--modal-bg);border-radius:18px;padding:24px;width:340px;box-shadow:0 20px 60px rgba(0,0,0,0.3);border:1px solid var(--header-border);">
-      <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:16px;color:var(--text-primary);margin-bottom:16px;">Selecciona un mes:</p>
-      <div id="gridMesesUB" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
-      <button onclick="cerrarCalUB()" style="margin-top:16px;width:100%;padding:10px;background:var(--table-hover);color:var(--text-primary);border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer;">Cerrar</button>
+  <!-- Desglose Ventas vs Servicio Técnico -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;padding:0 32px 28px;" id="desgloseUB">
+    <div style="background:var(--stat-bg);border:2px solid #3b82f6;border-radius:16px;padding:20px;text-align:center;">
+      <div style="font-size:26px;margin-bottom:6px;">🛒</div>
+      <div style="font-size:12px;font-weight:700;color:#3b82f6;margin-bottom:6px;letter-spacing:0.5px;">VENTAS</div>
+      <div id="ubTotalVentas" style="font-size:26px;font-weight:800;color:#3b82f6;">S/ 0.00</div>
+      <div id="ubPctVentas" style="font-size:13px;color:var(--text-muted);margin-top:4px;">0%</div>
+    </div>
+    <div id="ubCardSertec" style="background:var(--stat-bg);border:2px solid #f59e0b;border-radius:16px;padding:20px;text-align:center;">
+      <div style="font-size:26px;margin-bottom:6px;">🔧</div>
+      <div style="font-size:12px;font-weight:700;color:#f59e0b;margin-bottom:6px;letter-spacing:0.5px;">UTILIDAD NETA SERVICIO TÉCNICO</div>
+      <div id="ubTotalSertec" style="font-size:26px;font-weight:800;color:#f59e0b;">S/ 0.00</div>
+      <div id="ubPctSertec" style="font-size:13px;color:var(--text-muted);margin-top:4px;">0%</div>
+    </div>
+    <div id="ubCardCombinado" style="background:var(--stat-bg);border:2px solid #059669;border-radius:16px;padding:20px;text-align:center;">
+      <div style="font-size:26px;margin-bottom:6px;">💰</div>
+      <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:6px;letter-spacing:0.5px;">TOTAL COMBINADO</div>
+      <div id="ubTotalCombinado" style="font-size:26px;font-weight:800;color:#059669;">S/ 0.00</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">ventas + servicios</div>
     </div>
   </div>
+
 </div>
 
 <!-- ═══════════════════════════════════════ DETALLE COMPRAS DÍA ══ -->
@@ -3979,6 +4028,25 @@ function aplicarSertec() {
   if (btn) btn.style.display = activo ? 'block' : 'none';
   if (lbl) lbl.textContent = nombre;
   if (titulo) titulo.textContent = nombre;
+  // Mostrar/ocultar recuadros de sertec en estadísticas
+  actualizarVisibilidadSertecStats(activo);
+}
+
+function actualizarVisibilidadSertecStats(activo) {
+  const ids = [
+    'unCardSertecBruto','unCardIgvSertec','unCardIgvTotal',
+    'unCardNetoSertec','unCardNetoCombinado',
+    'ubCardSertec','ubCardCombinado'
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = activo ? '' : 'none';
+  });
+  // Ajustar grid de fila 1 de Utilidad Neta (4 cols → 3 si sertec oculto)
+  const fila1UN = document.querySelector('#page-utilidad-neta .grid-fila1-un');
+  // Ajustar título IGV TOTAL cuando sertec está oculto
+  const igvTotalLabel = document.querySelector('#unCardIgvTotal .igv-total-label');
+  // No es necesario cambiar el label, el recuadro simplemente desaparece
 }
 
 function cargarConfigSertec() {
@@ -4141,193 +4209,281 @@ function getTax() {
   return { nombre: t.nombre || 'Impuesto', porcentaje: parseFloat(t.porcentaje || 0) };
 }
 
-function initUtilidadNeta() {
+// ═══════════════════════════ HELPERS PERIODO ═══════════════════
+function aniosDisponibles() {
   const anios = new Set();
-  db.ventas.forEach(v => {
-    if (!v.fecha) return;
-    const p = v.fecha.split('/');
-    if (p.length === 3) anios.add(p[2]);
-  });
-  const sortedAnios = [...anios].sort().reverse();
   const anioActual = String(new Date().getFullYear());
-  const sel = document.getElementById('selectPeriodoUN');
-  sel.innerHTML = '<option value="total">Total</option>' +
-    sortedAnios.map(a => `<option value="${a}" ${a===anioActual?'selected':''}>${a}</option>`).join('');
-  const hayAnio = sortedAnios.includes(anioActual);
-  document.getElementById('btnCalUN').style.display = hayAnio ? 'inline-block' : 'none';
-  document.getElementById('selectMesUN').style.display = 'none';
-  renderUtilidadNeta();
+  anios.add(anioActual);
+  db.ventas.forEach(v => { const p=(v.fecha||'').split('/'); if(p.length===3) anios.add(p[2]); });
+  return [...anios].sort().reverse();
 }
 
-function onPeriodoUNChange() {
-  const val = document.getElementById('selectPeriodoUN').value;
-  document.getElementById('btnCalUN').style.display = val !== 'total' ? 'inline-block' : 'none';
-  document.getElementById('selectMesUN').style.display = 'none';
-  renderUtilidadNeta();
-}
+const MESES_NOMBRES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
-function abrirCalUN() {
-  const anio = document.getElementById('selectPeriodoUN').value;
-  const mesesNombres = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const mesesConVentas = new Set();
+function mesesDeAnio(anio) {
+  const meses = new Set();
+  const mesActual = new Date().getMonth(); // 0-based
+  if (String(new Date().getFullYear()) === anio) meses.add(mesActual);
   db.ventas.forEach(v => {
-    if (!v.fecha) return;
-    const p = v.fecha.split('/');
-    if (p.length === 3 && p[2] === anio) mesesConVentas.add(parseInt(p[1]));
+    const p=(v.fecha||'').split('/');
+    if(p.length===3 && p[2]===anio) meses.add(parseInt(p[1])-1);
   });
-  document.getElementById('gridMesesUN').innerHTML = mesesNombres.map((m, i) => {
-    const mm = i + 1;
-    const tiene = mesesConVentas.has(mm);
-    const mmStr = String(mm).padStart(2,'0');
-    return tiene
-      ? `<button onclick="seleccionarMesUN('${mmStr}','${anio}')" style="padding:10px;border-radius:10px;background:var(--card-bg);color:var(--text-primary);border:2px solid var(--header-border);font-family:'Nunito',sans-serif;font-weight:800;cursor:pointer;">${m}</button>`
-      : `<button disabled style="padding:10px;border-radius:10px;background:var(--total-cell-bg);color:var(--text-muted);border:1px solid var(--table-border);font-family:'Nunito',sans-serif;font-weight:600;cursor:default;">${m}</button>`;
-  }).join('');
-  document.getElementById('modalCalUN').style.display = 'flex';
+  return [...meses].sort((a,b)=>a-b);
 }
-function cerrarCalUN() { document.getElementById('modalCalUN').style.display = 'none'; }
-function seleccionarMesUN(mm, yyyy) {
-  cerrarCalUN();
-  const mesesNombres = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const sel = document.getElementById('selectMesUN');
-  sel.innerHTML = `<option value="${mm}/${yyyy}">${mesesNombres[parseInt(mm)]} ${yyyy}</option>`;
-  sel.style.display = 'inline-block';
+
+function semanasDeAnioMes(anio, mes) { // mes 0-based
+  const semanas = [];
+  const primero = new Date(parseInt(anio), mes, 1);
+  const ultimo = new Date(parseInt(anio), mes+1, 0);
+  // ir al lunes de la semana del primer día
+  const d = new Date(primero);
+  d.setDate(d.getDate() - (d.getDay()+6)%7);
+  while (d <= ultimo) {
+    const lunes = new Date(d);
+    const domingo = new Date(d); domingo.setDate(d.getDate()+6);
+    // solo incluir si la semana toca el mes
+    if (lunes <= ultimo && domingo >= primero) {
+      semanas.push({ lunes: new Date(Math.max(lunes, primero)), domingo: new Date(Math.min(domingo, ultimo)), lunesReal: new Date(lunes), domingoReal: new Date(domingo) });
+    }
+    d.setDate(d.getDate()+7);
+  }
+  return semanas;
+}
+
+function fmtD(d) { return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`; }
+
+function filtrarVentasPorRango(lunes, domingo) {
+  return (db.ventas||[]).filter(v => fechaEnRango(v.fecha, lunes, domingo));
+}
+
+function filtrarVentasPorAnio(anio) {
+  return (db.ventas||[]).filter(v => { const p=(v.fecha||'').split('/'); return p.length===3 && p[2]===anio; });
+}
+
+function filtrarVentasPorMes(anio, mes) { // mes 0-based
+  const mm = String(mes+1).padStart(2,'0');
+  return (db.ventas||[]).filter(v => { const p=(v.fecha||'').split('/'); return p.length===3 && p[2]===anio && p[1]===mm; });
+}
+
+// ── Inicializar select de año ──
+function initAnioSelect(id, anios, onChange) {
+  const sel = document.getElementById(id);
+  const anioActual = String(new Date().getFullYear());
+  sel.innerHTML = anios.map(a => `<option value="${a}" ${a===anioActual?'selected':''}>${a}</option>`).join('');
+  sel.onchange = onChange;
+}
+
+// ── Inicializar select de mes ──
+function initMesSelect(id, anio, onChange) {
+  const sel = document.getElementById(id);
+  const mesActual = new Date().getMonth();
+  const meses = mesesDeAnio(anio);
+  sel.innerHTML = meses.map(m => `<option value="${m}" ${m===mesActual?'selected':''}>${MESES_NOMBRES[m]}</option>`).join('');
+  sel.onchange = onChange;
+}
+
+// ── Inicializar select de semana ──
+function initSemanaSelect(id, anio, mes, onChange) {
+  const sel = document.getElementById(id);
+  const semanas = semanasDeAnioMes(anio, mes);
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  sel.innerHTML = semanas.map((s,i) => {
+    const label = `Sem ${i+1}: ${fmtD(s.lunesReal)} – ${fmtD(s.domingoReal)}`;
+    const esActual = hoy >= s.lunesReal && hoy <= s.domingoReal;
+    return `<option value="${s.lunesReal.toISOString()}|${s.domingoReal.toISOString()}" ${esActual?'selected':''}>${label}</option>`;
+  }).join('');
+  sel.onchange = onChange;
+}
+
+function show(...ids) { ids.forEach(id => { const el=document.getElementById(id); if(el) el.style.display='inline-block'; }); }
+function hide(...ids) { ids.forEach(id => { const el=document.getElementById(id); if(el) el.style.display='none'; }); }
+
+// ═══════════════════════════ UTILIDAD NETA — FILTROS ═══════════
+function initUtilidadNeta() {
+  actualizarVisibilidadSertecStats(getSertec().situacion === '1');
+  const anios = aniosDisponibles();
+  initAnioSelect('selectAnioUN', anios, onAnioUNChange);
+  onNivelUNChange();
+}
+
+function onNivelUNChange() {
+  const nivel = document.getElementById('selectNivelUN').value;
+  hide('selectAnioUN','selectMesUN','selectSemanaUN');
+  const anios = aniosDisponibles();
+  const anioActual = String(new Date().getFullYear());
+  if (nivel === 'anual') {
+    initAnioSelect('selectAnioUN', anios, onAnioUNChange);
+    show('selectAnioUN');
+  } else if (nivel === 'mensual') {
+    initAnioSelect('selectAnioUN', anios, onAnioUNChange);
+    initMesSelect('selectMesUN', anioActual, () => renderUtilidadNeta());
+    show('selectAnioUN','selectMesUN');
+  } else if (nivel === 'semanal') {
+    initAnioSelect('selectAnioUN', anios, onAnioUNChange);
+    const mesActual = new Date().getMonth();
+    initMesSelect('selectMesUN', anioActual, onMesUNChange);
+    initSemanaSelect('selectSemanaUN', anioActual, mesActual, () => renderUtilidadNeta());
+    show('selectAnioUN','selectMesUN','selectSemanaUN');
+  }
   renderUtilidadNeta();
+}
+
+function onAnioUNChange() {
+  const nivel = document.getElementById('selectNivelUN').value;
+  const anio = document.getElementById('selectAnioUN').value;
+  if (nivel === 'mensual') {
+    initMesSelect('selectMesUN', anio, () => renderUtilidadNeta());
+    show('selectMesUN'); hide('selectSemanaUN');
+  } else if (nivel === 'semanal') {
+    initMesSelect('selectMesUN', anio, onMesUNChange);
+    const mes = parseInt(document.getElementById('selectMesUN').value||0);
+    initSemanaSelect('selectSemanaUN', anio, mes, () => renderUtilidadNeta());
+    show('selectMesUN','selectSemanaUN');
+  }
+  renderUtilidadNeta();
+}
+
+function onMesUNChange() {
+  const nivel = document.getElementById('selectNivelUN').value;
+  if (nivel !== 'semanal') { renderUtilidadNeta(); return; }
+  const anio = document.getElementById('selectAnioUN').value;
+  const mes = parseInt(document.getElementById('selectMesUN').value);
+  initSemanaSelect('selectSemanaUN', anio, mes, () => renderUtilidadNeta());
+  show('selectSemanaUN');
+  renderUtilidadNeta();
+}
+
+function getVentasFiltradas_UN() {
+  const nivel = document.getElementById('selectNivelUN').value;
+  if (nivel === 'total') return db.ventas || [];
+  const anio = document.getElementById('selectAnioUN').value;
+  if (nivel === 'anual') return filtrarVentasPorAnio(anio);
+  const mes = parseInt(document.getElementById('selectMesUN').value);
+  if (nivel === 'mensual') return filtrarVentasPorMes(anio, mes);
+  // semanal
+  const val = document.getElementById('selectSemanaUN').value;
+  if (!val) return filtrarVentasPorMes(anio, mes);
+  const [lISO, dISO] = val.split('|');
+  return filtrarVentasPorRango(new Date(lISO), new Date(dISO));
 }
 
 function renderUtilidadNeta() {
-  const periodo  = document.getElementById('selectPeriodoUN').value;
-  const mesVal   = document.getElementById('selectMesUN').value;
-  const mesVisible = document.getElementById('selectMesUN').style.display !== 'none' && mesVal;
-
-  let ventas = db.ventas;
-  if (mesVisible) {
-    const [mm, yyyy] = mesVal.split('/');
-    ventas = ventas.filter(v => { const p=(v.fecha||'').split('/'); return p.length===3 && p[1]===mm && p[2]===yyyy; });
-  } else if (periodo !== 'total') {
-    ventas = ventas.filter(v => { const p=(v.fecha||'').split('/'); return p.length===3 && p[2]===periodo; });
-  }
-
-  const items    = ventas.length;
-  const productos = new Set(ventas.map(v => v.codigo).filter(Boolean)).size;
-  const totalBruto = ventas.reduce((s,v) => s + parseFloat(v.total||0), 0);
-
+  const ventas = getVentasFiltradas_UN();
+  const items = ventas.length;
+  const productos = new Set(ventas.map(v=>v.codigo).filter(Boolean)).size;
+  const totalBruto = ventas.reduce((s,v)=>s+parseFloat(v.total||0),0);
   const tax = getTax();
   const pct = tax ? tax.porcentaje : 0;
-  const montoImpuesto = totalBruto * (pct / 100);
+  const montoImpuesto = totalBruto*(pct/100);
   const totalNeto = totalBruto - montoImpuesto;
-
-  // Badge impuesto
-  const badge = document.getElementById('badgeImpuesto');
-  badge.textContent = tax ? `${tax.nombre}: ${pct}%` : '⚠️ Sin impuesto configurado en txs.csv';
-
-  // Actualizar cards
+  const totalSertecBruto = (db.sertecfin||[]).reduce((s,r)=>s+parseFloat(r.utinet||0),0);
+  const totalSertecNeto = totalSertecBruto*(1-pct/100);
+  const montoImpuestoSertec = totalSertecBruto - totalSertecNeto;
+  const totalNetoCombinado = totalNeto + totalSertecNeto;
+  const pctVN = totalNetoCombinado>0?(totalNeto/totalNetoCombinado*100).toFixed(1):'0.0';
+  const pctSN = totalNetoCombinado>0?(totalSertecNeto/totalNetoCombinado*100).toFixed(1):'0.0';
+  document.getElementById('badgeImpuesto').textContent = tax ? `${tax.nombre}: ${pct}%` : '⚠️ Sin impuesto';
   animarContador('unItems', items, false);
   animarContador('unProductos', productos, false);
-  document.getElementById('unTotalBruto').textContent = 'S/ ' + totalBruto.toFixed(2);
-  document.getElementById('unNombreImpuesto').textContent = tax ? tax.nombre.toUpperCase() : 'IMPUESTO';
-  document.getElementById('unPorcentaje').textContent = pct + '%';
-  document.getElementById('unMontoImpuesto').textContent = 'S/ ' + montoImpuesto.toFixed(2);
-  document.getElementById('unTotalNeto').textContent = 'S/ ' + totalNeto.toFixed(2);
+  document.getElementById('unTotalBruto').textContent = 'S/ '+totalBruto.toFixed(2);
+  document.getElementById('unTotalSertecBruto').textContent = 'S/ '+totalSertecBruto.toFixed(2);
+  document.getElementById('unNombreImpuesto').textContent = tax?`${tax.nombre} VENTAS`:'IGV VENTAS';
+  document.getElementById('unPorcentaje').textContent = pct+'%';
+  document.getElementById('unMontoImpuesto').textContent = 'S/ '+montoImpuesto.toFixed(2);
+  document.getElementById('unMontoImpuestoSertec').textContent = 'S/ '+montoImpuestoSertec.toFixed(2);
+  document.getElementById('unPorcentajeSertec').textContent = pct+'%';
+  document.getElementById('unTotalNeto').textContent = 'S/ '+(montoImpuesto+montoImpuestoSertec).toFixed(2);
+  document.getElementById('unNetoVentas').textContent = 'S/ '+totalNeto.toFixed(2);
+  document.getElementById('unPctVentas').textContent = pctVN+'% del total';
+  document.getElementById('unNetoSertec').textContent = 'S/ '+totalSertecNeto.toFixed(2);
+  document.getElementById('unPctSertec').textContent = pctSN+'% del total';
+  document.getElementById('unNetoCombinado').textContent = 'S/ '+totalNetoCombinado.toFixed(2);
 }
 
-// ═══════════════════════════ UTILIDAD BRUTA ════════════════════
+// ═══════════════════════════ UTILIDAD BRUTA — FILTROS ══════════
 function initUtilidadBruta() {
-  const anios = new Set();
-  db.ventas.forEach(v => {
-    if (!v.fecha) return;
-    const p = v.fecha.split('/');
-    if (p.length === 3) anios.add(p[2]);
-  });
-  const sortedAnios = [...anios].sort().reverse();
+  actualizarVisibilidadSertecStats(getSertec().situacion === '1');
+  const anios = aniosDisponibles();
+  initAnioSelect('selectAnioUB', anios, onAnioUBChange);
+  onNivelUBChange();
+}
+
+function onNivelUBChange() {
+  const nivel = document.getElementById('selectNivelUB').value;
+  hide('selectAnioUB','selectMesUB','selectSemanaUB');
+  const anios = aniosDisponibles();
   const anioActual = String(new Date().getFullYear());
-  const sel = document.getElementById('selectPeriodoUB');
-  // Preserve current selection if possible
-  const current = sel.value;
-  sel.innerHTML = '<option value="total">Total</option>' +
-    sortedAnios.map(a => `<option value="${a}">${a}</option>`).join('');
-  // Restore selection or default to current year
-  if (current && [...sel.options].some(o => o.value === current)) {
-    sel.value = current;
-  } else if (sortedAnios.includes(anioActual)) {
-    sel.value = anioActual;
+  if (nivel === 'anual') {
+    initAnioSelect('selectAnioUB', anios, onAnioUBChange);
+    show('selectAnioUB');
+  } else if (nivel === 'mensual') {
+    initAnioSelect('selectAnioUB', anios, onAnioUBChange);
+    initMesSelect('selectMesUB', anioActual, () => renderUtilidadBruta());
+    show('selectAnioUB','selectMesUB');
+  } else if (nivel === 'semanal') {
+    initAnioSelect('selectAnioUB', anios, onAnioUBChange);
+    const mesActual = new Date().getMonth();
+    initMesSelect('selectMesUB', anioActual, onMesUBChange);
+    initSemanaSelect('selectSemanaUB', anioActual, mesActual, () => renderUtilidadBruta());
+    show('selectAnioUB','selectMesUB','selectSemanaUB');
   }
-  const hayAnio = sel.value !== 'total';
-  document.getElementById('btnCalUB').style.display = hayAnio ? 'inline-block' : 'none';
-  document.getElementById('selectMesUB').style.display = 'none';
   renderUtilidadBruta();
 }
 
-function onPeriodoUBChange() {
-  const val = document.getElementById('selectPeriodoUB').value;
-  const esAnio = val !== 'total';
-  document.getElementById('btnCalUB').style.display = esAnio ? 'inline-block' : 'none';
-  document.getElementById('selectMesUB').style.display = 'none';
+function onAnioUBChange() {
+  const nivel = document.getElementById('selectNivelUB').value;
+  const anio = document.getElementById('selectAnioUB').value;
+  if (nivel === 'mensual') {
+    initMesSelect('selectMesUB', anio, () => renderUtilidadBruta());
+    show('selectMesUB'); hide('selectSemanaUB');
+  } else if (nivel === 'semanal') {
+    initMesSelect('selectMesUB', anio, onMesUBChange);
+    const mes = parseInt(document.getElementById('selectMesUB').value||0);
+    initSemanaSelect('selectSemanaUB', anio, mes, () => renderUtilidadBruta());
+    show('selectMesUB','selectSemanaUB');
+  }
   renderUtilidadBruta();
 }
 
-function abrirCalUB() {
-  const anio = document.getElementById('selectPeriodoUB').value;
-  // Buscar qué meses tienen ventas en ese año
-  const mesesNombres = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const mesesConVentas = new Set();
-  db.ventas.forEach(v => {
-    if (!v.fecha) return;
-    const p = v.fecha.split('/');
-    if (p.length === 3 && p[2] === anio) mesesConVentas.add(parseInt(p[1]));
-  });
-  const grid = document.getElementById('gridMesesUB');
-  grid.innerHTML = mesesNombres.map((m, i) => {
-    const mm = i + 1;
-    const tiene = mesesConVentas.has(mm);
-    const mmStr = String(mm).padStart(2,'0');
-    return tiene
-      ? `<button onclick="seleccionarMesUB('${mmStr}','${anio}')" style="padding:10px;border-radius:10px;background:var(--card-bg);color:var(--text-primary);border:2px solid var(--header-border);font-family:'Nunito',sans-serif;font-weight:800;cursor:pointer;">${m}</button>`
-      : `<button disabled style="padding:10px;border-radius:10px;background:var(--total-cell-bg);color:var(--text-muted);border:1px solid var(--table-border);font-family:'Nunito',sans-serif;font-weight:600;cursor:default;">${m}</button>`;
-  }).join('');
-  document.getElementById('modalCalUB').style.display = 'flex';
-}
-
-function cerrarCalUB() {
-  document.getElementById('modalCalUB').style.display = 'none';
-}
-
-function seleccionarMesUB(mm, yyyy) {
-  cerrarCalUB();
-  const mesesNombres = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-  const sel = document.getElementById('selectMesUB');
-  sel.innerHTML = `<option value="${mm}/${yyyy}">${mesesNombres[parseInt(mm)]} ${yyyy}</option>`;
-  sel.style.display = 'inline-block';
+function onMesUBChange() {
+  const nivel = document.getElementById('selectNivelUB').value;
+  if (nivel !== 'semanal') { renderUtilidadBruta(); return; }
+  const anio = document.getElementById('selectAnioUB').value;
+  const mes = parseInt(document.getElementById('selectMesUB').value);
+  initSemanaSelect('selectSemanaUB', anio, mes, () => renderUtilidadBruta());
+  show('selectSemanaUB');
   renderUtilidadBruta();
+}
+
+function getVentasFiltradas_UB() {
+  const nivel = document.getElementById('selectNivelUB').value;
+  if (nivel === 'total') return db.ventas || [];
+  const anio = document.getElementById('selectAnioUB').value;
+  if (nivel === 'anual') return filtrarVentasPorAnio(anio);
+  const mes = parseInt(document.getElementById('selectMesUB').value);
+  if (nivel === 'mensual') return filtrarVentasPorMes(anio, mes);
+  const val = document.getElementById('selectSemanaUB').value;
+  if (!val) return filtrarVentasPorMes(anio, mes);
+  const [lISO, dISO] = val.split('|');
+  return filtrarVentasPorRango(new Date(lISO), new Date(dISO));
 }
 
 function renderUtilidadBruta() {
-  const selP = document.getElementById('selectPeriodoUB');
-  const selM = document.getElementById('selectMesUB');
+  const selP = document.getElementById('selectNivelUB');
   if (!selP) return;
-  const periodo = selP.value;
-  const mesVal  = selM ? selM.value : '';
-  const mesVisible = selM && selM.style.display !== 'none' && mesVal;
-
-  let ventas = db.ventas || [];
-
-  if (mesVisible) {
-    const [mm, yyyy] = mesVal.split('/');
-    ventas = ventas.filter(v => {
-      const p = (v.fecha||'').split('/');
-      return p.length === 3 && p[1] === mm && p[2] === yyyy;
-    });
-  } else if (periodo !== 'total') {
-    ventas = ventas.filter(v => {
-      const p = (v.fecha||'').split('/');
-      return p.length === 3 && p[2] === periodo;
-    });
-  }
-
-  const items    = ventas.length;
-  const productos = new Set(ventas.map(v => v.codigo).filter(Boolean)).size;
-  const total    = ventas.reduce((s, v) => s + parseFloat(v.total||0), 0);
-
+  const ventas = getVentasFiltradas_UB();
+  const items = ventas.length;
+  const productos = new Set(ventas.map(v=>v.codigo).filter(Boolean)).size;
+  const total = ventas.reduce((s,v)=>s+parseFloat(v.total||0),0);
+  const totalSertec = (db.sertecfin||[]).reduce((s,r)=>s+parseFloat(r.utinet||0),0);
+  const totalCombinado = total+totalSertec;
+  const pctV = totalCombinado>0?(total/totalCombinado*100).toFixed(1):'0.0';
+  const pctS = totalCombinado>0?(totalSertec/totalCombinado*100).toFixed(1):'0.0';
+  document.getElementById('ubTotalVentas').textContent = 'S/ '+total.toFixed(2);
+  document.getElementById('ubPctVentas').textContent = pctV+'% del total';
+  document.getElementById('ubTotalSertec').textContent = 'S/ '+totalSertec.toFixed(2);
+  document.getElementById('ubPctSertec').textContent = pctS+'% del total';
+  document.getElementById('ubTotalCombinado').textContent = 'S/ '+totalCombinado.toFixed(2);
   animarContador('ubItems', items, false);
   animarContador('ubProductos', productos, false);
   animarContadorMonto('ubTotal', total);
