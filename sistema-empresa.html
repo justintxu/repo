@@ -548,11 +548,11 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
   <div class="menu-grid">
     <button class="menu-card" onclick="irA('page-inventario')"><div class="card-icon">🔍</div>Inventario</button>
-    <button class="menu-card" onclick="irA('page-ventas')"><div class="card-icon">🛒</div>Ventas</button>
-    <button class="menu-card" id="btnMenuServicios" onclick="irA('page-servicios')" style="display:none;"><div class="card-icon">🔧</div><span id="lblMenuServicios">Servicios</span></button>
-    <button class="menu-card" onclick="pedirClaveCompras()" id="btnMenuCompras"><div class="card-icon">📥</div>Compras</button>
-    <button class="menu-card" onclick="pedirClaveAlmacen()"><div class="card-icon">📦</div>Almacén</button>
-    <button class="menu-card" onclick="pedirClaveEstadist()" id="btnMenuEstad"><div class="card-icon">📊</div>Estadísticas</button>
+    <button class="menu-card" onclick="navegarConProt('page-ventas','Ventas','protVentas')"><div class="card-icon">🛒</div>Ventas</button>
+    <button class="menu-card" id="btnMenuServicios" onclick="navegarConProt('page-servicios','Servicios','protServicios')" style="display:none;"><div class="card-icon">🔧</div><span id="lblMenuServicios">Servicios</span></button>
+    <button class="menu-card" id="btnMenuCompras" onclick="navegarConProt('page-compras','Compras','protCompras')"><div class="card-icon">📥</div>Compras</button>
+    <button class="menu-card" onclick="navegarConProt('page-almacen','Almacén','protAlmacen')"><div class="card-icon">📦</div>Almacén</button>
+    <button class="menu-card" onclick="navegarConProt('page-estadisticas','Estadísticas','protEstadist')" id="btnMenuEstad"><div class="card-icon">📊</div>Estadísticas</button>
   </div>
 </div>
 
@@ -711,7 +711,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <button class="btn btn-edit" onclick="editarAlmacen()">✏️ Editar</button>
     <button class="btn btn-save" onclick="guardarAlmacen()">💾 Guardar</button>
     <button class="btn" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
-    <button class="btn" style="background:#374151;color:white;" onclick="irA('page-configuraciones')">⚙️ Configuraciones</button>
+    <button class="btn" style="background:#374151;color:white;" onclick="navegarConProt('page-configuraciones','Configuraciones','protConfig')">⚙️ Configuraciones</button>
   </div>
 </div>
 
@@ -987,6 +987,56 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         <div id="cfgClaveError" style="color:#ef4444;font-size:13px;font-weight:700;display:none;"></div>
         <button class="btn" style="background:#6d28d9;color:white;align-self:flex-start;" onclick="guardarClaveDesdeConfig()">💾 Guardar Nueva Clave</button>
         <div id="cfgClaveStatus" style="font-size:13px;font-weight:600;color:#6b7280;"></div>
+      </div>
+    </div>
+
+    <!-- Protección por Contraseña -->
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">🔒 Protección por Contraseña</h2>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Selecciona qué secciones del menú requieren contraseña para acceder.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:420px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
+          <span style="font-size:14px;font-weight:700;color:#1f2937;">📦 Almacén</span>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="protAlmacen" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
+            <span id="labelProtAlmacen" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+          </label>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
+          <span style="font-size:14px;font-weight:700;color:#1f2937;">📥 Compras</span>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="protCompras" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
+            <span id="labelProtCompras" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+          </label>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
+          <span style="font-size:14px;font-weight:700;color:#1f2937;">💰 Ventas</span>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="protVentas" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
+            <span id="labelProtVentas" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+          </label>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
+          <span style="font-size:14px;font-weight:700;color:#1f2937;">📊 Estadísticas</span>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="protEstadist" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
+            <span id="labelProtEstadist" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+          </label>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
+          <span style="font-size:14px;font-weight:700;color:#1f2937;">🔧 Servicios</span>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="protServicios" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
+            <span id="labelProtServicios" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+          </label>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
+          <span style="font-size:14px;font-weight:700;color:#1f2937;">⚙️ Configuraciones</span>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" id="protConfig" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
+            <span id="labelProtConfig" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -2412,6 +2462,52 @@ function pedirClaveAlmacen() { abrirModalClave('page-almacen', 'Almacén'); }
 function pedirClaveCompras()  { abrirModalClave('page-compras',  'Compras'); }
 function pedirClaveEstadist() { abrirModalClave('page-estadisticas', 'Estadísticas'); }
 
+// ═══════════════════════════ PROTECCIÓN CONFIGURABLE ═══════════
+const PROT_KEYS = ['protAlmacen','protCompras','protVentas','protEstadist','protServicios','protConfig'];
+
+function getProteccion() {
+  try { return JSON.parse(localStorage.getItem('proteccionMenu') || '{}'); } catch(e) { return {}; }
+}
+
+function guardarProteccion() {
+  const cfg = {};
+  PROT_KEYS.forEach(k => {
+    const el = document.getElementById(k);
+    if (el) {
+      cfg[k] = el.checked;
+      const lbl = document.getElementById('label' + k.charAt(0).toUpperCase() + k.slice(1));
+      if (lbl) lbl.textContent = el.checked ? 'ON' : 'OFF';
+    }
+  });
+  localStorage.setItem('proteccionMenu', JSON.stringify(cfg));
+  toast('🔒 Protección actualizada');
+}
+
+function cargarProteccion() {
+  const cfg = getProteccion();
+  PROT_KEYS.forEach(k => {
+    const el = document.getElementById(k);
+    if (el) {
+      // Por defecto: Almacén, Compras y Estadísticas protegidos (comportamiento original)
+      const defaultVal = (k === 'protAlmacen' || k === 'protCompras' || k === 'protEstadist');
+      el.checked = cfg[k] !== undefined ? cfg[k] : defaultVal;
+      const lbl = document.getElementById('label' + k.charAt(0).toUpperCase() + k.slice(1));
+      if (lbl) lbl.textContent = el.checked ? 'ON' : 'OFF';
+    }
+  });
+}
+
+function navegarConProt(page, nombre, protKey) {
+  const cfg = getProteccion();
+  const defaultProt = (protKey === 'protAlmacen' || protKey === 'protCompras' || protKey === 'protEstadist');
+  const protegido = cfg[protKey] !== undefined ? cfg[protKey] : defaultProt;
+  if (protegido) {
+    abrirModalClave(page, nombre);
+  } else {
+    irA(page);
+  }
+}
+
 function abrirModalClave(destino, nombre) {
   destinoClave = destino;
   document.getElementById('modalClaveTitle').textContent = '🔒 Acceso Restringido';
@@ -2629,7 +2725,7 @@ function irA(pageId) {
   if (pageId === 'page-sertec-detalle') initSertecDetalle();
   if (pageId === 'page-utilidad-bruta') initUtilidadBruta();
   if (pageId === 'page-utilidad-neta') initUtilidadNeta();
-  if (pageId === 'page-configuraciones') cargarConfigGitHub();
+  if (pageId === 'page-configuraciones') { cargarConfigGitHub(); cargarProteccion(); }
 }
 
 // ═══════════════════════════ BRANDING ══════════════════════════
