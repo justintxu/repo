@@ -3332,9 +3332,10 @@ function cargarConfigFactonoff() {
     const togB = document.getElementById(`toggleBtn${n}`);
     if (togB) { togB.checked = bActivo; document.getElementById(`labelBtn${n}`).textContent = bActivo ? 'ON' : 'OFF'; }
     const ni = document.getElementById(`cfgBt${n}n`); if (ni) ni.value = f[`bt${n}n`] || '';
-    const ii = document.getElementById(`cfgBt${n}i`); if (ii) ii.value = (n === 1 ? f['bti'] : f[`bt${n}i`]) || '';
     const li = document.getElementById(`cfgBt${n}l`); if (li) li.value = f[`bt${n}l`] || '';
-    const imgI = document.getElementById(`cfgBt${n}img`); if (imgI) imgI.value = f[`bt${n}img`] || '';
+    // Ícono: botón 1 → 'bti', botones 2-6 → 'bt2i'...'bt6i'
+    const icoKey = n === 1 ? 'bti' : `bt${n}i`;
+    const imgI = document.getElementById(`cfgBt${n}img`); if (imgI) imgI.value = f[icoKey] || '';
   }
 }
 
@@ -3352,21 +3353,21 @@ async function guardarFactonoff() {
   const situacion = document.getElementById('toggleFacturacion').checked ? '1' : '0';
   const data = { situacion };
   for (let n = 1; n <= 6; n++) {
-    data[`bt${n}s`]   = document.getElementById(`toggleBtn${n}`).checked ? '1' : '0';
-    data[`bt${n}n`]   = document.getElementById(`cfgBt${n}n`).value.trim();
-    data[`bt${n}l`]   = document.getElementById(`cfgBt${n}l`).value.trim();
-    data[`bt${n}img`] = document.getElementById(`cfgBt${n}img`) ? document.getElementById(`cfgBt${n}img`).value.trim() : '';
+    data[`bt${n}s`] = document.getElementById(`toggleBtn${n}`).checked ? '1' : '0';
+    data[`bt${n}n`] = document.getElementById(`cfgBt${n}n`).value.trim();
+    data[`bt${n}l`] = document.getElementById(`cfgBt${n}l`).value.trim();
+    // Ícono: botón 1 → 'bti', botones 2-6 → 'bt2i'...'bt6i'
     const icoKey = n === 1 ? 'bti' : `bt${n}i`;
-    data[icoKey] = document.getElementById(`cfgBt${n}i`).value.trim();
+    data[icoKey] = document.getElementById(`cfgBt${n}img`) ? document.getElementById(`cfgBt${n}img`).value.trim() : '';
   }
   const ordered = {
     situacion: data.situacion,
-    bt1s: data.bt1s, bt1n: data.bt1n, bt1l: data.bt1l, bti: data.bti, bt1img: data.bt1img,
-    bt2s: data.bt2s, bt2n: data.bt2n, bt2l: data.bt2l, bt2i: data.bt2i, bt2img: data.bt2img,
-    bt3s: data.bt3s, bt3n: data.bt3n, bt3l: data.bt3l, bt3i: data.bt3i, bt3img: data.bt3img,
-    bt4s: data.bt4s, bt4n: data.bt4n, bt4l: data.bt4l, bt4i: data.bt4i, bt4img: data.bt4img,
-    bt5s: data.bt5s, bt5n: data.bt5n, bt5l: data.bt5l, bt5i: data.bt5i, bt5img: data.bt5img,
-    bt6s: data.bt6s, bt6n: data.bt6n, bt6l: data.bt6l, bt6i: data.bt6i, bt6img: data.bt6img,
+    bt1s: data.bt1s, bt1n: data.bt1n, bt1l: data.bt1l, bti: data.bti,
+    bt2s: data.bt2s, bt2n: data.bt2n, bt2l: data.bt2l, bt2i: data.bt2i,
+    bt3s: data.bt3s, bt3n: data.bt3n, bt3l: data.bt3l, bt3i: data.bt3i,
+    bt4s: data.bt4s, bt4n: data.bt4n, bt4l: data.bt4l, bt4i: data.bt4i,
+    bt5s: data.bt5s, bt5n: data.bt5n, bt5l: data.bt5l, bt5i: data.bt5i,
+    bt6s: data.bt6s, bt6n: data.bt6n, bt6l: data.bt6l, bt6i: data.bt6i,
   };
   db.factonoff = ordered;
   save();
