@@ -160,6 +160,44 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 }
 .back-btn:hover { transform: scale(1.08); }
 
+/* ── DETALLE SERVICIO ── */
+.field-label {
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 12px;
+  color: var(--text-primary); margin-bottom: 4px; line-height: 1.25;
+  word-break: keep-all;
+}
+.sdet-input {
+  width: 100%; box-sizing: border-box;
+  padding: 8px 10px; border-radius: 8px;
+  border: 1.5px solid #a5d6a7;
+  background: #c8e6c9; color: #1a3a1a;
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+  transition: background 0.2s, border 0.2s;
+}
+.sdet-input[readonly] { cursor: default; }
+.sdet-input.editing { background: #fff; border-color: #4caf50; cursor: text; }
+.sdet-locked { background: #c8e6c9 !important; cursor: default !important; }
+.sdet-textarea {
+  width: 100%; box-sizing: border-box;
+  padding: 10px 12px; border-radius: 10px;
+  border: 1.5px solid #a5d6a7;
+  background: #c8e6c9; color: #1a3a1a;
+  font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 13px;
+  resize: vertical; transition: background 0.2s, border 0.2s;
+}
+.sdet-textarea[readonly] { cursor: default; }
+.sdet-textarea.editing { background: #fff; border-color: #4caf50; cursor: text; }
+.sdet-img-cell {
+  width: 52px; height: 52px; border-radius: 8px;
+  border: 2px dashed #a5d6a7; background: #e8f5e9;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; overflow: hidden; transition: transform 0.13s;
+}
+.sdet-img-cell:hover { transform: scale(1.07); }
+.sdet-img-cell img { width: 100%; height: 100%; object-fit: cover; }
+
+
+
 /* ── MENU CARDS ── */
 .menu-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -510,10 +548,116 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
   <div class="menu-grid">
     <button class="menu-card" onclick="irA('page-inventario')"><div class="card-icon">🔍</div>Inventario</button>
-    <button class="menu-card" onclick="pedirClaveAlmacen()"><div class="card-icon">📦</div>Almacén</button>
     <button class="menu-card" onclick="irA('page-ventas')"><div class="card-icon">🛒</div>Ventas</button>
+    <button class="menu-card" id="btnMenuServicios" onclick="irA('page-servicios')" style="display:none;"><div class="card-icon">🔧</div><span id="lblMenuServicios">Servicios</span></button>
     <button class="menu-card" onclick="pedirClaveCompras()" id="btnMenuCompras"><div class="card-icon">📥</div>Compras</button>
+    <button class="menu-card" onclick="pedirClaveAlmacen()"><div class="card-icon">📦</div>Almacén</button>
     <button class="menu-card" onclick="pedirClaveEstadist()" id="btnMenuEstad"><div class="card-icon">📊</div>Estadísticas</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SERVICIOS ════════════ -->
+<div class="page" id="page-servicios">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoServiciosWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="serviciosNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" id="tituloPageServicios">Servicios</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-menu')">‹</button>
+  </div>
+  <div class="menu-grid" style="max-width:600px;margin:40px auto;">
+    <button class="menu-card" onclick="irA('page-ingresar-servicio')"><div class="card-icon">⚙️</div>Ingresar Servicio</button>
+    <button class="menu-card" onclick="irA('page-sertecpen')"><div class="card-icon">⏳</div>Servicios Pendientes</button>
+    <button class="menu-card" onclick="irA('page-sertecfin')"><div class="card-icon">✅</div>Servicios Finalizados</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ INGRESAR SERVICIO ════ -->
+<div class="page" id="page-ingresar-servicio">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoIngresarServicioWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="ingresarServicioNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title">Ingreso de Servicio</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <span style="font-size:13px;font-weight:700;color:#1f2937;">Fecha</span>
+        <span id="fechaIngServicio" style="background:#fff3e8;border:1.5px solid #f97316;border-radius:8px;padding:5px 14px;font-size:14px;font-weight:700;color:#c2410c;"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <span style="font-size:13px;font-weight:700;color:#1f2937;">Hora</span>
+        <span id="horaIngServicio" style="background:#fff3e8;border:1.5px solid #f97316;border-radius:8px;padding:5px 14px;font-size:14px;font-weight:700;color:#c2410c;"></span>
+      </div>
+      <button class="back-btn" onclick="irA('page-servicios')">‹</button>
+    </div>
+  </div>
+
+  <!-- Formulario -->
+  <div style="max-width:600px;margin:32px auto;padding:0 24px;display:flex;flex-direction:column;gap:20px;">
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="form-label" style="min-width:100px;">Artefacto</span>
+      <input class="form-input" id="srvArtefacto" placeholder="Nombre del artefacto" style="flex:1;max-width:100%;">
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="form-label" style="min-width:100px;">Cliente</span>
+      <input class="form-input" id="srvCliente" placeholder="Nombre del cliente" style="flex:1;max-width:100%;">
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="form-label" style="min-width:100px;">Teléfono</span>
+      <input class="form-input" id="srvTelefono" placeholder="Número de teléfono" style="flex:1;max-width:100%;">
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="form-label" style="min-width:100px;">Técnico</span>
+      <input class="form-input" id="srvTecnico" placeholder="Nombre del técnico" style="flex:1;max-width:100%;">
+    </div>
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="form-label" style="min-width:100px;">Estado</span>
+      <input class="form-input" id="srvEstado" placeholder="ej: Pendiente, En proceso..." style="flex:1;max-width:100%;">
+    </div>
+
+    <!-- Fotos -->
+    <div style="background:var(--total-cell-bg);border-radius:12px;padding:16px;border:1px solid var(--table-border);">
+      <div style="font-size:13px;font-weight:800;color:var(--text-muted);margin-bottom:12px;">📷 Links de Fotos (opcional)</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 1</span>
+          <input class="form-input" id="srvFoto1" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 2</span>
+          <input class="form-input" id="srvFoto2" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 3</span>
+          <input class="form-input" id="srvFoto3" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 4</span>
+          <input class="form-input" id="srvFoto4" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 5</span>
+          <input class="form-input" id="srvFoto5" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón guardar -->
+    <div style="display:flex;justify-content:flex-end;margin-top:8px;">
+      <button class="btn btn-save" style="font-size:16px;padding:14px 32px;" onclick="ingresarServicio()">⚙️ Ingresar Servicio</button>
+    </div>
+    <div id="srvStatus" style="text-align:right;font-size:13px;font-weight:700;color:var(--text-muted);"></div>
   </div>
 </div>
 
@@ -597,6 +741,28 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
           <span class="toggle-slider"></span>
         </label>
         <span>🌙 Oscuro</span>
+      </div>
+    </div>
+
+    <!-- Servicios Técnicos -->
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">🔧 Botón de Servicios</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Activa o desactiva el botón de Servicios en el menú principal. Define el nombre que aparecerá en el botón. Se guarda en <b>sertec.csv</b>.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:420px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--total-cell-bg);border-radius:12px;border:1.5px solid var(--header-border);width:fit-content;">
+          <span style="font-weight:700;font-size:14px;color:var(--text-primary);">Botón Servicios</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleSertec" onchange="document.getElementById('labelSertec').textContent=this.checked?'ON':'OFF'">
+            <span class="toggle-slider"></span>
+          </label>
+          <span id="labelSertec" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+        </div>
+        <div>
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Nombre del botón</label>
+          <input id="cfgSertecNombre" type="text" placeholder="ej: Servicios Técnicos" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
+        </div>
+        <button class="btn btn-save" onclick="guardarSertec()">💾 Guardar</button>
+        <div id="cfgSertecStatus" style="font-size:13px;font-weight:600;color:var(--text-muted);"></div>
       </div>
     </div>
 
@@ -1737,12 +1903,397 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 </div>
 
-<!-- MODAL IMAGEN AMPLIADA -->
-<div id="modalImagen" onclick="cerrarImagen()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;cursor:zoom-out;">
-  <img id="imgAmpliada" src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);object-fit:contain;" onclick="event.stopPropagation()">
+<!-- ═══════════════════════════════════════ SERVICIOS PENDIENTES ══ -->
+<div class="page" id="page-sertecpen">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoSertecpenWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="sertecpenNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--orange);">⏳ Servicios Pendientes</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-servicios')">‹</button>
+  </div>
+
+  <!-- Barra búsqueda -->
+  <div class="search-wrap">
+    <span class="search-label">Búsqueda</span>
+    <div class="search-input-wrap">
+      <input class="search-input" id="searchSertecpen" placeholder="Artefacto – Cliente – Teléfono" oninput="renderSertecpen()">
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-wrap" style="max-height:calc(100vh - 260px);">
+    <table class="data-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:44px;">
+        <col style="width:340px;">
+        <col style="width:200px;">
+        <col style="width:130px;">
+        <col style="width:120px;">
+        <col style="width:120px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;"></th>
+        <th style="text-align:center;">Artefacto</th>
+        <th style="text-align:center;">Cliente</th>
+        <th style="text-align:center;">Teléfono</th>
+        <th style="text-align:center;">Fecha de Entrada</th>
+        <th style="text-align:center;">Hora de Entrada</th>
+      </tr></thead>
+      <tbody id="tbodySertecpen"></tbody>
+    </table>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn" id="btnSertecpenSelect"
+      style="background:#0891b2;color:white;font-size:15px;padding:10px 24px;"
+      onclick="toggleSertecpenSelect()">☑️ SELECT</button>
+    <button class="btn" id="btnSertecpenEliminar" disabled
+      style="background:#9ca3af;color:white;font-size:15px;padding:10px 24px;cursor:not-allowed;opacity:0.6;"
+      onclick="eliminarSertecpenSeleccion()">🗑️ ELIMINAR</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SERVICIOS FINALIZADOS ══ -->
+<div class="page" id="page-sertecfin">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoSertecfinWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="sertecfinNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--orange);">✅ Servicios Finalizados</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-servicios')">‹</button>
+  </div>
+
+  <!-- Barra búsqueda -->
+  <div class="search-wrap">
+    <span class="search-label">Búsqueda</span>
+    <div class="search-input-wrap">
+      <input class="search-input" id="searchSertecfin" placeholder="Artefacto – Cliente – Teléfono" oninput="renderSertecfin()">
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-wrap" style="max-height:calc(100vh - 220px);">
+    <table class="data-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:44px;">
+        <col style="width:340px;">
+        <col style="width:200px;">
+        <col style="width:130px;">
+        <col style="width:120px;">
+        <col style="width:120px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;"></th>
+        <th style="text-align:center;">Artefacto</th>
+        <th style="text-align:center;">Cliente</th>
+        <th style="text-align:center;">Teléfono</th>
+        <th style="text-align:center;">Fecha de Entrada</th>
+        <th style="text-align:center;">Hora de Entrada</th>
+      </tr></thead>
+      <tbody id="tbodySertecfin"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ DETALLE SERVICIO FINALIZADO ══ -->
+<div class="page" id="page-sertecfin-detalle">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoSertecfinDetalleWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="sertecfinDetalleNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--orange);">✅ Detalle del Servicio Finalizado</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-sertecfin')">‹</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <div style="display:flex;gap:18px;padding:14px 28px 0;align-items:flex-start;">
+
+    <!-- COLUMNA IZQUIERDA: formulario -->
+    <div style="flex:1;min-width:0;">
+
+      <!-- Fila 1: Artefacto | Cliente | Teléfono -->
+      <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Artefacto</div>
+          <input id="sfin_artefacto" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label">Cliente</div>
+          <input id="sfin_cliente" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label">Teléfono</div>
+          <input id="sfin_telefono" class="sdet-input sdet-locked" readonly>
+        </div>
+      </div>
+
+      <!-- Fila 2: FechaEnt | HoraEnt | FechaFin | HoraFin | Técnico | Cotización -->
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrada</div>
+          <input id="sfin_fechent" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Hora de Entrada</div>
+          <input id="sfin_hora1" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrega</div>
+          <input id="sfin_fechfin" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Hora de Entrega</div>
+          <input id="sfin_hora2" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Técnico</div>
+          <input id="sfin_tecnico" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Cotización</div>
+          <input id="sfin_cotizacion" class="sdet-input sdet-locked" readonly>
+        </div>
+      </div>
+
+      <!-- Fila 3: CotizaciónX | RepTec | PrecFin | FormPag | UtiNet -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">CotizaciónX</div>
+          <input id="sfin_cotizaciont" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Repuestos del Técnico</div>
+          <input id="sfin_reptec" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Precio Final</div>
+          <input id="sfin_prefin" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Forma de Pago</div>
+          <input id="sfin_formpag" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Utilidad Neta</div>
+          <input id="sfin_utinet" class="sdet-input sdet-locked" readonly>
+        </div>
+      </div>
+
+      <!-- Estado Inicial -->
+      <div style="margin-bottom:10px;">
+        <div class="field-label">Estado Inicial</div>
+        <textarea id="sfin_estado" class="sdet-textarea" readonly rows="3"></textarea>
+      </div>
+
+      <!-- Procedimiento -->
+      <div>
+        <div class="field-label">Procedimiento</div>
+        <textarea id="sfin_procedimiento" class="sdet-textarea" readonly rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: solo imágenes -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
+      <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);align-self:flex-start;">Imágenes</div>
+      <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
+        <div id="sfin_img1_wrap" onclick="sfinClickImg(1)" class="sdet-img-cell"></div>
+        <div id="sfin_img2_wrap" onclick="sfinClickImg(2)" class="sdet-img-cell"></div>
+        <div id="sfin_img3_wrap" onclick="sfinClickImg(3)" class="sdet-img-cell"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,52px);gap:8px;">
+        <div id="sfin_img4_wrap" onclick="sfinClickImg(4)" class="sdet-img-cell"></div>
+        <div id="sfin_img5_wrap" onclick="sfinClickImg(5)" class="sdet-img-cell"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ DETALLE SERVICIO PENDIENTE ══ -->
+<div class="page" id="page-sertec-detalle">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoSertecDetalleWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="sertecDetalleNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--orange);">🔧 Detalle del Servicio</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-sertecpen')">‹</button>
+  </div>
+
+  <!-- ── Hora / Fecha actuales ── -->
+  <div style="display:flex;justify-content:flex-end;gap:18px;align-items:center;padding:10px 28px 0;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);">Hora</span>
+      <input id="sdetHoraActual" readonly
+        style="width:110px;padding:7px 10px;border-radius:8px;border:1px solid #e5e7eb;background:#fff0eb;font-family:Nunito,sans-serif;font-weight:700;font-size:14px;text-align:center;color:#b45309;">
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);">Fecha</span>
+      <input id="sdetFechaActual" readonly
+        style="width:120px;padding:7px 10px;border-radius:8px;border:1px solid #e5e7eb;background:#fff0eb;font-family:Nunito,sans-serif;font-weight:700;font-size:14px;text-align:center;color:#b45309;">
+    </div>
+  </div>
+
+  <!-- ── Contenido principal: formulario + columna derecha ── -->
+  <div style="display:flex;gap:18px;padding:12px 28px 0;align-items:flex-start;">
+
+    <!-- COLUMNA IZQUIERDA: formulario -->
+    <div style="flex:1;min-width:0;">
+
+      <!-- Fila 1: Artefacto | Cliente | Teléfono -->
+      <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Artefacto</div>
+          <input id="sdet_artefacto" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label">Cliente</div>
+          <input id="sdet_cliente" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label">Teléfono</div>
+          <input id="sdet_telefono" class="sdet-input sdet-editable" readonly>
+        </div>
+      </div>
+
+      <!-- Fila 2: FechaEnt | HoraEnt | Técnico | HonTec | Cotización | CotizaciónX -->
+      <div style="display:grid;grid-template-columns:100px 100px 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrada</div>
+          <input id="sdet_fechent" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Hora de Entrada</div>
+          <input id="sdet_hora" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Técnico</div>
+          <input id="sdet_tecnico" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Honorarios del Técnico</div>
+          <input id="sdet_hontec" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Cotización</div>
+          <input id="sdet_cotizacion" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">CotizaciónX</div>
+          <input id="sdet_cotizaciont" class="sdet-input sdet-editable" readonly>
+        </div>
+      </div>
+
+      <!-- Fila 3: MisRep | RepTec | PrecFin | FormPag | UtiNet -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Mis Repuestos</div>
+          <input id="sdet_reparvi" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Repuestos del Técnico</div>
+          <input id="sdet_reptec" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Precio Final</div>
+          <input id="sdet_prefin" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Forma de Pago</div>
+          <input id="sdet_formpag" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Utilidad Neta</div>
+          <input id="sdet_utinet" class="sdet-input sdet-editable" readonly>
+        </div>
+      </div>
+
+      <!-- Estado Inicial -->
+      <div style="margin-bottom:8px;">
+        <div class="field-label">Estado Inicial</div>
+        <textarea id="sdet_estado" class="sdet-textarea sdet-editable" readonly rows="3"></textarea>
+      </div>
+
+      <!-- Procedimiento -->
+      <div>
+        <div class="field-label">Procedimiento</div>
+        <textarea id="sdet_procedimiento" class="sdet-textarea sdet-editable" readonly rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: Imágenes + botones -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
+
+      <!-- Label Imágenes -->
+      <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);align-self:flex-start;">Imágenes</div>
+
+      <!-- Grid 3 + 2 -->
+      <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
+        <div id="sdet_img1_wrap" onclick="sdetClickImg(1)" class="sdet-img-cell"></div>
+        <div id="sdet_img2_wrap" onclick="sdetClickImg(2)" class="sdet-img-cell"></div>
+        <div id="sdet_img3_wrap" onclick="sdetClickImg(3)" class="sdet-img-cell"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,52px);gap:8px;">
+        <div id="sdet_img4_wrap" onclick="sdetClickImg(4)" class="sdet-img-cell"></div>
+        <div id="sdet_img5_wrap" onclick="sdetClickImg(5)" class="sdet-img-cell"></div>
+      </div>
+
+      <!-- Botones EDIT + SAVE -->
+      <div style="display:flex;gap:8px;">
+        <button id="btnSdetEdit" onclick="sdetToggleEdit()"
+          style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                 background:#1e3a5f;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;
+                 gap:4px;transition:transform 0.12s,background 0.2s;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+          <span id="btnSdetEditIcon" style="font-size:20px;">✏️</span><span id="btnSdetEditLabel">EDIT</span>
+        </button>
+        <button onclick="sdetGuardar()"
+          style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                 background:#4caf50;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;
+                 gap:4px;transition:transform 0.12s;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+          <span style="font-size:20px;">💾</span>Save
+        </button>
+      </div>
+
+      <!-- Botón Finalizar Servicio -->
+      <button id="btnFinalizarServicio"
+        onclick="finalizarServicio()"
+        style="background:#4caf50;color:white;border:none;border-radius:12px;padding:14px 16px;
+               font-family:Nunito,sans-serif;font-weight:800;font-size:14px;cursor:pointer;
+               box-shadow:0 3px 10px rgba(76,175,80,0.4);text-align:center;line-height:1.3;
+               transition:transform 0.13s,box-shadow 0.13s;width:120px;"
+        onmouseover="this.style.transform='scale(1.05)'"
+        onmouseout="this.style.transform='scale(1)'">
+        Finalizar<br>Servicio
+      </button>
+
+    </div>
+  </div>
 </div>
 
 <!-- MODAL CONTRASEÑA ACCESO -->
+<!-- MODAL IMAGEN AMPLIADA -->
+<div id="modalImagen" onclick="cerrarImagen()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:3000;align-items:center;justify-content:center;cursor:zoom-out;">
+  <img id="imgAmpliada" src="" style="max-width:92vw;max-height:92vh;border-radius:14px;box-shadow:0 8px 48px rgba(0,0,0,0.7);object-fit:contain;" onclick="event.stopPropagation()">
+</div>
+
 <div class="modal-overlay" id="modalClave">
   <div class="modal">
     <h3 id="modalClaveTitle">🔒 Acceso Restringido</h3>
@@ -1922,7 +2473,10 @@ let db = {
   compras: [],
   proveedores: [],
   txs: [],
-  factonoff: {}
+  factonoff: {},
+  sertec: {},
+  sertecpen: [],
+  sertecfin: []
 };
 
 let almacenIdx = -1;
@@ -2019,6 +2573,12 @@ function irA(pageId) {
   if (pageId === 'page-clientes-recurrentes') initClientesRecurrentes();
   if (pageId === 'page-ventas') aplicarFactonoff();
   if (pageId === 'page-facturacion') renderFacturacion();
+  if (pageId === 'page-ingresar-servicio') initIngresarServicio();
+  if (pageId === 'page-sertecpen') initSertecpen();
+  if (pageId === 'page-sertecfin') initSertecfin();
+  if (pageId === 'page-sertecfin-detalle') initSertecfinDetalle();
+  if (pageId === 'page-sertec-detalle') initSertecDetalle();
+  if (pageId === 'page-utilidad-bruta') initUtilidadBruta();
   if (pageId === 'page-utilidad-neta') initUtilidadNeta();
   if (pageId === 'page-configuraciones') cargarConfigGitHub();
 }
@@ -2030,7 +2590,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -2497,7 +3057,10 @@ const GH_FILES  = {
   proveedores: 'data/proveedores.csv',
   emn:         'data/emn.csv',
   txs:         'data/txs.csv',
-  factonoff:   'data/factonoff.csv'
+  factonoff:   'data/factonoff.csv',
+  sertec:      'data/sertec.csv',
+  sertecpen:   'data/sertecpen.csv',
+  sertecfin:   'data/sertecfin.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -2588,6 +3151,16 @@ async function cargarDesdeGitHub() {
         if (parsed.length) db.txs = parsed;
       } else if (tipo === 'factonoff') {
         if (parsed.length) { db.factonoff = parsed[0]; aplicarFactonoff(); }
+      } else if (tipo === 'sertec') {
+        if (parsed.length) { db.sertec = parsed[0]; aplicarSertec(); }
+      } else if (tipo === 'sertecpen') {
+        if (parsed.length) {
+          db.sertecpen = parsed;
+        }
+      } else if (tipo === 'sertecfin') {
+        if (parsed.length) {
+          db.sertecfin = parsed;
+        }
       } else {
         if (parsed.length) { db[tipo] = parsed; cargados++; }
       }
@@ -2598,6 +3171,11 @@ async function cargarDesdeGitHub() {
   if (cargados > 0) toast(`✅ ${cargados} tablas cargadas desde GitHub`);
   else toast('ℹ️ GitHub conectado — tablas vacías');
   actualizarBranding();
+  // Re-init estadísticas con datos frescos si la página está activa
+  if (document.getElementById('page-utilidad-bruta')?.classList.contains('active')) initUtilidadBruta();
+  if (document.getElementById('page-utilidad-neta')?.classList.contains('active')) initUtilidadNeta();
+  // También guardar referencia para cuando se abran después
+  window._ghDataLoaded = true;
 }
 
 // ═══════════════════════════ SUBIR A GITHUB ════════════════════
@@ -2616,7 +3194,22 @@ async function subirAGitHub(tipo) {
     toast(`✅ ${tipo} sincronizado con GitHub`);
   } catch(e) {
     ocultarLoader();
-    toast(`❌ Error: ${e.message}`);
+    if (e.message && e.message.includes('but expected')) {
+      // SHA desactualizado — reintentar una vez con SHA fresco
+      try {
+        mostrarLoader(`Reintentando ${tipo}...`);
+        let sha;
+        try { const existing = await ghGet(path); sha = existing.sha; } catch(e2) {}
+        await ghPut(path, content, sha);
+        ocultarLoader();
+        toast(`✅ ${tipo} sincronizado con GitHub`);
+      } catch(e2) {
+        ocultarLoader();
+        toast(`❌ Error: ${e2.message}`);
+      }
+    } else {
+      toast(`❌ Error: ${e.message}`);
+    }
   }
 }
 
@@ -2626,8 +3219,9 @@ function mostrarLoader(msg) {
   if (!el) {
     el = document.createElement('div');
     el.id = 'ghLoader';
-    el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+    el.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;';
     el.innerHTML = `<div style="width:48px;height:48px;border:5px solid #fff3;border-top-color:#f97316;border-radius:50%;animation:spin 0.8s linear infinite;"></div><div id="ghLoaderMsg" style="color:white;font-family:Nunito,sans-serif;font-size:16px;font-weight:700;"></div>`;
+    el.addEventListener('click', () => { el.style.display = 'none'; });
     document.body.appendChild(el);
     const style = document.createElement('style');
     style.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
@@ -2635,8 +3229,12 @@ function mostrarLoader(msg) {
   }
   document.getElementById('ghLoaderMsg').textContent = msg;
   el.style.display = 'flex';
+  // Seguro: forzar cierre del loader tras 10 segundos
+  clearTimeout(window._loaderTimeout);
+  window._loaderTimeout = setTimeout(() => ocultarLoader(), 10000);
 }
 function ocultarLoader() {
+  clearTimeout(window._loaderTimeout);
   const el = document.getElementById('ghLoader');
   if (el) el.style.display = 'none';
 }
@@ -2685,6 +3283,8 @@ function cargarConfigGitHub() {
   // Load factonoff
   cargarConfigFactonoff();
   document.getElementById('cfgFactStatus').textContent = '';
+  // Load sertec
+  cargarConfigSertec();
 }
 
 async function guardarImpuesto() {
@@ -3279,6 +3879,144 @@ function imprimirDetalleComprasDia() {
   w.document.close();
 }
 
+// ═══════════════════════════ INGRESAR SERVICIO ═════════════════
+const CSV_SCHEMA_SERTECPEN = ['artefacto','cliente','telefono','fechent','hora','tecnico','estado','foto1','foto2','foto3','foto4','foto5'];
+
+function initIngresarServicio() {
+  document.getElementById('fechaIngServicio').textContent = fechaHoy();
+  document.getElementById('horaIngServicio').textContent = horaHoy();
+  clearInterval(window._srvClockInterval);
+  window._srvClockInterval = setInterval(() => {
+    const el = document.getElementById('horaIngServicio');
+    if (el) el.textContent = horaHoy();
+  }, 1000);
+  document.getElementById('srvArtefacto').value = '';
+  document.getElementById('srvCliente').value   = '';
+  document.getElementById('srvTelefono').value  = '';
+  document.getElementById('srvTecnico').value   = '';
+  document.getElementById('srvEstado').value    = '';
+  for (let i = 1; i <= 5; i++) document.getElementById(`srvFoto${i}`).value = '';
+  document.getElementById('srvStatus').textContent = '';
+}
+
+async function ingresarServicio() {
+  const statusEl = document.getElementById('srvStatus');
+  const artefacto = document.getElementById('srvArtefacto').value.trim();
+  const cliente  = document.getElementById('srvCliente').value.trim();
+  const telefono = document.getElementById('srvTelefono').value.trim();
+  const tecnico  = document.getElementById('srvTecnico').value.trim();
+  const estado   = document.getElementById('srvEstado').value.trim();
+  const fechent  = fechaHoy();
+  const hora     = horaHoy();
+  const foto1    = document.getElementById('srvFoto1').value.trim();
+  const foto2    = document.getElementById('srvFoto2').value.trim();
+  const foto3    = document.getElementById('srvFoto3').value.trim();
+  const foto4    = document.getElementById('srvFoto4').value.trim();
+  const foto5    = document.getElementById('srvFoto5').value.trim();
+
+  if (!cliente) { toast('⚠️ Ingresa el nombre del cliente'); return; }
+
+  const nuevo = { artefacto, cliente, telefono, fechent, hora, tecnico, estado, foto1, foto2, foto3, foto4, foto5 };
+  db.sertecpen.push(nuevo);
+  save();
+  statusEl.textContent = '⏳ Guardando en sertecpen.csv...';
+
+  if (!getToken()) {
+    toast('✅ Servicio ingresado localmente');
+    statusEl.textContent = '✅ Guardado localmente (sin token GitHub)';
+    initIngresarServicio();
+    return;
+  }
+
+  try {
+    // Leer el CSV actual de GitHub para obtener TODAS las columnas existentes
+    const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/data/sertecpen.csv`;
+    let sha;
+    let allHeaders = [...CSV_SCHEMA_SERTECPEN]; // columnas mínimas por defecto
+
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+    if (getRes.ok) {
+      const d = await getRes.json();
+      sha = d.sha;
+      // Extraer encabezados del CSV existente para preservar TODAS las columnas
+      try {
+        const existingText = decodeURIComponent(escape(atob(d.content)));
+        const firstLine = existingText.trim().split('\n')[0];
+        if (firstLine) {
+          const csvHeaders = firstLine.split(',').map(h => h.trim().replace(/^"|"$/g,''));
+          if (csvHeaders.length > allHeaders.length) allHeaders = csvHeaders;
+        }
+      } catch(e) {}
+    }
+
+    // Escribir cada registro preservando todas las columnas (vacío para las que no tenemos)
+    const content = allHeaders.join(',') + '\n' +
+      db.sertecpen.map(r => allHeaders.map(k => csvCell(r[k]||'')).join(',')).join('\n');
+
+    const putBody = { message: 'Add service record', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+    statusEl.textContent = '✅ Servicio ingresado y guardado en GitHub';
+    toast('✅ Servicio ingresado correctamente');
+    initIngresarServicio();
+  } catch(e) {
+    statusEl.textContent = `❌ Error GitHub: ${e.message}`;
+    toast('⚠️ Guardado localmente, error en GitHub');
+  }
+}
+
+// ═══════════════════════════ SERVICIOS (SERTEC) ════════════════
+function getSertec() { return db.sertec || {}; }
+
+function aplicarSertec() {
+  const s = getSertec();
+  const activo = s.situacion === '1';
+  const nombre = s.nombre || 'Servicios';
+  const btn = document.getElementById('btnMenuServicios');
+  const lbl = document.getElementById('lblMenuServicios');
+  const titulo = document.getElementById('tituloPageServicios');
+  if (btn) btn.style.display = activo ? 'block' : 'none';
+  if (lbl) lbl.textContent = nombre;
+  if (titulo) titulo.textContent = nombre;
+}
+
+function cargarConfigSertec() {
+  const s = getSertec();
+  const activo = s.situacion === '1';
+  const tog = document.getElementById('toggleSertec');
+  if (tog) { tog.checked = activo; document.getElementById('labelSertec').textContent = activo ? 'ON' : 'OFF'; }
+  const ni = document.getElementById('cfgSertecNombre');
+  if (ni) ni.value = s.nombre || '';
+  document.getElementById('cfgSertecStatus').textContent = '';
+}
+
+async function guardarSertec() {
+  const statusEl = document.getElementById('cfgSertecStatus');
+  const situacion = document.getElementById('toggleSertec').checked ? '1' : '0';
+  const nombre = document.getElementById('cfgSertecNombre').value.trim() || 'Servicios';
+  db.sertec = { situacion, nombre };
+  save();
+  aplicarSertec();
+  if (!getToken()) { statusEl.textContent = '✅ Guardado localmente (sin token GitHub)'; return; }
+  statusEl.textContent = '⏳ Guardando en sertec.csv...';
+  try {
+    const content = `situacion,nombre\n${situacion},${csvCell(nombre)}`;
+    const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/data/sertec.csv`;
+    let sha;
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+    if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+    const putBody = { message: 'Update sertec.csv', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+    statusEl.textContent = '✅ sertec.csv guardado en GitHub';
+    toast('✅ Configuración de Servicios guardada');
+  } catch(e) {
+    statusEl.textContent = `❌ Error: ${e.message}`;
+  }
+}
+
 // ═══════════════════════════ FACTURACIÓN ═══════════════════════
 function getFact() { return db.factonoff || {}; }
 
@@ -3504,10 +4242,17 @@ function initUtilidadBruta() {
   const sortedAnios = [...anios].sort().reverse();
   const anioActual = String(new Date().getFullYear());
   const sel = document.getElementById('selectPeriodoUB');
+  // Preserve current selection if possible
+  const current = sel.value;
   sel.innerHTML = '<option value="total">Total</option>' +
-    sortedAnios.map(a => `<option value="${a}" ${a===anioActual?'selected':''}>${a}</option>`).join('');
-  // Mostrar botón de mes si hay año seleccionado
-  const hayAnio = sortedAnios.includes(anioActual);
+    sortedAnios.map(a => `<option value="${a}">${a}</option>`).join('');
+  // Restore selection or default to current year
+  if (current && [...sel.options].some(o => o.value === current)) {
+    sel.value = current;
+  } else if (sortedAnios.includes(anioActual)) {
+    sel.value = anioActual;
+  }
+  const hayAnio = sel.value !== 'total';
   document.getElementById('btnCalUB').style.display = hayAnio ? 'inline-block' : 'none';
   document.getElementById('selectMesUB').style.display = 'none';
   renderUtilidadBruta();
@@ -3557,11 +4302,14 @@ function seleccionarMesUB(mm, yyyy) {
 }
 
 function renderUtilidadBruta() {
-  const periodo = document.getElementById('selectPeriodoUB').value;
-  const mesVal  = document.getElementById('selectMesUB').value;
-  const mesVisible = document.getElementById('selectMesUB').style.display !== 'none' && mesVal;
+  const selP = document.getElementById('selectPeriodoUB');
+  const selM = document.getElementById('selectMesUB');
+  if (!selP) return;
+  const periodo = selP.value;
+  const mesVal  = selM ? selM.value : '';
+  const mesVisible = selM && selM.style.display !== 'none' && mesVal;
 
-  let ventas = db.ventas;
+  let ventas = db.ventas || [];
 
   if (mesVisible) {
     const [mm, yyyy] = mesVal.split('/');
@@ -3580,7 +4328,6 @@ function renderUtilidadBruta() {
   const productos = new Set(ventas.map(v => v.codigo).filter(Boolean)).size;
   const total    = ventas.reduce((s, v) => s + parseFloat(v.total||0), 0);
 
-  // Animación de contadores
   animarContador('ubItems', items, false);
   animarContador('ubProductos', productos, false);
   animarContadorMonto('ubTotal', total);
@@ -4339,6 +5086,547 @@ function imprimirMasVendido() {
   const w = window.open('', '_blank');
   w.document.write(html);
   w.document.close();
+}
+
+// ═══════════════════════════ DETALLE SERVICIO FINALIZADO ═══════
+let sfinIdx = -1;
+
+function abrirSertecfinDetalle(orig) {
+  sfinIdx = orig;
+  irA('page-sertecfin-detalle');
+}
+
+function initSertecfinDetalle() {
+  const r = db.sertecfin[sfinIdx];
+  if (!r) { toast('⚠️ Registro no encontrado'); irA('page-sertecfin'); return; }
+
+  document.getElementById('sfin_artefacto').value    = r.artefacto    || '';
+  document.getElementById('sfin_cliente').value      = r.cliente      || '';
+  document.getElementById('sfin_telefono').value     = r.telefono     || '';
+  document.getElementById('sfin_fechent').value      = r.fechent      || '';
+  document.getElementById('sfin_hora1').value        = r.hora1        || '';
+  document.getElementById('sfin_fechfin').value      = r.fechfin      || '';
+  document.getElementById('sfin_hora2').value        = r.hora2        || '';
+  document.getElementById('sfin_tecnico').value      = r.tecnico      || '';
+  document.getElementById('sfin_cotizacion').value   = r.cotizacion   || '';
+  document.getElementById('sfin_cotizaciont').value  = r.cotizaciont  || '';
+  document.getElementById('sfin_reptec').value       = r.reptec       || '';
+  document.getElementById('sfin_prefin').value       = r.prefin       || '';
+  document.getElementById('sfin_formpag').value      = r.formpag      || '';
+  document.getElementById('sfin_utinet').value       = r.utinet       || '';
+  document.getElementById('sfin_estado').value       = r.estado       || '';
+  document.getElementById('sfin_procedimiento').value = r.procedimiento || '';
+
+  // Miniaturas de imágenes
+  [1,2,3,4,5].forEach(n => {
+    const url = r[`foto${n}`] || '';
+    const wrap = document.getElementById(`sfin_img${n}_wrap`);
+    if (url) {
+      wrap.innerHTML = `<img src="${url}" alt="foto${n}" title="Clic para ampliar" style="width:52px;height:52px;object-fit:cover;border-radius:6px;">`;
+      wrap.style.border = '2px solid #4caf50';
+    } else {
+      wrap.innerHTML = `<span style="font-size:26px;filter:grayscale(1);opacity:0.4;" title="Sin imagen">🖼️</span>`;
+      wrap.style.border = '2px dashed #a5d6a7';
+    }
+  });
+}
+
+function sfinClickImg(n) {
+  const r = db.sertecfin[sfinIdx];
+  if (!r) return;
+  const url = r[`foto${n}`] || '';
+  if (url) {
+    abrirImagen(url);
+  } else {
+    toast('📷 Sin imagen en esta posición');
+  }
+}
+
+// ═══════════════════════════ SERVICIOS FINALIZADOS ═════════════
+function initSertecfin() {
+  document.getElementById('searchSertecfin').value = '';
+  renderSertecfin();
+}
+
+function renderSertecfin() {
+  const q = (document.getElementById('searchSertecfin').value || '').toLowerCase().trim();
+  const datos = (db.sertecfin || []).filter(r =>
+    !q ||
+    (r.artefacto || '').toLowerCase().includes(q) ||
+    (r.cliente   || '').toLowerCase().includes(q) ||
+    (r.telefono  || '').includes(q)
+  );
+  const tbody = document.getElementById('tbodySertecfin');
+
+  if (!datos.length) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios finalizados</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = datos.map(r => {
+    const orig = db.sertecfin.indexOf(r);
+    return `<tr data-orig="${orig}" style="border-bottom:1px solid var(--table-border);">
+      <td style="text-align:center;">
+        <button onclick="seleccionarSertecfin(${orig})"
+          style="width:34px;height:34px;border-radius:50%;border:none;
+                 background:radial-gradient(circle at 40% 35%,#66bb6a,#2e7d32);
+                 color:white;font-size:18px;cursor:pointer;display:flex;
+                 align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(46,125,50,0.4);
+                 transition:transform 0.13s;"
+          onmouseover="this.style.transform='scale(1.12)'"
+          onmouseout="this.style.transform='scale(1)'">➜</button>
+      </td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.artefacto||'')}" readonly style="width:100%;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.hora||'')}" readonly style="width:100%;text-align:center;"></td>
+    </tr>`;
+  }).join('');
+}
+
+function seleccionarSertecfin(orig) {
+  abrirSertecfinDetalle(orig);
+}
+
+// ═══════════════════════════ SERVICIOS PENDIENTES ══════════════
+let sertecpenModoSelect = false;
+
+function initSertecpen() {
+  sertecpenModoSelect = false;
+  const btnSel = document.getElementById('btnSertecpenSelect');
+  const btnDel = document.getElementById('btnSertecpenEliminar');
+  if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#0891b2'; }
+  if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+  db.sertecpen.forEach(r => delete r._sel);
+  document.getElementById('searchSertecpen').value = '';
+  renderSertecpen();
+}
+
+function renderSertecpen() {
+  const q = (document.getElementById('searchSertecpen').value || '').toLowerCase().trim();
+  const datos = (db.sertecpen || []).filter(r =>
+    !q ||
+    (r.artefacto || '').toLowerCase().includes(q) ||
+    (r.cliente   || '').toLowerCase().includes(q) ||
+    (r.telefono  || '').includes(q)
+  );
+  const tbody = document.getElementById('tbodySertecpen');
+
+  if (!datos.length) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios pendientes</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = datos.map((r, vi) => {
+    const orig = db.sertecpen.indexOf(r);
+    const checked = r._sel ? 'checked' : '';
+    const checkCell = sertecpenModoSelect
+      ? `<td style="text-align:center;">
+           <input type="checkbox" class="sertecpen-check" data-orig="${orig}"
+             ${checked}
+             onchange="db.sertecpen[${orig}]._sel=this.checked"
+             style="width:18px;height:18px;accent-color:#dc2626;cursor:pointer;">
+         </td>`
+      : `<td style="text-align:center;">
+           <button onclick="seleccionarSertecpen(${orig})"
+             style="width:34px;height:34px;border-radius:50%;border:none;
+                    background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
+                    color:white;font-size:18px;cursor:pointer;display:flex;
+                    align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,150,200,0.4);
+                    transition:transform 0.13s;"
+             onmouseover="this.style.transform='scale(1.12)'"
+             onmouseout="this.style.transform='scale(1)'">➜</button>
+         </td>`;
+
+    return `<tr data-orig="${orig}" style="border-bottom:1px solid var(--table-border);">
+      ${checkCell}
+      <td><input class="cell-input blue-cell" value="${escHtml(r.artefacto||'')}" readonly style="width:100%;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.hora||'')}" readonly style="width:100%;text-align:center;"></td>
+    </tr>`;
+  }).join('');
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function toggleSertecpenSelect() {
+  sertecpenModoSelect = !sertecpenModoSelect;
+  // Limpiar selecciones previas al salir del modo
+  if (!sertecpenModoSelect) db.sertecpen.forEach(r => delete r._sel);
+  const btnSel = document.getElementById('btnSertecpenSelect');
+  const btnDel = document.getElementById('btnSertecpenEliminar');
+  btnSel.textContent = sertecpenModoSelect ? '✖️ CANCELAR' : '☑️ SELECT';
+  btnSel.style.background = sertecpenModoSelect ? '#374151' : '#0891b2';
+  // Activar / desactivar ELIMINAR
+  if (sertecpenModoSelect) {
+    btnDel.disabled = false;
+    btnDel.style.background = '#dc2626';
+    btnDel.style.cursor = 'pointer';
+    btnDel.style.opacity = '1';
+  } else {
+    btnDel.disabled = true;
+    btnDel.style.background = '#9ca3af';
+    btnDel.style.cursor = 'not-allowed';
+    btnDel.style.opacity = '0.6';
+  }
+  renderSertecpen();
+}
+
+function seleccionarSertecpen(orig) {
+  abrirSertecDetalle(orig);
+}
+
+// ═══════════════════════════ DETALLE SERVICIO PENDIENTE ════════════
+let sdetIdx = -1;          // índice en db.sertecpen del registro actual
+let sdetEditando = false;  // modo edición activo
+
+function abrirSertecDetalle(orig) {
+  sdetIdx = orig;
+  sdetEditando = false;
+  irA('page-sertec-detalle');
+}
+
+function initSertecDetalle() {
+  // Reloj en tiempo real
+  clearInterval(window._sdetClockInterval);
+  const tickSdet = () => {
+    const el = document.getElementById('sdetHoraActual');
+    if (el) el.value = horaHoy();
+  };
+  document.getElementById('sdetHoraActual').value = horaHoy();
+  document.getElementById('sdetFechaActual').value = fechaHoy();
+  window._sdetClockInterval = setInterval(tickSdet, 1000);
+
+  // Cargar datos del registro
+  const r = db.sertecpen[sdetIdx];
+  if (!r) { toast('⚠️ Registro no encontrado'); irA('page-sertecpen'); return; }
+
+  document.getElementById('sdet_artefacto').value    = r.artefacto    || '';
+  document.getElementById('sdet_cliente').value      = r.cliente      || '';
+  document.getElementById('sdet_telefono').value     = r.telefono     || '';
+  document.getElementById('sdet_fechent').value      = r.fechent      || '';
+  document.getElementById('sdet_hora').value         = r.hora         || '';
+  document.getElementById('sdet_tecnico').value      = r.tecnico      || '';
+  document.getElementById('sdet_hontec').value       = r.hontec       || '';
+  document.getElementById('sdet_cotizacion').value   = r.cotizacion   || '';
+  document.getElementById('sdet_cotizaciont').value  = r.cotizaciont  || '';
+  document.getElementById('sdet_reparvi').value      = r.reparvi      || '';
+  document.getElementById('sdet_reptec').value       = r.reptec       || '';
+  document.getElementById('sdet_prefin').value       = r.prefin       || '';
+  document.getElementById('sdet_formpag').value      = r.formpag      || '';
+  document.getElementById('sdet_utinet').value       = r.utinet       || '';
+  document.getElementById('sdet_estado').value       = r.estado       || '';
+  document.getElementById('sdet_procedimiento').value = r.procedimiento || '';
+
+  // Salir del modo edición visualmente
+  sdetEditando = false;
+  document.querySelectorAll('.sdet-editable').forEach(el => {
+    el.setAttribute('readonly', '');
+    el.classList.remove('editing');
+  });
+  // Asegurar que Finalizar Servicio inicia activo
+  const btnFin = document.getElementById('btnFinalizarServicio');
+  if (btnFin) {
+    btnFin.disabled = false;
+    btnFin.style.background = '#4caf50';
+    btnFin.style.cursor = 'pointer';
+    btnFin.style.opacity = '1';
+    btnFin.style.boxShadow = '0 3px 10px rgba(76,175,80,0.4)';
+  }
+
+  // Renderizar miniaturas de imágenes
+  [1,2,3,4,5].forEach(n => {
+    const url = r[`foto${n}`] || '';
+    const wrap = document.getElementById(`sdet_img${n}_wrap`);
+    if (url) {
+      wrap.innerHTML = `<img src="${url}" alt="foto${n}" title="Clic para ampliar" style="width:52px;height:52px;object-fit:cover;border-radius:6px;">`;
+      wrap.style.border = '2px solid #4caf50';
+    } else {
+      wrap.innerHTML = `<span style="font-size:26px;filter:grayscale(1);opacity:0.4;" title="Sin imagen">🖼️</span>`;
+      wrap.style.border = '2px dashed #a5d6a7';
+    }
+  });
+}
+
+function sdetClickImg(n) {
+  const r = db.sertecpen[sdetIdx];
+  if (!r) return;
+  const url = r[`foto${n}`] || '';
+  if (url) {
+    abrirImagen(url);
+  } else {
+    toast('📷 Sin imagen en esta posición');
+  }
+}
+
+function sdetToggleEdit() {
+  sdetEditando = !sdetEditando;
+  document.querySelectorAll('.sdet-editable').forEach(el => {
+    if (sdetEditando) {
+      el.removeAttribute('readonly');
+      el.classList.add('editing');
+    } else {
+      el.setAttribute('readonly', '');
+      el.classList.remove('editing');
+    }
+  });
+  // Desactivar Finalizar Servicio mientras se edita
+  const btnFin = document.getElementById('btnFinalizarServicio');
+  if (btnFin) {
+    if (sdetEditando) {
+      btnFin.disabled = true;
+      btnFin.style.background = '#9ca3af';
+      btnFin.style.cursor = 'not-allowed';
+      btnFin.style.opacity = '0.5';
+      btnFin.style.boxShadow = 'none';
+    } else {
+      btnFin.disabled = false;
+      btnFin.style.background = '#4caf50';
+      btnFin.style.cursor = 'pointer';
+      btnFin.style.opacity = '1';
+      btnFin.style.boxShadow = '0 3px 10px rgba(76,175,80,0.4)';
+    }
+  }
+  // Cambiar aspecto del botón EDIT ↔ CANCELAR
+  const btnEdit = document.getElementById('btnSdetEdit');
+  const btnIcon = document.getElementById('btnSdetEditIcon');
+  const btnLabel = document.getElementById('btnSdetEditLabel');
+  if (btnEdit) {
+    if (sdetEditando) {
+      btnEdit.style.background = '#dc2626';
+      btnIcon.textContent = '✖️';
+      btnLabel.textContent = 'CANCELAR';
+    } else {
+      btnEdit.style.background = '#1e3a5f';
+      btnIcon.textContent = '✏️';
+      btnLabel.textContent = 'EDIT';
+    }
+  }
+  toast(sdetEditando ? '✏️ Modo edición activado' : '👁️ Modo lectura');
+}
+
+async function sdetGuardar() {
+  if (sdetIdx < 0 || !db.sertecpen[sdetIdx]) { toast('⚠️ Sin registro cargado'); return; }
+  const r = db.sertecpen[sdetIdx];
+
+  // Leer campos editables
+  r.telefono      = document.getElementById('sdet_telefono').value;
+  r.tecnico       = document.getElementById('sdet_tecnico').value;
+  r.hontec        = document.getElementById('sdet_hontec').value;
+  r.cotizacion    = document.getElementById('sdet_cotizacion').value;
+  r.cotizaciont   = document.getElementById('sdet_cotizaciont').value;
+  r.reparvi       = document.getElementById('sdet_reparvi').value;
+  r.reptec        = document.getElementById('sdet_reptec').value;
+  r.prefin        = document.getElementById('sdet_prefin').value;
+  r.formpag       = document.getElementById('sdet_formpag').value;
+  r.utinet        = document.getElementById('sdet_utinet').value;
+  r.estado        = document.getElementById('sdet_estado').value;
+  r.procedimiento = document.getElementById('sdet_procedimiento').value;
+
+  // Salir del modo edición
+  sdetEditando = false;
+  document.querySelectorAll('.sdet-editable').forEach(el => {
+    el.setAttribute('readonly', '');
+    el.classList.remove('editing');
+  });
+  // Reactivar Finalizar Servicio
+  const btnFin = document.getElementById('btnFinalizarServicio');
+  if (btnFin) {
+    btnFin.disabled = false;
+    btnFin.style.background = '#4caf50';
+    btnFin.style.cursor = 'pointer';
+    btnFin.style.opacity = '1';
+    btnFin.style.boxShadow = '0 3px 10px rgba(76,175,80,0.4)';
+  }
+  // Resetear botón EDIT
+  const btnEdit = document.getElementById('btnSdetEdit');
+  if (btnEdit) {
+    btnEdit.style.background = '#1e3a5f';
+    document.getElementById('btnSdetEditIcon').textContent = '✏️';
+    document.getElementById('btnSdetEditLabel').textContent = 'EDIT';
+  }
+
+  save();
+  toast('💾 Guardando...');
+
+  if (getToken()) {
+    try { await subirSertecpenAGitHub(); }
+    catch(e) { toast(`⚠️ Guardado localmente — Error GitHub: ${e.message}`); }
+  } else {
+    toast('💾 Guardado localmente (sin token GitHub)');
+  }
+}
+
+async function finalizarServicio() {
+  if (sdetIdx < 0 || !db.sertecpen[sdetIdx]) { toast('⚠️ Sin registro cargado'); return; }
+
+  // Guardar primero cualquier edición pendiente en memoria
+  const r = db.sertecpen[sdetIdx];
+  r.telefono      = document.getElementById('sdet_telefono').value;
+  r.tecnico       = document.getElementById('sdet_tecnico').value;
+  r.hontec        = document.getElementById('sdet_hontec').value;
+  r.cotizacion    = document.getElementById('sdet_cotizacion').value;
+  r.cotizaciont   = document.getElementById('sdet_cotizaciont').value;
+  r.reparvi       = document.getElementById('sdet_reparvi').value;
+  r.reptec        = document.getElementById('sdet_reptec').value;
+  r.prefin        = document.getElementById('sdet_prefin').value;
+  r.formpag       = document.getElementById('sdet_formpag').value;
+  r.utinet        = document.getElementById('sdet_utinet').value;
+  r.estado        = document.getElementById('sdet_estado').value;
+  r.procedimiento = document.getElementById('sdet_procedimiento').value;
+
+  // Construir registro finalizado: copia completa + campos de entrega
+  const registroFin = Object.assign({}, r);
+  delete registroFin._sel;
+  // sertecpen usa "hora", sertecfin usa "hora1"
+  if (registroFin.hora !== undefined) {
+    registroFin.hora1 = registroFin.hora;
+    delete registroFin.hora;
+  }
+  registroFin.fechfin = fechaHoy();
+  registroFin.hora2   = horaHoy();
+
+  // Añadir a sertecfin y eliminar de sertecpen
+  if (!db.sertecfin) db.sertecfin = [];
+  db.sertecfin.push(registroFin);
+  db.sertecpen.splice(sdetIdx, 1);
+  sdetIdx = -1;
+
+  save();
+  toast('✅ Servicio finalizado — sincronizando...');
+
+  // Sincronizar ambos CSVs con GitHub
+  if (getToken()) {
+    try {
+      await Promise.all([subirSertecpenAGitHub(), subirSertecfinAGitHub()]);
+    } catch(e) {
+      ocultarLoader(); // garantizar cierre del loader en cualquier error
+      toast(`⚠️ Guardado localmente — Error GitHub: ${e.message}`);
+    }
+  }
+
+  irA('page-sertecpen');
+}
+
+async function subirSertecfinAGitHub() {
+  // Schema fijo para sertecfin — siempre en este orden
+  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora1','fechfin','hora2'];
+  const data = db.sertecfin;
+  const content = schema.join(',') + '\n' +
+    data.map(item => schema.map(k => csvCell(item[k] !== undefined ? item[k] : '')).join(',')).join('\n');
+  const path = GH_FILES['sertecfin'];
+  mostrarLoader('Sincronizando sertecfin.csv...');
+  try {
+    // Siempre obtener el SHA fresco en el momento del PUT
+    let sha;
+    try {
+      const ex = await ghGet(path);
+      sha = ex.sha;
+    } catch(e) { /* archivo nuevo, sin sha */ }
+    await ghPut(path, content, sha);
+    ocultarLoader();
+    toast('✅ sertecfin.csv sincronizado');
+  } catch(e) {
+    ocultarLoader();
+    // Si el SHA sigue siendo inválido, reintentar una vez obteniendo SHA de nuevo
+    if (e.message && e.message.includes('but expected')) {
+      try {
+        mostrarLoader('Reintentando sincronización...');
+        let sha;
+        try { const ex = await ghGet(path); sha = ex.sha; } catch(e2) {}
+        await ghPut(path, content, sha);
+        ocultarLoader();
+        toast('✅ sertecfin.csv sincronizado');
+        return;
+      } catch(e2) {
+        ocultarLoader();
+        throw e2;
+      }
+    }
+    throw e;
+  }
+}
+
+
+
+async function eliminarSertecpenSeleccion() {
+  if (sertecpenModoSelect) {
+    const seleccionados = db.sertecpen
+      .map((r, i) => ({ r, i }))
+      .filter(({ r }) => r._sel)
+      .map(({ i }) => i)
+      .sort((a, b) => b - a);
+
+    if (!seleccionados.length) { toast('⚠️ No hay filas seleccionadas'); return; }
+
+    seleccionados.forEach(i => db.sertecpen.splice(i, 1));
+    db.sertecpen.forEach(r => delete r._sel);
+
+    // Volver al estado inicial: SELECT normal, ELIMINAR desactivado
+    sertecpenModoSelect = false;
+    const btnSel = document.getElementById('btnSertecpenSelect');
+    const btnDel = document.getElementById('btnSertecpenEliminar');
+    btnSel.textContent = '☑️ SELECT';
+    btnSel.style.background = '#0891b2';
+    btnDel.disabled = true;
+    btnDel.style.background = '#9ca3af';
+    btnDel.style.cursor = 'not-allowed';
+    btnDel.style.opacity = '0.6';
+
+    save();
+    renderSertecpen();
+    toast(`🗑️ ${seleccionados.length} registro(s) eliminado(s) — sincronizando...`);
+    if (getToken()) {
+      try { await subirSertecpenAGitHub(); }
+      catch(e) { toast(`⚠️ Eliminado localmente — Error GitHub: ${e.message}`); }
+    }
+  } else {
+    toast('⚠️ Activa SELECT primero para marcar filas');
+  }
+}
+
+async function subirSertecpenAGitHub() {
+  // Schema fijo para sertecpen — siempre en este orden, incluye todos los campos posibles
+  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora'];
+  const data = db.sertecpen;
+  const content = schema.join(',') + '\n' +
+    data.map(item => schema.map(k => csvCell(item[k] !== undefined ? item[k] : '')).join(',')).join('\n');
+  const path = GH_FILES['sertecpen'];
+  mostrarLoader('Sincronizando sertecpen.csv...');
+  try {
+    // Siempre obtener el SHA fresco en el momento del PUT
+    let sha;
+    try {
+      const ex = await ghGet(path);
+      sha = ex.sha;
+    } catch(e) { /* archivo nuevo, sin sha */ }
+    await ghPut(path, content, sha);
+    ocultarLoader();
+    toast('✅ sertecpen.csv sincronizado');
+  } catch(e) {
+    ocultarLoader();
+    // Si el SHA sigue siendo inválido, reintentar una vez obteniendo SHA de nuevo
+    if (e.message && e.message.includes('but expected')) {
+      try {
+        mostrarLoader('Reintentando sincronización...');
+        let sha;
+        try { const ex = await ghGet(path); sha = ex.sha; } catch(e2) {}
+        await ghPut(path, content, sha);
+        ocultarLoader();
+        toast('✅ sertecpen.csv sincronizado');
+        return;
+      } catch(e2) {
+        ocultarLoader();
+        throw e2;
+      }
+    }
+    throw e;
+  }
 }
 
 // ═══════════════════════════ INIT ══════════════════════════════
