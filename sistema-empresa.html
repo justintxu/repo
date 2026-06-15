@@ -342,25 +342,40 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   border-radius: 12px; border: 1.5px solid var(--header-border);
 }
 .theme-toggle span { font-weight: 700; font-size: 15px; color: var(--text-primary); }
+
+/* Generic toggle switch (ON/OFF) */
 .toggle-switch {
-  position: relative; width: 52px; height: 28px; cursor: pointer;
+  position: relative; width: 52px; height: 28px; cursor: pointer; flex-shrink: 0;
 }
-.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
 .toggle-slider {
   position: absolute; inset: 0; border-radius: 100px;
-  background: linear-gradient(90deg, #a5d6a7, #fff176);
-  transition: 0.3s;
-}
-html.dark .toggle-slider {
-  background: linear-gradient(90deg, #7c3aed, #67e8f9);
+  background: #d1d5db; transition: background 0.3s;
 }
 .toggle-slider:before {
-  content: '☀️'; position: absolute; width: 22px; height: 22px;
+  content: ''; position: absolute; width: 22px; height: 22px;
   left: 3px; top: 3px; border-radius: 50%; background: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; transition: 0.3s; line-height: 22px; text-align: center;
+  transition: transform 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
-html.dark .toggle-slider:before {
+.toggle-switch input:checked + .toggle-slider {
+  background: #16a34a;
+}
+.toggle-switch input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+/* Theme toggle special styling (☀️/🌙) */
+#toggleTema + .toggle-slider {
+  background: linear-gradient(90deg, #a5d6a7, #fff176);
+}
+#toggleTema + .toggle-slider:before {
+  content: '☀️'; display:flex; align-items:center; justify-content:center;
+  font-size: 13px; line-height: 22px; text-align: center;
+}
+#toggleTema:checked + .toggle-slider {
+  background: linear-gradient(90deg, #7c3aed, #67e8f9);
+}
+#toggleTema:checked + .toggle-slider:before {
   content: '🌙'; transform: translateX(24px);
 }
 /* ══════════════════════════════════════════════════════════
@@ -591,89 +606,106 @@ html.dark .toggle-slider:before {
       <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Activa o desactiva el botón de Facturación en el menú de Ventas. Configura cada botón con nombre, ícono y link.</p>
 
       <!-- Toggle activación -->
-      <div class="theme-toggle" style="display:inline-flex;margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;padding:12px 16px;background:var(--total-cell-bg);border-radius:12px;border:1.5px solid var(--header-border);width:fit-content;">
         <span style="font-weight:700;font-size:14px;color:var(--text-primary);">Facturación</span>
         <label class="toggle-switch">
           <input type="checkbox" id="toggleFacturacion" onchange="cambiarFacturacion(this.checked)">
           <span class="toggle-slider"></span>
         </label>
-        <span style="font-weight:700;font-size:14px;color:var(--text-primary);" id="labelFacturacion">OFF</span>
+        <span id="labelFacturacion" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
       </div>
 
       <!-- 6 botones configurables -->
       <div style="display:flex;flex-direction:column;gap:16px;" id="configBotonesFacturacion">
         <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 1</span>
-            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn1" onchange="cambiarEstadoBtn(1,this.checked)"><span class="toggle-slider"></span></label>
-            <span id="labelBtn1" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+              <label class="toggle-switch"><input type="checkbox" id="toggleBtn1" onchange="cambiarEstadoBtn(1,this.checked)"><span class="toggle-slider"></span></label>
+              <span id="labelBtn1" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt1n" type="text" placeholder="ej: Factura Sunat" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
-            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt1i" type="text" placeholder="🧾" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt1l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
           </div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK DE ÍCONO (imagen)</label><input id="cfgBt1img" type="text" placeholder="https://... (URL de imagen para el ícono del botón)" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
         </div>
         <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 2</span>
-            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn2" onchange="cambiarEstadoBtn(2,this.checked)"><span class="toggle-slider"></span></label>
-            <span id="labelBtn2" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+              <label class="toggle-switch"><input type="checkbox" id="toggleBtn2" onchange="cambiarEstadoBtn(2,this.checked)"><span class="toggle-slider"></span></label>
+              <span id="labelBtn2" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt2n" type="text" placeholder="ej: Boleta" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
-            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt2i" type="text" placeholder="🧾" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt2l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
           </div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK DE ÍCONO (imagen)</label><input id="cfgBt2img" type="text" placeholder="https://... (URL de imagen para el ícono del botón)" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
         </div>
         <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 3</span>
-            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn3" onchange="cambiarEstadoBtn(3,this.checked)"><span class="toggle-slider"></span></label>
-            <span id="labelBtn3" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+              <label class="toggle-switch"><input type="checkbox" id="toggleBtn3" onchange="cambiarEstadoBtn(3,this.checked)"><span class="toggle-slider"></span></label><span id="labelBtn3" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt3n" type="text" placeholder="ej: Nota de Crédito" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
-            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt3i" type="text" placeholder="📄" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt3l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
           </div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK DE ÍCONO (imagen)</label><input id="cfgBt3img" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
         </div>
         <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 4</span>
-            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn4" onchange="cambiarEstadoBtn(4,this.checked)"><span class="toggle-slider"></span></label>
-            <span id="labelBtn4" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+              <label class="toggle-switch"><input type="checkbox" id="toggleBtn4" onchange="cambiarEstadoBtn(4,this.checked)"><span class="toggle-slider"></span></label><span id="labelBtn4" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt4n" type="text" placeholder="ej: Guía de Remisión" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
-            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt4i" type="text" placeholder="📦" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt4l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
           </div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK DE ÍCONO (imagen)</label><input id="cfgBt4img" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
         </div>
         <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 5</span>
-            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn5" onchange="cambiarEstadoBtn(5,this.checked)"><span class="toggle-slider"></span></label>
-            <span id="labelBtn5" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+              <label class="toggle-switch"><input type="checkbox" id="toggleBtn5" onchange="cambiarEstadoBtn(5,this.checked)"><span class="toggle-slider"></span></label><span id="labelBtn5" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt5n" type="text" placeholder="ej: Liquidación" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
-            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt5i" type="text" placeholder="💼" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt5l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
           </div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK DE ÍCONO (imagen)</label><input id="cfgBt5img" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
         </div>
         <div style="background:var(--input-bg);border:1px solid var(--table-border);border-radius:10px;padding:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Botón 6</span>
-            <label class="toggle-switch" style="margin-left:auto;"><input type="checkbox" id="toggleBtn6" onchange="cambiarEstadoBtn(6,this.checked)"><span class="toggle-slider"></span></label>
-            <span id="labelBtn6" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+              <label class="toggle-switch"><input type="checkbox" id="toggleBtn6" onchange="cambiarEstadoBtn(6,this.checked)"><span class="toggle-slider"></span></label><span id="labelBtn6" style="font-size:13px;font-weight:800;color:var(--text-primary);min-width:32px;">OFF</span>
+            </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">NOMBRE</label><input id="cfgBt6n" type="text" placeholder="ej: Consultas" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
-            <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">ÍCONO</label><input id="cfgBt6i" type="text" placeholder="🔍" style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:20px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;text-align:center;"></div>
+            
             <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK</label><input id="cfgBt6l" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
           </div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--text-muted);">LINK DE ÍCONO (imagen)</label><input id="cfgBt6img" type="text" placeholder="https://..." style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:var(--modal-bg);color:var(--text-primary);margin-top:4px;"></div>
         </div>
+      </div>
+      <div style="margin-top:12px;padding:10px 14px;background:var(--stat-bg);border-radius:8px;border:1px solid var(--stat-border);font-size:12px;color:var(--text-muted);">
+        📐 <b>Campo ÍCONO:</b> puedes poner un emoji (🧾) <b>o directamente la URL de una imagen</b> (https://...). Medidas recomendadas: <b>80×80 px</b> o <b>120×120 px</b>, formatos PNG, JPG, SVG o WebP. El campo <b>LINK DE ÍCONO</b> es una alternativa adicional si prefieres separar el emoji de la imagen.
       </div>
       <button class="btn btn-save" style="margin-top:16px;" onclick="guardarFactonoff()">💾 Guardar Configuración</button>
       <div id="cfgFactStatus" style="margin-top:10px;font-size:13px;font-weight:600;color:var(--text-muted);"></div>
@@ -821,7 +853,7 @@ html.dark .toggle-slider:before {
       <div id="logoFacturacionWrap"></div>
       <div class="header-titles">
         <div class="company-name" id="facturacionNombreEmpresa">Nombre de la Empresa</div>
-        <div class="page-title">🧾 Facturación</div>
+        <div class="page-title">Facturación</div>
       </div>
     </div>
     <button class="back-btn" onclick="irA('page-ventas')">‹</button>
@@ -2624,9 +2656,10 @@ function cambiarTema(oscuro) {
 }
 
 function initTema() {
-  const guardado = localStorage.getItem('temaOscuro');
-  const oscuro = guardado === '1';
+  const oscuro = localStorage.getItem('temaOscuro') === '1';
   aplicarTema(oscuro);
+  const tog = document.getElementById('toggleTema');
+  if (tog) tog.checked = oscuro;
 }
 
 // ═══════════════════════════ CONFIGURACIONES GITHUB ════════════
@@ -3263,11 +3296,22 @@ function renderFacturacion() {
   for (let n = 1; n <= 6; n++) {
     const activo = f[`bt${n}s`] === '1';
     const nombre = f[`bt${n}n`] || `Botón ${n}`;
-    const icono  = n === 1 ? (f['bti'] || '🧾') : (f[`bt${n}i`] || '🧾');
+    const emoji  = n === 1 ? (f['bti'] || '🧾') : (f[`bt${n}i`] || '🧾');
+    const imgUrl = f[`bt${n}img`] || '';
     const link   = f[`bt${n}l`] || '';
     if (!activo) continue;
+
+    // Si imgUrl tiene contenido ó si emoji parece una URL → usar como imagen
+    const isUrl = (s) => s && (s.startsWith('http') || s.startsWith('//'));
+    const iconSrc = isUrl(imgUrl) ? imgUrl : isUrl(emoji) ? emoji : '';
+    const emojiChar = (!iconSrc && emoji && !isUrl(emoji)) ? emoji : '';
+
+    const iconHTML = iconSrc
+      ? `<img src="${iconSrc}" style="width:80px;height:80px;object-fit:contain;border-radius:12px;margin-bottom:10px;" onerror="this.style.display='none'">`
+      : `<div class="card-icon">${emojiChar || '🧾'}</div>`;
+
     html += `<button class="menu-card" onclick="abrirLink('${link.replace(/'/g,"\\'")}')">
-      <div class="card-icon">${icono}</div>${nombre}
+      ${iconHTML}${nombre}
     </button>`;
   }
   grid.innerHTML = html || '<p style="color:var(--text-muted);font-family:Nunito,sans-serif;grid-column:span 3;text-align:center;padding:40px;">No hay botones activos configurados.</p>';
@@ -3290,6 +3334,7 @@ function cargarConfigFactonoff() {
     const ni = document.getElementById(`cfgBt${n}n`); if (ni) ni.value = f[`bt${n}n`] || '';
     const ii = document.getElementById(`cfgBt${n}i`); if (ii) ii.value = (n === 1 ? f['bti'] : f[`bt${n}i`]) || '';
     const li = document.getElementById(`cfgBt${n}l`); if (li) li.value = f[`bt${n}l`] || '';
+    const imgI = document.getElementById(`cfgBt${n}img`); if (imgI) imgI.value = f[`bt${n}img`] || '';
   }
 }
 
@@ -3307,22 +3352,21 @@ async function guardarFactonoff() {
   const situacion = document.getElementById('toggleFacturacion').checked ? '1' : '0';
   const data = { situacion };
   for (let n = 1; n <= 6; n++) {
-    data[`bt${n}s`] = document.getElementById(`toggleBtn${n}`).checked ? '1' : '0';
-    data[`bt${n}n`] = document.getElementById(`cfgBt${n}n`).value.trim();
-    data[`bt${n}l`] = document.getElementById(`cfgBt${n}l`).value.trim();
-    // ícono: botón 1 usa 'bti', resto usan bt2i, bt3i...
+    data[`bt${n}s`]   = document.getElementById(`toggleBtn${n}`).checked ? '1' : '0';
+    data[`bt${n}n`]   = document.getElementById(`cfgBt${n}n`).value.trim();
+    data[`bt${n}l`]   = document.getElementById(`cfgBt${n}l`).value.trim();
+    data[`bt${n}img`] = document.getElementById(`cfgBt${n}img`) ? document.getElementById(`cfgBt${n}img`).value.trim() : '';
     const icoKey = n === 1 ? 'bti' : `bt${n}i`;
     data[icoKey] = document.getElementById(`cfgBt${n}i`).value.trim();
   }
-  // Reordenar según columnas del CSV original
   const ordered = {
     situacion: data.situacion,
-    bt1s: data.bt1s, bt1n: data.bt1n, bt1l: data.bt1l, bti: data.bti,
-    bt2s: data.bt2s, bt2n: data.bt2n, bt2l: data.bt2l, bt2i: data.bt2i,
-    bt3s: data.bt3s, bt3n: data.bt3n, bt3l: data.bt3l, bt3i: data.bt3i,
-    bt4s: data.bt4s, bt4n: data.bt4n, bt4l: data.bt4l, bt4i: data.bt4i,
-    bt5s: data.bt5s, bt5n: data.bt5n, bt5l: data.bt5l, bt5i: data.bt5i,
-    bt6s: data.bt6s, bt6n: data.bt6n, bt6l: data.bt6l, bt6i: data.bt6i,
+    bt1s: data.bt1s, bt1n: data.bt1n, bt1l: data.bt1l, bti: data.bti, bt1img: data.bt1img,
+    bt2s: data.bt2s, bt2n: data.bt2n, bt2l: data.bt2l, bt2i: data.bt2i, bt2img: data.bt2img,
+    bt3s: data.bt3s, bt3n: data.bt3n, bt3l: data.bt3l, bt3i: data.bt3i, bt3img: data.bt3img,
+    bt4s: data.bt4s, bt4n: data.bt4n, bt4l: data.bt4l, bt4i: data.bt4i, bt4img: data.bt4img,
+    bt5s: data.bt5s, bt5n: data.bt5n, bt5l: data.bt5l, bt5i: data.bt5i, bt5img: data.bt5img,
+    bt6s: data.bt6s, bt6n: data.bt6n, bt6l: data.bt6l, bt6i: data.bt6i, bt6img: data.bt6img,
   };
   db.factonoff = ordered;
   save();
