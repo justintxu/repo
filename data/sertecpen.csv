@@ -1,1 +1,2 @@
-artefacto,cliente,telefono,tecnico,estado,foto1,foto2,foto3,foto4,foto5,fechent,hora
+artefacto,cliente,telefono,fechent,hora,tecnico,estado,foto1,foto2,foto3,foto4,foto5
+Consola de audio,Guillermo,972 466 694,15/06/2026,12:09 PM,Omar,La consola se recalienta y se apaga luego de 10 minutos.,https://i.imgur.com/XoIG2PJ.jpeg,,,,
