@@ -194,13 +194,16 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   /* Detalle servicio pendiente */
   .sdet-layout { flex-direction: column !important; padding: 10px 14px 0 !important; gap: 12px !important; }
   .sdet-right { flex-direction: row !important; flex-wrap: wrap !important; min-width: unset !important; width: 100% !important; align-items: flex-start !important; gap: 10px !important; }
-  .sdet-imgs-grid { align-items: flex-start !important; }
+  .sdet-imgs-grid { align-items: flex-start !important; width: 100% !important; }
   .sdet-f1 { grid-template-columns: 1fr 1fr !important; }
   .sdet-f1 > div:first-child { grid-column: 1 / -1; }
   .sdet-f2 { grid-template-columns: 1fr 1fr !important; }
   .sdet-f3 { grid-template-columns: 1fr 1fr !important; }
   /* Hora/Fecha actuales en móvil: izquierda en vez de derecha */
   #page-sertec-detalle .header + div { justify-content: flex-start !important; padding: 10px 14px 0 !important; gap: 12px !important; }
+  /* Padding abajo para que la barra del navegador no tape los botones */
+  #page-sertec-detalle { padding-bottom: 120px; }
+  #page-sertecfin-detalle { padding-bottom: 80px; }
 }
 
 .btn-csv {
@@ -5889,17 +5892,7 @@ function initSertecDetalle() {
   }
 
   // Renderizar miniaturas de imágenes
-  [1,2,3,4,5].forEach(n => {
-    const url = r[`foto${n}`] || '';
-    const wrap = document.getElementById(`sdet_img${n}_wrap`);
-    if (url) {
-      wrap.innerHTML = `<img src="${url}" alt="foto${n}" title="Clic para ampliar" style="width:52px;height:52px;object-fit:cover;border-radius:6px;">`;
-      wrap.style.border = '2px solid #4caf50';
-    } else {
-      wrap.innerHTML = `<span style="font-size:26px;filter:grayscale(1);opacity:0.4;" title="Sin imagen">🖼️</span>`;
-      wrap.style.border = '2px dashed #a5d6a7';
-    }
-  });
+  sdetRenderImgs();
 }
 
 function sdetClickImg(n) {
@@ -5913,6 +5906,68 @@ function sdetClickImg(n) {
   }
 }
 
+function sdetRenderImgs() {
+  const r = db.sertecpen[sdetIdx];
+  if (!r) return;
+  [1,2,3,4,5].forEach(n => {
+    const url = r[`foto${n}`] || '';
+    const wrap = document.getElementById(`sdet_img${n}_wrap`);
+    if (sdetEditando) {
+      // En modo edición: mostrar input de URL
+      wrap.style.width = '100%';
+      wrap.style.height = 'auto';
+      wrap.style.borderRadius = '8px';
+      wrap.style.border = '1.5px solid #a5d6a7';
+      wrap.style.background = '#f0fdf4';
+      wrap.style.padding = '4px';
+      wrap.innerHTML = `
+        <div style="font-size:10px;font-weight:700;color:var(--text-muted);margin-bottom:3px;">Foto ${n}</div>
+        <input value="${url.replace(/"/g,'&quot;')}" placeholder="URL de imagen..."
+          onchange="sdetUpdateFoto(${n},this.value)"
+          style="width:100%;box-sizing:border-box;font-size:11px;padding:5px 6px;border-radius:6px;
+                 border:1px solid #a5d6a7;background:white;font-family:Nunito,sans-serif;outline:none;">
+        ${url ? `<img src="${url}" style="width:100%;height:48px;object-fit:cover;border-radius:5px;margin-top:4px;">` : ''}
+      `;
+    } else {
+      // En modo lectura: miniatura normal
+      wrap.style.width = '52px';
+      wrap.style.height = '52px';
+      wrap.style.padding = '0';
+      wrap.style.background = '#e8f5e9';
+      if (url) {
+        wrap.innerHTML = `<img src="${url}" alt="foto${n}" title="Clic para ampliar" style="width:52px;height:52px;object-fit:cover;border-radius:6px;">`;
+        wrap.style.border = '2px solid #4caf50';
+      } else {
+        wrap.innerHTML = `<span style="font-size:26px;filter:grayscale(1);opacity:0.4;" title="Sin imagen">🖼️</span>`;
+        wrap.style.border = '2px dashed #a5d6a7';
+      }
+    }
+  });
+
+  // En modo edición el grid de imágenes debe ser una columna
+  const grid = document.querySelector('.sdet-imgs-grid');
+  if (grid) {
+    if (sdetEditando) {
+      grid.style.width = '100%';
+      grid.querySelectorAll('div[style*="grid-template-columns"]').forEach(g => {
+        g.style.display = 'flex';
+        g.style.flexDirection = 'column';
+        g.style.gap = '6px';
+      });
+    } else {
+      grid.style.width = '';
+      grid.querySelectorAll('div[style*="display"]').forEach(g => {
+        g.style.display = 'grid';
+      });
+    }
+  }
+}
+
+function sdetUpdateFoto(n, url) {
+  const r = db.sertecpen[sdetIdx];
+  if (r) r[`foto${n}`] = url.trim();
+}
+
 function sdetToggleEdit() {
   sdetEditando = !sdetEditando;
   document.querySelectorAll('.sdet-editable').forEach(el => {
@@ -5924,6 +5979,8 @@ function sdetToggleEdit() {
       el.classList.remove('editing');
     }
   });
+  // Actualizar imágenes según modo
+  sdetRenderImgs();
   // Desactivar Finalizar Servicio mientras se edita
   const btnFin = document.getElementById('btnFinalizarServicio');
   if (btnFin) {
@@ -5976,6 +6033,7 @@ async function sdetGuardar() {
   r.utinet        = document.getElementById('sdet_utinet').value;
   r.estado        = document.getElementById('sdet_estado').value;
   r.procedimiento = document.getElementById('sdet_procedimiento').value;
+  // Las fotos ya se guardan en tiempo real por sdetUpdateFoto
 
   // Salir del modo edición
   sdetEditando = false;
@@ -5983,6 +6041,7 @@ async function sdetGuardar() {
     el.setAttribute('readonly', '');
     el.classList.remove('editing');
   });
+  sdetRenderImgs(); // volver a miniaturas
   // Reactivar Finalizar Servicio
   const btnFin = document.getElementById('btnFinalizarServicio');
   if (btnFin) {
