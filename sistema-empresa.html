@@ -226,7 +226,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #page-proveedor-usado { padding-bottom: 100px; }
   #page-clientes-recurrentes { padding-bottom: 100px; }
 
-  /* Detalle producto */
+  .stmin-table { display: none !important; }
+  #stockMinimoMobile { display: block !important; }
   .dprod-f1 { grid-template-columns: 1fr !important; }
   .dprod-f3 { grid-template-columns: 1fr 1fr !important; }
   .dprod-f4 { grid-template-columns: 1fr 1fr !important; }
@@ -1775,7 +1776,57 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <div class="est-card" onclick="irA('page-utilidad-neta')">
       📊 Utilidad Neta
     </div>
+    <div class="est-card" onclick="irA('page-stock-minimo')" style="background:linear-gradient(135deg,#fecaca,#fef08a);color:#991b1b;">
+      ⚠️ Stock Mínimo
+    </div>
   </div>
+</div>
+
+<!-- ═══════════════════════════════════════ STOCK MÍNIMO ════════ -->
+<div class="page" id="page-stock-minimo">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoStockMinimoWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="stockMinimoNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:#dc2626;">⚠️ Stock Mínimo</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-estadisticas')">‹</button>
+  </div>
+
+  <!-- Resumen -->
+  <div id="stockMinimoResumen" style="display:flex;gap:12px;flex-wrap:wrap;padding:16px 28px 0;"></div>
+
+  <!-- Tabla desktop -->
+  <div class="table-wrap" style="margin-top:12px;">
+    <table class="reg-table stmin-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:60px;">
+        <col style="width:110px;">
+        <col>
+        <col style="width:180px;">
+        <col style="width:90px;">
+        <col style="width:90px;">
+        <col style="width:110px;">
+        <col style="width:110px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Img</th>
+        <th style="text-align:center;">Código</th>
+        <th>Producto</th>
+        <th>Descripción</th>
+        <th style="text-align:center;">Stock</th>
+        <th style="text-align:center;">Mínimo</th>
+        <th style="text-align:center;">Ubicación</th>
+        <th style="text-align:right;">Precio</th>
+      </tr></thead>
+      <tbody id="tbodyStockMinimo"></tbody>
+    </table>
+  </div>
+
+  <!-- Vista móvil -->
+  <div id="stockMinimoMobile" style="display:none;padding:0 12px;"></div>
 </div>
 
 <!-- ═══════════════════════════════════════ UTILIDAD NETA ═══════ -->
@@ -3175,6 +3226,7 @@ function irA(pageId) {
   if (pageId === 'page-ingresar-servicio') initIngresarServicio();
   if (pageId === 'page-sertecpen') initSertecpen();
   if (pageId === 'page-sertecfin') initSertecfin();
+  if (pageId === 'page-stock-minimo') initStockMinimo();
   if (pageId === 'page-categorias') initCategorias();
   if (pageId === 'page-detalle-producto') initDetalleProducto();
   if (pageId === 'page-sertecfin-detalle') initSertecfinDetalle();
@@ -3200,7 +3252,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -6171,7 +6223,90 @@ function imprimirMasVendido() {
   w.document.close();
 }
 
-// ═══════════════════════════ DETALLE PRODUCTO ══════════════════
+// ═══════════════════════════ STOCK MÍNIMO ══════════════════════
+function initStockMinimo() {
+  // Filtrar productos donde cantidad <= stockMinimo (y stockMinimo está definido)
+  const criticos = (db.inventario || []).filter(p => {
+    const cant = parseFloat(p.cantidad || 0);
+    const min  = parseFloat(p.stockMinimo || 0);
+    return p.stockMinimo !== undefined && p.stockMinimo !== '' && cant <= min;
+  });
+
+  // Resumen
+  const resumen = document.getElementById('stockMinimoResumen');
+  resumen.innerHTML = `
+    <div style="background:#fee2e2;border:2px solid #fca5a5;border-radius:12px;padding:14px 20px;display:flex;flex-direction:column;gap:4px;">
+      <span style="font-size:12px;font-weight:700;color:#991b1b;">PRODUCTOS EN ALERTA</span>
+      <span style="font-size:28px;font-weight:800;color:#dc2626;">${criticos.length}</span>
+    </div>
+    <div style="background:#fef9c3;border:2px solid #fde047;border-radius:12px;padding:14px 20px;display:flex;flex-direction:column;gap:4px;">
+      <span style="font-size:12px;font-weight:700;color:#92400e;">TOTAL PRODUCTOS</span>
+      <span style="font-size:28px;font-weight:800;color:#b45309;">${db.inventario.length}</span>
+    </div>
+  `;
+
+  // Vista desktop
+  const tbody = document.getElementById('tbodyStockMinimo');
+  if (!criticos.length) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:#9ca3af;font-size:15px;">✅ Todos los productos están sobre el stock mínimo</td></tr>`;
+  } else {
+    tbody.innerHTML = criticos.map(p => {
+      const cant = parseFloat(p.cantidad || 0);
+      const min  = parseFloat(p.stockMinimo || 0);
+      const igual = cant === min;
+      const rowBg = igual ? 'background:#fff7ed;' : 'background:#fef2f2;';
+      const cantColor = igual ? '#f59e0b' : '#dc2626';
+      const imgHtml = p.imagen
+        ? `<img src="${p.imagen}" style="width:44px;height:44px;object-fit:cover;border-radius:8px;border:1px solid #fca5a5;cursor:zoom-in;" ondblclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}')">` 
+        : `<div style="width:44px;height:44px;background:#fee2e2;border-radius:8px;border:1px dashed #fca5a5;display:inline-flex;align-items:center;justify-content:center;font-size:18px;">📷</div>`;
+      return `<tr style="${rowBg}border-bottom:2px solid #fecaca;">
+        <td style="text-align:center;">${imgHtml}</td>
+        <td style="text-align:center;font-weight:700;">${p.codigo||''}</td>
+        <td style="font-weight:700;">${p.producto||''}</td>
+        <td style="font-size:13px;color:#6b7280;">${p.descripcion||''}</td>
+        <td style="text-align:center;font-weight:800;font-size:16px;color:${cantColor};">${cant}</td>
+        <td style="text-align:center;font-weight:700;color:#6b7280;">${min}</td>
+        <td style="text-align:center;font-size:13px;">${p.ubicacion||''}</td>
+        <td style="text-align:right;font-weight:700;color:#059669;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // Vista móvil
+  const mobile = document.getElementById('stockMinimoMobile');
+  if (!criticos.length) {
+    mobile.innerHTML = `<div style="text-align:center;padding:40px;color:#9ca3af;font-size:15px;">✅ Todos los productos están sobre el stock mínimo</div>`;
+  } else {
+    mobile.innerHTML = criticos.map(p => {
+      const cant = parseFloat(p.cantidad || 0);
+      const min  = parseFloat(p.stockMinimo || 0);
+      const igual = cant === min;
+      const cantColor = igual ? '#f59e0b' : '#dc2626';
+      const bgCard = igual ? '#fff7ed' : '#fef2f2';
+      const imgHtml = p.imagen
+        ? `<img src="${p.imagen}" onclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}');return false;" style="width:52px;height:52px;object-fit:cover;border-radius:10px;border:1px solid #fca5a5;flex-shrink:0;">`
+        : `<div style="width:52px;height:52px;background:#fee2e2;border-radius:10px;border:1px dashed #fca5a5;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📷</div>`;
+      return `<div style="border-bottom:2px solid #fecaca;padding:12px 4px;background:${bgCard};display:flex;flex-direction:column;gap:8px;border-radius:6px;margin-bottom:4px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          ${imgHtml}
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:800;font-size:15px;color:#1f2937;margin-bottom:4px;">${p.producto||''}</div>
+            <span style="background:#fee2e2;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:#991b1b;"># ${p.codigo||''}</span>
+          </div>
+        </div>
+        ${p.descripcion ? `<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>` : ''}
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span style="font-weight:800;font-size:16px;color:${cantColor};">📦 ${cant}</span>
+          <span style="background:#f3f4f6;color:#6b7280;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">Mín: ${min}</span>
+          <span style="background:#dbeafe;color:#1d4ed8;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">📍 ${p.ubicacion||''}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:14px;color:#059669;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+}
+
+
 let dprodIdx = -1;
 let dprodEditando = false;
 
