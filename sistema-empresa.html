@@ -160,6 +160,24 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 }
 .back-btn:hover { transform: scale(1.08); }
 
+/* ── BOTONES CSV ── */
+.btn-csv {
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.12s;
+  white-space: nowrap;
+}
+.btn-csv:hover { opacity: 0.88; transform: scale(1.04); }
+@media (max-width: 480px) {
+  .btn-csv { font-size: 12px; padding: 7px 10px; }
+}
+
 /* ── DETALLE SERVICIO ── */
 .field-label {
   font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 12px;
@@ -921,49 +939,65 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
 
     <!-- Exportar / Importar -->
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:20px;">
       <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">📁 Exportar / Importar CSV</h2>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Descarga o carga cada tabla en formato CSV compatible con Excel.</p>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <p style="font-size:13px;color:#6b7280;margin-bottom:16px;">Descarga o carga cada tabla en formato CSV compatible con Excel.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
 
         <!-- Inventario -->
-        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
-          <span style="font-size:20px;">📦</span>
-          <span style="flex:1;font-weight:700;font-size:15px;color:#1f2937;">Inventario</span>
-          <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('inventario')">📥 Exportar</button>
-          <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('inventario')">📤 Importar</button>
-          <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('inventario')">☁️ GitHub</button>
+        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="font-size:18px;">📦</span>
+            <span style="font-weight:800;font-size:14px;color:#1f2937;">Inventario</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('inventario')">📥 Exportar</button>
+            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('inventario')">📤 Importar</button>
+            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('inventario')">☁️ GitHub</button>
+          </div>
         </div>
 
         <!-- Ventas -->
-        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
-          <span style="font-size:20px;">🛒</span>
-          <span style="flex:1;font-weight:700;font-size:15px;color:#1f2937;">Ventas</span>
-          <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('ventas')">📥 Exportar</button>
-          <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('ventas')">📤 Importar</button>
-          <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('ventas')">☁️ GitHub</button>
+        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="font-size:18px;">🛒</span>
+            <span style="font-weight:800;font-size:14px;color:#1f2937;">Ventas</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('ventas')">📥 Exportar</button>
+            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('ventas')">📤 Importar</button>
+            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('ventas')">☁️ GitHub</button>
+          </div>
         </div>
 
         <!-- Compras -->
-        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
-          <span style="font-size:20px;">📥</span>
-          <span style="flex:1;font-weight:700;font-size:15px;color:#1f2937;">Compras</span>
-          <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('compras')">📥 Exportar</button>
-          <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('compras')">📤 Importar</button>
-          <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('compras')">☁️ GitHub</button>
+        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="font-size:18px;">📥</span>
+            <span style="font-weight:800;font-size:14px;color:#1f2937;">Compras</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('compras')">📥 Exportar</button>
+            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('compras')">📤 Importar</button>
+            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('compras')">☁️ GitHub</button>
+          </div>
         </div>
 
         <!-- Proveedores -->
-        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
-          <span style="font-size:20px;">🤝</span>
-          <span style="flex:1;font-weight:700;font-size:15px;color:#1f2937;">Proveedores</span>
-          <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('proveedores')">📥 Exportar</button>
-          <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('proveedores')">📤 Importar</button>
-          <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('proveedores')">☁️ GitHub</button>
+        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="font-size:18px;">🤝</span>
+            <span style="font-weight:800;font-size:14px;color:#1f2937;">Proveedores</span>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('proveedores')">📥 Exportar</button>
+            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('proveedores')">📤 Importar</button>
+            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('proveedores')">☁️ GitHub</button>
+          </div>
         </div>
 
         <!-- Subir Todo -->
-        <button class="btn btn-save" style="align-self:flex-start;font-size:15px;padding:12px 24px;" onclick="subirTodoGitHub()">☁️ Subir Todo a GitHub</button>
+        <button class="btn btn-save" style="font-size:15px;padding:12px 24px;" onclick="subirTodoGitHub()">☁️ Subir Todo a GitHub</button>
       </div>
     </div>
 
