@@ -226,7 +226,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #page-proveedor-usado { padding-bottom: 100px; }
   #page-clientes-recurrentes { padding-bottom: 100px; }
 
-  /* Utilidad Bruta/Neta — filtros y grids responsive */
+  /* Detalle producto */
+  .dprod-f1 { grid-template-columns: 1fr !important; }
+  .dprod-f3 { grid-template-columns: 1fr 1fr !important; }
+  .dprod-f4 { grid-template-columns: 1fr 1fr !important; }
   #selectNivelUB, #selectAnioUB, #selectMesUB, #selectSemanaUB,
   #selectNivelUN, #selectAnioUN, #selectMesUN, #selectSemanaUN {
     font-size: 13px !important; padding: 6px 10px !important; min-width: unset !important;
@@ -789,6 +792,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <div class="table-wrap">
     <table class="data-table alm-table">
       <thead><tr>
+        <th style="width:36px;text-align:center;"></th>
         <th style="width:30px;text-align:center;" id="thCheck"></th>
         <th style="width:52px;text-align:center;">Img</th>
         <th style="min-width:80px;max-width:90px;text-align:center;">Código</th>
@@ -815,7 +819,154 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <button class="btn" id="btnEditarAlmacen" onclick="editarAlmacen()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
     <button class="btn" id="btnGuardarAlmacen" onclick="guardarAlmacen()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
     <button class="btn" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
+    <button class="btn" style="background:#8b5cf6;color:white;" onclick="irA('page-categorias')">🏷️ Categorías</button>
     <button class="btn" style="background:#374151;color:white;" onclick="navegarConProt('page-configuraciones','Configuraciones','protConfig')">⚙️ Configuraciones</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ DETALLE PRODUCTO ══ -->
+<div class="page" id="page-detalle-producto">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoDetalleProductoWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="detalleProductoNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--orange);">📦 Detalle del Producto</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-almacen')">‹</button>
+  </div>
+
+  <div class="sdet-layout" style="display:flex;gap:18px;padding:14px 28px 0;align-items:flex-start;">
+
+    <!-- FORMULARIO -->
+    <div style="flex:1;min-width:0;">
+
+      <!-- Fila 1: Código | Producto -->
+      <div class="dprod-f1" style="display:grid;grid-template-columns:160px 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Código</div>
+          <input id="dprod_codigo" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label">Producto</div>
+          <input id="dprod_producto" class="sdet-input dprod-editable" readonly>
+        </div>
+      </div>
+
+      <!-- Fila 2: Descripción (ancho completo) -->
+      <div style="margin-bottom:10px;">
+        <div class="field-label">Descripción</div>
+        <input id="dprod_descripcion" class="sdet-input dprod-editable" readonly>
+      </div>
+
+      <!-- Fila 3: Precio | Cantidad | Stock Mínimo | Ubicación -->
+      <div class="dprod-f3" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Precio Venta</div>
+          <input id="dprod_precio" class="sdet-input dprod-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label">Stock</div>
+          <input id="dprod_cantidad" class="sdet-input dprod-editable" readonly type="number">
+        </div>
+        <div>
+          <div class="field-label">Stock Mínimo</div>
+          <input id="dprod_stockMinimo" class="sdet-input dprod-editable" readonly type="number">
+        </div>
+        <div>
+          <div class="field-label">Ubicación</div>
+          <input id="dprod_ubicacion" class="sdet-input dprod-editable" readonly>
+        </div>
+      </div>
+
+      <!-- Fila 4: Precio Compra | Último Proveedor | Categoría -->
+      <div class="dprod-f4" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Precio Compra</div>
+          <input id="dprod_precioCompra" class="sdet-input dprod-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label">Último Proveedor</div>
+          <input id="dprod_ultimoProveedor" class="sdet-input dprod-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label">Categoría</div>
+          <input id="dprod_categoria" class="sdet-input dprod-editable" readonly list="dprod_catList">
+          <datalist id="dprod_catList"></datalist>
+        </div>
+      </div>
+
+      <!-- URL Imagen -->
+      <div style="margin-bottom:10px;">
+        <div class="field-label">URL Imagen</div>
+        <input id="dprod_imagen" class="sdet-input dprod-editable" readonly placeholder="https://...">
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: imagen + botones -->
+    <div class="sdet-right" style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
+      <!-- Vista previa imagen -->
+      <div class="field-label" style="align-self:flex-start;">Imagen</div>
+      <div id="dprod_imgPreview"
+        onclick="if(document.getElementById('dprod_imagen').value)abrirImagen(document.getElementById('dprod_imagen').value)"
+        style="width:120px;height:120px;border-radius:12px;border:2px dashed #a5d6a7;background:#e8f5e9;
+               display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;">
+        <span style="font-size:40px;opacity:0.4;">📷</span>
+      </div>
+
+      <!-- Botones EDIT + SAVE -->
+      <div style="display:flex;gap:8px;">
+        <button id="btnDprodEdit" onclick="dprodToggleEdit()"
+          style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                 background:#1e3a5f;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;gap:4px;transition:transform 0.12s,background 0.2s;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+          <span id="btnDprodEditIcon" style="font-size:20px;">✏️</span><span id="btnDprodEditLabel">EDIT</span>
+        </button>
+        <button onclick="dprodGuardar()"
+          style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                 background:#4caf50;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;gap:4px;transition:transform 0.12s;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+          <span style="font-size:20px;">💾</span>Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ CATEGORÍAS ══════════ -->
+<div class="page" id="page-categorias">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoCategoriasWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="categoriasNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--orange);">🏷️ Categorías</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-almacen')">‹</button>
+  </div>
+
+  <div style="padding:20px 28px;display:flex;flex-direction:column;gap:16px;max-width:600px;">
+
+    <!-- Lista de categorías -->
+    <div id="listaCategorias" style="display:flex;flex-direction:column;gap:10px;"></div>
+
+    <!-- Mensaje vacío -->
+    <div id="categoriasVacio" style="text-align:center;padding:32px;color:var(--text-muted);font-size:15px;display:none;">
+      Sin categorías. Presiona <b>Agregar</b> para crear una.
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn btn-new" onclick="agregarCategoria()">➕ Agregar</button>
+    <button class="btn" id="btnEditarCat" onclick="editarCategorias()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
+    <button class="btn" id="btnGuardarCat" onclick="guardarCategorias()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
+    <button class="btn" id="btnSelectCat" onclick="toggleSelectCat()" style="background:#f59e0b;color:white;">☑️ Select</button>
+    <button class="btn btn-delete" id="btnEliminarCat" onclick="eliminarCategoriaSeleccionada()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>🗑️ Eliminar</button>
   </div>
 </div>
 
@@ -2922,7 +3073,8 @@ let db = {
   factonoff: {},
   sertec: {},
   sertecpen: [],
-  sertecfin: []
+  sertecfin: [],
+  categorias: []
 };
 
 let almacenIdx = -1;
@@ -3022,6 +3174,8 @@ function irA(pageId) {
   if (pageId === 'page-ingresar-servicio') initIngresarServicio();
   if (pageId === 'page-sertecpen') initSertecpen();
   if (pageId === 'page-sertecfin') initSertecfin();
+  if (pageId === 'page-categorias') initCategorias();
+  if (pageId === 'page-detalle-producto') initDetalleProducto();
   if (pageId === 'page-sertecfin-detalle') initSertecfinDetalle();
   if (pageId === 'page-sertec-detalle') initSertecDetalle();
   if (pageId === 'page-utilidad-bruta') initUtilidadBruta();
@@ -3045,7 +3199,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -3100,6 +3254,16 @@ function renderAlmacen() {
     const totalVenta = (precio * cantidad).toFixed(2);
     const totalCompra = (precioCompra * cantidad).toFixed(2);
     tbody.innerHTML += `<tr data-idx="${orig}" class="${orig===almacenIdx?'selected':''}" id="row-${orig}">
+      <td style="text-align:center;">
+        <button onclick="abrirDetalleProducto(${orig})"
+          style="width:30px;height:30px;border-radius:50%;border:none;
+                 background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
+                 color:white;font-size:15px;cursor:pointer;display:inline-flex;
+                 align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);
+                 transition:transform 0.13s;"
+          onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
+          title="Ver detalle">➜</button>
+      </td>
       <td style="text-align:center;"><input type="checkbox" class="row-check" data-idx="${orig}" style="width:16px;height:16px;cursor:pointer;accent-color:#ef4444;display:${modoSeleccion?'inline-block':'none'}"></td>
       <td style="text-align:center;">
         ${p.imagen ? `<img src="${p.imagen}" class="thumb-img" data-url="${p.imagen.replace(/"/g,'&quot;')}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;cursor:zoom-in;border:1px solid #e5e7eb;" title="Doble clic para ampliar">` : `<div style="width:40px;height:40px;background:#f3f4f6;border-radius:6px;border:1px dashed #d1d5db;display:inline-flex;align-items:center;justify-content:center;font-size:18px;">📷</div>`}
@@ -3147,8 +3311,13 @@ function renderAlmacen() {
         : `<div style="width:56px;height:56px;background:#f3f4f6;border-radius:10px;border:1px dashed #d1d5db;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📷</div>`;
       if (dis) {
         // Modo lectura
-        return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;" onclick="selAlmacen(${orig})">
+        return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;gap:10px;">
+            <button onclick="abrirDetalleProducto(${orig})"
+              style="width:36px;height:36px;border-radius:50%;border:none;flex-shrink:0;
+                     background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
+                     color:white;font-size:17px;cursor:pointer;display:flex;
+                     align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);">➜</button>
             ${imgHtml}
             <div style="flex:1;min-width:0;">
               <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
@@ -3800,7 +3969,8 @@ const GH_FILES  = {
   factonoff:   'data/factonoff.csv',
   sertec:      'data/sertec.csv',
   sertecpen:   'data/sertecpen.csv',
-  sertecfin:   'data/sertecfin.csv'
+  sertecfin:   'data/sertecfin.csv',
+  categorias:  'data/categorias.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -3898,8 +4068,10 @@ async function cargarDesdeGitHub() {
           db.sertecpen = parsed;
         }
       } else if (tipo === 'sertecfin') {
+        if (parsed.length) { db.sertecfin = parsed; }
+      } else if (tipo === 'categorias') {
         if (parsed.length) {
-          db.sertecfin = parsed;
+          db.categorias = parsed.map(r => ({ nombre: (r.nombre || r.id || '').toString().trim() })).filter(c => c.nombre !== '');
         }
       } else {
         if (parsed.length) { db[tipo] = parsed; cargados++; }
@@ -4197,7 +4369,7 @@ function parseCSV(text) {
 }
 
 const CSV_SCHEMAS = {
-  inventario:  ['codigo','cantidad','producto','descripcion','precio','ubicacion','precioCompra','ultimoProveedor','imagen'],
+  inventario:  ['codigo','cantidad','producto','descripcion','precio','ubicacion','precioCompra','ultimoProveedor','imagen','stockMinimo','categoria'],
   ventas:      ['fecha','hora','cliente','codigo','cantidad','producto','precio','total'],
   compras:     ['fecha','hora','proveedor','codigo','cantidad','producto','precio','total','tipo','numero','emision'],
   proveedores: ['nombre','telefono','celular','email','direccion','site']
@@ -5998,7 +6170,268 @@ function imprimirMasVendido() {
   w.document.close();
 }
 
-// ═══════════════════════════ DETALLE SERVICIO FINALIZADO ═══════
+// ═══════════════════════════ DETALLE PRODUCTO ══════════════════
+let dprodIdx = -1;
+let dprodEditando = false;
+
+function abrirDetalleProducto(orig) {
+  dprodIdx = orig;
+  irA('page-detalle-producto');
+}
+
+function initDetalleProducto() {
+  dprodEditando = false;
+  const p = db.inventario[dprodIdx];
+  if (!p) { toast('⚠️ Producto no encontrado'); irA('page-almacen'); return; }
+
+  document.getElementById('dprod_codigo').value         = p.codigo         || '';
+  document.getElementById('dprod_producto').value       = p.producto        || '';
+  document.getElementById('dprod_descripcion').value    = p.descripcion     || '';
+  document.getElementById('dprod_precio').value         = p.precio          || '';
+  document.getElementById('dprod_cantidad').value       = p.cantidad        || '';
+  document.getElementById('dprod_stockMinimo').value    = p.stockMinimo     || '';
+  document.getElementById('dprod_ubicacion').value      = p.ubicacion       || '';
+  document.getElementById('dprod_precioCompra').value   = p.precioCompra    || '';
+  document.getElementById('dprod_ultimoProveedor').value= p.ultimoProveedor || '';
+  document.getElementById('dprod_categoria').value      = p.categoria       || '';
+  document.getElementById('dprod_imagen').value         = p.imagen          || '';
+
+  // Datalist de categorías
+  const dl = document.getElementById('dprod_catList');
+  dl.innerHTML = (db.categorias||[]).map(c => `<option value="${escHtml(getNombreCat(c))}">`).join('');
+
+  // Salir del modo edición
+  dprodEditando = false;
+  document.querySelectorAll('.dprod-editable').forEach(el => { el.setAttribute('readonly',''); el.classList.remove('editing'); });
+  const btnE = document.getElementById('btnDprodEdit');
+  if (btnE) { btnE.style.background = '#1e3a5f'; document.getElementById('btnDprodEditIcon').textContent = '✏️'; document.getElementById('btnDprodEditLabel').textContent = 'EDIT'; }
+
+  // Vista previa imagen
+  dprodRefreshImg();
+}
+
+function dprodRefreshImg() {
+  const url = document.getElementById('dprod_imagen').value;
+  const preview = document.getElementById('dprod_imgPreview');
+  if (url) {
+    preview.innerHTML = `<img src="${url}" style="width:120px;height:120px;object-fit:cover;border-radius:10px;">`;
+    preview.style.border = '2px solid #4caf50';
+  } else {
+    preview.innerHTML = `<span style="font-size:40px;opacity:0.4;">📷</span>`;
+    preview.style.border = '2px dashed #a5d6a7';
+  }
+}
+
+function dprodToggleEdit() {
+  dprodEditando = !dprodEditando;
+  document.querySelectorAll('.dprod-editable').forEach(el => {
+    if (dprodEditando) { el.removeAttribute('readonly'); el.classList.add('editing'); }
+    else { el.setAttribute('readonly',''); el.classList.remove('editing'); }
+  });
+  const btnE = document.getElementById('btnDprodEdit');
+  const icon = document.getElementById('btnDprodEditIcon');
+  const lbl  = document.getElementById('btnDprodEditLabel');
+  if (dprodEditando) {
+    btnE.style.background = '#dc2626'; icon.textContent = '✖️'; lbl.textContent = 'CANCELAR';
+  } else {
+    btnE.style.background = '#1e3a5f'; icon.textContent = '✏️'; lbl.textContent = 'EDIT';
+  }
+  // Actualizar imagen en tiempo real al salir de edición
+  if (!dprodEditando) dprodRefreshImg();
+}
+
+async function dprodGuardar() {
+  if (dprodIdx < 0 || !db.inventario[dprodIdx]) { toast('⚠️ Sin producto cargado'); return; }
+  const p = db.inventario[dprodIdx];
+  p.producto        = document.getElementById('dprod_producto').value;
+  p.descripcion     = document.getElementById('dprod_descripcion').value;
+  p.precio          = document.getElementById('dprod_precio').value;
+  p.cantidad        = document.getElementById('dprod_cantidad').value;
+  p.stockMinimo     = document.getElementById('dprod_stockMinimo').value;
+  p.ubicacion       = document.getElementById('dprod_ubicacion').value;
+  p.precioCompra    = document.getElementById('dprod_precioCompra').value;
+  p.ultimoProveedor = document.getElementById('dprod_ultimoProveedor').value;
+  p.categoria       = document.getElementById('dprod_categoria').value;
+  p.imagen          = document.getElementById('dprod_imagen').value;
+
+  dprodEditando = false;
+  document.querySelectorAll('.dprod-editable').forEach(el => { el.setAttribute('readonly',''); el.classList.remove('editing'); });
+  const btnE = document.getElementById('btnDprodEdit');
+  if (btnE) { btnE.style.background = '#1e3a5f'; document.getElementById('btnDprodEditIcon').textContent = '✏️'; document.getElementById('btnDprodEditLabel').textContent = 'EDIT'; }
+  dprodRefreshImg();
+  save();
+  toast('💾 Guardando...');
+  if (getToken()) {
+    try { await subirAGitHub('inventario'); }
+    catch(e) { toast(`⚠️ Guardado localmente — Error: ${e.message}`); }
+  } else { toast('💾 Guardado localmente'); }
+}
+
+// ═══════════════════════════ CATEGORÍAS ═══════════════════════
+let catEditando = false;
+let catSeleccionada = -1;
+let catModoSelect = false;
+
+function getNombreCat(c) {
+  if (!c) return '';
+  if (typeof c === 'string') return c;
+  return c.nombre || '';
+}
+
+function initCategorias() {
+  catEditando = false;
+  catSeleccionada = -1;
+  catModoSelect = false;
+  db.categorias = db.categorias.map(c => ({ nombre: getNombreCat(c) })).filter(c => c.nombre.trim() !== '');
+  setCatBtns();
+  renderCategorias();
+}
+
+function setCatBtns() {
+  const btnE = document.getElementById('btnEditarCat');
+  const btnG = document.getElementById('btnGuardarCat');
+  const btnD = document.getElementById('btnEliminarCat');
+  const btnS = document.getElementById('btnSelectCat');
+
+  if (catEditando) {
+    btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626';
+  } else {
+    btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8';
+  }
+  btnE.disabled = catModoSelect;
+  btnE.style.opacity = catModoSelect ? '0.4' : '1';
+
+  btnG.disabled = !catEditando;
+  btnG.style.background = catEditando ? 'var(--green)' : '#9ca3af';
+  btnG.style.cursor = catEditando ? 'pointer' : 'not-allowed';
+  btnG.style.opacity = catEditando ? '1' : '0.6';
+
+  if (catModoSelect) {
+    btnS.textContent = '✖️ Cancelar'; btnS.style.background = '#374151';
+  } else {
+    btnS.textContent = '☑️ Select'; btnS.style.background = '#f59e0b';
+  }
+  btnS.disabled = catEditando;
+  btnS.style.opacity = catEditando ? '0.4' : '1';
+
+  const haySel = catSeleccionada >= 0 || (catModoSelect && db.categorias.some(c => c._sel));
+  btnD.disabled = !haySel;
+  btnD.style.background = haySel ? '#dc2626' : '#9ca3af';
+  btnD.style.cursor = haySel ? 'pointer' : 'not-allowed';
+  btnD.style.opacity = haySel ? '1' : '0.6';
+}
+
+function renderCategorias() {
+  const lista = document.getElementById('listaCategorias');
+  const vacio = document.getElementById('categoriasVacio');
+  if (!db.categorias.length) {
+    lista.innerHTML = ''; vacio.style.display = 'block'; return;
+  }
+  vacio.style.display = 'none';
+  lista.innerHTML = db.categorias.map((c, i) => {
+    const nombre = getNombreCat(c);
+    const seleccionado = i === catSeleccionada && !catModoSelect;
+    const editable = catEditando && seleccionado;
+    const checkBox = catModoSelect
+      ? `<input type="checkbox" ${c._sel?'checked':''} onchange="db.categorias[${i}]._sel=this.checked;setCatBtns();"
+           style="width:20px;height:20px;accent-color:#dc2626;cursor:pointer;flex-shrink:0;">`
+      : '';
+    return `<div style="display:flex;align-items:center;gap:10px;">
+      ${checkBox}
+      <input id="catInput_${i}" value="${escHtml(nombre)}"
+        ${editable ? '' : 'readonly'}
+        onchange="db.categorias[${i}].nombre=this.value"
+        onclick="if(!catEditando&&!catModoSelect)seleccionarCategoria(${i})"
+        style="flex:1;padding:12px 16px;border-radius:10px;
+               border:2px solid ${seleccionado?'#8b5cf6':(editable?'#4caf50':'#e2e8f0')};
+               background:${seleccionado?'#f5f3ff':(editable?'#fff':'#f8fafc')};
+               font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;
+               color:var(--text-primary);outline:none;
+               cursor:${editable?'text':'pointer'};
+               box-shadow:${seleccionado?'0 0 0 3px rgba(139,92,246,0.2)':'none'};
+               transition:border 0.15s,background 0.15s;">
+      ${seleccionado ? '<span style="color:#8b5cf6;font-size:18px;flex-shrink:0;">◀</span>' : ''}
+    </div>`;
+  }).join('');
+}
+
+function seleccionarCategoria(i) {
+  catSeleccionada = catSeleccionada === i ? -1 : i;
+  setCatBtns(); renderCategorias();
+}
+
+function agregarCategoria() {
+  db.categorias.push({ nombre: '' });
+  catEditando = true;
+  catSeleccionada = db.categorias.length - 1;
+  catModoSelect = false;
+  setCatBtns(); renderCategorias();
+  setTimeout(() => {
+    const inp = document.getElementById(`catInput_${catSeleccionada}`);
+    if (inp) { inp.removeAttribute('readonly'); inp.focus(); }
+  }, 50);
+}
+
+function editarCategorias() {
+  if (catModoSelect) return;
+  if (catEditando) {
+    catEditando = false; catSeleccionada = -1;
+    db.categorias = db.categorias.filter(c => getNombreCat(c).trim() !== '');
+  } else {
+    if (catSeleccionada < 0) { toast('⚠️ Selecciona una categoría primero'); return; }
+    catEditando = true;
+  }
+  setCatBtns(); renderCategorias();
+}
+
+function toggleSelectCat() {
+  if (catEditando) return;
+  catModoSelect = !catModoSelect;
+  if (!catModoSelect) { db.categorias.forEach(c => delete c._sel); catSeleccionada = -1; }
+  setCatBtns(); renderCategorias();
+}
+
+async function guardarCategorias() {
+  db.categorias = db.categorias.map(c => ({ nombre: getNombreCat(c).trim() })).filter(c => c.nombre !== '');
+  catEditando = false; catSeleccionada = -1; catModoSelect = false;
+  db.categorias.forEach(c => delete c._sel);
+  setCatBtns(); save(); renderCategorias();
+  toast('💾 Guardando categorías...');
+  if (getToken()) {
+    try { await subirCategoriasGitHub(); }
+    catch(e) { toast(`⚠️ Guardado localmente — Error: ${e.message}`); }
+  } else { toast('💾 Guardado localmente'); }
+}
+
+async function eliminarCategoriaSeleccionada() {
+  let eliminados = 0;
+  if (catModoSelect) {
+    const antes = db.categorias.length;
+    db.categorias = db.categorias.filter(c => !c._sel);
+    eliminados = antes - db.categorias.length;
+    catModoSelect = false;
+  } else if (catSeleccionada >= 0) {
+    db.categorias.splice(catSeleccionada, 1); eliminados = 1;
+  }
+  catSeleccionada = -1; catEditando = false;
+  db.categorias.forEach(c => delete c._sel);
+  setCatBtns(); save(); renderCategorias();
+  toast(`🗑️ ${eliminados} categoría(s) eliminada(s)`);
+  if (getToken()) subirCategoriasGitHub().catch(e => toast(`⚠️ Error: ${e.message}`));
+}
+
+async function subirCategoriasGitHub() {
+  const content = 'id,nombre\n' + db.categorias.map((c, i) => `${i+1},${csvCell(getNombreCat(c))}`).join('\n');
+  const path = GH_FILES['categorias'];
+  mostrarLoader('Sincronizando categorias.csv...');
+  try {
+    let sha;
+    try { const ex = await ghGet(path); sha = ex.sha; } catch(e) {}
+    await ghPut(path, content, sha);
+    ocultarLoader(); toast('✅ categorias.csv sincronizado');
+  } catch(e) { ocultarLoader(); throw e; }
+}
+
 let sfinIdx = -1;
 
 function abrirSertecfinDetalle(orig) {
