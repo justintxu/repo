@@ -864,7 +864,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <div class="dprod-f3" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Precio Venta</div>
-          <input id="dprod_precio" class="sdet-input dprod-editable" readonly>
+          <input id="dprod_precio" class="sdet-input dprod-editable" readonly style="text-align:right;">
         </div>
         <div>
           <div class="field-label">Stock</div>
@@ -884,7 +884,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <div class="dprod-f4" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Precio Compra</div>
-          <input id="dprod_precioCompra" class="sdet-input dprod-editable" readonly>
+          <input id="dprod_precioCompra" class="sdet-input dprod-editable" readonly style="text-align:right;">
         </div>
         <div>
           <div class="field-label">Último Proveedor</div>
@@ -892,8 +892,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </div>
         <div>
           <div class="field-label">Categoría</div>
-          <input id="dprod_categoria" class="sdet-input dprod-editable" readonly list="dprod_catList">
-          <datalist id="dprod_catList"></datalist>
+          <select id="dprod_categoria" class="sdet-input dprod-editable" disabled
+            style="font-family:'Nunito',sans-serif;cursor:pointer;"></select>
         </div>
       </div>
 
@@ -924,11 +924,12 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
           onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
           <span id="btnDprodEditIcon" style="font-size:20px;">✏️</span><span id="btnDprodEditLabel">EDIT</span>
         </button>
-        <button onclick="dprodGuardar()"
+        <button id="btnDprodSave" onclick="dprodGuardar()" disabled
           style="display:flex;flex-direction:column;align-items:center;justify-content:center;
-                 background:#4caf50;color:white;border:none;border-radius:10px;
-                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;gap:4px;transition:transform 0.12s;"
-          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+                 background:#9ca3af;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;
+                 gap:4px;transition:transform 0.12s;opacity:0.5;cursor:not-allowed;"
+          onmouseover="if(!this.disabled)this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
           <span style="font-size:20px;">💾</span>Save
         </button>
       </div>
@@ -1416,7 +1417,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <tbody id="tbodyEjecVenta"></tbody>
       <tfoot class="ejec-tfoot"><tr>
         <td colspan="4" style="text-align:right;padding:8px 12px;font-weight:800;">TOTAL VENTA:</td>
-        <td><div class="grand-total" id="totalVenta">S/ 0.00</div></td>
+        <td><div class="grand-total" id="totalVenta">0.00</div></td>
         <td></td>
       </tr></tfoot>
     </table>
@@ -1427,7 +1428,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <div id="ejecVentaMobileItems"></div>
     <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
       <span style="font-weight:800;font-size:16px;">TOTAL VENTA:</span>
-      <div class="grand-total" id="totalVentaMobile" style="font-size:20px;">S/ 0.00</div>
+      <div class="grand-total" id="totalVentaMobile" style="font-size:20px;">0.00</div>
     </div>
   </div>
   <div style="display:flex;justify-content:flex-end;padding:16px 32px;gap:12px;">
@@ -1600,7 +1601,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <tbody id="tbodyEjecCompra"></tbody>
       <tfoot class="ejec-tfoot"><tr>
         <td colspan="4" style="text-align:right;padding:8px 12px;font-weight:800;">TOTAL COMPRA:</td>
-        <td><div class="grand-total" id="totalCompra">S/ 0.00</div></td>
+        <td><div class="grand-total" id="totalCompra">0.00</div></td>
         <td></td>
       </tr></tfoot>
     </table>
@@ -1611,7 +1612,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <div id="ejecCompraMobileItems"></div>
     <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
       <span style="font-weight:800;font-size:15px;">TOTAL COMPRA:</span>
-      <div class="grand-total" id="totalCompraMobile" style="font-size:20px;">S/ 0.00</div>
+      <div class="grand-total" id="totalCompraMobile" style="font-size:20px;">0.00</div>
     </div>
   </div>
 
@@ -3013,7 +3014,7 @@ function renderInventario() {
       <td class="inv-col-cod" style="text-align:center;">${p.codigo||''}</td>
       <td class="inv-col-prod" style="text-align:center;">${p.producto||''}</td>
       <td class="inv-col-desc">${p.descripcion||''}</td>
-      <td class="inv-col-precio" style="text-align:right;">S/ ${parseFloat(p.precio||0).toFixed(2)}</td>
+      <td class="inv-col-precio" style="text-align:right;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</td>
       <td class="inv-col-stock" style="text-align:center;">${p.cantidad||0}</td>
       <td class="inv-col-ubic" style="text-align:center;">${p.ubicacion||''}</td>
     </tr>`;
@@ -3041,7 +3042,7 @@ function renderInventario() {
         ${p.descripcion ? `<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>` : ''}
         <!-- Fila 2: precio + stock + ubicación -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="font-weight:800;font-size:15px;color:#059669;">S/ ${parseFloat(p.precio||0).toFixed(2)}</span>
+          <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</span>
           <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
           <span style="background:#dbeafe;color:#1d4ed8;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">📍 ${p.ubicacion||''}</span>
         </div>
@@ -3272,11 +3273,11 @@ function renderAlmacen() {
       <td><input class="cell-input blue-cell" value="${p.cantidad||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'cantidad',this.value)" onclick="selAlmacen(${orig})" style="max-width:70px;text-align:center;"></td>
       <td><input class="cell-input blue-cell" value="${p.producto||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'producto',this.value)" onclick="selAlmacen(${orig})"></td>
       <td><input class="cell-input blue-cell" value="${p.descripcion||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'descripcion',this.value)" onclick="selAlmacen(${orig})"></td>
-      <td><input class="cell-input blue-cell" value="${precio?'S/ '+precio.toFixed(2):''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'precio',this.value.replace('S/ ',''))" onclick="selAlmacen(${orig})" style="max-width:110px;text-align:right;"></td>
-      <td><div class="total-cell" style="text-align:right;background:#d1fae5;color:#065f46;">S/ ${totalVenta}</div></td>
+      <td><input class="cell-input blue-cell" value="${precio?getSym()+' '+precio.toFixed(2):''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'precio',this.value.replace(getSym()+' ',''))" onclick="selAlmacen(${orig})" style="max-width:110px;text-align:right;"></td>
+      <td><div class="total-cell" style="text-align:right;background:#d1fae5;color:#065f46;">${getSym()} ${totalVenta}</div></td>
       <td><input class="cell-input blue-cell" value="${p.ubicacion||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'ubicacion',this.value)" onclick="selAlmacen(${orig})" style="max-width:85px;text-align:center;"></td>
-      <td><input class="cell-input blue-cell" value="${precioCompra?'S/ '+precioCompra.toFixed(2):''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'precioCompra',this.value.replace('S/ ',''))" onclick="selAlmacen(${orig})" style="max-width:110px;text-align:right;"></td>
-      <td><div class="total-cell" style="text-align:right;background:#dbeafe;color:#1e40af;">S/ ${totalCompra}</div></td>
+      <td><input class="cell-input blue-cell" value="${precioCompra?getSym()+' '+precioCompra.toFixed(2):''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'precioCompra',this.value.replace(getSym()+' ',''))" onclick="selAlmacen(${orig})" style="max-width:110px;text-align:right;"></td>
+      <td><div class="total-cell" style="text-align:right;background:#dbeafe;color:#1e40af;">${getSym()} ${totalCompra}</div></td>
       <td><input class="cell-input blue-cell" value="${p.ultimoProveedor||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'ultimoProveedor',this.value)" onclick="selAlmacen(${orig})" style="max-width:100px;text-align:center;"></td>
       <td style="width:36px;text-align:center;"><input class="cell-input" value="${p.imagen||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'imagen',this.value);renderAlmacen()" onclick="selAlmacen(${orig})" placeholder="URL" title="${p.imagen||'Pegar URL de imagen'}" style="width:28px;font-size:10px;padding:4px 2px;text-align:center;background:#fff9f0;cursor:text;" onfocus="this.style.width='280px';this.style.zIndex='10';this.style.position='relative'" onblur="this.style.width='28px';this.style.zIndex='';this.style.position=''"></td>
     </tr>`;
@@ -3293,8 +3294,8 @@ function renderAlmacen() {
   document.getElementById('almacenStats').innerHTML = `
     <div class="stat-card"><div class="stat-label">Nº de Productos</div><div class="stat-value">${total}</div></div>
     <div class="stat-card"><div class="stat-label">Total Ítems</div><div class="stat-value">${totalItems}</div></div>
-    <div class="stat-card"><div class="stat-label">Precio Total Venta</div><div class="stat-value">S/ ${totalVenta.toFixed(2)}</div></div>
-    <div class="stat-card"><div class="stat-label">Costo Total Compra</div><div class="stat-value">S/ ${totalCompra.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Precio Total Venta</div><div class="stat-value">${getSym()} ${totalVenta.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Costo Total Compra</div><div class="stat-value">${getSym()} ${totalCompra.toFixed(2)}</div></div>
   `;
 
   // Vista móvil
@@ -3326,10 +3327,10 @@ function renderAlmacen() {
           </div>
           ${p.descripcion?`<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>`:''}
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <span style="font-weight:800;font-size:15px;color:#059669;">S/ ${precio.toFixed(2)}</span>
+            <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${precio.toFixed(2)}</span>
             <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
             <span style="background:#dbeafe;color:#1d4ed8;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">📍 ${p.ubicacion||''}</span>
-            ${p.precioCompra?`<span style="font-size:12px;color:var(--text-muted);">Compra: S/ ${precioCompra.toFixed(2)}</span>`:''}
+            ${p.precioCompra?`<span style="font-size:12px;color:var(--text-muted);">Compra: ${getSym()} ${precioCompra.toFixed(2)}</span>`:''}
           </div>
         </div>`;
       } else {
@@ -3347,9 +3348,9 @@ function renderAlmacen() {
             <input class="cell-input blue-cell" value="${p.descripcion||''}" onchange="updateAlmacen(${orig},'descripcion',this.value)" style="width:100%;box-sizing:border-box;"></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
             <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">PRECIO VENTA</div>
-              <input class="cell-input blue-cell" value="${precio?'S/ '+precio.toFixed(2):''}" onchange="updateAlmacen(${orig},'precio',this.value.replace('S/ ',''))" style="width:100%;box-sizing:border-box;"></div>
+              <input class="cell-input blue-cell" value="${precio?getSym()+' '+precio.toFixed(2):''}" onchange="updateAlmacen(${orig},'precio',this.value.replace(getSym()+' ',''))" style="width:100%;box-sizing:border-box;"></div>
             <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">PRECIO COMPRA</div>
-              <input class="cell-input blue-cell" value="${precioCompra?'S/ '+precioCompra.toFixed(2):''}" onchange="updateAlmacen(${orig},'precioCompra',this.value.replace('S/ ',''))" style="width:100%;box-sizing:border-box;"></div>
+              <input class="cell-input blue-cell" value="${precioCompra?getSym()+' '+precioCompra.toFixed(2):''}" onchange="updateAlmacen(${orig},'precioCompra',this.value.replace(getSym()+' ',''))" style="width:100%;box-sizing:border-box;"></div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
             <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">UBICACIÓN</div>
@@ -3452,8 +3453,8 @@ function renderEjecVenta() {
       <td class="ejec-cod"><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
       <td class="ejec-cant"><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
       <td class="ejec-prod"><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
-      <td class="ejec-precio"><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
-      <td class="ejec-total"><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
+      <td class="ejec-precio"><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?getSym()+' '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
+      <td class="ejec-total"><div class="total-cell" style="text-align:right;">${getSym()} ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td class="ejec-del"><button class="delete-btn" onclick="delRowVenta(${i})">✕</button></td>
     </tr>`;
   });
@@ -3480,12 +3481,12 @@ function renderEjecVenta() {
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:flex-end;">
           <div>
             <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRECIO</div>
-            <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly>
+            <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.precio?getSym()+' '+parseFloat(r.precio).toFixed(2):''}" readonly>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
             <div>
               <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">TOTAL</div>
-              <div class="total-cell" style="font-size:16px;font-weight:800;padding:8px 10px;">S/ ${parseFloat(r.total||0).toFixed(2)}</div>
+              <div class="total-cell" style="font-size:16px;font-weight:800;padding:8px 10px;">${getSym()} ${parseFloat(r.total||0).toFixed(2)}</div>
             </div>
             <button class="delete-btn" onclick="delRowVenta(${i})" style="margin-top:16px;">✕</button>
           </div>
@@ -3512,7 +3513,7 @@ function calcRowVenta(i) {
 }
 function calcTotalVenta() {
   const total=rowsVenta.reduce((s,r)=>s+(parseFloat(r.total)||0),0);
-  const txt = `S/ ${total.toFixed(2)}`;
+  const txt = `${getSym()} ${total.toFixed(2)}`;
   document.getElementById('totalVenta').textContent = txt;
   const mob = document.getElementById('totalVentaMobile');
   if (mob) mob.textContent = txt;
@@ -3531,7 +3532,7 @@ function filtrarEjecVenta() {
       ${p.imagen ? `<img src="${p.imagen}" style="width:32px;height:32px;object-fit:cover;border-radius:4px;">` : '<div style="width:32px;height:32px;background:#f3f4f6;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;">📦</div>'}
       <div>
         <div style="font-weight:700;font-size:13px;color:#1f2937;">${p.producto||''} <span style="color:#9ca3af;font-weight:400;">${p.codigo||''}</span></div>
-        <div style="font-size:12px;color:#6b7280;">Stock: ${p.cantidad||0} | S/ ${parseFloat(p.precio||0).toFixed(2)}</div>
+        <div style="font-size:12px;color:#6b7280;">Stock: ${p.cantidad||0} | ${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</div>
       </div>
     </div>`).join('');
   dd.style.display = 'block';
@@ -3583,8 +3584,8 @@ function renderRegVentas() {
     <td style="text-align:center;">${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
     <td>${v.producto||''}</td>
-    <td style="text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
-    <td style="text-align:right;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+    <td style="text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
+    <td style="text-align:right;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 
   // Vista móvil
@@ -3606,8 +3607,8 @@ function renderRegVentas() {
         <!-- Fila 3: cantidad + precio + total -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${v.cantidad||0}</span>
-          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(v.precio||0).toFixed(2)}</span>
-          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</span>
+          <span style="font-size:13px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
         </div>
       </div>
     `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
@@ -3635,7 +3636,7 @@ function renderEjecCompra() {
       <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantCompra(${i},this.value)" type="number" min="0"></td>
       <td><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
       <td><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)"></td>
-      <td><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
+      <td><div class="total-cell" style="text-align:right;">${getSym()} ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td><button class="delete-btn" onclick="delRowCompra(${i})">✕</button></td>
     </tr>`;
   });
@@ -3667,7 +3668,7 @@ function renderEjecCompra() {
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
             <div>
               <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">TOTAL</div>
-              <div class="total-cell" style="font-size:16px;font-weight:800;padding:8px 10px;">S/ ${parseFloat(r.total||0).toFixed(2)}</div>
+              <div class="total-cell" style="font-size:16px;font-weight:800;padding:8px 10px;">${getSym()} ${parseFloat(r.total||0).toFixed(2)}</div>
             </div>
             <button class="delete-btn" onclick="delRowCompra(${i})" style="margin-top:16px;">✕</button>
           </div>
@@ -3680,7 +3681,7 @@ function renderEjecCompra() {
 }
 function calcTotalCompra() {
   const total = rowsCompra.reduce((s,r)=>s+(parseFloat(r.total)||0),0);
-  const txt = `S/ ${total.toFixed(2)}`;
+  const txt = `${getSym()} ${total.toFixed(2)}`;
   document.getElementById('totalCompra').textContent = txt;
   const mob = document.getElementById('totalCompraMobile');
   if (mob) mob.textContent = txt;
@@ -3746,7 +3747,7 @@ function filtrarEjecCompra() {
       ${p.imagen ? `<img src="${p.imagen}" style="width:32px;height:32px;object-fit:cover;border-radius:4px;">` : '<div style="width:32px;height:32px;background:#f3f4f6;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;">📦</div>'}
       <div>
         <div style="font-weight:700;font-size:13px;color:#1f2937;">${p.producto||''} <span style="color:#9ca3af;font-weight:400;">${p.codigo||''}</span></div>
-        <div style="font-size:12px;color:#6b7280;">Stock: ${p.cantidad||0} | P.Compra: S/ ${parseFloat(p.precioCompra||0).toFixed(2)}</div>
+        <div style="font-size:12px;color:#6b7280;">Stock: ${p.cantidad||0} | P.Compra: ${getSym()} ${parseFloat(p.precioCompra||0).toFixed(2)}</div>
       </div>
     </div>`).join('');
   dd.style.display = 'block';
@@ -3801,8 +3802,8 @@ function renderRegCompras(){
     <td style="text-align:center;">${c.codigo||''}</td>
     <td style="text-align:center;">${c.cantidad||0}</td>
     <td>${c.producto||''}</td>
-    <td style="text-align:right;">S/ ${parseFloat(c.precio||0).toFixed(2)}</td>
-    <td style="text-align:right;">S/ ${parseFloat(c.total||0).toFixed(2)}</td>
+    <td style="text-align:right;">${getSym()} ${parseFloat(c.precio||0).toFixed(2)}</td>
+    <td style="text-align:right;">${getSym()} ${parseFloat(c.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 
   // Móvil
@@ -3821,8 +3822,8 @@ function renderRegCompras(){
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${c.cantidad||0}</span>
-          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(c.precio||0).toFixed(2)}</span>
-          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</span>
+          <span style="font-size:13px;color:var(--text-muted);">${getSym()} ${parseFloat(c.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${getSym()} ${parseFloat(c.total||0).toFixed(2)}</span>
         </div>
       </div>
     `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
@@ -4487,8 +4488,8 @@ function renderDetalleVentasDia() {
     <td style="padding:9px 12px;text-align:center;">${v.codigo||''}</td>
     <td style="padding:9px 12px;text-align:center;">${v.cantidad||0}</td>
     <td style="padding:9px 12px;">${v.producto||''}</td>
-    <td style="padding:9px 12px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
-    <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+    <td style="padding:9px 12px;text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
+    <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join('') : '<tr><td colspan="7" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas</td></tr>';
 
   // Vista móvil
@@ -4506,8 +4507,8 @@ function renderDetalleVentasDia() {
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${v.cantidad||0}</span>
-          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(v.precio||0).toFixed(2)}</span>
-          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</span>
+          <span style="font-size:13px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
         </div>
       </div>
     `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin ventas</div>`;
@@ -4516,7 +4517,7 @@ function renderDetalleVentasDia() {
   const totalMonto = items.reduce((s,v)=>s+parseFloat(v.total||0),0);
   const totalUnid  = items.reduce((s,v)=>s+parseFloat(v.cantidad||0),0);
   const unidTxt = totalUnid.toFixed(0)+' und.';
-  const montoTxt = 'S/ '+totalMonto.toFixed(2);
+  const montoTxt = getSym()+' '+totalMonto.toFixed(2);
   document.getElementById('totalUnidadesVentaDia').textContent = unidTxt;
   document.getElementById('totalMontoVentaDia').textContent = montoTxt;
   const mobU = document.getElementById('totalUnidadesVentaDiaMob');
@@ -4542,8 +4543,8 @@ function imprimirDetalleVentasDia() {
       <td style="padding:7px 10px;text-align:center;">${v.codigo||''}</td>
       <td style="padding:7px 10px;text-align:center;">${v.cantidad||0}</td>
       <td style="padding:7px 10px;">${v.producto||''}</td>
-      <td style="padding:7px 10px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
-      <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+      <td style="padding:7px 10px;text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
+      <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
     </tr>`).join('');
     contenidoHTML = `
       <div style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
@@ -4562,7 +4563,7 @@ function imprimirDetalleVentasDia() {
             <td colspan="2" style="padding:8px 10px;text-align:right;">Total</td>
             <td style="padding:8px 10px;text-align:center;">${totalUnid.toFixed(0)}</td>
             <td></td><td></td>
-            <td style="padding:8px 10px;text-align:right;color:#059669;">S/ ${totalMonto.toFixed(2)}</td>
+            <td style="padding:8px 10px;text-align:right;color:#059669;">${getSym()} ${totalMonto.toFixed(2)}</td>
           </tfoot>
         </table>
       </div>`;
@@ -4582,8 +4583,8 @@ function imprimirDetalleVentasDia() {
         <td style="padding:7px 10px;text-align:center;">${v.codigo||''}</td>
         <td style="padding:7px 10px;text-align:center;">${v.cantidad||0}</td>
         <td style="padding:7px 10px;">${v.producto||''}</td>
-        <td style="padding:7px 10px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
-        <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
+        <td style="padding:7px 10px;text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
+        <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
       </tr>`).join('');
       contenidoHTML += `
         <div style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
@@ -4602,7 +4603,7 @@ function imprimirDetalleVentasDia() {
               <td colspan="2" style="padding:8px 10px;text-align:right;">Subtotal</td>
               <td style="padding:8px 10px;text-align:center;">${subUnid.toFixed(0)}</td>
               <td></td><td></td>
-              <td style="padding:8px 10px;text-align:right;color:#059669;">S/ ${subtotal.toFixed(2)}</td>
+              <td style="padding:8px 10px;text-align:right;color:#059669;">${getSym()} ${subtotal.toFixed(2)}</td>
             </tfoot>
           </table>
         </div>`;
@@ -4631,7 +4632,7 @@ function imprimirDetalleVentasDia() {
     <div class="meta"><div>Emisión: ${fechaHoy()} ${horaHoy()}</div></div>
   </div>
   ${contenidoHTML}
-  <div class="grand-total">TOTAL GENERAL: S/ ${totalMonto.toFixed(2)}</div>
+  <div class="grand-total">TOTAL GENERAL: ${getSym()} ${totalMonto.toFixed(2)}</div>
   <div class="footer"><span>${empresa}</span><span>${diaDetalleVentas}</span></div>
   </body></html>`;
   const w = window.open('','_blank');
@@ -4723,8 +4724,8 @@ function renderDetalleComprasDia() {
     <td style="padding:9px 12px;text-align:center;">${c.emision||''}</td>
     <td style="padding:9px 12px;text-align:center;">${c.cantidad||0}</td>
     <td style="padding:9px 12px;">${c.producto||''}</td>
-    <td style="padding:9px 12px;text-align:right;">S/ ${parseFloat(c.precio||0).toFixed(2)}</td>
-    <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</td>
+    <td style="padding:9px 12px;text-align:right;">${getSym()} ${parseFloat(c.precio||0).toFixed(2)}</td>
+    <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">${getSym()} ${parseFloat(c.total||0).toFixed(2)}</td>
   </tr>`).join('') : '<tr><td colspan="9" style="text-align:center;padding:20px;color:#9ca3af;">Sin compras</td></tr>';
 
   // Móvil
@@ -4746,8 +4747,8 @@ function renderDetalleComprasDia() {
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${c.cantidad||0}</span>
-          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(c.precio||0).toFixed(2)}</span>
-          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</span>
+          <span style="font-size:13px;color:var(--text-muted);">${getSym()} ${parseFloat(c.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${getSym()} ${parseFloat(c.total||0).toFixed(2)}</span>
         </div>
       </div>
     `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin compras</div>`;
@@ -4756,7 +4757,7 @@ function renderDetalleComprasDia() {
   const totalMonto = items.reduce((s,c)=>s+parseFloat(c.total||0),0);
   const totalUnid  = items.reduce((s,c)=>s+parseFloat(c.cantidad||0),0);
   const unidTxt = totalUnid.toFixed(0)+' und.';
-  const montoTxt = 'S/ '+totalMonto.toFixed(2);
+  const montoTxt = getSym()+' '+totalMonto.toFixed(2);
   document.getElementById('tfootDetalleComprasDia').innerHTML = `
     <td colspan="7" style="padding:10px 12px;text-align:right;font-weight:800;">TOTAL:</td>
     <td style="padding:10px 12px;text-align:center;font-weight:800;">${unidTxt}</td>
@@ -4790,8 +4791,8 @@ function imprimirDetalleComprasDia() {
       <td style="padding:7px 10px;text-align:center;">${c.codigo||''}</td>
       <td style="padding:7px 10px;text-align:center;">${c.cantidad||0}</td>
       <td style="padding:7px 10px;">${c.producto||''}</td>
-      <td style="padding:7px 10px;text-align:right;">S/ ${parseFloat(c.precio||0).toFixed(2)}</td>
-      <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</td>
+      <td style="padding:7px 10px;text-align:right;">${getSym()} ${parseFloat(c.precio||0).toFixed(2)}</td>
+      <td style="padding:7px 10px;text-align:right;font-weight:700;color:#059669;">${getSym()} ${parseFloat(c.total||0).toFixed(2)}</td>
     </tr>`).join('');
 
     seccionesHTML += `
@@ -4816,7 +4817,7 @@ function imprimirDetalleComprasDia() {
             <td colspan="2" style="padding:8px 10px;text-align:right;">Subtotal</td>
             <td style="padding:8px 10px;text-align:center;">${subUnid.toFixed(0)}</td>
             <td></td><td></td>
-            <td style="padding:8px 10px;text-align:right;color:#059669;">S/ ${subtotal.toFixed(2)}</td>
+            <td style="padding:8px 10px;text-align:right;color:#059669;">${getSym()} ${subtotal.toFixed(2)}</td>
           </tfoot>
         </table>
       </div>`;
@@ -4846,7 +4847,7 @@ function imprimirDetalleComprasDia() {
     <div class="meta"><div>Emisión: ${fechaHoy()} ${horaHoy()}</div></div>
   </div>
   ${seccionesHTML}
-  <div class="grand-total">TOTAL GENERAL: S/ ${totalMonto.toFixed(2)}</div>
+  <div class="grand-total">TOTAL GENERAL: ${getSym()} ${totalMonto.toFixed(2)}</div>
   <div class="footer"><span>${empresa}</span><span>${diaDetalleCompras}</span></div>
   </body></html>`;
   const w = window.open('','_blank');
@@ -5311,19 +5312,19 @@ function renderUtilidadNeta() {
   document.getElementById('badgeImpuesto').textContent = tax ? `${tax.nombre}: ${pct}%` : '⚠️ Sin impuesto';
   animarContador('unItems', items, false);
   animarContador('unProductos', productos, false);
-  document.getElementById('unTotalBruto').textContent = 'S/ '+totalBruto.toFixed(2);
-  document.getElementById('unTotalSertecBruto').textContent = 'S/ '+totalSertecBruto.toFixed(2);
+  document.getElementById('unTotalBruto').textContent = getSym()+' '+totalBruto.toFixed(2);
+  document.getElementById('unTotalSertecBruto').textContent = getSym()+' '+totalSertecBruto.toFixed(2);
   document.getElementById('unNombreImpuesto').textContent = tax?`${tax.nombre} VENTAS`:'IGV VENTAS';
   document.getElementById('unPorcentaje').textContent = pct+'%';
-  document.getElementById('unMontoImpuesto').textContent = 'S/ '+montoImpuesto.toFixed(2);
-  document.getElementById('unMontoImpuestoSertec').textContent = 'S/ '+montoImpuestoSertec.toFixed(2);
+  document.getElementById('unMontoImpuesto').textContent = getSym()+' '+montoImpuesto.toFixed(2);
+  document.getElementById('unMontoImpuestoSertec').textContent = getSym()+' '+montoImpuestoSertec.toFixed(2);
   document.getElementById('unPorcentajeSertec').textContent = pct+'%';
-  document.getElementById('unTotalNeto').textContent = 'S/ '+(montoImpuesto+montoImpuestoSertec).toFixed(2);
-  document.getElementById('unNetoVentas').textContent = 'S/ '+totalNeto.toFixed(2);
+  document.getElementById('unTotalNeto').textContent = getSym()+' '+(montoImpuesto+montoImpuestoSertec).toFixed(2);
+  document.getElementById('unNetoVentas').textContent = getSym()+' '+totalNeto.toFixed(2);
   document.getElementById('unPctVentas').textContent = pctVN+'% del total';
-  document.getElementById('unNetoSertec').textContent = 'S/ '+totalSertecNeto.toFixed(2);
+  document.getElementById('unNetoSertec').textContent = getSym()+' '+totalSertecNeto.toFixed(2);
   document.getElementById('unPctSertec').textContent = pctSN+'% del total';
-  document.getElementById('unNetoCombinado').textContent = 'S/ '+totalNetoCombinado.toFixed(2);
+  document.getElementById('unNetoCombinado').textContent = getSym()+' '+totalNetoCombinado.toFixed(2);
 }
 
 // ═══════════════════════════ UTILIDAD BRUTA — FILTROS ══════════
@@ -5405,11 +5406,11 @@ function renderUtilidadBruta() {
   const totalCombinado = total+totalSertec;
   const pctV = totalCombinado>0?(total/totalCombinado*100).toFixed(1):'0.0';
   const pctS = totalCombinado>0?(totalSertec/totalCombinado*100).toFixed(1):'0.0';
-  document.getElementById('ubTotalVentas').textContent = 'S/ '+total.toFixed(2);
+  document.getElementById('ubTotalVentas').textContent = getSym()+' '+total.toFixed(2);
   document.getElementById('ubPctVentas').textContent = pctV+'% del total';
-  document.getElementById('ubTotalSertec').textContent = 'S/ '+totalSertec.toFixed(2);
+  document.getElementById('ubTotalSertec').textContent = getSym()+' '+totalSertec.toFixed(2);
   document.getElementById('ubPctSertec').textContent = pctS+'% del total';
-  document.getElementById('ubTotalCombinado').textContent = 'S/ '+totalCombinado.toFixed(2);
+  document.getElementById('ubTotalCombinado').textContent = getSym()+' '+totalCombinado.toFixed(2);
   animarContador('ubItems', items, false);
   animarContador('ubProductos', productos, false);
   animarContadorMonto('ubTotal', total);
@@ -5423,8 +5424,8 @@ function animarContador(id, target, esMonto) {
   el._interval = setInterval(() => {
     step++;
     cur = Math.round(target * (step / steps));
-    el.textContent = esMonto ? 'S/ ' + cur.toFixed(2) : cur.toLocaleString();
-    if (step >= steps) { el.textContent = esMonto ? 'S/ ' + target.toFixed(2) : target.toLocaleString(); clearInterval(el._interval); }
+    el.textContent = esMonto ? getSym()+' '+ cur.toFixed(2) : cur.toLocaleString();
+    if (step >= steps) { el.textContent = esMonto ? getSym()+' '+ target.toFixed(2) : target.toLocaleString(); clearInterval(el._interval); }
   }, 1000/fps);
 }
 
@@ -5436,8 +5437,8 @@ function animarContadorMonto(id, target) {
   el._interval = setInterval(() => {
     step++;
     const cur = target * (step / steps);
-    el.textContent = 'S/ ' + cur.toFixed(2);
-    if (step >= steps) { el.textContent = 'S/ ' + target.toFixed(2); clearInterval(el._interval); }
+    el.textContent = getSym()+' '+ cur.toFixed(2);
+    if (step >= steps) { el.textContent = getSym()+' '+ target.toFixed(2); clearInterval(el._interval); }
   }, 1000/fps);
 }
 
@@ -5510,7 +5511,7 @@ function renderClientesRecurrentes() {
       </td>
       <td style="padding:9px 12px;font-weight:600;color:#1f2937;">${item.cliente}</td>
       <td style="padding:9px 12px;text-align:center;color:#374151;">${item.visitas}</td>
-      <td style="padding:9px 12px;text-align:right;color:#7c3aed;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:9px 12px;text-align:right;color:#7c3aed;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
     </tr>`).join('');
 
   document.getElementById('graficoClientesRecurrentes').innerHTML = items.map((item,i)=>{
@@ -5520,7 +5521,7 @@ function renderClientesRecurrentes() {
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
           <span style="font-size:12px;font-weight:700;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%;">${item.cliente}</span>
-          <span style="font-size:12px;font-weight:800;color:${colores[i%colores.length]};">${ordenClientes==='monto'?'S/ '+item.monto.toFixed(2):item.visitas+' visitas'}</span>
+          <span style="font-size:12px;font-weight:800;color:${colores[i%colores.length]};">${ordenClientes==='monto'?getSym()+' '+item.monto.toFixed(2):item.visitas+' visitas'}</span>
         </div>
         <div style="background:#f3f4f6;border-radius:100px;height:18px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${pct}%;height:100%;border-radius:100px;transition:width 0.5s ease;"></div>
@@ -5559,7 +5560,7 @@ function imprimirClientesRecurrentes() {
       <td style="padding:8px 10px;text-align:center;font-weight:800;">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
       <td style="padding:8px 10px;font-weight:600;">${item.cliente}</td>
       <td style="padding:8px 10px;text-align:center;">${item.visitas}</td>
-      <td style="padding:8px 10px;text-align:right;color:#7c3aed;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:8px 10px;text-align:right;color:#7c3aed;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
       <td style="padding:8px 10px;">
         <div style="background:#f3f4f6;border-radius:100px;height:14px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${maxVal>0?(ordenClientes==='monto'?item.monto:item.visitas)/maxVal*100:0}%;height:100%;border-radius:100px;"></div>
@@ -5604,7 +5605,7 @@ function imprimirClientesRecurrentes() {
       <tr class="total-row">
         <td colspan="2" style="padding:10px 12px;">TOTAL (Top 20)</td>
         <td style="padding:10px 12px;text-align:center;">${totalVisitas}</td>
-        <td style="padding:10px 12px;text-align:right;">S/ ${totalMonto.toFixed(2)}</td>
+        <td style="padding:10px 12px;text-align:right;">${getSym()} ${totalMonto.toFixed(2)}</td>
         <td></td>
       </tr>
     </tbody>
@@ -5689,7 +5690,7 @@ function renderProveedorUsado() {
       </td>
       <td style="padding:9px 12px;font-weight:600;color:#1f2937;">${item.proveedor}</td>
       <td style="padding:9px 12px;text-align:center;color:#374151;">${item.compras}</td>
-      <td style="padding:9px 12px;text-align:right;color:#059669;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:9px 12px;text-align:right;color:#059669;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
     </tr>`).join('');
 
   document.getElementById('graficoProveedorUsado').innerHTML = items.map((item,i)=>{
@@ -5699,7 +5700,7 @@ function renderProveedorUsado() {
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
           <span style="font-size:12px;font-weight:700;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%;">${item.proveedor}</span>
-          <span style="font-size:12px;font-weight:800;color:${colores[i%colores.length]};">${ordenProv==='monto'?'S/ '+item.monto.toFixed(2):item.compras+' compras'}</span>
+          <span style="font-size:12px;font-weight:800;color:${colores[i%colores.length]};">${ordenProv==='monto'?getSym()+' '+item.monto.toFixed(2):item.compras+' compras'}</span>
         </div>
         <div style="background:#f3f4f6;border-radius:100px;height:18px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${pct}%;height:100%;border-radius:100px;transition:width 0.5s ease;"></div>
@@ -5738,7 +5739,7 @@ function imprimirProveedorUsado() {
       <td style="padding:8px 10px;text-align:center;font-weight:800;">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
       <td style="padding:8px 10px;font-weight:600;">${item.proveedor}</td>
       <td style="padding:8px 10px;text-align:center;">${item.compras}</td>
-      <td style="padding:8px 10px;text-align:right;color:#059669;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:8px 10px;text-align:right;color:#059669;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
       <td style="padding:8px 10px;">
         <div style="background:#f3f4f6;border-radius:100px;height:14px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${maxVal>0?(ordenProv==='monto'?item.monto:item.compras)/maxVal*100:0}%;height:100%;border-radius:100px;"></div>
@@ -5783,7 +5784,7 @@ function imprimirProveedorUsado() {
       <tr class="total-row">
         <td colspan="2" style="padding:10px 12px;">TOTAL (Top 20)</td>
         <td style="padding:10px 12px;text-align:center;">${totalCompras}</td>
-        <td style="padding:10px 12px;text-align:right;">S/ ${totalMonto.toFixed(2)}</td>
+        <td style="padding:10px 12px;text-align:right;">${getSym()} ${totalMonto.toFixed(2)}</td>
         <td></td>
       </tr>
     </tbody>
@@ -5867,7 +5868,7 @@ function renderMasComprado() {
       </td>
       <td style="padding:9px 12px;font-weight:600;color:#1f2937;">${item.producto}</td>
       <td style="padding:9px 12px;text-align:center;color:#374151;">${item.cantidad.toFixed(0)}</td>
-      <td style="padding:9px 12px;text-align:right;color:#3b82f6;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:9px 12px;text-align:right;color:#3b82f6;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
     </tr>`).join('');
 
   document.getElementById('graficoMasComprado').innerHTML = items.map((item,i)=>{
@@ -5877,7 +5878,7 @@ function renderMasComprado() {
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
           <span style="font-size:12px;font-weight:700;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%;">${item.producto}</span>
-          <span style="font-size:12px;font-weight:800;color:${colores[i%colores.length]};">${ordenComprado==='monto'?'S/ '+item.monto.toFixed(2):item.cantidad.toFixed(0)+' und.'}</span>
+          <span style="font-size:12px;font-weight:800;color:${colores[i%colores.length]};">${ordenComprado==='monto'?getSym()+' '+item.monto.toFixed(2):item.cantidad.toFixed(0)+' und.'}</span>
         </div>
         <div style="background:#f3f4f6;border-radius:100px;height:18px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${pct}%;height:100%;border-radius:100px;transition:width 0.5s ease;"></div>
@@ -5916,7 +5917,7 @@ function imprimirMasComprado() {
       <td style="padding:8px 10px;text-align:center;font-weight:800;">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
       <td style="padding:8px 10px;font-weight:600;">${item.producto}</td>
       <td style="padding:8px 10px;text-align:center;">${item.cantidad.toFixed(0)}</td>
-      <td style="padding:8px 10px;text-align:right;color:#3b82f6;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:8px 10px;text-align:right;color:#3b82f6;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
       <td style="padding:8px 10px;">
         <div style="background:#f3f4f6;border-radius:100px;height:14px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${maxVal>0?(ordenComprado==='monto'?item.monto:item.cantidad)/maxVal*100:0}%;height:100%;border-radius:100px;"></div>
@@ -5961,7 +5962,7 @@ function imprimirMasComprado() {
       <tr class="total-row">
         <td colspan="2" style="padding:10px 12px;">TOTAL (Top 20)</td>
         <td style="padding:10px 12px;text-align:center;">${totalUnidades.toFixed(0)}</td>
-        <td style="padding:10px 12px;text-align:right;">S/ ${totalMonto.toFixed(2)}</td>
+        <td style="padding:10px 12px;text-align:right;">${getSym()} ${totalMonto.toFixed(2)}</td>
         <td></td>
       </tr>
     </tbody>
@@ -6055,7 +6056,7 @@ function renderMasVendido() {
       </td>
       <td style="padding:9px 12px;font-weight:600;color:#1f2937;">${item.producto}</td>
       <td style="padding:9px 12px;text-align:center;color:#374151;">${item.cantidad.toFixed(0)}</td>
-      <td style="padding:9px 12px;text-align:right;color:#059669;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:9px 12px;text-align:right;color:#059669;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
     </tr>`).join('');
 
   // Gráfico de barras horizontal
@@ -6067,7 +6068,7 @@ function renderMasVendido() {
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
           <span style="font-size:12px;font-weight:700;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60%;">${item.producto}</span>
-          <span style="font-size:12px;font-weight:800;color:${color};">${ordenVendido==='monto'?'S/ '+item.monto.toFixed(2):item.cantidad.toFixed(0)+' und.'}</span>
+          <span style="font-size:12px;font-weight:800;color:${color};">${ordenVendido==='monto'?getSym()+' '+item.monto.toFixed(2):item.cantidad.toFixed(0)+' und.'}</span>
         </div>
         <div style="background:#f3f4f6;border-radius:100px;height:18px;overflow:hidden;">
           <div style="background:${color};width:${pct}%;height:100%;border-radius:100px;transition:width 0.5s ease;display:flex;align-items:center;padding-left:8px;">
@@ -6109,7 +6110,7 @@ function imprimirMasVendido() {
       <td style="padding:8px 10px;text-align:center;font-weight:800;">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
       <td style="padding:8px 10px;font-weight:600;">${item.producto}</td>
       <td style="padding:8px 10px;text-align:center;">${item.cantidad.toFixed(0)}</td>
-      <td style="padding:8px 10px;text-align:right;color:#059669;font-weight:700;">S/ ${item.monto.toFixed(2)}</td>
+      <td style="padding:8px 10px;text-align:right;color:#059669;font-weight:700;">${getSym()} ${item.monto.toFixed(2)}</td>
       <td style="padding:8px 10px;">
         <div style="background:#f3f4f6;border-radius:100px;height:14px;overflow:hidden;">
           <div style="background:${colores[i%colores.length]};width:${maxVal>0?(ordenVendido==='monto'?item.monto:item.cantidad)/maxVal*100:0}%;height:100%;border-radius:100px;"></div>
@@ -6154,7 +6155,7 @@ function imprimirMasVendido() {
       <tr class="total-row">
         <td colspan="2" style="padding:10px 12px;">TOTAL (Top 20)</td>
         <td style="padding:10px 12px;text-align:center;">${totalUnidades.toFixed(0)}</td>
-        <td style="padding:10px 12px;text-align:right;">S/ ${totalMonto.toFixed(2)}</td>
+        <td style="padding:10px 12px;text-align:right;">${getSym()} ${totalMonto.toFixed(2)}</td>
         <td></td>
       </tr>
     </tbody>
@@ -6184,30 +6185,70 @@ function initDetalleProducto() {
   const p = db.inventario[dprodIdx];
   if (!p) { toast('⚠️ Producto no encontrado'); irA('page-almacen'); return; }
 
-  document.getElementById('dprod_codigo').value         = p.codigo         || '';
-  document.getElementById('dprod_producto').value       = p.producto        || '';
-  document.getElementById('dprod_descripcion').value    = p.descripcion     || '';
-  document.getElementById('dprod_precio').value         = p.precio          || '';
-  document.getElementById('dprod_cantidad').value       = p.cantidad        || '';
-  document.getElementById('dprod_stockMinimo').value    = p.stockMinimo     || '';
-  document.getElementById('dprod_ubicacion').value      = p.ubicacion       || '';
-  document.getElementById('dprod_precioCompra').value   = p.precioCompra    || '';
-  document.getElementById('dprod_ultimoProveedor').value= p.ultimoProveedor || '';
-  document.getElementById('dprod_categoria').value      = p.categoria       || '';
-  document.getElementById('dprod_imagen').value         = p.imagen          || '';
+  document.getElementById('dprod_codigo').value          = p.codigo          || '';
+  document.getElementById('dprod_producto').value        = p.producto         || '';
+  document.getElementById('dprod_descripcion').value     = p.descripcion      || '';
+  const sym = getSimboloMoneda();
+  document.getElementById('dprod_precio').value       = p.precio      ? `${sym} ${parseFloat(p.precio).toFixed(2)}`      : '';
+  document.getElementById('dprod_cantidad').value     = p.cantidad        || '';
+  document.getElementById('dprod_stockMinimo').value  = p.stockMinimo     || '';
+  document.getElementById('dprod_ubicacion').value    = p.ubicacion       || '';
+  document.getElementById('dprod_precioCompra').value = p.precioCompra ? `${sym} ${parseFloat(p.precioCompra).toFixed(2)}` : '';
+  document.getElementById('dprod_ultimoProveedor').value = p.ultimoProveedor  || '';
+  document.getElementById('dprod_imagen').value          = p.imagen           || '';
 
-  // Datalist de categorías
-  const dl = document.getElementById('dprod_catList');
-  dl.innerHTML = (db.categorias||[]).map(c => `<option value="${escHtml(getNombreCat(c))}">`).join('');
+  // Select de categorías
+  const selCat = document.getElementById('dprod_categoria');
+  selCat.innerHTML = '<option value="">— Sin categoría —</option>' +
+    (db.categorias||[]).map(c => {
+      const n = getNombreCat(c);
+      return `<option value="${escHtml(n)}" ${n === (p.categoria||'') ? 'selected' : ''}>${escHtml(n)}</option>`;
+    }).join('');
 
-  // Salir del modo edición
+  // Modo lectura
   dprodEditando = false;
   document.querySelectorAll('.dprod-editable').forEach(el => { el.setAttribute('readonly',''); el.classList.remove('editing'); });
-  const btnE = document.getElementById('btnDprodEdit');
-  if (btnE) { btnE.style.background = '#1e3a5f'; document.getElementById('btnDprodEditIcon').textContent = '✏️'; document.getElementById('btnDprodEditLabel').textContent = 'EDIT'; }
-
-  // Vista previa imagen
+  selCat.disabled = true;
+  dprodSetBtns();
   dprodRefreshImg();
+}
+
+function getSym() { return getSimboloMoneda(); }
+
+function getSimboloMoneda() {
+  try {
+    const locale = navigator.language || 'es-PE';
+    const fmt = new Intl.NumberFormat(locale, { style: 'currency', currency: getCurrencyCode(locale), currencyDisplay: 'narrowSymbol' });
+    const parts = fmt.formatToParts(0);
+    const sym = parts.find(p => p.type === 'currency');
+    return sym ? sym.value : 'S/';
+  } catch(e) { return 'S/'; }
+}
+
+function getCurrencyCode(locale) {
+  const map = {
+    'es-PE': 'PEN', 'es-MX': 'MXN', 'es-AR': 'ARS', 'es-CO': 'COP',
+    'es-CL': 'CLP', 'es-EC': 'USD', 'es-BO': 'BOB', 'es-PY': 'PYG',
+    'es-UY': 'UYU', 'es-VE': 'VES', 'es-CR': 'CRC', 'es-GT': 'GTQ',
+    'es-HN': 'HNL', 'es-NI': 'NIO', 'es-PA': 'PAB', 'es-DO': 'DOP',
+    'es-SV': 'USD', 'es-ES': 'EUR', 'en-US': 'USD', 'en-GB': 'GBP',
+    'pt-BR': 'BRL'
+  };
+  return map[locale] || map[locale.split('-')[0] + '-' + locale.split('-')[1]] || 'PEN';
+}
+
+function dprodSetBtns() {
+  const btnE = document.getElementById('btnDprodEdit');
+  const btnS = document.getElementById('btnDprodSave');
+  const icon = document.getElementById('btnDprodEditIcon');
+  const lbl  = document.getElementById('btnDprodEditLabel');
+  if (dprodEditando) {
+    btnE.style.background = '#dc2626'; icon.textContent = '✖️'; lbl.textContent = 'CANCELAR';
+    if (btnS) { btnS.disabled = false; btnS.style.opacity = '1'; btnS.style.cursor = 'pointer'; btnS.style.background = '#4caf50'; }
+  } else {
+    btnE.style.background = '#1e3a5f'; icon.textContent = '✏️'; lbl.textContent = 'EDIT';
+    if (btnS) { btnS.disabled = true; btnS.style.opacity = '0.5'; btnS.style.cursor = 'not-allowed'; btnS.style.background = '#9ca3af'; }
+  }
 }
 
 function dprodRefreshImg() {
@@ -6224,41 +6265,36 @@ function dprodRefreshImg() {
 
 function dprodToggleEdit() {
   dprodEditando = !dprodEditando;
+  const selCat = document.getElementById('dprod_categoria');
   document.querySelectorAll('.dprod-editable').forEach(el => {
     if (dprodEditando) { el.removeAttribute('readonly'); el.classList.add('editing'); }
     else { el.setAttribute('readonly',''); el.classList.remove('editing'); }
   });
-  const btnE = document.getElementById('btnDprodEdit');
-  const icon = document.getElementById('btnDprodEditIcon');
-  const lbl  = document.getElementById('btnDprodEditLabel');
-  if (dprodEditando) {
-    btnE.style.background = '#dc2626'; icon.textContent = '✖️'; lbl.textContent = 'CANCELAR';
-  } else {
-    btnE.style.background = '#1e3a5f'; icon.textContent = '✏️'; lbl.textContent = 'EDIT';
-  }
-  // Actualizar imagen en tiempo real al salir de edición
+  if (selCat) selCat.disabled = !dprodEditando;
   if (!dprodEditando) dprodRefreshImg();
+  dprodSetBtns();
 }
 
 async function dprodGuardar() {
   if (dprodIdx < 0 || !db.inventario[dprodIdx]) { toast('⚠️ Sin producto cargado'); return; }
   const p = db.inventario[dprodIdx];
-  p.producto        = document.getElementById('dprod_producto').value;
-  p.descripcion     = document.getElementById('dprod_descripcion').value;
-  p.precio          = document.getElementById('dprod_precio').value;
-  p.cantidad        = document.getElementById('dprod_cantidad').value;
-  p.stockMinimo     = document.getElementById('dprod_stockMinimo').value;
-  p.ubicacion       = document.getElementById('dprod_ubicacion').value;
-  p.precioCompra    = document.getElementById('dprod_precioCompra').value;
-  p.ultimoProveedor = document.getElementById('dprod_ultimoProveedor').value;
-  p.categoria       = document.getElementById('dprod_categoria').value;
-  p.imagen          = document.getElementById('dprod_imagen').value;
+  p.producto         = document.getElementById('dprod_producto').value;
+  p.descripcion      = document.getElementById('dprod_descripcion').value;
+  p.precio           = document.getElementById('dprod_precio').value.replace(/[^0-9.]/g,'');
+  p.cantidad         = document.getElementById('dprod_cantidad').value;
+  p.stockMinimo      = document.getElementById('dprod_stockMinimo').value;
+  p.ubicacion        = document.getElementById('dprod_ubicacion').value;
+  p.precioCompra     = document.getElementById('dprod_precioCompra').value.replace(/[^0-9.]/g,'');
+  p.ultimoProveedor  = document.getElementById('dprod_ultimoProveedor').value;
+  p.categoria        = document.getElementById('dprod_categoria').value;
+  p.imagen           = document.getElementById('dprod_imagen').value;
 
   dprodEditando = false;
   document.querySelectorAll('.dprod-editable').forEach(el => { el.setAttribute('readonly',''); el.classList.remove('editing'); });
-  const btnE = document.getElementById('btnDprodEdit');
-  if (btnE) { btnE.style.background = '#1e3a5f'; document.getElementById('btnDprodEditIcon').textContent = '✏️'; document.getElementById('btnDprodEditLabel').textContent = 'EDIT'; }
+  const selCat = document.getElementById('dprod_categoria');
+  if (selCat) selCat.disabled = true;
   dprodRefreshImg();
+  dprodSetBtns();
   save();
   toast('💾 Guardando...');
   if (getToken()) {
