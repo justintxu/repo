@@ -178,8 +178,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #regVentasMobile { display: block !important; }
   .dvd-table { display: none !important; }
   #dvdMobile { display: block !important; }
-  .spen-table { display: none !important; }
-  #sertecpenMobile { display: block !important; }
+  .rc-table { display: none !important; }
+  #regComprasMobile { display: block !important; }
+  .dcd-table { display: none !important; }
+  #dcdMobile { display: block !important; }
   .sfin-table { display: none !important; }
   #sertecfinMobile { display: block !important; }
 
@@ -205,6 +207,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   /* Padding abajo para que la barra del navegador no tape los botones */
   #page-sertec-detalle { padding-bottom: 120px; }
   #page-sertecfin-detalle { padding-bottom: 80px; }
+  #page-ejec-compra { padding-bottom: 100px; }
+  #page-ejec-venta { padding-bottom: 100px; }
 }
 
 .btn-csv {
@@ -1461,7 +1465,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
   </div>
   <div class="table-wrap">
-    <table class="reg-table" style="table-layout:fixed;width:100%;">
+    <table class="reg-table rc-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:110px;">
         <col style="width:95px;">
@@ -1485,6 +1489,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <tbody id="tbodyRegCompras"></tbody>
     </table>
   </div>
+  <!-- Vista móvil registro compras -->
+  <div id="regComprasMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar">
     <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('compras')">📥 Exportar CSV</button>
     <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('compras')">📤 Importar CSV</button>
@@ -1837,7 +1843,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <div style="padding:16px 32px;overflow-x:auto;">
-    <table class="reg-table" style="table-layout:fixed;width:100%;">
+    <table class="reg-table dcd-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:90px;"><col style="width:140px;"><col style="width:90px;"><col style="width:100px;">
         <col style="width:100px;"><col style="width:60px;"><col><col style="width:90px;"><col style="width:90px;">
@@ -1862,6 +1868,18 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </tr>
       </tfoot>
     </table>
+  </div>
+
+  <!-- Vista móvil detalle compras día -->
+  <div id="dcdMobile" style="display:none;padding:0 12px;">
+    <div id="dcdMobileItems"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 4px;border-top:2px solid #d1fae5;background:#ecfdf5;border-radius:0 0 10px 10px;margin-top:4px;">
+      <span style="font-weight:800;font-size:15px;">TOTAL:</span>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <span id="totalUnidadesDiaMob" style="font-weight:800;font-size:14px;color:var(--text-muted);"></span>
+        <span id="totalMontoDiaMob" style="font-weight:800;font-size:17px;color:#059669;"></span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3385,6 +3403,8 @@ function procesarCompra(){
 function renderRegCompras(){
   const q=(document.getElementById('searchRegCompras').value||'').toLowerCase();
   const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q));
+
+  // Desktop
   const tbody=document.getElementById('tbodyRegCompras');
   tbody.innerHTML=items.length?items.map(c=>`<tr>
     <td style="text-align:center;">${c.fecha||''}</td>
@@ -3396,6 +3416,29 @@ function renderRegCompras(){
     <td style="text-align:right;">S/ ${parseFloat(c.precio||0).toFixed(2)}</td>
     <td style="text-align:right;">S/ ${parseFloat(c.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
+
+  // Móvil
+  const mobile = document.getElementById('regComprasMobile');
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(c => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha||''}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(c.hora)}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor||''}</span>
+        </div>
+        <div>
+          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${c.producto||''}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${c.codigo||''}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${c.cantidad||0}</span>
+          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(c.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</span>
+        </div>
+      </div>
+    `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
+  }
 }
 
 // ═══════════════════════════ PROVEEDORES ══════════════════════
@@ -4212,6 +4255,8 @@ function renderDetalleComprasDia() {
   const prov = document.getElementById('selectProveedorDia').value;
   let items = db.compras.filter(c => c.fecha === diaDetalleCompras);
   if (prov) items = items.filter(c => c.proveedor === prov);
+
+  // Desktop
   const tbody = document.getElementById('tbodyDetalleComprasDia');
   tbody.innerHTML = items.length ? items.map(c=>`<tr style="border-bottom:1px solid #f3f4f6;">
     <td style="padding:9px 12px;text-align:center;">${formatHora(c.hora)}</td>
@@ -4225,14 +4270,44 @@ function renderDetalleComprasDia() {
     <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</td>
   </tr>`).join('') : '<tr><td colspan="9" style="text-align:center;padding:20px;color:#9ca3af;">Sin compras</td></tr>';
 
+  // Móvil
+  const mobile = document.getElementById('dcdMobileItems');
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(c => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">🕐 ${formatHora(c.hora)}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor||''}</span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:800;">${c.tipo||''} ${c.numero||''}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📄 ${c.emision||''}</span>
+        </div>
+        <div>
+          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${c.producto||''}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${c.codigo||''}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${c.cantidad||0}</span>
+          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(c.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(c.total||0).toFixed(2)}</span>
+        </div>
+      </div>
+    `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin compras</div>`;
+  }
+
   const totalMonto = items.reduce((s,c)=>s+parseFloat(c.total||0),0);
   const totalUnid  = items.reduce((s,c)=>s+parseFloat(c.cantidad||0),0);
-  document.getElementById('totalUnidadesDia').textContent = totalUnid.toFixed(0)+' und.';
-  document.getElementById('totalMontoDia').textContent = 'S/ '+totalMonto.toFixed(2);
+  const unidTxt = totalUnid.toFixed(0)+' und.';
+  const montoTxt = 'S/ '+totalMonto.toFixed(2);
   document.getElementById('tfootDetalleComprasDia').innerHTML = `
     <td colspan="7" style="padding:10px 12px;text-align:right;font-weight:800;">TOTAL:</td>
-    <td style="padding:10px 12px;text-align:center;font-weight:800;">${totalUnid.toFixed(0)} und.</td>
-    <td style="padding:10px 12px;text-align:right;color:#059669;font-weight:800;">S/ ${totalMonto.toFixed(2)}</td>`;
+    <td style="padding:10px 12px;text-align:center;font-weight:800;">${unidTxt}</td>
+    <td style="padding:10px 12px;text-align:right;color:#059669;font-weight:800;">${montoTxt}</td>`;
+  const mobU = document.getElementById('totalUnidadesDiaMob');
+  const mobM = document.getElementById('totalMontoDiaMob');
+  if (mobU) mobU.textContent = unidTxt;
+  if (mobM) mobM.textContent = montoTxt;
 }
 
 function imprimirDetalleComprasDia() {
