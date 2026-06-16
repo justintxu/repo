@@ -169,6 +169,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .ejec-table { display: none !important; }
   /* Mostrar el contenedor móvil */
   #ejecVentaMobile { display: block !important; }
+  #ejecCompraMobile { display: block !important; }
 }
 
 
@@ -1373,7 +1374,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <input class="form-input" id="emisionDocCompra" placeholder="DD/MM/AAAA" style="max-width:150px;">
   </div>
   <div class="table-wrap" style="margin-top:12px;">
-    <table class="data-table" style="table-layout:fixed;width:100%;">
+    <table class="data-table ejec-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:110px;">
         <col style="width:100px;">
@@ -1382,7 +1383,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         <col style="width:130px;">
         <col style="width:40px;">
       </colgroup>
-      <thead><tr>
+      <thead class="ejec-thead"><tr>
         <th style="text-align:center;">Código</th>
         <th style="text-align:center;">Cantidad</th>
         <th style="text-align:center;">Producto</th>
@@ -1391,13 +1392,23 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         <th></th>
       </tr></thead>
       <tbody id="tbodyEjecCompra"></tbody>
-      <tfoot><tr>
+      <tfoot class="ejec-tfoot"><tr>
         <td colspan="4" style="text-align:right;padding:8px 12px;font-weight:800;">TOTAL COMPRA:</td>
         <td><div class="grand-total" id="totalCompra">S/ 0.00</div></td>
         <td></td>
       </tr></tfoot>
     </table>
   </div>
+
+  <!-- Vista móvil compra -->
+  <div id="ejecCompraMobile" style="display:none;padding:0 12px;">
+    <div id="ejecCompraMobileItems"></div>
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
+      <span style="font-weight:800;font-size:15px;">TOTAL COMPRA:</span>
+      <div class="grand-total" id="totalCompraMobile" style="font-size:20px;">S/ 0.00</div>
+    </div>
+  </div>
+
   <div style="display:flex;justify-content:flex-end;padding:16px 32px;gap:12px;">
     <button class="btn btn-process" onclick="procesarCompra()">✅ Procesar Compra</button>
   </div>
@@ -3209,6 +3220,7 @@ function initEjecCompra() {
 }
 function addRowCompra() { rowsCompra.push({codigo:'',cantidad:'',producto:'',precio:'',total:''}); renderEjecCompra(); }
 function renderEjecCompra() {
+  // Vista desktop
   const tbody=document.getElementById('tbodyEjecCompra');
   tbody.innerHTML='';
   rowsCompra.forEach((r,i)=>{
@@ -3221,7 +3233,51 @@ function renderEjecCompra() {
       <td><button class="delete-btn" onclick="delRowCompra(${i})">✕</button></td>
     </tr>`;
   });
+
+  // Vista móvil
+  const mobileItems = document.getElementById('ejecCompraMobileItems');
+  if (mobileItems) {
+    mobileItems.innerHTML = rowsCompra.map((r,i) => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">CÓDIGO</div>
+            <input class="cell-input" style="width:100%;text-align:center;box-sizing:border-box;" value="${r.codigo}" onchange="onCodigoCompra(${i},this.value)" placeholder="Cód.">
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">CANTIDAD</div>
+            <input class="cell-input" style="width:100%;text-align:center;box-sizing:border-box;" value="${r.cantidad}" oninput="onCantCompra(${i},this.value)" type="number" min="0">
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRODUCTO</div>
+          <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.producto}" readonly>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:flex-end;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRECIO</div>
+            <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)">
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+            <div>
+              <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">TOTAL</div>
+              <div class="total-cell" style="font-size:16px;font-weight:800;padding:8px 10px;">S/ ${parseFloat(r.total||0).toFixed(2)}</div>
+            </div>
+            <button class="delete-btn" onclick="delRowCompra(${i})" style="margin-top:16px;">✕</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
   calcTotalCompra();
+}
+function calcTotalCompra() {
+  const total = rowsCompra.reduce((s,r)=>s+(parseFloat(r.total)||0),0);
+  const txt = `S/ ${total.toFixed(2)}`;
+  document.getElementById('totalCompra').textContent = txt;
+  const mob = document.getElementById('totalCompraMobile');
+  if (mob) mob.textContent = txt;
 }
 function onCodigoCompra(i,val) {
   rowsCompra[i].codigo=val;
@@ -3233,7 +3289,6 @@ function onCodigoCompra(i,val) {
 function onCantCompra(i,val){rowsCompra[i].cantidad=val;calcRowCompra(i);renderEjecCompra();}
 function onPrecioCompra(i,val){rowsCompra[i].precio=val;calcRowCompra(i);renderEjecCompra();}
 function calcRowCompra(i){const r=rowsCompra[i];r.total=((parseFloat(r.precio)||0)*(parseFloat(r.cantidad)||0)).toFixed(2);}
-function calcTotalCompra(){document.getElementById('totalCompra').textContent=`S/ ${rowsCompra.reduce((s,r)=>s+(parseFloat(r.total)||0),0).toFixed(2)}`;}
 function delRowCompra(i){rowsCompra.splice(i,1);if(!rowsCompra.length)rowsCompra=[{codigo:'',cantidad:'',producto:'',precio:'',total:''}];renderEjecCompra();}
 function filtrarProveedorCompra() {
   const q = (document.getElementById('proveedorCompra').value||'').toLowerCase().trim();
