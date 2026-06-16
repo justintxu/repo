@@ -161,40 +161,24 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 .back-btn:hover { transform: scale(1.08); }
 
 /* ── EJECUCIÓN VENTA RESPONSIVE MÓVIL ── */
+.ejec-label { display: none; font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
 @media (max-width: 600px) {
-  /* Reorganizar form-row en móvil */
   .form-row { flex-wrap: wrap; gap: 8px; }
+  .ejec-label { display: block; }
 
-  /* Tabla → cards */
-  .ejec-table, .ejec-table tbody, .ejec-table .ejec-row { display: block; width: 100%; box-sizing: border-box; }
-  .ejec-thead { display: none; }
-  .ejec-tfoot tr { display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 10px 12px; }
-  .ejec-tfoot td[colspan] { padding: 0 !important; font-size: 15px; font-weight: 800; }
+  .ejec-table, .ejec-table tbody, .ejec-table .ejec-row, .ejec-table td { display: block !important; width: 100% !important; box-sizing: border-box; }
+  .ejec-thead { display: none !important; }
 
-  .ejec-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: auto auto;
-    gap: 6px;
-    padding: 10px 10px;
-    border-bottom: 2px solid var(--table-border);
-  }
+  .ejec-tfoot { display: block !important; }
+  .ejec-tfoot tr { display: flex !important; align-items: center; justify-content: flex-end; gap: 8px; padding: 10px 12px; }
+  .ejec-tfoot td[colspan] { padding: 0 !important; font-size: 15px; font-weight: 800; flex: none; }
 
-  /* Fila 1: Código | Cantidad | botón eliminar */
-  .ejec-cod  { grid-column: 1; grid-row: 1; }
-  .ejec-cant { grid-column: 2; grid-row: 1; }
-  .ejec-del  { grid-column: 3; grid-row: 1; display:flex; align-items:center; justify-content:center; padding: 0 !important; }
-
-  /* Fila 2: Producto (ancho completo) */
-  .ejec-prod { grid-column: 1 / 4; grid-row: 2; }
-
-  /* Fila 3: Precio | Total */
-  .ejec-precio { grid-column: 1; grid-row: 3; }
-  .ejec-total  { grid-column: 2 / 4; grid-row: 3; display:flex; align-items:center; justify-content:flex-end; }
-
-  .ejec-row td { padding: 0 !important; display: block; }
-  .ejec-row .cell-input { font-size: 13px; padding: 7px 8px; }
-  .ejec-row .total-cell { font-size: 14px; font-weight: 800; }
+  .ejec-row { border-bottom: 2px solid var(--table-border); padding: 10px 8px !important; }
+  .ejec-row td { padding: 4px 0 !important; }
+  .ejec-del { display: flex !important; justify-content: flex-end; padding-top: 4px !important; }
+  .ejec-row .cell-input { font-size: 14px; padding: 8px 10px; width: 100% !important; box-sizing: border-box; }
+  .ejec-row .total-cell { font-size: 15px; font-weight: 800; text-align: right !important; padding: 6px 10px; }
 }
 
 
@@ -3038,11 +3022,11 @@ function renderEjecVenta() {
   tbody.innerHTML = '';
   rowsVenta.forEach((r,i) => {
     tbody.innerHTML += `<tr class="ejec-row">
-      <td class="ejec-cod"><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
-      <td class="ejec-cant"><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
-      <td class="ejec-prod"><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
-      <td class="ejec-precio"><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
-      <td class="ejec-total"><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
+      <td class="ejec-cod"><span class="ejec-label">Código</span><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
+      <td class="ejec-cant"><span class="ejec-label">Cantidad</span><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
+      <td class="ejec-prod"><span class="ejec-label">Producto</span><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
+      <td class="ejec-precio"><span class="ejec-label">Precio</span><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
+      <td class="ejec-total"><span class="ejec-label">Total</span><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td class="ejec-del"><button class="delete-btn" onclick="delRowVenta(${i})">✕</button></td>
     </tr>`;
   });
