@@ -173,9 +173,11 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 
 
 @media (max-width: 600px) {
-  .inv-table { display: none !important; }
-  #inventarioMobile { display: block !important; }
+  .rv-table { display: none !important; }
+  #regVentasMobile { display: block !important; }
 }
+
+
 
 
 .btn-csv {
@@ -1247,7 +1249,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
   </div>
   <div class="table-wrap">
-    <table class="reg-table" style="table-layout:fixed;width:100%;">
+    <table class="reg-table rv-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:110px;">
         <col style="width:95px;">
@@ -1271,6 +1273,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <tbody id="tbodyRegVentas"></tbody>
     </table>
   </div>
+  <!-- Vista móvil registro ventas -->
+  <div id="regVentasMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar">
     <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('ventas')">📥 Exportar CSV</button>
     <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('ventas')">📤 Importar CSV</button>
@@ -3106,6 +3110,8 @@ function procesarVenta() {
 function renderRegVentas() {
   const q=(document.getElementById('searchRegVentas').value||'').toLowerCase();
   const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q));
+
+  // Vista desktop
   const tbody=document.getElementById('tbodyRegVentas');
   tbody.innerHTML=items.length?items.map(v=>`<tr>
     <td style="text-align:center;">${v.fecha||''}</td>
@@ -3117,6 +3123,32 @@ function renderRegVentas() {
     <td style="text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
     <td style="text-align:right;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
+
+  // Vista móvil
+  const mobile = document.getElementById('regVentasMobile');
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(v => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <!-- Fila 1: fecha + hora + cliente -->
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha||''}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(v.hora)}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||''}</span>
+        </div>
+        <!-- Fila 2: producto con código -->
+        <div>
+          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${v.producto||''}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${v.codigo||''}</span>
+        </div>
+        <!-- Fila 3: cantidad + precio + total -->
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${v.cantidad||0}</span>
+          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</span>
+        </div>
+      </div>
+    `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
+  }
 }
 
 // ═══════════════════════════ EJECUCIÓN COMPRA ═════════════════
