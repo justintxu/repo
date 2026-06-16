@@ -184,6 +184,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #dcdMobile { display: block !important; }
   .alm-table { display: none !important; }
   #almacenMobile { display: block !important; }
+  .prov-table { display: none !important; }
+  #proveedoresMobile { display: block !important; }
   .sfin-table { display: none !important; }
   #sertecfinMobile { display: block !important; }
 
@@ -1530,11 +1532,13 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
   </div>
   <div class="table-wrap">
-    <table class="data-table">
+    <table class="data-table prov-table">
       <thead><tr><th>Nombre</th><th>Teléfono</th><th>Celular</th><th>Email</th><th style="min-width:160px;">Dirección</th><th style="min-width:160px;">Sitio Web</th><th></th></tr></thead>
       <tbody id="tbodyProveedores"></tbody>
     </table>
   </div>
+  <!-- Vista móvil proveedores -->
+  <div id="proveedoresMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar">
     <button class="btn btn-new" onclick="nuevoProveedor()">➕ Nuevo</button>
     <button class="btn btn-edit" onclick="editarProveedores()">✏️ Editar</button>
@@ -3531,6 +3535,50 @@ function renderProveedores(){
       <td><button class="delete-btn" onclick="eliminarProv(${orig})">✕</button></td>
     </tr>`;
   });
+
+  // Vista móvil
+  const mobile = document.getElementById('proveedoresMobile');
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(p => {
+      const orig = db.proveedores.indexOf(p);
+      const dis = !provEditando;
+      if (dis) {
+        return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
+          <div style="font-weight:800;font-size:16px;color:var(--text-primary);">🤝 ${p.nombre||''}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            ${p.telefono?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📞 ${p.telefono}</span>`:''}
+            ${p.celular?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📱 ${p.celular}</span>`:''}
+          </div>
+          ${p.email?`<div style="font-size:13px;color:#3b82f6;">✉️ ${p.email}</div>`:''}
+          ${p.direccion?`<div style="font-size:12px;color:var(--text-muted);">📍 ${p.direccion}</div>`:''}
+          ${p.site?`<a href="${p.site.startsWith('http')?p.site:'https://'+p.site}" target="_blank" style="font-size:13px;color:#3b82f6;font-weight:700;text-decoration:underline;">🌐 ${p.site}</a>`:''}
+          <div style="display:flex;justify-content:flex-end;">
+            <button class="delete-btn" onclick="eliminarProv(${orig})">✕</button>
+          </div>
+        </div>`;
+      } else {
+        return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
+          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">NOMBRE</div>
+            <input class="cell-input" value="${p.nombre||''}" onchange="updateProv(${orig},'nombre',this.value)" style="width:100%;box-sizing:border-box;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">TELÉFONO</div>
+              <input class="cell-input" value="${p.telefono||''}" onchange="updateProv(${orig},'telefono',this.value)" style="width:100%;box-sizing:border-box;"></div>
+            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">CELULAR</div>
+              <input class="cell-input" value="${p.celular||''}" onchange="updateProv(${orig},'celular',this.value)" style="width:100%;box-sizing:border-box;"></div>
+          </div>
+          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">EMAIL</div>
+            <input class="cell-input" value="${p.email||''}" onchange="updateProv(${orig},'email',this.value)" style="width:100%;box-sizing:border-box;"></div>
+          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">DIRECCIÓN</div>
+            <input class="cell-input" value="${p.direccion||''}" onchange="updateProv(${orig},'direccion',this.value)" style="width:100%;box-sizing:border-box;"></div>
+          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">SITIO WEB</div>
+            <input class="cell-input" value="${p.site||''}" onchange="updateProv(${orig},'site',this.value)" placeholder="https://..." style="width:100%;box-sizing:border-box;"></div>
+          <div style="display:flex;justify-content:flex-end;">
+            <button class="delete-btn" onclick="eliminarProv(${orig})">✕</button>
+          </div>
+        </div>`;
+      }
+    }).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin proveedores registrados</div>`;
+  }
 }
 function updateProv(i,f,v){db.proveedores[i][f]=v;}
 function nuevoProveedor(){provEditando=true;db.proveedores.push({nombre:'',telefono:'',celular:'',email:'',direccion:'',site:''});provIdx=db.proveedores.length-1;renderProveedores();toast('➕ Nuevo proveedor');}
