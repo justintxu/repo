@@ -175,6 +175,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 @media (max-width: 600px) {
   .rv-table { display: none !important; }
   #regVentasMobile { display: block !important; }
+  .dvd-table { display: none !important; }
+  #dvdMobile { display: block !important; }
 }
 
 
@@ -1658,7 +1660,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <div style="padding:16px 32px;overflow-x:auto;">
-    <table class="reg-table" style="table-layout:fixed;width:100%;">
+    <table class="reg-table dvd-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:95px;"><col style="width:190px;"><col style="width:110px;">
         <col style="width:60px;"><col><col style="width:100px;"><col style="width:100px;">
@@ -1681,6 +1683,18 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </tr>
       </tfoot>
     </table>
+  </div>
+
+  <!-- Vista móvil detalle ventas día -->
+  <div id="dvdMobile" style="display:none;padding:0 12px;">
+    <div id="dvdMobileItems"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 4px;border-top:2px solid #d1fae5;background:#d1fae5;border-radius:0 0 10px 10px;margin-top:4px;">
+      <span style="font-weight:800;font-size:15px;">TOTAL:</span>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <span id="totalUnidadesVentaDiaMob" style="font-weight:800;font-size:14px;color:var(--text-muted);"></span>
+        <span id="totalMontoVentaDiaMob" style="font-weight:800;font-size:17px;color:#059669;"></span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3877,6 +3891,8 @@ function renderDetalleVentasDia() {
   const cliente = document.getElementById('selectClienteDia').value;
   let items = db.ventas.filter(v => v.fecha === diaDetalleVentas);
   if (cliente && cliente !== 'listado') items = items.filter(v => v.cliente === cliente);
+
+  // Vista desktop
   const tbody = document.getElementById('tbodyDetalleVentasDia');
   tbody.innerHTML = items.length ? items.map(v=>`<tr style="border-bottom:1px solid #f3f4f6;">
     <td style="padding:9px 12px;text-align:center;">${formatHora(v.hora)}</td>
@@ -3887,10 +3903,39 @@ function renderDetalleVentasDia() {
     <td style="padding:9px 12px;text-align:right;">S/ ${parseFloat(v.precio||0).toFixed(2)}</td>
     <td style="padding:9px 12px;text-align:right;font-weight:700;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join('') : '<tr><td colspan="7" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas</td></tr>';
+
+  // Vista móvil
+  const mobile = document.getElementById('dvdMobileItems');
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(v => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">🕐 ${formatHora(v.hora)}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||''}</span>
+        </div>
+        <div>
+          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${v.producto||''}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${v.codigo||''}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${v.cantidad||0}</span>
+          <span style="font-size:13px;color:var(--text-muted);">S/ ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">S/ ${parseFloat(v.total||0).toFixed(2)}</span>
+        </div>
+      </div>
+    `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin ventas</div>`;
+  }
+
   const totalMonto = items.reduce((s,v)=>s+parseFloat(v.total||0),0);
   const totalUnid  = items.reduce((s,v)=>s+parseFloat(v.cantidad||0),0);
-  document.getElementById('totalUnidadesVentaDia').textContent = totalUnid.toFixed(0)+' und.';
-  document.getElementById('totalMontoVentaDia').textContent = 'S/ '+totalMonto.toFixed(2);
+  const unidTxt = totalUnid.toFixed(0)+' und.';
+  const montoTxt = 'S/ '+totalMonto.toFixed(2);
+  document.getElementById('totalUnidadesVentaDia').textContent = unidTxt;
+  document.getElementById('totalMontoVentaDia').textContent = montoTxt;
+  const mobU = document.getElementById('totalUnidadesVentaDiaMob');
+  const mobM = document.getElementById('totalMontoVentaDiaMob');
+  if (mobU) mobU.textContent = unidTxt;
+  if (mobM) mobM.textContent = montoTxt;
 }
 
 function imprimirDetalleVentasDia() {
