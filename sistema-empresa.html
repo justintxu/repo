@@ -182,10 +182,14 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #regComprasMobile { display: block !important; }
   .dcd-table { display: none !important; }
   #dcdMobile { display: block !important; }
+  .inv-table { display: none !important; }
+  #inventarioMobile { display: block !important; }
   .alm-table { display: none !important; }
   #almacenMobile { display: block !important; }
   .prov-table { display: none !important; }
   #proveedoresMobile { display: block !important; }
+  .spen-table { display: none !important; }
+  #sertecpenMobile { display: block !important; }
   .sfin-table { display: none !important; }
   #sertecfinMobile { display: block !important; }
 
@@ -808,8 +812,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <button class="btn btn-new" onclick="nuevoProducto()">➕ Nuevo</button>
     <button class="btn btn-delete" onclick="eliminarProductoActual()">🗑️ Eliminar</button>
     <button class="btn" id="btnSeleccionar" style="background:#f59e0b;color:white;" onclick="toggleSeleccion()">☑️ Seleccionar</button>
-    <button class="btn btn-edit" onclick="editarAlmacen()">✏️ Editar</button>
-    <button class="btn btn-save" onclick="guardarAlmacen()">💾 Guardar</button>
+    <button class="btn" id="btnEditarAlmacen" onclick="editarAlmacen()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
+    <button class="btn" id="btnGuardarAlmacen" onclick="guardarAlmacen()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
     <button class="btn" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
     <button class="btn" style="background:#374151;color:white;" onclick="navegarConProt('page-configuraciones','Configuraciones','protConfig')">⚙️ Configuraciones</button>
   </div>
@@ -1565,8 +1569,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <div id="proveedoresMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar">
     <button class="btn btn-new" onclick="nuevoProveedor()">➕ Nuevo</button>
-    <button class="btn btn-edit" onclick="editarProveedores()">✏️ Editar</button>
-    <button class="btn btn-save" onclick="guardarProveedores()">💾 Guardar</button>
+    <button class="btn" id="btnEditarProv" onclick="editarProveedores()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
+    <button class="btn" id="btnGuardarProv" onclick="guardarProveedores()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
     <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('proveedores')">📥 Exportar CSV</button>
     <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('proveedores')">📤 Importar CSV</button>
     <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('proveedores')">☁️ Subir a GitHub</button>
@@ -3096,6 +3100,10 @@ function nuevoProducto() {
   almacenEditando = true;
   db.inventario.push({codigo:'',producto:'',descripcion:'',precio:'',cantidad:'',ubicacion:'',precioCompra:'',ultimoProveedor:'',imagen:''});
   almacenIdx = db.inventario.length - 1;
+  const btnE = document.getElementById('btnEditarAlmacen');
+  const btnG = document.getElementById('btnGuardarAlmacen');
+  if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+  if (btnG) { btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1'; }
   renderAlmacen();
   toast('➕ Nueva fila agregada');
 }
@@ -3121,18 +3129,32 @@ function toggleSeleccion() {
   btn.textContent = modoSeleccion ? '✖️ Cancelar Selección' : '☑️ Seleccionar';
   renderAlmacen();
 }
-function editarAlmacen() { almacenEditando=!almacenEditando; renderAlmacen(); toast(almacenEditando?'✏️ Modo edición':'👁️ Modo lectura'); }
+function editarAlmacen() {
+  almacenEditando = !almacenEditando;
+  const btnE = document.getElementById('btnEditarAlmacen');
+  const btnG = document.getElementById('btnGuardarAlmacen');
+  if (almacenEditando) {
+    btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626';
+    btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1';
+  } else {
+    btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8';
+    btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6';
+  }
+  renderAlmacen();
+  toast(almacenEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
+}
 async function guardarAlmacen() {
   save();
   almacenEditando = false;
+  const btnE = document.getElementById('btnEditarAlmacen');
+  const btnG = document.getElementById('btnGuardarAlmacen');
+  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnG) { btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6'; }
   renderAlmacen();
   toast('💾 Guardando...');
   if (getToken()) {
-    try {
-      await subirAGitHub('inventario');
-    } catch(e) {
-      toast(`⚠️ Error GitHub: ${e.message}`);
-    }
+    try { await subirAGitHub('inventario'); }
+    catch(e) { toast(`⚠️ Error GitHub: ${e.message}`); }
   } else {
     toast('💾 Guardado localmente (sin token GitHub)');
   }
@@ -3607,8 +3629,30 @@ function renderProveedores(){
 function updateProv(i,f,v){db.proveedores[i][f]=v;}
 function nuevoProveedor(){provEditando=true;db.proveedores.push({nombre:'',telefono:'',celular:'',email:'',direccion:'',site:''});provIdx=db.proveedores.length-1;renderProveedores();toast('➕ Nuevo proveedor');}
 function eliminarProv(i){db.proveedores.splice(i,1);saveAndSync('proveedores');renderProveedores();toast('🗑️ Proveedor eliminado');}
-function editarProveedores(){provEditando=!provEditando;renderProveedores();toast(provEditando?'✏️ Modo edición':'👁️ Modo lectura');}
-function guardarProveedores(){saveAndSync('proveedores');provEditando=false;renderProveedores();toast('💾 Proveedores guardados y sincronizando...');}
+function editarProveedores() {
+  provEditando = !provEditando;
+  const btnE = document.getElementById('btnEditarProv');
+  const btnG = document.getElementById('btnGuardarProv');
+  if (provEditando) {
+    btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626';
+    btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1';
+  } else {
+    btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8';
+    btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6';
+  }
+  renderProveedores();
+  toast(provEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
+}
+function guardarProveedores() {
+  saveAndSync('proveedores');
+  provEditando = false;
+  const btnE = document.getElementById('btnEditarProv');
+  const btnG = document.getElementById('btnGuardarProv');
+  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnG) { btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6'; }
+  renderProveedores();
+  toast('💾 Proveedores guardados y sincronizando...');
+}
 function filtrarProveedores(){renderProveedores();}
 function navProv(dir){provIdx=Math.max(0,Math.min(db.proveedores.length-1,provIdx+dir));}
 
