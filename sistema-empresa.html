@@ -1114,7 +1114,21 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
       <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">🔒 Protección por Contraseña</h2>
       <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Selecciona qué secciones del menú requieren contraseña para acceder.</p>
-      <div style="display:flex;flex-direction:column;gap:14px;max-width:420px;">
+
+      <!-- Panel bloqueado (por defecto) -->
+      <div id="protSeccionBloqueada" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px;background:#f1f5f9;border-radius:12px;border:2px dashed #cbd5e1;">
+        <span style="font-size:36px;">🔐</span>
+        <p style="font-size:14px;color:#64748b;font-weight:700;text-align:center;">Ingresa la contraseña para modificar la protección</p>
+        <div style="display:flex;gap:8px;width:100%;max-width:320px;">
+          <input type="password" id="claveProtSeccion" placeholder="Contraseña" onkeydown="if(event.key==='Enter')verificarClaveProtSeccion()"
+            style="flex:1;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+          <button onclick="verificarClaveProtSeccion()" style="background:#6d28d9;color:white;border:none;border-radius:8px;padding:9px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;cursor:pointer;">✓</button>
+        </div>
+        <div id="errorProtSeccion" style="color:#ef4444;font-size:13px;font-weight:700;display:none;">❌ Contraseña incorrecta</div>
+      </div>
+
+      <!-- Panel desprotegido (visible tras ingresar clave) -->
+      <div id="protSeccionContent" style="display:none;flex-direction:column;gap:14px;max-width:420px;">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
           <span style="font-size:14px;font-weight:700;color:#1f2937;">📦 Almacén</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
@@ -1157,6 +1171,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
             <span id="labelProtConfig" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
           </label>
         </div>
+        <button onclick="bloquearProtSeccion()" style="align-self:flex-start;background:#6d28d9;color:white;border:none;border-radius:8px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;cursor:pointer;margin-top:4px;">🔒 Bloquear sección</button>
       </div>
     </div>
 
@@ -2634,6 +2649,22 @@ async function cargarClaveDesdeGitHub() {
         localStorage.setItem('claveAcceso', clave);
         console.log('✅ Clave cargada desde psswdsm.csv');
       }
+      // Cargar configuración de protección desde los campos del CSV
+      const r0 = rows[0];
+      const cfg = {};
+      const map = { almacen:'protAlmacen', compras:'protCompras', ventas:'protVentas',
+                    estadisticas:'protEstadist', servicios:'protServicios', configuraciones:'protConfig' };
+      let hayDatos = false;
+      Object.entries(map).forEach(([campo, key]) => {
+        if (r0[campo] !== undefined && r0[campo] !== '') {
+          cfg[key] = r0[campo].trim() === '1';
+          hayDatos = true;
+        }
+      });
+      if (hayDatos) {
+        localStorage.setItem('proteccionMenu', JSON.stringify(cfg));
+        console.log('✅ Protección cargada desde psswdsm.csv');
+      }
     }
   } catch(e) { console.warn('psswdsm.csv no disponible:', e.message); }
 }
@@ -2660,7 +2691,61 @@ function guardarProteccion() {
     }
   });
   localStorage.setItem('proteccionMenu', JSON.stringify(cfg));
-  toast('🔒 Protección actualizada');
+  toast('🔒 Protección actualizada — guardando...');
+  // Guardar en psswdsm.csv
+  subirProteccionGitHub(cfg);
+}
+
+async function subirProteccionGitHub(cfg) {
+  if (!getToken()) return;
+  try {
+    // Leer sha y clave actual del CSV
+    const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/${GH_PSSWD_SM}`;
+    let sha, p1 = '', p2 = '', p3 = '';
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+    if (getRes.ok) {
+      const d = await getRes.json(); sha = d.sha;
+      const text = atob(d.content.replace(/\n/g,''));
+      const rows = parseCSV(text);
+      if (rows.length) { p1 = rows[0].p1||''; p2 = rows[0].p2||''; p3 = rows[0].p3||''; }
+    }
+    const al = cfg.protAlmacen ? '1' : '0';
+    const co = cfg.protCompras ? '1' : '0';
+    const ve = cfg.protVentas ? '1' : '0';
+    const es = cfg.protEstadist ? '1' : '0';
+    const se = cfg.protServicios ? '1' : '0';
+    const cf = cfg.protConfig ? '1' : '0';
+    const content = `p1,p2,p3,almacen,compras,ventas,estadisticas,servicios,configuraciones\n${p1},${p2},${p3},${al},${co},${ve},${es},${se},${cf}`;
+    const putBody = { message: 'Update protección psswdsm.csv', content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+    toast('✅ Protección guardada en GitHub');
+  } catch(e) {
+    toast(`⚠️ Guardada localmente — Error: ${e.message}`);
+  }
+}
+
+function verificarClaveProtSeccion() {
+  const val = document.getElementById('claveProtSeccion').value;
+  const err = document.getElementById('errorProtSeccion');
+  if (val === claveAcceso) {
+    err.style.display = 'none';
+    document.getElementById('claveProtSeccion').value = '';
+    document.getElementById('protSeccionBloqueada').style.display = 'none';
+    const content = document.getElementById('protSeccionContent');
+    content.style.display = 'flex';
+    cargarProteccion();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('claveProtSeccion').value = '';
+  }
+}
+
+function bloquearProtSeccion() {
+  document.getElementById('protSeccionContent').style.display = 'none';
+  document.getElementById('protSeccionBloqueada').style.display = 'flex';
+  document.getElementById('errorProtSeccion').style.display = 'none';
 }
 
 function cargarProteccion() {
@@ -2668,7 +2753,6 @@ function cargarProteccion() {
   PROT_KEYS.forEach(k => {
     const el = document.getElementById(k);
     if (el) {
-      // Por defecto: Almacén, Compras y Estadísticas protegidos (comportamiento original)
       const defaultVal = (k === 'protAlmacen' || k === 'protCompras' || k === 'protEstadist');
       el.checked = cfg[k] !== undefined ? cfg[k] : defaultVal;
       const lbl = document.getElementById('label' + k.charAt(0).toUpperCase() + k.slice(1));
@@ -2732,7 +2816,15 @@ function guardarNuevaClave() {
   const p1 = nueva.substring(0, size);
   const p2 = nueva.substring(size, size * 2);
   const p3 = nueva.substring(size * 2);
-  const content = `p1,p2,p3\n${p1},${p2},${p3}`;
+  // Preservar config de protección actual
+  const cfg = getProteccion();
+  const al = cfg.protAlmacen !== undefined ? (cfg.protAlmacen?'1':'0') : '1';
+  const co = cfg.protCompras !== undefined ? (cfg.protCompras?'1':'0') : '1';
+  const ve = cfg.protVentas !== undefined ? (cfg.protVentas?'1':'0') : '0';
+  const es = cfg.protEstadist !== undefined ? (cfg.protEstadist?'1':'0') : '1';
+  const se = cfg.protServicios !== undefined ? (cfg.protServicios?'1':'0') : '0';
+  const cf = cfg.protConfig !== undefined ? (cfg.protConfig?'1':'0') : '0';
+  const content = `p1,p2,p3,almacen,compras,ventas,estadisticas,servicios,configuraciones\n${p1},${p2},${p3},${al},${co},${ve},${es},${se},${cf}`;
 
   if (!getToken()) { toast('✅ Contraseña guardada localmente'); return; }
 
@@ -2934,7 +3026,16 @@ function irA(pageId) {
   if (pageId === 'page-sertec-detalle') initSertecDetalle();
   if (pageId === 'page-utilidad-bruta') initUtilidadBruta();
   if (pageId === 'page-utilidad-neta') initUtilidadNeta();
-  if (pageId === 'page-configuraciones') { cargarConfigGitHub(); cargarProteccion(); }
+  if (pageId === 'page-configuraciones') {
+    cargarConfigGitHub();
+    // Resetear bloqueo de sección protección
+    const bloq = document.getElementById('protSeccionBloqueada');
+    const cont = document.getElementById('protSeccionContent');
+    if (bloq) bloq.style.display = 'flex';
+    if (cont) cont.style.display = 'none';
+    const err = document.getElementById('errorProtSeccion');
+    if (err) err.style.display = 'none';
+  }
 }
 
 // ═══════════════════════════ BRANDING ══════════════════════════
