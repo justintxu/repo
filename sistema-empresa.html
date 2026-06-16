@@ -173,79 +173,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 
 
 @media (max-width: 600px) {
-  .inv-table, .inv-table tbody, .inv-table .inv-row, .inv-table td { display: block; width: 100%; }
-  .inv-thead { display: none; }
-  .inv-row {
-    display: flex !important;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 6px;
-    padding: 10px 8px;
-    border-bottom: 2px solid var(--table-border);
-    position: relative;
-  }
-  .inv-col-img {
-    flex: 0 0 52px;
-    padding: 0 !important;
-  }
-  .inv-col-prod {
-    flex: 1 1 calc(100% - 64px);
-    font-weight: 800;
-    font-size: 14px;
-    color: var(--text-primary);
-    text-align: left !important;
-    padding: 0 !important;
-    align-self: center;
-  }
-  .inv-col-cod {
-    flex: 0 0 auto;
-    background: var(--table-hover);
-    border-radius: 6px;
-    padding: 3px 8px !important;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-align: left !important;
-  }
-  .inv-col-cod::before { content: '# '; }
-  .inv-col-desc {
-    flex: 1 1 100%;
-    font-size: 12px;
-    color: var(--text-muted);
-    padding: 0 !important;
-    text-align: left !important;
-  }
-  .inv-col-precio {
-    flex: 0 0 auto;
-    font-weight: 800;
-    font-size: 14px;
-    color: #059669;
-    padding: 0 !important;
-    text-align: left !important;
-  }
-  .inv-col-price::before { content: 'S/ '; }
-  .inv-col-stock {
-    flex: 0 0 auto;
-    background: #dcfce7;
-    color: #15803d;
-    border-radius: 6px;
-    padding: 3px 8px !important;
-    font-size: 12px;
-    font-weight: 800;
-    text-align: left !important;
-  }
-  .inv-col-stock::before { content: '📦 '; }
-  .inv-col-ubic {
-    flex: 0 0 auto;
-    background: #dbeafe;
-    color: #1d4ed8;
-    border-radius: 6px;
-    padding: 3px 8px !important;
-    font-size: 12px;
-    font-weight: 700;
-    text-align: left !important;
-  }
-  .inv-col-ubic::before { content: '📍 '; }
+  .inv-table { display: none !important; }
+  #inventarioMobile { display: block !important; }
 }
 
 
@@ -2113,6 +2042,9 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <tbody id="tbodyInventario"></tbody>
     </table>
   </div>
+
+  <!-- Vista móvil del inventario -->
+  <div id="inventarioMobile" style="display:none;padding:0 12px;"></div>
 </div>
 
 <!-- MODAL AJUSTES GITHUB -->
@@ -2709,25 +2641,53 @@ function guardarNuevaClave() {
 function renderInventario() {
   const q=(document.getElementById('searchInventario').value||'').toLowerCase();
   const items=db.inventario.filter(p=>!q||p.codigo?.toLowerCase().includes(q)||p.producto?.toLowerCase().includes(q)||p.descripcion?.toLowerCase().includes(q));
+
+  // Vista desktop (tabla)
   const tbody=document.getElementById('tbodyInventario');
   tbody.innerHTML=items.length?items.map(p=>{
     const imgHtml = p.imagen
       ? `<img src="${p.imagen}" class="thumb-img" data-url="${p.imagen.replace(/"/g,'&quot;')}" style="width:44px;height:44px;object-fit:cover;border-radius:8px;cursor:zoom-in;border:1px solid #e5e7eb;" title="Doble clic para ampliar">`
       : `<div style="width:44px;height:44px;background:#f3f4f6;border-radius:8px;border:1px dashed #d1d5db;display:inline-flex;align-items:center;justify-content:center;font-size:20px;">📷</div>`;
-    const precio = 'S/ '+parseFloat(p.precio||0).toFixed(2);
     return `<tr class="inv-row">
       <td class="inv-col-img" style="text-align:center;">${imgHtml}</td>
-      <td class="inv-col-cod" style="text-align:center;" data-label="Código">${p.codigo||''}</td>
-      <td class="inv-col-prod" style="text-align:center;" data-label="Producto">${p.producto||''}</td>
-      <td class="inv-col-desc" data-label="Descripción">${p.descripcion||''}</td>
-      <td class="inv-col-precio" style="text-align:right;" data-label="Precio">${precio}</td>
-      <td class="inv-col-stock" style="text-align:center;" data-label="Stock">${p.cantidad||0}</td>
-      <td class="inv-col-ubic" style="text-align:center;" data-label="Ubicación">${p.ubicacion||''}</td>
+      <td class="inv-col-cod" style="text-align:center;">${p.codigo||''}</td>
+      <td class="inv-col-prod" style="text-align:center;">${p.producto||''}</td>
+      <td class="inv-col-desc">${p.descripcion||''}</td>
+      <td class="inv-col-precio" style="text-align:right;">S/ ${parseFloat(p.precio||0).toFixed(2)}</td>
+      <td class="inv-col-stock" style="text-align:center;">${p.cantidad||0}</td>
+      <td class="inv-col-ubic" style="text-align:center;">${p.ubicacion||''}</td>
     </tr>`;
   }).join(''):`<tr><td colspan="7" style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en inventario</td></tr>`;
   tbody.querySelectorAll('.thumb-img').forEach(img => {
     img.addEventListener('dblclick', () => abrirImagen(img.dataset.url));
   });
+
+  // Vista móvil (divs)
+  const mobile = document.getElementById('inventarioMobile');
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(p => {
+      const imgHtml = p.imagen
+        ? `<img src="${p.imagen}" onclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}');return false;" style="width:52px;height:52px;object-fit:cover;border-radius:10px;border:1px solid #e5e7eb;cursor:zoom-in;flex-shrink:0;">`
+        : `<div style="width:52px;height:52px;background:#f3f4f6;border-radius:10px;border:1px dashed #d1d5db;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📷</div>`;
+      return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <!-- Fila 1: imagen + nombre + código -->
+        <div style="display:flex;align-items:center;gap:10px;">
+          ${imgHtml}
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
+            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
+          </div>
+        </div>
+        ${p.descripcion ? `<div style="font-size:12px;color:var(--text-muted);">${p.descripcion}</div>` : ''}
+        <!-- Fila 2: precio + stock + ubicación -->
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span style="font-weight:800;font-size:15px;color:#059669;">S/ ${parseFloat(p.precio||0).toFixed(2)}</span>
+          <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
+          <span style="background:#dbeafe;color:#1d4ed8;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">📍 ${p.ubicacion||''}</span>
+        </div>
+      </div>`;
+    }).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en inventario</div>`;
+  }
 }
 
 // ═══════════════════════════ LIGHTBOX IMAGEN ═══════════════════
