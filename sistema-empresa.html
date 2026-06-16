@@ -215,6 +215,24 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #page-ejec-venta { padding-bottom: 100px; }
   #page-detalle-compras-dia { padding-bottom: 100px; }
   #page-almacen { padding-bottom: 100px; }
+
+  /* Utilidad Bruta/Neta — filtros y grids responsive */
+  #selectNivelUB, #selectAnioUB, #selectMesUB, #selectSemanaUB,
+  #selectNivelUN, #selectAnioUN, #selectMesUN, #selectSemanaUN {
+    font-size: 13px !important; padding: 6px 10px !important; min-width: unset !important;
+  }
+  #contadoresUB {
+    grid-template-columns: 1fr 1fr !important; gap: 10px !important; padding: 12px 14px !important;
+  }
+  #contadoresUB > div { padding: 16px 10px !important; border-radius: 14px !important; }
+  #contadoresUB > div > div:first-child { font-size: 26px !important; margin-bottom: 6px !important; }
+  #ubItems, #ubProductos, #unItems, #unProductos { font-size: 30px !important; }
+  #ubTotalBruto, #unTotalBruto, #unTotalSertecBruto { font-size: 17px !important; }
+  #badgeImpuesto { font-size: 12px !important; padding: 5px 8px !important; }
+  /* Desglose inferior — 1 columna en móvil muy estrecho */
+  #desgloseUB, #page-utilidad-neta > div[style*="display:grid"] {
+    grid-template-columns: 1fr 1fr !important; gap: 10px !important; padding: 0 14px 14px !important;
+  }
 }
 
 .btn-csv {
@@ -1597,7 +1615,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Filtros -->
-  <div style="display:flex;align-items:center;gap:10px;padding:20px 32px 0;flex-wrap:wrap;">
+  <div style="display:flex;align-items:center;gap:10px;padding:12px 14px 0;flex-wrap:wrap;">
     <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Período:</span>
     <select id="selectNivelUN" onchange="onNivelUNChange()" style="padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">
       <option value="total">Todo</option>
@@ -1763,7 +1781,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Filtros -->
-  <div style="display:flex;align-items:center;gap:10px;padding:20px 32px 0;flex-wrap:wrap;">
+  <div style="display:flex;align-items:center;gap:10px;padding:12px 14px 0;flex-wrap:wrap;">
     <span style="font-size:16px;font-weight:800;color:var(--text-primary);">Período:</span>
     <select id="selectNivelUB" onchange="onNivelUBChange()" style="padding:8px 14px;border-radius:10px;border:2px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:var(--input-bg);color:var(--text-primary);">
       <option value="total">Todo</option>
