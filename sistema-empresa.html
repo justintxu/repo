@@ -190,6 +190,17 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .sfin-f2 { grid-template-columns: 1fr 1fr !important; }
   .sfin-f3 { grid-template-columns: 1fr 1fr !important; }
   .sdet-input, .sdet-textarea { font-size: 13px !important; }
+
+  /* Detalle servicio pendiente */
+  .sdet-layout { flex-direction: column !important; padding: 10px 14px 0 !important; gap: 12px !important; }
+  .sdet-right { flex-direction: row !important; flex-wrap: wrap !important; min-width: unset !important; width: 100% !important; align-items: flex-start !important; gap: 10px !important; }
+  .sdet-imgs-grid { align-items: flex-start !important; }
+  .sdet-f1 { grid-template-columns: 1fr 1fr !important; }
+  .sdet-f1 > div:first-child { grid-column: 1 / -1; }
+  .sdet-f2 { grid-template-columns: 1fr 1fr !important; }
+  .sdet-f3 { grid-template-columns: 1fr 1fr !important; }
+  /* Hora/Fecha actuales en móvil: izquierda en vez de derecha */
+  #page-sertec-detalle .header + div { justify-content: flex-start !important; padding: 10px 14px 0 !important; gap: 12px !important; }
 }
 
 .btn-csv {
@@ -2345,13 +2356,13 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- ── Contenido principal: formulario + columna derecha ── -->
-  <div style="display:flex;gap:18px;padding:12px 28px 0;align-items:flex-start;">
+  <div class="sdet-layout" style="display:flex;gap:18px;padding:12px 28px 0;align-items:flex-start;">
 
     <!-- COLUMNA IZQUIERDA: formulario -->
     <div style="flex:1;min-width:0;">
 
       <!-- Fila 1: Artefacto | Cliente | Teléfono -->
-      <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+      <div class="sdet-f1" style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Artefacto</div>
           <input id="sdet_artefacto" class="sdet-input sdet-locked" readonly>
@@ -2367,7 +2378,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       </div>
 
       <!-- Fila 2: FechaEnt | HoraEnt | Técnico | HonTec | Cotización | CotizaciónX -->
-      <div style="display:grid;grid-template-columns:100px 100px 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+      <div class="sdet-f2" style="display:grid;grid-template-columns:100px 100px 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrada</div>
           <input id="sdet_fechent" class="sdet-input sdet-locked" readonly>
@@ -2395,7 +2406,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       </div>
 
       <!-- Fila 3: MisRep | RepTec | PrecFin | FormPag | UtiNet -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+      <div class="sdet-f3" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Mis Repuestos</div>
           <input id="sdet_reparvi" class="sdet-input sdet-editable" readonly>
@@ -2432,20 +2443,22 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
 
     <!-- COLUMNA DERECHA: Imágenes + botones -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
+    <div class="sdet-right" style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
 
       <!-- Label Imágenes -->
       <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);align-self:flex-start;">Imágenes</div>
 
       <!-- Grid 3 + 2 -->
-      <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
-        <div id="sdet_img1_wrap" onclick="sdetClickImg(1)" class="sdet-img-cell"></div>
-        <div id="sdet_img2_wrap" onclick="sdetClickImg(2)" class="sdet-img-cell"></div>
-        <div id="sdet_img3_wrap" onclick="sdetClickImg(3)" class="sdet-img-cell"></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(2,52px);gap:8px;">
-        <div id="sdet_img4_wrap" onclick="sdetClickImg(4)" class="sdet-img-cell"></div>
-        <div id="sdet_img5_wrap" onclick="sdetClickImg(5)" class="sdet-img-cell"></div>
+      <div class="sdet-imgs-grid" style="display:flex;flex-direction:column;gap:8px;align-items:center;">
+        <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
+          <div id="sdet_img1_wrap" onclick="sdetClickImg(1)" class="sdet-img-cell"></div>
+          <div id="sdet_img2_wrap" onclick="sdetClickImg(2)" class="sdet-img-cell"></div>
+          <div id="sdet_img3_wrap" onclick="sdetClickImg(3)" class="sdet-img-cell"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,52px);gap:8px;">
+          <div id="sdet_img4_wrap" onclick="sdetClickImg(4)" class="sdet-img-cell"></div>
+          <div id="sdet_img5_wrap" onclick="sdetClickImg(5)" class="sdet-img-cell"></div>
+        </div>
       </div>
 
       <!-- Botones EDIT + SAVE -->
