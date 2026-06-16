@@ -165,20 +165,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 
 @media (max-width: 600px) {
   .form-row { flex-wrap: wrap; gap: 8px; }
-  .ejec-label { display: block; }
-
-  .ejec-table, .ejec-table tbody, .ejec-table .ejec-row, .ejec-table td { display: block !important; width: 100% !important; box-sizing: border-box; }
-  .ejec-thead { display: none !important; }
-
-  .ejec-tfoot { display: block !important; }
-  .ejec-tfoot tr { display: flex !important; align-items: center; justify-content: flex-end; gap: 8px; padding: 10px 12px; }
-  .ejec-tfoot td[colspan] { padding: 0 !important; font-size: 15px; font-weight: 800; flex: none; }
-
-  .ejec-row { border-bottom: 2px solid var(--table-border); padding: 10px 8px !important; }
-  .ejec-row td { padding: 4px 0 !important; }
-  .ejec-del { display: flex !important; justify-content: flex-end; padding-top: 4px !important; }
-  .ejec-row .cell-input { font-size: 14px; padding: 8px 10px; width: 100% !important; box-sizing: border-box; }
-  .ejec-row .total-cell { font-size: 15px; font-weight: 800; text-align: right !important; padding: 6px 10px; }
+  /* Ocultar tabla completamente en móvil */
+  .ejec-table { display: none !important; }
+  /* Mostrar el contenedor móvil */
+  #ejecVentaMobile { display: block !important; }
 }
 
 
@@ -1266,6 +1256,15 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         <td></td>
       </tr></tfoot>
     </table>
+  </div>
+
+  <!-- Vista móvil del carrito -->
+  <div id="ejecVentaMobile" style="display:none;padding:0 12px;">
+    <div id="ejecVentaMobileItems"></div>
+    <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
+      <span style="font-weight:800;font-size:16px;">TOTAL VENTA:</span>
+      <div class="grand-total" id="totalVentaMobile" style="font-size:20px;">S/ 0.00</div>
+    </div>
   </div>
   <div style="display:flex;justify-content:flex-end;padding:16px 32px;gap:12px;">
     <button class="btn btn-process" onclick="procesarVenta()">✅ Procesar Venta</button>
@@ -3018,20 +3017,59 @@ function initEjecVenta() {
 }
 function addRowVenta() { rowsVenta.push({codigo:'',cantidad:'',producto:'',precio:'',total:''}); renderEjecVenta(); }
 function renderEjecVenta() {
+  // Vista desktop (tabla)
   const tbody = document.getElementById('tbodyEjecVenta');
   tbody.innerHTML = '';
   rowsVenta.forEach((r,i) => {
     tbody.innerHTML += `<tr class="ejec-row">
-      <td class="ejec-cod"><span class="ejec-label">Código</span><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
-      <td class="ejec-cant"><span class="ejec-label">Cantidad</span><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
-      <td class="ejec-prod"><span class="ejec-label">Producto</span><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
-      <td class="ejec-precio"><span class="ejec-label">Precio</span><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
-      <td class="ejec-total"><span class="ejec-label">Total</span><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
+      <td class="ejec-cod"><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
+      <td class="ejec-cant"><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
+      <td class="ejec-prod"><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
+      <td class="ejec-precio"><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
+      <td class="ejec-total"><div class="total-cell" style="text-align:right;">S/ ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td class="ejec-del"><button class="delete-btn" onclick="delRowVenta(${i})">✕</button></td>
     </tr>`;
   });
+
+  // Vista móvil (divs)
+  const mobileItems = document.getElementById('ejecVentaMobileItems');
+  if (mobileItems) {
+    mobileItems.innerHTML = rowsVenta.map((r,i) => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">CÓDIGO</div>
+            <input class="cell-input" style="width:100%;text-align:center;box-sizing:border-box;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód.">
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">CANTIDAD</div>
+            <input class="cell-input" style="width:100%;text-align:center;box-sizing:border-box;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0">
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRODUCTO</div>
+          <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.producto}" readonly>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:flex-end;">
+          <div>
+            <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRECIO</div>
+            <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.precio?'S/ '+parseFloat(r.precio).toFixed(2):''}" readonly>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+            <div>
+              <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">TOTAL</div>
+              <div class="total-cell" style="font-size:16px;font-weight:800;padding:8px 10px;">S/ ${parseFloat(r.total||0).toFixed(2)}</div>
+            </div>
+            <button class="delete-btn" onclick="delRowVenta(${i})" style="margin-top:16px;">✕</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
   calcTotalVenta();
 }
+
 function onCodigoVenta(i,val) {
   rowsVenta[i].codigo=val;
   const p = db.inventario.find(x=>x.codigo===val);
@@ -3047,7 +3085,10 @@ function calcRowVenta(i) {
 }
 function calcTotalVenta() {
   const total=rowsVenta.reduce((s,r)=>s+(parseFloat(r.total)||0),0);
-  document.getElementById('totalVenta').textContent=`S/ ${total.toFixed(2)}`;
+  const txt = `S/ ${total.toFixed(2)}`;
+  document.getElementById('totalVenta').textContent = txt;
+  const mob = document.getElementById('totalVentaMobile');
+  if (mob) mob.textContent = txt;
 }
 function delRowVenta(i) { rowsVenta.splice(i,1); if(!rowsVenta.length) rowsVenta=[{codigo:'',cantidad:'',producto:'',precio:'',total:''}]; renderEjecVenta(); }
 function filtrarEjecVenta() {
