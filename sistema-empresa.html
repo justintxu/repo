@@ -1804,12 +1804,12 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <colgroup>
         <col style="width:60px;">
         <col style="width:110px;">
+        <col style="width:280px;">
         <col>
-        <col style="width:180px;">
-        <col style="width:90px;">
-        <col style="width:90px;">
-        <col style="width:110px;">
-        <col style="width:110px;">
+        <col style="width:70px;">
+        <col style="width:70px;">
+        <col style="width:100px;">
+        <col style="width:130px;">
       </colgroup>
       <thead><tr>
         <th style="text-align:center;">Img</th>
@@ -6353,7 +6353,17 @@ function getSym() { return getSimboloMoneda(); }
 function getSimboloMoneda() {
   try {
     const locale = navigator.language || 'es-PE';
-    const fmt = new Intl.NumberFormat(locale, { style: 'currency', currency: getCurrencyCode(locale), currencyDisplay: 'narrowSymbol' });
+    const code = getCurrencyCode(locale);
+    // Mapa directo de símbolos para evitar que algunos navegadores devuelvan el código ISO
+    const symbols = {
+      'PEN':'S/', 'USD':'$', 'EUR':'€', 'GBP':'£', 'MXN':'$', 'ARS':'$',
+      'COP':'$', 'CLP':'$', 'BOB':'Bs.', 'PYG':'₲', 'UYU':'$U', 'VES':'Bs.S',
+      'CRC':'₡', 'GTQ':'Q', 'HNL':'L', 'NIO':'C$', 'PAB':'B/.', 'DOP':'RD$',
+      'BRL':'R$'
+    };
+    if (symbols[code]) return symbols[code];
+    // Fallback: intentar con Intl
+    const fmt = new Intl.NumberFormat(locale, { style:'currency', currency:code, currencyDisplay:'narrowSymbol' });
     const parts = fmt.formatToParts(0);
     const sym = parts.find(p => p.type === 'currency');
     return sym ? sym.value : 'S/';
