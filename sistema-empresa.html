@@ -181,10 +181,16 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #sertecpenMobile { display: block !important; }
   .sfin-table { display: none !important; }
   #sertecfinMobile { display: block !important; }
+
+  /* Detalle servicio finalizado */
+  .sfin-layout { flex-direction: column !important; padding: 10px 14px 0 !important; gap: 12px !important; }
+  .sfin-imgs { flex-direction: row !important; flex-wrap: wrap !important; min-width: unset !important; width: 100% !important; align-items: flex-start !important; gap: 8px !important; }
+  .sfin-f1 { grid-template-columns: 1fr 1fr !important; }
+  .sfin-f1 > div:first-child { grid-column: 1 / -1; }
+  .sfin-f2 { grid-template-columns: 1fr 1fr !important; }
+  .sfin-f3 { grid-template-columns: 1fr 1fr !important; }
+  .sdet-input, .sdet-textarea { font-size: 13px !important; }
 }
-
-
-
 
 .btn-csv {
   color: white;
@@ -2209,13 +2215,13 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Contenido principal -->
-  <div style="display:flex;gap:18px;padding:14px 28px 0;align-items:flex-start;">
+  <div class="sfin-layout" style="display:flex;gap:18px;padding:14px 28px 0;align-items:flex-start;">
 
     <!-- COLUMNA IZQUIERDA: formulario -->
     <div style="flex:1;min-width:0;">
 
       <!-- Fila 1: Artefacto | Cliente | Teléfono -->
-      <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+      <div class="sfin-f1" style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Artefacto</div>
           <input id="sfin_artefacto" class="sdet-input sdet-locked" readonly>
@@ -2231,7 +2237,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       </div>
 
       <!-- Fila 2: FechaEnt | HoraEnt | FechaFin | HoraFin | Técnico | Cotización -->
-      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px;align-items:end;">
+      <div class="sfin-f2" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrada</div>
           <input id="sfin_fechent" class="sdet-input sdet-locked" readonly>
@@ -2259,7 +2265,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       </div>
 
       <!-- Fila 3: CotizaciónX | RepTec | PrecFin | FormPag | UtiNet -->
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px;align-items:end;">
+      <div class="sfin-f3" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">CotizaciónX</div>
           <input id="sfin_cotizaciont" class="sdet-input sdet-locked" readonly>
@@ -2296,7 +2302,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
 
     <!-- COLUMNA DERECHA: solo imágenes -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
+    <div class="sfin-imgs" style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
       <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);align-self:flex-start;">Imágenes</div>
       <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
         <div id="sfin_img1_wrap" onclick="sfinClickImg(1)" class="sdet-img-cell"></div>
