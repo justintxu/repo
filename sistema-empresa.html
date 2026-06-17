@@ -130,18 +130,19 @@ html.tema-gris {
   --card-color: #f8fafc;
   --card-shadow: 0 4px 20px rgba(0,0,0,0.3);
   --search-border: #cbd5e1;
-  --search-bg: rgba(71,85,105,0.85);
+  --search-bg: #ffffff;
   --table-header-color: #f1f5f9;
   --table-border: #64748b;
   --table-hover: rgba(226,232,240,0.14);
-  --cell-bg: rgba(241,245,249,0.14);
-  --cell-blue: rgba(226,232,240,0.2);
+  --cell-bg: #ffffff;
+  --cell-blue: #ffffff;
   --toolbar-border: #64748b;
   --modal-bg: #475569;
   --modal-overlay: rgba(0,0,0,0.65);
-  --input-bg: rgba(71,85,105,0.85);
+  --input-bg: #ffffff;
   --input-border: #94a3b8;
-  --stat-bg: rgba(241,245,249,0.12);
+  --input-text: #1f2937;
+  --stat-bg: rgba(226,232,240,0.2);
   --stat-border: #94a3b8;
   --back-btn: radial-gradient(circle at 40% 35%, #e2e8f0, #64748b);
   --back-shadow: rgba(0,0,0,0.35);
@@ -149,11 +150,12 @@ html.tema-gris {
   --est-card-color: #f8fafc;
   --reg-table-header: #e2e8f0;
   --reg-table-border: #64748b;
-  --total-cell-bg: rgba(241,245,249,0.12);
-  --grand-total-bg: rgba(241,245,249,0.18);
-  --configuraciones-card-bg: rgba(71,85,105,0.75);
-  --configuraciones-card-border: #64748b;
+  --total-cell-bg: #ffffff;
+  --grand-total-bg: #ffffff;
+  --configuraciones-card-bg: rgba(148,163,184,0.35);
+  --configuraciones-card-border: #94a3b8;
   --toggle-active-bg: #64748b;
+  --sertec-total-color: #065f46;
 }
 
 html.tema-magenta {
@@ -195,8 +197,8 @@ html.tema-magenta {
   --reg-table-border: #be185d;
   --total-cell-bg: rgba(249,168,212,0.14);
   --grand-total-bg: rgba(249,168,212,0.2);
-  --configuraciones-card-bg: rgba(157,23,77,0.7);
-  --configuraciones-card-border: #be185d;
+  --configuraciones-card-bg: rgba(249,168,212,0.35);
+  --configuraciones-card-border: #f9a8d4;
   --toggle-active-bg: #db2777;
 }
 
@@ -653,7 +655,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 .search-input {
   width: 100%; padding: 10px 44px 10px 18px; border-radius: 100px;
   border: 2.5px solid var(--search-border); font-family: 'Nunito', sans-serif;
-  font-size: 15px; font-weight: 600; background: var(--search-bg); color: var(--text-primary);
+  font-size: 15px; font-weight: 600; background: var(--search-bg); color: var(--input-text, var(--text-primary));
   outline: none;
 }
 .search-icon {
@@ -670,11 +672,28 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 .data-table td { padding: 5px 6px; }
 .data-table tbody tr:hover { background: var(--table-hover); }
 
+/* Gris Espacial: títulos de tabla en negro sólido y barra con bordes redondeados */
+html.tema-gris .data-table th { color: #1f2937; }
+html.tema-gris .data-table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+html.tema-gris .data-table thead tr th:last-child { border-radius: 0 10px 10px 0; }
+html.tema-gris .lp-table th { color: #ffffff; }
+html.tema-gris .alm-table th { color: #1f2937; background: #ffffff; }
+html.tema-gris .alm-table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+html.tema-gris .alm-table thead tr th:last-child { border-radius: 0 10px 10px 0; }
+html.tema-gris #btnCfgAlmacen { background: #000000 !important; }
+html.tema-gris .ejec-table th { color: #1f2937; background: #ffffff; }
+html.tema-gris .ejec-table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+html.tema-gris .ejec-table thead tr th:last-child { border-radius: 0 10px 10px 0; }
+html.tema-gris .spen-table th, html.tema-gris .sfin-table th { color: #1f2937; background: #ffffff; }
+html.tema-gris .spen-table thead tr th:first-child, html.tema-gris .sfin-table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+html.tema-gris .spen-table thead tr th:last-child, html.tema-gris .sfin-table thead tr th:last-child { border-radius: 0 10px 10px 0; }
+html.tema-gris .ingserv-date-label { color: #ffffff !important; }
+
 input.cell-input {
   width: 100%; padding: 7px 10px; border-radius: 8px;
   border: 1.5px solid var(--table-border); font-family: 'Nunito', sans-serif;
   font-size: 14px; font-weight: 600; background: var(--cell-bg);
-  outline: none; transition: border-color 0.15s; color: var(--text-primary);
+  outline: none; transition: border-color 0.15s; color: var(--input-text, var(--text-primary));
 }
 input.cell-input:focus { border-color: var(--orange); background: var(--input-bg); }
 input.cell-input.blue-cell { background: var(--cell-blue); }
@@ -716,12 +735,12 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   flex: 1; max-width: 420px; padding: 9px 16px; border-radius: 10px;
   border: 2px solid var(--input-border); background: var(--input-bg);
   font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; outline: none;
-  color: var(--text-primary);
+  color: var(--input-text, var(--text-primary));
 }
 .form-input:focus { border-color: var(--orange); }
 .total-cell {
   background: var(--total-cell-bg); border-radius: 8px; padding: 7px 10px;
-  font-weight: 700; font-size: 14px; color: var(--text-primary); text-align: right;
+  font-weight: 700; font-size: 14px; color: var(--input-text, var(--text-primary)); text-align: right;
   min-width: 80px;
 }
 .grand-total {
@@ -772,6 +791,11 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 .reg-table td { padding: 8px 12px; border-bottom: 1px solid var(--reg-table-border); color: var(--text-primary); }
 .reg-table tr:hover td { background: var(--table-hover); }
 
+/* Gris Espacial: títulos de tabla en negro sólido y barra con bordes redondeados */
+html.tema-gris .reg-table th { color: #1f2937; }
+html.tema-gris .reg-table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+html.tema-gris .reg-table thead tr th:last-child { border-radius: 0 10px 10px 0; }
+
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
@@ -813,6 +837,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   border-radius: 12px; border: 1.5px solid var(--header-border);
 }
 .theme-toggle span { font-weight: 700; font-size: 15px; color: var(--text-primary); }
+html.tema-gris .theme-toggle span { color: #1f2937; }
 
 /* Generic toggle switch (ON/OFF) */
 .toggle-switch {
@@ -1006,11 +1031,11 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
     <div style="display:flex;align-items:center;gap:16px;">
       <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-        <span style="font-size:13px;font-weight:700;color:#1f2937;">Fecha</span>
+        <span class="ingserv-date-label" style="font-size:13px;font-weight:700;color:#1f2937;">Fecha</span>
         <span id="fechaIngServicio" style="background:#fff3e8;border:1.5px solid #f97316;border-radius:8px;padding:5px 14px;font-size:14px;font-weight:700;color:#c2410c;"></span>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-        <span style="font-size:13px;font-weight:700;color:#1f2937;">Hora</span>
+        <span class="ingserv-date-label" style="font-size:13px;font-weight:700;color:#1f2937;">Hora</span>
         <span id="horaIngServicio" style="background:#fff3e8;border:1.5px solid #f97316;border-radius:8px;padding:5px 14px;font-size:14px;font-weight:700;color:#c2410c;"></span>
       </div>
       <button class="back-btn" onclick="irA('page-servicios')">‹</button>
@@ -1602,41 +1627,41 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
 
     <!-- GitHub Config -->
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
-      <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">☁️ Conexión GitHub</h2>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">El token se guarda solo en este navegador. Genera uno en GitHub → Settings → Developer settings → Personal access tokens (permiso: <b>repo</b>).</p>
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">☁️ Conexión GitHub</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">El token se guarda solo en este navegador. Genera uno en GitHub → Settings → Developer settings → Personal access tokens (permiso: <b>repo</b>).</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
         <div>
-          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Usuario GitHub</label>
-          <input id="cfgGhUser" type="text" placeholder="ej: justintxu" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Usuario GitHub</label>
+          <input id="cfgGhUser" type="text" placeholder="ej: justintxu" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
         </div>
         <div>
-          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Repositorio</label>
-          <input id="cfgGhRepo" type="text" placeholder="ej: repo" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Repositorio</label>
+          <input id="cfgGhRepo" type="text" placeholder="ej: repo" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
         </div>
       </div>
       <div style="margin-bottom:18px;">
-        <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Personal Access Token</label>
-        <input id="cfgGhToken" type="password" placeholder="ghp_..." style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+        <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Personal Access Token</label>
+        <input id="cfgGhToken" type="password" placeholder="ghp_..." style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="btn btn-save" onclick="guardarConfigGitHub()">💾 Guardar Configuración</button>
         <button class="btn" style="background:#1d4ed8;color:white;" onclick="cargarDesdeGitHub()">🔄 Sincronizar Ahora</button>
       </div>
-      <div id="cfgGhStatus" style="margin-top:12px;font-size:13px;font-weight:600;color:#6b7280;"></div>
+      <div id="cfgGhStatus" style="margin-top:12px;font-size:13px;font-weight:600;color:var(--text-muted);"></div>
     </div>
 
     <!-- Exportar / Importar -->
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:20px;">
-      <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">📁 Exportar / Importar CSV</h2>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:16px;">Descarga o carga cada tabla en formato CSV compatible con Excel.</p>
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:20px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">📁 Exportar / Importar CSV</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Descarga o carga cada tabla en formato CSV compatible con Excel.</p>
       <div style="display:flex;flex-direction:column;gap:8px;">
 
         <!-- Inventario -->
-        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
             <span style="font-size:18px;">📦</span>
-            <span style="font-weight:800;font-size:14px;color:#1f2937;">Inventario</span>
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Inventario</span>
           </div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('inventario')">📥 Exportar</button>
@@ -1646,10 +1671,10 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </div>
 
         <!-- Ventas -->
-        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
             <span style="font-size:18px;">🛒</span>
-            <span style="font-weight:800;font-size:14px;color:#1f2937;">Ventas</span>
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Ventas</span>
           </div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('ventas')">📥 Exportar</button>
@@ -1659,10 +1684,10 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </div>
 
         <!-- Compras -->
-        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
             <span style="font-size:18px;">📥</span>
-            <span style="font-weight:800;font-size:14px;color:#1f2937;">Compras</span>
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Compras</span>
           </div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('compras')">📥 Exportar</button>
@@ -1672,10 +1697,10 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </div>
 
         <!-- Proveedores -->
-        <div style="padding:10px 12px;background:white;border-radius:10px;border:1px solid #e2e8f0;">
+        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
             <span style="font-size:18px;">🤝</span>
-            <span style="font-weight:800;font-size:14px;color:#1f2937;">Proveedores</span>
+            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Proveedores</span>
           </div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('proveedores')">📥 Exportar</button>
@@ -1690,40 +1715,40 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
 
     <!-- Cambiar Clave -->
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
-      <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">🔑 Cambiar Contraseña de Acceso</h2>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">La nueva contraseña se guardará automáticamente en <b>psswdsm.csv</b> en GitHub.</p>
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">🔑 Cambiar Contraseña de Acceso</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">La nueva contraseña se guardará automáticamente en <b>psswdsm.csv</b> en GitHub.</p>
       <div style="display:flex;flex-direction:column;gap:12px;max-width:420px;">
         <div>
-          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Contraseña actual</label>
-          <input type="password" id="cfgClaveActual" placeholder="Contraseña actual" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Contraseña actual</label>
+          <input type="password" id="cfgClaveActual" placeholder="Contraseña actual" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
         </div>
         <div>
-          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Nueva contraseña</label>
-          <input type="password" id="cfgClaveNueva" placeholder="Nueva contraseña" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Nueva contraseña</label>
+          <input type="password" id="cfgClaveNueva" placeholder="Nueva contraseña" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
         </div>
         <div>
-          <label style="display:block;font-size:12px;font-weight:700;color:#6b7280;margin-bottom:5px;">Confirmar nueva contraseña</label>
-          <input type="password" id="cfgClaveConfirmar" placeholder="Repite la nueva contraseña" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+          <label style="display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;">Confirmar nueva contraseña</label>
+          <input type="password" id="cfgClaveConfirmar" placeholder="Repite la nueva contraseña" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
         </div>
         <div id="cfgClaveError" style="color:#ef4444;font-size:13px;font-weight:700;display:none;"></div>
         <button class="btn" style="background:#6d28d9;color:white;align-self:flex-start;" onclick="guardarClaveDesdeConfig()">💾 Guardar Nueva Clave</button>
-        <div id="cfgClaveStatus" style="font-size:13px;font-weight:600;color:#6b7280;"></div>
+        <div id="cfgClaveStatus" style="font-size:13px;font-weight:600;color:var(--text-muted);"></div>
       </div>
     </div>
 
     <!-- Protección por Contraseña -->
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:28px;">
-      <h2 style="font-size:17px;font-weight:800;color:#1f2937;margin-bottom:6px;">🔒 Protección por Contraseña</h2>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:20px;">Selecciona qué secciones del menú requieren contraseña para acceder.</p>
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">🔒 Protección por Contraseña</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Selecciona qué secciones del menú requieren contraseña para acceder.</p>
 
       <!-- Panel bloqueado (por defecto) -->
-      <div id="protSeccionBloqueada" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px;background:#f1f5f9;border-radius:12px;border:2px dashed #cbd5e1;">
+      <div id="protSeccionBloqueada" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px;background:var(--stat-bg);border-radius:12px;border:2px dashed var(--stat-border);">
         <span style="font-size:36px;">🔐</span>
-        <p style="font-size:14px;color:#64748b;font-weight:700;text-align:center;">Ingresa la contraseña para modificar la protección</p>
+        <p style="font-size:14px;color:var(--text-muted);font-weight:700;text-align:center;">Ingresa la contraseña para modificar la protección</p>
         <div style="display:flex;gap:8px;width:100%;max-width:320px;">
           <input type="password" id="claveProtSeccion" placeholder="Contraseña" onkeydown="if(event.key==='Enter')verificarClaveProtSeccion()"
-            style="flex:1;padding:9px 12px;border-radius:8px;border:1.5px solid #e2e8f0;font-family:'Nunito',sans-serif;font-size:14px;outline:none;">
+            style="flex:1;padding:9px 12px;border-radius:8px;border:1.5px solid var(--input-border);font-family:'Nunito',sans-serif;font-size:14px;outline:none;background:var(--input-bg);color:var(--text-primary);">
           <button onclick="verificarClaveProtSeccion()" style="background:#6d28d9;color:white;border:none;border-radius:8px;padding:9px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;cursor:pointer;">✓</button>
         </div>
         <div id="errorProtSeccion" style="color:#ef4444;font-size:13px;font-weight:700;display:none;">❌ Contraseña incorrecta</div>
@@ -1731,46 +1756,46 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 
       <!-- Panel desprotegido (visible tras ingresar clave) -->
       <div id="protSeccionContent" style="display:none;flex-direction:column;gap:14px;max-width:420px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
-          <span style="font-size:14px;font-weight:700;color:#1f2937;">📦 Almacén</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--input-bg);border-radius:10px;border:1.5px solid var(--table-border);">
+          <span style="font-size:14px;font-weight:700;color:var(--text-primary);">📦 Almacén</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input type="checkbox" id="protAlmacen" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
-            <span id="labelProtAlmacen" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+            <span id="labelProtAlmacen" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
           </label>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
-          <span style="font-size:14px;font-weight:700;color:#1f2937;">📥 Compras</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--input-bg);border-radius:10px;border:1.5px solid var(--table-border);">
+          <span style="font-size:14px;font-weight:700;color:var(--text-primary);">📥 Compras</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input type="checkbox" id="protCompras" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
-            <span id="labelProtCompras" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+            <span id="labelProtCompras" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
           </label>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
-          <span style="font-size:14px;font-weight:700;color:#1f2937;">💰 Ventas</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--input-bg);border-radius:10px;border:1.5px solid var(--table-border);">
+          <span style="font-size:14px;font-weight:700;color:var(--text-primary);">💰 Ventas</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input type="checkbox" id="protVentas" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
-            <span id="labelProtVentas" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+            <span id="labelProtVentas" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
           </label>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
-          <span style="font-size:14px;font-weight:700;color:#1f2937;">📊 Estadísticas</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--input-bg);border-radius:10px;border:1.5px solid var(--table-border);">
+          <span style="font-size:14px;font-weight:700;color:var(--text-primary);">📊 Estadísticas</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input type="checkbox" id="protEstadist" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
-            <span id="labelProtEstadist" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+            <span id="labelProtEstadist" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
           </label>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
-          <span style="font-size:14px;font-weight:700;color:#1f2937;">🔧 Servicios</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--input-bg);border-radius:10px;border:1.5px solid var(--table-border);">
+          <span style="font-size:14px;font-weight:700;color:var(--text-primary);">🔧 Servicios</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input type="checkbox" id="protServicios" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
-            <span id="labelProtServicios" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+            <span id="labelProtServicios" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
           </label>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-radius:10px;border:1.5px solid #e2e8f0;">
-          <span style="font-size:14px;font-weight:700;color:#1f2937;">⚙️ Configuraciones</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--input-bg);border-radius:10px;border:1.5px solid var(--table-border);">
+          <span style="font-size:14px;font-weight:700;color:var(--text-primary);">⚙️ Configuraciones</span>
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
             <input type="checkbox" id="protConfig" onchange="guardarProteccion()" style="width:18px;height:18px;accent-color:#6d28d9;cursor:pointer;">
-            <span id="labelProtConfig" style="font-size:13px;font-weight:700;color:#6b7280;">OFF</span>
+            <span id="labelProtConfig" style="font-size:13px;font-weight:700;color:var(--text-muted);">OFF</span>
           </label>
         </div>
         <button onclick="bloquearProtSeccion()" style="align-self:flex-start;background:#6d28d9;color:white;border:none;border-radius:8px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;cursor:pointer;margin-top:4px;">🔒 Bloquear sección</button>
@@ -2631,8 +2656,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
     <div id="unCardSertecBruto" style="background:var(--card-bg);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:var(--card-shadow);">
       <div style="font-size:40px;margin-bottom:12px;">🔧</div>
-      <div style="font-size:14px;font-weight:700;color:#059669;margin-bottom:8px;letter-spacing:0.5px;">TOTAL SERVICIO TÉCNICO</div>
-      <div id="unTotalSertecBruto" style="font-size:28px;font-weight:800;color:#059669;line-height:1;">S/ 0.00</div>
+      <div style="font-size:14px;font-weight:700;color:var(--sertec-total-color,#059669);margin-bottom:8px;letter-spacing:0.5px;">TOTAL SERVICIO TÉCNICO</div>
+      <div id="unTotalSertecBruto" style="font-size:28px;font-weight:800;color:var(--sertec-total-color,#059669);line-height:1;">S/ 0.00</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">bruto (utinet)</div>
     </div>
   </div>
@@ -8202,7 +8227,7 @@ function renderListaPrecios() {
   } else {
     tbody.innerHTML = items.map(p => `
       <tr style="border-bottom:1px solid var(--table-border);">
-        <td><div style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--table-border);background:var(--cell-bg);color:var(--text-primary);font-size:14px;font-weight:700;text-align:left;">${p.producto||''}</div></td>
+        <td><div style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--table-border);background:var(--cell-bg);color:var(--input-text, var(--text-primary));font-size:14px;font-weight:700;text-align:left;">${p.producto||''}</div></td>
         <td><div class="total-cell" style="text-align:right;font-weight:800;color:#059669;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</div></td>
         <td style="text-align:center;">${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 2px 6px rgba(239,68,68,0.4);display:inline-flex;align-items:center;justify-content:center;">✕</button>` : ''}</td>
       </tr>`).join('');
