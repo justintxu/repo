@@ -1925,7 +1925,8 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <div class="form-row">
     <span class="form-label">Proveedor</span>
     <div style="position:relative;flex:1;max-width:420px;">
-      <input class="form-input" id="proveedorCompra" placeholder="Buscar proveedor..." oninput="filtrarProveedorCompra()" autocomplete="off" style="width:100%;">
+      <input class="form-input" id="proveedorCompra" placeholder="Selecciona o busca un proveedor..." oninput="filtrarProveedorCompra()" onclick="mostrarTodosProveedoresCompra()" onfocus="mostrarTodosProveedoresCompra()" autocomplete="off" style="width:100%;padding-right:36px;">
+      <span onclick="mostrarTodosProveedoresCompra()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;color:#6b7280;pointer-events:none;">▾</span>
       <div id="dropdownProveedorCompra" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:300;max-height:220px;overflow-y:auto;margin-top:4px;"></div>
     </div>
   </div>
@@ -4011,21 +4012,13 @@ function onCantCompra(i,val){rowsCompra[i].cantidad=val;calcRowCompra(i);renderE
 function onPrecioCompra(i,val){rowsCompra[i].precio=val;calcRowCompra(i);renderEjecCompra();}
 function calcRowCompra(i){const r=rowsCompra[i];r.total=((parseFloat(r.precio)||0)*(parseFloat(r.cantidad)||0)).toFixed(2);}
 function delRowCompra(i){rowsCompra.splice(i,1);if(!rowsCompra.length)rowsCompra=[{codigo:'',cantidad:'',producto:'',precio:'',total:''}];renderEjecCompra();}
-function filtrarProveedorCompra() {
-  const q = (document.getElementById('proveedorCompra').value||'').toLowerCase().trim();
+function renderDropdownProveedoresCompra(lista) {
   const dd = document.getElementById('dropdownProveedorCompra');
-  if (!q) { dd.style.display='none'; return; }
-  const found = db.proveedores.filter(p =>
-    p.nombre?.toLowerCase().includes(q) ||
-    p.telefono?.includes(q) ||
-    p.celular?.includes(q) ||
-    p.email?.toLowerCase().includes(q)
-  ).slice(0, 8);
-  if (!found.length) {
-    dd.innerHTML = '<div style="padding:10px 14px;color:#9ca3af;font-size:13px;">Sin resultados</div>';
+  if (!lista.length) {
+    dd.innerHTML = '<div style="padding:10px 14px;color:#9ca3af;font-size:13px;">Sin proveedores registrados</div>';
     dd.style.display = 'block'; return;
   }
-  dd.innerHTML = found.map(p => `
+  dd.innerHTML = lista.map(p => `
     <div onclick="seleccionarProveedorCompra('${p.nombre.replace(/'/g,"\\'")}')"
       style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #f3f4f6;"
       onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background='white'">
@@ -4033,6 +4026,23 @@ function filtrarProveedorCompra() {
       <div style="font-size:12px;color:#6b7280;">${p.telefono||''} ${p.celular?'· '+p.celular:''} ${p.email?'· '+p.email:''}</div>
     </div>`).join('');
   dd.style.display = 'block';
+}
+
+// Muestra el listado completo de proveedores (comportamiento de menú desplegable)
+function mostrarTodosProveedoresCompra() {
+  renderDropdownProveedoresCompra(db.proveedores);
+}
+
+function filtrarProveedorCompra() {
+  const q = (document.getElementById('proveedorCompra').value||'').toLowerCase().trim();
+  if (!q) { mostrarTodosProveedoresCompra(); return; }
+  const found = db.proveedores.filter(p =>
+    p.nombre?.toLowerCase().includes(q) ||
+    p.telefono?.includes(q) ||
+    p.celular?.includes(q) ||
+    p.email?.toLowerCase().includes(q)
+  );
+  renderDropdownProveedoresCompra(found);
 }
 
 function seleccionarProveedorCompra(nombre) {
