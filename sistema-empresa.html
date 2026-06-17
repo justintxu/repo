@@ -65,6 +65,7 @@
   --grand-total-bg: #c8e6c9;
   --configuraciones-card-bg: #f9fffe;
   --configuraciones-card-border: #a5d6a7;
+  --toggle-active-bg: #2e7d32;
 }
 
 html.dark {
@@ -108,6 +109,7 @@ html.dark {
   --grand-total-bg: rgba(103,232,249,0.2);
   --configuraciones-card-bg: rgba(55,28,100,0.72);
   --configuraciones-card-border: #6d28d9;
+  --toggle-active-bg: #7c3aed;
 }
 
 html.tema-gris {
@@ -151,6 +153,7 @@ html.tema-gris {
   --grand-total-bg: rgba(241,245,249,0.18);
   --configuraciones-card-bg: rgba(71,85,105,0.75);
   --configuraciones-card-border: #64748b;
+  --toggle-active-bg: #64748b;
 }
 
 html.tema-magenta {
@@ -194,6 +197,7 @@ html.tema-magenta {
   --grand-total-bg: rgba(249,168,212,0.2);
   --configuraciones-card-bg: rgba(157,23,77,0.7);
   --configuraciones-card-border: #be185d;
+  --toggle-active-bg: #db2777;
 }
 
 html.tema-rosa {
@@ -205,8 +209,8 @@ html.tema-rosa {
   --text-primary: #9d174d;
   --text-secondary: #db2777;
   --text-muted: #be7090;
-  --company-grad: linear-gradient(90deg, #db2777, #f472b6);
-  --page-title-color: #ec4899;
+  --company-grad: linear-gradient(90deg, #db2777, #f9a8d4);
+  --page-title-color: #f472b6;
   --date-bg: #fff0f6;
   --date-border: #fbcfe8;
   --date-color: #9d174d;
@@ -237,6 +241,7 @@ html.tema-rosa {
   --grand-total-bg: #fce7f3;
   --configuraciones-card-bg: #fffafc;
   --configuraciones-card-border: #fbcfe8;
+  --toggle-active-bg: #ec4899;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .tema-card { outline: none; }
@@ -823,7 +828,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   transition: transform 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 .toggle-switch input:checked + .toggle-slider {
-  background: #16a34a;
+  background: var(--toggle-active-bg, #16a34a);
 }
 .toggle-switch input:checked + .toggle-slider:before {
   transform: translateX(24px);
@@ -4170,8 +4175,8 @@ function renderEjecVenta() {
     tbody.innerHTML += `<tr class="ejec-row">
       <td class="ejec-cod"><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoVenta(${i},this.value)" placeholder="Cód."></td>
       <td class="ejec-cant"><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantVenta(${i},this.value)" type="number" min="0"></td>
-      <td class="ejec-prod"><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
-      <td class="ejec-precio"><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio?getSym()+' '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
+      <td class="ejec-prod"><input class="cell-input" style="width:100%;background:var(--cell-blue);" value="${r.producto}" readonly></td>
+      <td class="ejec-precio"><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${r.precio?getSym()+' '+parseFloat(r.precio).toFixed(2):''}" readonly></td>
       <td class="ejec-total"><div class="total-cell" style="text-align:right;">${getSym()} ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td class="ejec-del"><button class="delete-btn" onclick="delRowVenta(${i})">✕</button></td>
     </tr>`;
@@ -4194,12 +4199,12 @@ function renderEjecVenta() {
         </div>
         <div>
           <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRODUCTO</div>
-          <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.producto}" readonly>
+          <input class="cell-input" style="width:100%;background:var(--cell-blue);box-sizing:border-box;" value="${r.producto}" readonly>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:flex-end;">
           <div>
             <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRECIO</div>
-            <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.precio?getSym()+' '+parseFloat(r.precio).toFixed(2):''}" readonly>
+            <input class="cell-input" style="width:100%;background:var(--cell-blue);box-sizing:border-box;" value="${r.precio?getSym()+' '+parseFloat(r.precio).toFixed(2):''}" readonly>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
             <div>
@@ -4352,8 +4357,8 @@ function renderEjecCompra() {
     tbody.innerHTML+=`<tr>
       <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.codigo}" onchange="onCodigoCompra(${i},this.value)" placeholder="Cód."></td>
       <td><input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad}" oninput="onCantCompra(${i},this.value)" type="number" min="0"></td>
-      <td><input class="cell-input" style="width:100%;background:#d1e8a8;" value="${r.producto}" readonly></td>
-      <td><input class="cell-input" style="width:100%;text-align:right;background:#d1e8a8;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)"></td>
+      <td><input class="cell-input" style="width:100%;background:var(--cell-blue);" value="${r.producto}" readonly></td>
+      <td><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)"></td>
       <td><div class="total-cell" style="text-align:right;">${getSym()} ${parseFloat(r.total||0).toFixed(2)}</div></td>
       <td><button class="delete-btn" onclick="delRowCompra(${i})">✕</button></td>
     </tr>`;
@@ -4376,12 +4381,12 @@ function renderEjecCompra() {
         </div>
         <div>
           <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRODUCTO</div>
-          <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.producto}" readonly>
+          <input class="cell-input" style="width:100%;background:var(--cell-blue);box-sizing:border-box;" value="${r.producto}" readonly>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:flex-end;">
           <div>
             <div style="font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:4px;">PRECIO</div>
-            <input class="cell-input" style="width:100%;background:#d1e8a8;box-sizing:border-box;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)">
+            <input class="cell-input" style="width:100%;background:var(--cell-blue);box-sizing:border-box;" value="${r.precio}" oninput="onPrecioCompra(${i},this.value)">
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
             <div>
@@ -8240,12 +8245,39 @@ function toggleMenuImprimirListaPrecios() {
   }
 }
 
+// Colores del recuadro de precio en el catálogo impreso, a juego con el tema visual activo
+// Gradiente del nombre de la empresa en documentos impresos, a juego con el tema visual activo
+function getGradienteEmpresaTema() {
+  const tema = getTemaGuardado();
+  const gradientes = {
+    claro:   'linear-gradient(90deg,#2e7d32,#f9a825)',
+    oscuro:  'linear-gradient(90deg,#7c3aed,#22d3ee)',
+    gris:    'linear-gradient(90deg,#475569,#94a3b8)',
+    magenta: 'linear-gradient(90deg,#9f1239,#ec4899)',
+    rosa:    'linear-gradient(90deg,#db2777,#f9a8d4)'
+  };
+  return gradientes[tema] || gradientes.claro;
+}
+
+function getColorPrecioCatalogo() {
+  const tema = getTemaGuardado();
+  const paletas = {
+    claro:   { bg: '#a7d8a4', border: '#6b9e69', text: '#1f2937' },
+    oscuro:  { bg: '#c4b5fd', border: '#7c3aed', text: '#1f2937' },
+    gris:    { bg: '#cbd5e1', border: '#64748b', text: '#1f2937' },
+    magenta: { bg: '#f9a8d4', border: '#db2777', text: '#1f2937' },
+    rosa:    { bg: '#fbcfe8', border: '#ec4899', text: '#1f2937' }
+  };
+  return paletas[tema] || paletas.claro;
+}
+
 function imprimirListaPrecios(modo) {
   document.getElementById('menuImprimirListaPrecios').style.display = 'none';
   const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
   const logo = db.empresa?.logo || '';
   const fecha = document.getElementById('fechaListaPrecios')?.textContent || fechaHoy();
   const sym = getSym();
+  const gradEmpresa = getGradienteEmpresaTema();
   const personalizar = getModoPersonalizar();
   let items, catLabel;
   if (personalizar) {
@@ -8258,6 +8290,7 @@ function imprimirListaPrecios(modo) {
     items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
   }
   const catalogo = getModoCatalogo();
+  const pillColor = getColorPrecioCatalogo();
 
   const logoHtml = logo
     ? `<img src="${logo}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">`
@@ -8278,7 +8311,7 @@ function imprimirListaPrecios(modo) {
           <div style="font-size:18px;font-weight:800;color:#1f2937;margin-bottom:14px;">${p.producto||''}</div>
           ${p.descripcion ? `<div style="font-size:14px;color:#374151;margin-bottom:14px;">${p.descripcion}</div>` : ''}
           <div style="margin-top:10px;">
-            <span style="background:#a7d8a4;border:1.5px solid #6b9e69;border-radius:8px;padding:8px 22px;font-size:15px;font-weight:700;color:#1f2937;display:inline-block;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</span>
+            <span style="background:${pillColor.bg};border:1.5px solid ${pillColor.border};border-radius:8px;padding:8px 22px;font-size:15px;font-weight:700;color:${pillColor.text};display:inline-block;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</span>
           </div>
         </div>
       </div>`;
@@ -8324,7 +8357,7 @@ function imprimirListaPrecios(modo) {
       .page { max-width:${catalogo ? '780' : '700'}px; margin:0 auto; padding:32px 28px; }
       .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
       .header-titles { flex:1; }
-      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .empresa { font-size:28px; font-weight:800; background:${gradEmpresa}; -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
       .cat-box { background:#ede9fe; border:1.5px solid #7c3aed; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#5b21b6; }
       .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
       ${estiloExtra}
@@ -8674,6 +8707,7 @@ function imprimirPedido(modo) {
   const logo = db.empresa?.logo || '';
   const fecha = document.getElementById('fechaListaPedido')?.textContent || fechaHoy();
   const sym = getSym();
+  const gradEmpresa = getGradienteEmpresaTema();
   const items = db.pedidos.filter(r => r.producto);
   const total = items.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
 
@@ -8700,7 +8734,7 @@ function imprimirPedido(modo) {
       .page { max-width:700px; margin:0 auto; padding:32px 28px; }
       .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
       .header-titles { flex:1; }
-      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .empresa { font-size:28px; font-weight:800; background:${gradEmpresa}; -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
       .titulo { font-size:22px; font-weight:800; color:#f9a825; }
       .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
       table { width:100%; border-collapse:collapse; margin-top:8px; }
@@ -9080,6 +9114,7 @@ function imprimirProforma(modo) {
   const fecha = document.getElementById('fechaProforma')?.textContent || fechaHoy();
   const cliente = document.getElementById('clienteProforma')?.value || '';
   const sym = getSym();
+  const gradEmpresa = getGradienteEmpresaTema();
   const items = db.quotation.filter(r => r.producto);
   const total = items.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
 
@@ -9106,7 +9141,7 @@ function imprimirProforma(modo) {
       .page { max-width:700px; margin:0 auto; padding:32px 28px; }
       .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
       .header-titles { flex:1; }
-      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .empresa { font-size:28px; font-weight:800; background:${gradEmpresa}; -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
       .titulo { font-size:22px; font-weight:800; color:#f9a825; }
       .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
       table { width:100%; border-collapse:collapse; margin-top:8px; }
