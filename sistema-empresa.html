@@ -68,46 +68,46 @@
 }
 
 html.dark {
-  /* DARK MODE - Morado/Celeste */
-  --bg-body: linear-gradient(135deg, #1a0533 0%, #0d1b3e 50%, #0a2a4a 100%);
-  --bg-page: rgba(20, 10, 45, 0.95);
-  --bg-header: rgba(25, 12, 50, 0.97);
-  --header-border: #4a1d96;
-  --text-primary: #e9d5ff;
-  --text-secondary: #a78bfa;
-  --text-muted: #94a3b8;
-  --company-grad: linear-gradient(90deg, #a78bfa, #67e8f9);
+  /* DARK MODE - Morado/Celeste (aclarado) */
+  --bg-body: linear-gradient(135deg, #3b1170 0%, #2c3e7a 50%, #1f4e7a 100%);
+  --bg-page: rgba(48, 24, 90, 0.9);
+  --bg-header: rgba(55, 28, 100, 0.93);
+  --header-border: #8b5cf6;
+  --text-primary: #f3e8ff;
+  --text-secondary: #c4b5fd;
+  --text-muted: #cbd5e1;
+  --company-grad: linear-gradient(90deg, #c4b5fd, #67e8f9);
   --page-title-color: #67e8f9;
-  --date-bg: rgba(167,139,250,0.15);
-  --date-border: #7c3aed;
-  --date-color: #c4b5fd;
-  --card-bg: linear-gradient(135deg, #4c1d95, #0e7490);
-  --card-color: #e9d5ff;
-  --card-shadow: 0 4px 20px rgba(124,58,237,0.35);
-  --search-border: #7c3aed;
-  --search-bg: rgba(30,15,60,0.9);
-  --table-header-color: #c4b5fd;
-  --table-border: #4a1d96;
-  --table-hover: rgba(124,58,237,0.1);
-  --cell-bg: rgba(103,232,249,0.12);
-  --cell-blue: rgba(167,139,250,0.18);
-  --toolbar-border: #4a1d96;
-  --modal-bg: #1e0a3c;
-  --modal-overlay: rgba(0,0,0,0.75);
-  --input-bg: rgba(30,15,60,0.9);
-  --input-border: #7c3aed;
-  --stat-bg: rgba(103,232,249,0.1);
-  --stat-border: #0e7490;
-  --back-btn: radial-gradient(circle at 40% 35%, #67e8f9, #7c3aed);
-  --back-shadow: rgba(124,58,237,0.5);
-  --est-card-bg: linear-gradient(135deg, #4c1d95, #0e7490);
-  --est-card-color: #e9d5ff;
-  --reg-table-header: #a78bfa;
-  --reg-table-border: #4a1d96;
-  --total-cell-bg: rgba(103,232,249,0.1);
-  --grand-total-bg: rgba(103,232,249,0.15);
-  --configuraciones-card-bg: rgba(30,15,60,0.8);
-  --configuraciones-card-border: #4a1d96;
+  --date-bg: rgba(167,139,250,0.2);
+  --date-border: #a78bfa;
+  --date-color: #ede9fe;
+  --card-bg: linear-gradient(135deg, #7c3aed, #22b8d0);
+  --card-color: #f3e8ff;
+  --card-shadow: 0 4px 20px rgba(124,58,237,0.4);
+  --search-border: #a78bfa;
+  --search-bg: rgba(55,28,100,0.82);
+  --table-header-color: #ddd6fe;
+  --table-border: #6d28d9;
+  --table-hover: rgba(167,139,250,0.14);
+  --cell-bg: rgba(103,232,249,0.18);
+  --cell-blue: rgba(196,181,253,0.24);
+  --toolbar-border: #6d28d9;
+  --modal-bg: #3b1170;
+  --modal-overlay: rgba(0,0,0,0.65);
+  --input-bg: rgba(55,28,100,0.82);
+  --input-border: #a78bfa;
+  --stat-bg: rgba(103,232,249,0.14);
+  --stat-border: #22b8d0;
+  --back-btn: radial-gradient(circle at 40% 35%, #67e8f9, #8b5cf6);
+  --back-shadow: rgba(124,58,237,0.55);
+  --est-card-bg: linear-gradient(135deg, #7c3aed, #22b8d0);
+  --est-card-color: #f3e8ff;
+  --reg-table-header: #c4b5fd;
+  --reg-table-border: #6d28d9;
+  --total-cell-bg: rgba(103,232,249,0.14);
+  --grand-total-bg: rgba(103,232,249,0.2);
+  --configuraciones-card-bg: rgba(55,28,100,0.72);
+  --configuraciones-card-border: #6d28d9;
 }
 
 html.tema-gris {
@@ -1413,10 +1413,10 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </button>
         <button class="tema-card" data-tema="oscuro" onclick="cambiarTema('oscuro')"
           style="border:2.5px solid transparent;border-radius:14px;padding:16px 10px;cursor:pointer;
-                 background:linear-gradient(135deg,#1a0533,#0d1b3e,#0a2a4a);display:flex;flex-direction:column;
+                 background:linear-gradient(135deg,#3b1170,#2c3e7a,#1f4e7a);display:flex;flex-direction:column;
                  align-items:center;gap:8px;transition:transform 0.15s;">
           <span style="font-size:24px;">🌙</span>
-          <span style="font-size:13px;font-weight:800;color:#e9d5ff;">Oscuro</span>
+          <span style="font-size:13px;font-weight:800;color:#f3e8ff;">Oscuro</span>
         </button>
         <button class="tema-card" data-tema="gris" onclick="cambiarTema('gris')"
           style="border:2.5px solid transparent;border-radius:14px;padding:16px 10px;cursor:pointer;
@@ -8076,8 +8076,8 @@ function renderListaPrecios() {
   } else {
     tbody.innerHTML = items.map(p => `
       <tr style="border-bottom:1px solid var(--table-border);">
-        <td style="text-align:left;font-weight:700;">${p.producto||''}</td>
-        <td style="text-align:right;font-weight:800;color:#059669;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</td>
+        <td><div style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--table-border);background:var(--cell-bg);color:var(--text-primary);font-size:14px;font-weight:700;text-align:left;">${p.producto||''}</div></td>
+        <td><div class="total-cell" style="text-align:right;font-weight:800;color:#059669;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</div></td>
       </tr>`).join('');
   }
 
