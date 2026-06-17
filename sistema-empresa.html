@@ -296,6 +296,33 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .search-wrap-inventario .search-input-wrap { max-width: 100% !important; width: 100% !important; }
   .inventario-content-top { margin-top: 128px !important; }
 
+  /* Registro de Ventas móvil — header + búsqueda + calendario fijos arriba */
+  .header-regventas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 100 !important;
+  }
+  .search-wrap-regventas {
+    position: fixed !important;
+    top: 64px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99 !important;
+    background: var(--bg-header) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 2px solid var(--header-border) !important;
+    padding: 8px 14px 10px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .search-wrap-regventas .search-label { display: none !important; }
+  .search-wrap-regventas .search-input-wrap { max-width: 100% !important; width: 100% !important; }
+  .btn-cal-regventas { margin-left: 0 !important; width: 100% !important; justify-content: center !important; }
+  .regventas-content-top { margin-top: 136px !important; }
+
   /* Registro de Compras móvil — header + búsqueda + calendario fijos arriba */
   .header-regcompras {
     position: fixed !important;
@@ -1698,7 +1725,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 
 <!-- ═══════════════════════════════════════ REGISTRO VENTAS ══════ -->
 <div class="page" id="page-reg-ventas">
-  <div class="header">
+  <div class="header header-regventas">
     <div class="header-left">
       <div id="logoRegVentasWrap"></div>
       <div class="header-titles">
@@ -1708,14 +1735,15 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
     <button class="back-btn" onclick="irA('page-ventas')">‹</button>
   </div>
-  <div class="search-wrap">
+  <div class="search-wrap search-wrap-regventas">
     <span class="search-label">Búsqueda</span>
     <div class="search-input-wrap">
       <input class="search-input" id="searchRegVentas" placeholder="Fecha - Cliente" oninput="renderRegVentas()">
       <span class="search-icon">🔍</span>
     </div>
-    <button class="btn" style="background:#059669;color:white;margin-left:16px;" onclick="abrirCalendarioVentas()">📅 Ver Calendario</button>
+    <button class="btn btn-cal-regventas" style="background:#059669;color:white;margin-left:16px;" onclick="abrirCalendarioVentas()">📅 Ver Calendario</button>
   </div>
+  <div class="regventas-content-top"></div>
 
   <!-- Modal Calendario Ventas -->
   <div id="modalCalendarioVentas" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;">
@@ -2163,6 +2191,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <div class="table-wrap" style="margin-top:12px;">
     <table class="reg-table stmin-table" style="table-layout:fixed;width:100%;">
       <colgroup>
+        <col style="width:46px;">
         <col style="width:60px;">
         <col style="width:110px;">
         <col style="width:280px;">
@@ -2173,6 +2202,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         <col style="width:130px;">
       </colgroup>
       <thead><tr>
+        <th style="text-align:center;"></th>
         <th style="text-align:center;">Img</th>
         <th style="text-align:center;">Código</th>
         <th>Producto</th>
@@ -6520,6 +6550,29 @@ function imprimirMasVendido() {
 }
 
 // ═══════════════════════════ STOCK MÍNIMO ══════════════════════
+// Códigos ya agregados a Lista de Pedido desde esta página (estado visual +/✓)
+let stockMinAgregados = new Set();
+
+function agregarAPedidoDesdeStockMinimo(codigo) {
+  if (stockMinAgregados.has(codigo)) { toast('ℹ️ Ya está en la Lista de Pedido'); return; }
+  const p = db.inventario.find(i => i.codigo === codigo);
+  if (!p) { toast('⚠️ Producto no encontrado'); return; }
+  const cant = parseFloat(p.cantidad || 0);
+  const min  = parseFloat(p.stockMinimo || 0);
+  const sugerida = Math.max(min - cant, 1);
+  const precioCompra = parseFloat(p.precioCompra || 0);
+  db.pedidos.push({
+    cantidad: sugerida,
+    producto: p.producto || '',
+    precioCompra: precioCompra,
+    total: +(sugerida * precioCompra).toFixed(2)
+  });
+  stockMinAgregados.add(codigo);
+  saveAndSync('pedidos');
+  initStockMinimo();
+  toast(`➕ ${p.producto} agregado a Lista de Pedido`);
+}
+
 function initStockMinimo() {
   // Filtrar productos donde cantidad <= stockMinimo (y stockMinimo está definido)
   const criticos = (db.inventario || []).filter(p => {
@@ -6544,7 +6597,7 @@ function initStockMinimo() {
   // Vista desktop
   const tbody = document.getElementById('tbodyStockMinimo');
   if (!criticos.length) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:#9ca3af;font-size:15px;">✅ Todos los productos están sobre el stock mínimo</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:40px;color:#9ca3af;font-size:15px;">✅ Todos los productos están sobre el stock mínimo</td></tr>`;
   } else {
     tbody.innerHTML = criticos.map(p => {
       const cant = parseFloat(p.cantidad || 0);
@@ -6555,7 +6608,15 @@ function initStockMinimo() {
       const imgHtml = p.imagen
         ? `<img src="${p.imagen}" style="width:44px;height:44px;object-fit:cover;border-radius:8px;border:1px solid #fca5a5;cursor:zoom-in;" ondblclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}')">` 
         : `<div style="width:44px;height:44px;background:#fee2e2;border-radius:8px;border:1px dashed #fca5a5;display:inline-flex;align-items:center;justify-content:center;font-size:18px;">📷</div>`;
+      const agregado = stockMinAgregados.has(p.codigo);
+      const btnPedido = `<button onclick="agregarAPedidoDesdeStockMinimo('${(p.codigo||'').replace(/'/g,"\\'")}')"
+          style="width:30px;height:30px;border-radius:50%;border:none;cursor:pointer;font-size:16px;font-weight:800;
+                 display:inline-flex;align-items:center;justify-content:center;transition:transform 0.13s;
+                 background:${agregado ? '#16a34a' : '#2563eb'};color:white;box-shadow:0 2px 6px rgba(0,0,0,0.18);"
+          onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
+          title="${agregado ? 'Agregado a Lista de Pedido' : 'Agregar a Lista de Pedido'}">${agregado ? '✓' : '+'}</button>`;
       return `<tr style="${rowBg}border-bottom:2px solid #fecaca;">
+        <td style="text-align:center;">${btnPedido}</td>
         <td style="text-align:center;">${imgHtml}</td>
         <td style="text-align:center;font-weight:700;">${p.codigo||''}</td>
         <td style="font-weight:700;">${p.producto||''}</td>
@@ -6582,8 +6643,15 @@ function initStockMinimo() {
       const imgHtml = p.imagen
         ? `<img src="${p.imagen}" onclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}');return false;" style="width:52px;height:52px;object-fit:cover;border-radius:10px;border:1px solid #fca5a5;flex-shrink:0;">`
         : `<div style="width:52px;height:52px;background:#fee2e2;border-radius:10px;border:1px dashed #fca5a5;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📷</div>`;
+      const agregado = stockMinAgregados.has(p.codigo);
+      const btnPedido = `<button onclick="agregarAPedidoDesdeStockMinimo('${(p.codigo||'').replace(/'/g,"\\'")}')"
+          style="width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;font-size:18px;font-weight:800;flex-shrink:0;
+                 display:flex;align-items:center;justify-content:center;
+                 background:${agregado ? '#16a34a' : '#2563eb'};color:white;box-shadow:0 2px 6px rgba(0,0,0,0.18);"
+          title="${agregado ? 'Agregado a Lista de Pedido' : 'Agregar a Lista de Pedido'}">${agregado ? '✓' : '+'}</button>`;
       return `<div style="border-bottom:2px solid #fecaca;padding:12px 4px;background:${bgCard};display:flex;flex-direction:column;gap:8px;border-radius:6px;margin-bottom:4px;">
         <div style="display:flex;align-items:center;gap:10px;">
+          ${btnPedido}
           ${imgHtml}
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;font-size:15px;color:#1f2937;margin-bottom:4px;">${p.producto||''}</div>
