@@ -865,7 +865,6 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <table class="data-table alm-table">
       <thead><tr>
         <th style="width:36px;text-align:center;"></th>
-        <th style="width:30px;text-align:center;" id="thCheck"></th>
         <th style="width:52px;text-align:center;">Img</th>
         <th style="min-width:80px;max-width:90px;text-align:center;">Código</th>
         <th style="min-width:70px;text-align:center;">Stock</th>
@@ -877,7 +876,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         <th style="min-width:110px;text-align:center;">P. Compra</th>
         <th style="min-width:110px;text-align:center;">P. Total Compra</th>
         <th style="min-width:100px;text-align:center;">Último Prov.</th>
-        <th style="width:36px;text-align:center;">🖼️</th>
+        <th style="width:36px;text-align:center;"></th>
       </tr></thead>
       <tbody id="tbodyAlmacen"></tbody>
     </table>
@@ -885,14 +884,121 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <!-- Vista móvil almacén -->
   <div id="almacenMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar toolbar-almacen">
-    <button class="btn btn-new" id="btnNuevoAlmacen" onclick="nuevoProducto()">➕ Nuevo</button>
-    <button class="btn btn-delete" id="btnEliminarAlmacen" onclick="eliminarProductoActual()">🗑️ Eliminar</button>
-    <button class="btn" id="btnSeleccionar" style="background:#f59e0b;color:white;" onclick="toggleSeleccion()">☑️ Seleccionar</button>
-    <button class="btn" id="btnEditarAlmacen" onclick="editarAlmacen()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
-    <button class="btn" id="btnGuardarAlmacen" onclick="guardarAlmacen()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
+    <button class="btn btn-new" id="btnNuevoAlmacen" onclick="irA('page-nuevo-producto')">➕ Nuevo Producto</button>
     <button class="btn" id="btnProvAlmacen" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
     <button class="btn" id="btnCatAlmacen" style="background:#8b5cf6;color:white;" onclick="irA('page-categorias')">🏷️ Categorías</button>
     <button class="btn" id="btnCfgAlmacen" style="background:#374151;color:white;" onclick="navegarConProt('page-configuraciones','Configuraciones','protConfig')">⚙️ Configuraciones</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ NUEVO PRODUCTO ════════ -->
+<div class="page" id="page-nuevo-producto">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoNuevoProductoWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="nuevoProductoNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--green);">➕ Nuevo Producto</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="cancelarNuevoProducto()">‹</button>
+  </div>
+
+  <div class="sdet-layout" style="display:flex;gap:18px;padding:14px 28px 0;align-items:flex-start;">
+
+    <!-- FORMULARIO -->
+    <div style="flex:1;min-width:0;">
+
+      <!-- Fila 1: Código | Producto -->
+      <div class="dprod-f1" style="display:grid;grid-template-columns:160px 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Código</div>
+          <input id="nprod_codigo" class="sdet-input editing" placeholder="Ej: IC0001">
+        </div>
+        <div>
+          <div class="field-label">Producto</div>
+          <input id="nprod_producto" class="sdet-input editing" placeholder="Nombre del producto">
+        </div>
+      </div>
+
+      <!-- Fila 2: Descripción -->
+      <div style="margin-bottom:10px;">
+        <div class="field-label">Descripción</div>
+        <input id="nprod_descripcion" class="sdet-input editing" placeholder="Descripción del producto">
+      </div>
+
+      <!-- Fila 3: Precio Venta | Stock | Stock Mínimo | Ubicación -->
+      <div class="dprod-f3" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Precio Venta</div>
+          <input id="nprod_precio" class="sdet-input editing" placeholder="0.00" type="number" min="0" step="0.01" style="text-align:right;">
+        </div>
+        <div>
+          <div class="field-label">Stock</div>
+          <input id="nprod_cantidad" class="sdet-input editing" placeholder="0" type="number" min="0">
+        </div>
+        <div>
+          <div class="field-label">Stock Mínimo</div>
+          <input id="nprod_stockMinimo" class="sdet-input editing" placeholder="0" type="number" min="0">
+        </div>
+        <div>
+          <div class="field-label">Ubicación</div>
+          <input id="nprod_ubicacion" class="sdet-input editing" placeholder="Ej: A1">
+        </div>
+      </div>
+
+      <!-- Fila 4: Precio Compra | Último Proveedor | Categoría -->
+      <div class="dprod-f4" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+        <div>
+          <div class="field-label">Precio Compra</div>
+          <input id="nprod_precioCompra" class="sdet-input editing" placeholder="0.00" type="number" min="0" step="0.01" style="text-align:right;">
+        </div>
+        <div>
+          <div class="field-label">Último Proveedor</div>
+          <input id="nprod_ultimoProveedor" class="sdet-input editing" placeholder="Proveedor">
+        </div>
+        <div>
+          <div class="field-label">Categoría</div>
+          <select id="nprod_categoria" class="sdet-input editing"
+            style="font-family:'Nunito',sans-serif;cursor:pointer;"></select>
+        </div>
+      </div>
+
+      <!-- URL Imagen -->
+      <div style="margin-bottom:10px;">
+        <div class="field-label">URL Imagen</div>
+        <input id="nprod_imagen" class="sdet-input editing" placeholder="https://..." oninput="nprodRefreshImg()">
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: imagen + botones -->
+    <div class="sdet-right" style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
+      <div class="field-label" style="align-self:flex-start;">Imagen</div>
+      <div id="nprod_imgPreview"
+        onclick="if(document.getElementById('nprod_imagen').value)abrirImagen(document.getElementById('nprod_imagen').value)"
+        style="width:120px;height:120px;border-radius:12px;border:2px dashed #a5d6a7;background:#e8f5e9;
+               display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;">
+        <span style="font-size:40px;opacity:0.4;">📷</span>
+      </div>
+
+      <!-- Botones Cancelar + Guardar -->
+      <div style="display:flex;gap:8px;">
+        <button onclick="cancelarNuevoProducto()"
+          style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                 background:#dc2626;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;gap:4px;transition:transform 0.12s;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+          <span style="font-size:20px;">✖️</span>Cancelar
+        </button>
+        <button onclick="guardarNuevoProducto()"
+          style="display:flex;flex-direction:column;align-items:center;justify-content:center;
+                 background:var(--green);color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;gap:4px;transition:transform 0.12s;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+          <span style="font-size:20px;">💾</span>Guardar
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -918,7 +1024,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <div class="dprod-f1" style="display:grid;grid-template-columns:160px 1fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Código</div>
-          <input id="dprod_codigo" class="sdet-input sdet-locked" readonly>
+          <input id="dprod_codigo" class="sdet-input dprod-editable" readonly>
         </div>
         <div>
           <div class="field-label">Producto</div>
@@ -3299,9 +3405,6 @@ let db = {
   pedidos: []
 };
 
-let almacenIdx = -1;
-let almacenEditando = false;
-let modoSeleccion = false;
 let provIdx = -1;
 let provEditando = false;
 let rowsVenta = [];
@@ -3399,6 +3502,7 @@ function irA(pageId) {
   if (pageId === 'page-ingresar-servicio') initIngresarServicio();
   if (pageId === 'page-sertecpen') initSertecpen();
   if (pageId === 'page-lista-pedido') initListaPedido();
+  if (pageId === 'page-nuevo-producto') initNuevoProducto();
   if (pageId === 'page-sertecfin') initSertecfin();
   if (pageId === 'page-stock-minimo') initStockMinimo();
   if (pageId === 'page-categorias') initCategorias();
@@ -3426,7 +3530,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido','NuevoProducto'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -3472,42 +3576,38 @@ function renderAlmacen() {
   );
   const tbody = document.getElementById('tbodyAlmacen');
   tbody.innerHTML = '';
-  items.forEach((p, i) => {
+  items.forEach((p) => {
     const orig = db.inventario.indexOf(p);
-    const dis = !almacenEditando;
     const precio = parseFloat(p.precio||0);
     const cantidad = parseFloat(p.cantidad||0);
     const precioCompra = parseFloat(p.precioCompra||0);
     const totalVenta = (precio * cantidad).toFixed(2);
     const totalCompra = (precioCompra * cantidad).toFixed(2);
-    tbody.innerHTML += `<tr data-idx="${orig}" class="${orig===almacenIdx?'selected':''}" id="row-${orig}">
+    tbody.innerHTML += `<tr id="row-${orig}">
       <td style="text-align:center;">
         <button onclick="abrirDetalleProducto(${orig})"
           style="width:30px;height:30px;border-radius:50%;border:none;
-                 background:${(almacenEditando||modoSeleccion)?'#9ca3af':'radial-gradient(circle at 40% 35%,#26c6da,#006064)'};
-                 color:white;font-size:15px;cursor:${(almacenEditando||modoSeleccion)?'not-allowed':'pointer'};display:inline-flex;
+                 background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
+                 color:white;font-size:15px;cursor:pointer;display:inline-flex;
                  align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);
-                 opacity:${(almacenEditando||modoSeleccion)?'0.4':'1'};
                  transition:transform 0.13s;"
-          ${(almacenEditando||modoSeleccion)?'disabled':''} 
-          onmouseover="if(!this.disabled)this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
+          onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
           title="Ver detalle">➜</button>
       </td>
-      <td style="text-align:center;"><input type="checkbox" class="row-check" data-idx="${orig}" onchange="setAlmacenBtns()" style="width:16px;height:16px;cursor:pointer;accent-color:#ef4444;display:${modoSeleccion?'inline-block':'none'}"></td>
       <td style="text-align:center;">
         ${p.imagen ? `<img src="${p.imagen}" class="thumb-img" data-url="${p.imagen.replace(/"/g,'&quot;')}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;cursor:zoom-in;border:1px solid #e5e7eb;" title="Doble clic para ampliar">` : `<div style="width:40px;height:40px;background:#f3f4f6;border-radius:6px;border:1px dashed #d1d5db;display:inline-flex;align-items:center;justify-content:center;font-size:18px;">📷</div>`}
       </td>
-      <td><input class="cell-input blue-cell" value="${p.codigo||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'codigo',this.value)" onclick="selAlmacen(${orig})" style="max-width:85px;text-align:center;"></td>
-      <td><input class="cell-input blue-cell" value="${p.cantidad||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'cantidad',this.value)" onclick="selAlmacen(${orig})" style="max-width:70px;text-align:center;"></td>
-      <td><input class="cell-input blue-cell" value="${p.producto||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'producto',this.value)" onclick="selAlmacen(${orig})"></td>
-      <td><input class="cell-input blue-cell" value="${p.descripcion||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'descripcion',this.value)" onclick="selAlmacen(${orig})"></td>
-      <td><input class="cell-input blue-cell" value="${precio?getSym()+' '+precio.toFixed(2):''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'precio',this.value.replace(getSym()+' ',''))" onclick="selAlmacen(${orig})" style="max-width:110px;text-align:right;"></td>
+      <td><div class="total-cell" style="text-align:center;max-width:85px;">${p.codigo||''}</div></td>
+      <td><div class="total-cell" style="text-align:center;max-width:70px;">${p.cantidad||0}</div></td>
+      <td><div class="total-cell" style="text-align:left;">${p.producto||''}</div></td>
+      <td><div class="total-cell" style="text-align:left;">${p.descripcion||''}</div></td>
+      <td><div class="total-cell" style="text-align:right;max-width:110px;">${precio?getSym()+' '+precio.toFixed(2):''}</div></td>
       <td><div class="total-cell" style="text-align:right;background:#d1fae5;color:#065f46;">${getSym()} ${totalVenta}</div></td>
-      <td><input class="cell-input blue-cell" value="${p.ubicacion||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'ubicacion',this.value)" onclick="selAlmacen(${orig})" style="max-width:85px;text-align:center;"></td>
-      <td><input class="cell-input blue-cell" value="${precioCompra?getSym()+' '+precioCompra.toFixed(2):''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'precioCompra',this.value.replace(getSym()+' ',''))" onclick="selAlmacen(${orig})" style="max-width:110px;text-align:right;"></td>
+      <td><div class="total-cell" style="text-align:center;max-width:85px;">${p.ubicacion||''}</div></td>
+      <td><div class="total-cell" style="text-align:right;max-width:110px;">${precioCompra?getSym()+' '+precioCompra.toFixed(2):''}</div></td>
       <td><div class="total-cell" style="text-align:right;background:#dbeafe;color:#1e40af;">${getSym()} ${totalCompra}</div></td>
-      <td><input class="cell-input blue-cell" value="${p.ultimoProveedor||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'ultimoProveedor',this.value)" onclick="selAlmacen(${orig})" style="max-width:100px;text-align:center;"></td>
-      <td style="width:36px;text-align:center;"><input class="cell-input" value="${p.imagen||''}" ${dis?'readonly':''} onchange="updateAlmacen(${orig},'imagen',this.value);renderAlmacen()" onclick="selAlmacen(${orig})" placeholder="URL" title="${p.imagen||'Pegar URL de imagen'}" style="width:28px;font-size:10px;padding:4px 2px;text-align:center;background:#fff9f0;cursor:text;" onfocus="this.style.width='280px';this.style.zIndex='10';this.style.position='relative'" onblur="this.style.width='28px';this.style.zIndex='';this.style.position=''"></td>
+      <td><div class="total-cell" style="text-align:center;max-width:100px;">${p.ultimoProveedor||''}</div></td>
+      <td style="width:36px;text-align:center;"></td>
     </tr>`;
   });
   // attach dblclick via event listener
@@ -3517,218 +3617,50 @@ function renderAlmacen() {
   // stats
   const total = db.inventario.length;
   const totalItems = db.inventario.reduce((s,p)=>s+(parseFloat(p.cantidad)||0),0);
-  const totalVenta = db.inventario.reduce((s,p)=>s+(parseFloat(p.precio)||0)*(parseFloat(p.cantidad)||0),0);
-  const totalCompra = db.inventario.reduce((s,p)=>s+(parseFloat(p.precioCompra)||0)*(parseFloat(p.cantidad)||0),0);
+  const totalVentaSum = db.inventario.reduce((s,p)=>s+(parseFloat(p.precio)||0)*(parseFloat(p.cantidad)||0),0);
+  const totalCompraSum = db.inventario.reduce((s,p)=>s+(parseFloat(p.precioCompra)||0)*(parseFloat(p.cantidad)||0),0);
   document.getElementById('almacenStats').innerHTML = `
     <div class="stat-card"><div class="stat-label">Nº de Productos</div><div class="stat-value">${total}</div></div>
     <div class="stat-card"><div class="stat-label">Total Ítems</div><div class="stat-value">${totalItems}</div></div>
-    <div class="stat-card"><div class="stat-label">Precio Total Venta</div><div class="stat-value">${getSym()} ${totalVenta.toFixed(2)}</div></div>
-    <div class="stat-card"><div class="stat-label">Costo Total Compra</div><div class="stat-value">${getSym()} ${totalCompra.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Precio Total Venta</div><div class="stat-value">${getSym()} ${totalVentaSum.toFixed(2)}</div></div>
+    <div class="stat-card"><div class="stat-label">Costo Total Compra</div><div class="stat-value">${getSym()} ${totalCompraSum.toFixed(2)}</div></div>
   `;
-  // Actualizar estado de botones tras cada render
-  setAlmacenBtns();
 
   // Vista móvil
   const mobile = document.getElementById('almacenMobile');
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(p => {
       const orig = db.inventario.indexOf(p);
-      const dis = !almacenEditando;
       const precio = parseFloat(p.precio||0);
       const precioCompra = parseFloat(p.precioCompra||0);
-      const cantidad = parseFloat(p.cantidad||0);
       const imgHtml = p.imagen
         ? `<img src="${p.imagen}" onclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}');return false;" style="width:56px;height:56px;object-fit:cover;border-radius:10px;border:1px solid #e5e7eb;flex-shrink:0;">`
         : `<div style="width:56px;height:56px;background:#f3f4f6;border-radius:10px;border:1px dashed #d1d5db;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📷</div>`;
-      if (dis) {
-        if (modoSeleccion) {
-          // Modo selección móvil: tarjeta con checkbox
-          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;gap:12px;">
-            <input type="checkbox" class="row-check" data-idx="${orig}" onchange="setAlmacenBtns()"
-              style="width:22px;height:22px;accent-color:#ef4444;cursor:pointer;flex-shrink:0;">
-            ${imgHtml}
-            <div style="flex:1;min-width:0;">
-              <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
-                <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
-                <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
-                <span style="font-weight:800;font-size:14px;color:#059669;">${getSym()} ${precio.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>`;
-        }
-        // Modo lectura normal
-        return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <button onclick="abrirDetalleProducto(${orig})"
-              style="width:36px;height:36px;border-radius:50%;border:none;flex-shrink:0;
-                     background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
-                     color:white;font-size:17px;cursor:pointer;display:flex;
-                     align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);">➜</button>
-            ${imgHtml}
-            <div style="flex:1;min-width:0;">
-              <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-              <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
-            </div>
+      return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button onclick="abrirDetalleProducto(${orig})"
+            style="width:36px;height:36px;border-radius:50%;border:none;flex-shrink:0;
+                   background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
+                   color:white;font-size:17px;cursor:pointer;display:flex;
+                   align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);">➜</button>
+          ${imgHtml}
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
+            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
           </div>
-          ${p.descripcion?`<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>`:''}
-          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${precio.toFixed(2)}</span>
-            <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
-            <span style="background:#dbeafe;color:#1d4ed8;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">📍 ${p.ubicacion||''}</span>
-            ${p.precioCompra?`<span style="font-size:12px;color:var(--text-muted);">Compra: ${getSym()} ${precioCompra.toFixed(2)}</span>`:''}
-          </div>
-        </div>`;
-      } else {
-        // Modo edición — todos los campos en inputs
-        return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">CÓDIGO</div>
-              <input class="cell-input blue-cell" value="${p.codigo||''}" onchange="updateAlmacen(${orig},'codigo',this.value)" style="width:100%;box-sizing:border-box;"></div>
-            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">STOCK</div>
-              <input class="cell-input blue-cell" value="${p.cantidad||''}" type="number" onchange="updateAlmacen(${orig},'cantidad',this.value)" style="width:100%;box-sizing:border-box;"></div>
-          </div>
-          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">PRODUCTO</div>
-            <input class="cell-input blue-cell" value="${p.producto||''}" onchange="updateAlmacen(${orig},'producto',this.value)" style="width:100%;box-sizing:border-box;"></div>
-          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">DESCRIPCIÓN</div>
-            <input class="cell-input blue-cell" value="${p.descripcion||''}" onchange="updateAlmacen(${orig},'descripcion',this.value)" style="width:100%;box-sizing:border-box;"></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">PRECIO VENTA</div>
-              <input class="cell-input blue-cell" value="${precio?getSym()+' '+precio.toFixed(2):''}" onchange="updateAlmacen(${orig},'precio',this.value.replace(getSym()+' ',''))" style="width:100%;box-sizing:border-box;"></div>
-            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">PRECIO COMPRA</div>
-              <input class="cell-input blue-cell" value="${precioCompra?getSym()+' '+precioCompra.toFixed(2):''}" onchange="updateAlmacen(${orig},'precioCompra',this.value.replace(getSym()+' ',''))" style="width:100%;box-sizing:border-box;"></div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">UBICACIÓN</div>
-              <input class="cell-input blue-cell" value="${p.ubicacion||''}" onchange="updateAlmacen(${orig},'ubicacion',this.value)" style="width:100%;box-sizing:border-box;"></div>
-            <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">ÚLTIMO PROV.</div>
-              <input class="cell-input blue-cell" value="${p.ultimoProveedor||''}" onchange="updateAlmacen(${orig},'ultimoProveedor',this.value)" style="width:100%;box-sizing:border-box;"></div>
-          </div>
-          <div><div style="font-size:10px;font-weight:800;color:var(--text-muted);margin-bottom:2px;">URL IMAGEN</div>
-            <input class="cell-input" value="${p.imagen||''}" onchange="updateAlmacen(${orig},'imagen',this.value);renderAlmacen()" placeholder="URL de imagen" style="width:100%;box-sizing:border-box;background:#fff9f0;"></div>
-        </div>`;
-      }
+        </div>
+        ${p.descripcion?`<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>`:''}
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${precio.toFixed(2)}</span>
+          <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
+          <span style="background:#dbeafe;color:#1d4ed8;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;">📍 ${p.ubicacion||''}</span>
+          ${p.precioCompra?`<span style="font-size:12px;color:var(--text-muted);">Compra: ${getSym()} ${precioCompra.toFixed(2)}</span>`:''}
+        </div>
+      </div>`;
     }).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en almacén</div>`;
   }
 }
-function selAlmacen(i) { almacenIdx = i; setAlmacenBtns(); }
-function updateAlmacen(i, field, val) { db.inventario[i][field] = val; }
-// ── helper centralizado de botones Almacén ──
-function setAlmacenBtns() {
-  const btnN   = document.getElementById('btnNuevoAlmacen');
-  const btnDel = document.getElementById('btnEliminarAlmacen');
-  const btnSel = document.getElementById('btnSeleccionar');
-  const btnE   = document.getElementById('btnEditarAlmacen');
-  const btnG   = document.getElementById('btnGuardarAlmacen');
-  const btnProv = document.getElementById('btnProvAlmacen');
-  const btnCat  = document.getElementById('btnCatAlmacen');
-  const btnCfg  = document.getElementById('btnCfgAlmacen');
-
-  const enEdicion   = almacenEditando;
-  const enSeleccion = modoSeleccion;
-  const bloqueado   = enEdicion || enSeleccion;
-
-  // — EDITAR / CANCELAR —
-  if (btnE) {
-    btnE.textContent = enEdicion ? '✖️ Cancelar' : '✏️ Editar';
-    btnE.style.background = enEdicion ? '#dc2626' : '#1d4ed8';
-    btnE.disabled = enSeleccion;
-    btnE.style.opacity = enSeleccion ? '0.4' : '1';
-    btnE.style.cursor  = enSeleccion ? 'not-allowed' : 'pointer';
-  }
-
-  // — GUARDAR —
-  if (btnG) {
-    btnG.disabled = !enEdicion;
-    btnG.style.background = enEdicion ? 'var(--green)' : '#9ca3af';
-    btnG.style.cursor     = enEdicion ? 'pointer'      : 'not-allowed';
-    btnG.style.opacity    = enEdicion ? '1'            : '0.6';
-  }
-
-  // — SELECCIONAR —
-  if (btnSel) {
-    btnSel.textContent = enSeleccion ? '✖️ Cancelar Selección' : '☑️ Seleccionar';
-    btnSel.style.background = enSeleccion ? '#dc2626' : '#f59e0b';
-    btnSel.disabled = enEdicion;
-    btnSel.style.opacity = enEdicion ? '0.4' : '1';
-    btnSel.style.cursor  = enEdicion ? 'not-allowed' : 'pointer';
-  }
-
-  // — NUEVO — desactivado en edición O en selección
-  if (btnN) {
-    btnN.disabled = bloqueado;
-    btnN.style.opacity = bloqueado ? '0.4' : '1';
-    btnN.style.cursor  = bloqueado ? 'not-allowed' : 'pointer';
-  }
-
-  // — ELIMINAR — siempre desactivado fuera de selección; en selección solo con al menos 1 check
-  if (btnDel) {
-    const hayChecks = enSeleccion && document.querySelectorAll('.row-check:checked').length > 0;
-    const delActivo = !enEdicion && hayChecks;
-    btnDel.disabled = !delActivo;
-    btnDel.style.opacity = !delActivo ? '0.4' : '1';
-    btnDel.style.cursor  = !delActivo ? 'not-allowed' : 'pointer';
-  }
-
-  // — PROVEEDORES / CATEGORÍAS / CONFIGURACIONES — bloqueados en edición o selección
-  [btnProv, btnCat, btnCfg].forEach(btn => {
-    if (!btn) return;
-    btn.disabled = bloqueado;
-    btn.style.opacity = bloqueado ? '0.4' : '1';
-    btn.style.cursor  = bloqueado ? 'not-allowed' : 'pointer';
-  });
-}
-
-function nuevoProducto() {
-  almacenEditando = true;
-  db.inventario.push({codigo:'',producto:'',descripcion:'',precio:'',cantidad:'',ubicacion:'',precioCompra:'',ultimoProveedor:'',imagen:''});
-  almacenIdx = db.inventario.length - 1;
-  setAlmacenBtns();
-  renderAlmacen();
-  toast('➕ Nueva fila agregada');
-}
-function eliminarProducto(i) {
-  db.inventario.splice(i,1); almacenIdx=-1; saveAndSync('inventario'); renderAlmacen(); toast('🗑️ Producto eliminado');
-}
-function eliminarProductoActual() {
-  if (!modoSeleccion) { toast('⚠️ Usa Seleccionar para marcar los productos a eliminar'); return; }
-  const checks = document.querySelectorAll('.row-check:checked');
-  if (!checks.length) { toast('⚠️ No hay filas seleccionadas'); return; }
-  const idxs = Array.from(checks).map(c => parseInt(c.dataset.idx)).sort((a,b)=>b-a);
-  idxs.forEach(i => db.inventario.splice(i,1));
-  almacenIdx = -1;
-  modoSeleccion = false;
-  save(); setAlmacenBtns(); renderAlmacen(); toast(`🗑️ ${idxs.length} producto(s) eliminado(s)`);
-}
-function toggleSeleccion() {
-  modoSeleccion = !modoSeleccion;
-  setAlmacenBtns();
-  renderAlmacen();
-}
-function editarAlmacen() {
-  almacenEditando = !almacenEditando;
-  setAlmacenBtns();
-  renderAlmacen();
-  toast(almacenEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
-}
-async function guardarAlmacen() {
-  save();
-  almacenEditando = false;
-  setAlmacenBtns();
-  renderAlmacen();
-  toast('💾 Guardando...');
-  if (getToken()) {
-    try { await subirAGitHub('inventario'); }
-    catch(e) { toast(`⚠️ Error GitHub: ${e.message}`); }
-  } else {
-    toast('💾 Guardado localmente (sin token GitHub)');
-  }
-}
 function filtrarAlmacen() { renderAlmacen(); }
-function navAlmacen(dir) {
-  almacenIdx = Math.max(0, Math.min(db.inventario.length-1, almacenIdx+dir));
-  renderAlmacen();
-}
 
 // ═══════════════════════════ EJECUCIÓN VENTA ══════════════════
 function initEjecVenta() {
@@ -6576,6 +6508,65 @@ function initStockMinimo() {
 let dprodIdx = -1;
 let dprodEditando = false;
 
+// ═══════════════════════════ NUEVO PRODUCTO ═══════════════════
+function initNuevoProducto() {
+  // Limpiar todos los campos
+  ['nprod_codigo','nprod_producto','nprod_descripcion','nprod_precio','nprod_cantidad',
+   'nprod_stockMinimo','nprod_ubicacion','nprod_precioCompra','nprod_ultimoProveedor','nprod_imagen']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  // Llenar categorías
+  const sel = document.getElementById('nprod_categoria');
+  if (sel) {
+    sel.innerHTML = '<option value="">— Sin categoría —</option>' +
+      db.categorias.map(c => `<option value="${getNombreCat(c)}">${getNombreCat(c)}</option>`).join('');
+  }
+  nprodRefreshImg();
+}
+
+function nprodRefreshImg() {
+  const url = document.getElementById('nprod_imagen').value;
+  const preview = document.getElementById('nprod_imgPreview');
+  if (!preview) return;
+  if (url) {
+    preview.innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<span style=font-size:40px;opacity:0.4>📷</span>'">`;
+  } else {
+    preview.innerHTML = '<span style="font-size:40px;opacity:0.4;">📷</span>';
+  }
+}
+
+function cancelarNuevoProducto() {
+  irA('page-almacen');
+}
+
+async function guardarNuevoProducto() {
+  const codigo = document.getElementById('nprod_codigo').value.trim();
+  const producto = document.getElementById('nprod_producto').value.trim();
+  if (!codigo || !producto) { toast('⚠️ Código y Producto son obligatorios'); return; }
+
+  const nuevoP = {
+    codigo,
+    producto,
+    descripcion:     document.getElementById('nprod_descripcion').value.trim(),
+    precio:          document.getElementById('nprod_precio').value.replace(/[^0-9.]/g,''),
+    cantidad:        document.getElementById('nprod_cantidad').value,
+    stockMinimo:     document.getElementById('nprod_stockMinimo').value,
+    ubicacion:       document.getElementById('nprod_ubicacion').value.trim(),
+    precioCompra:    document.getElementById('nprod_precioCompra').value.replace(/[^0-9.]/g,''),
+    ultimoProveedor: document.getElementById('nprod_ultimoProveedor').value.trim(),
+    categoria:       document.getElementById('nprod_categoria').value,
+    imagen:          document.getElementById('nprod_imagen').value.trim()
+  };
+
+  db.inventario.push(nuevoP);
+  save();
+  toast('✅ Producto agregado — sincronizando...');
+  irA('page-almacen');
+  if (getToken()) {
+    try { await subirAGitHub('inventario'); }
+    catch(e) { toast(`⚠️ Guardado localmente — Error: ${e.message}`); }
+  }
+}
+
 function abrirDetalleProducto(orig) {
   dprodIdx = orig;
   irA('page-detalle-producto');
@@ -6689,6 +6680,7 @@ function dprodToggleEdit() {
 async function dprodGuardar() {
   if (dprodIdx < 0 || !db.inventario[dprodIdx]) { toast('⚠️ Sin producto cargado'); return; }
   const p = db.inventario[dprodIdx];
+  p.codigo           = document.getElementById('dprod_codigo').value;
   p.producto         = document.getElementById('dprod_producto').value;
   p.descripcion      = document.getElementById('dprod_descripcion').value;
   p.precio           = document.getElementById('dprod_precio').value.replace(/[^0-9.]/g,'');
