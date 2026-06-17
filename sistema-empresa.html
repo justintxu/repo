@@ -228,6 +228,9 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
 
   .stmin-table { display: none !important; }
   #stockMinimoMobile { display: block !important; }
+  .lp-table { display: none !important; }
+  #listaPedidoMobile { display: block !important; }
+  #page-lista-pedido { padding-bottom: 100px; }
   .dprod-f1 { grid-template-columns: 1fr !important; }
   .dprod-f3 { grid-template-columns: 1fr 1fr !important; }
   .dprod-f4 { grid-template-columns: 1fr 1fr !important; }
@@ -1597,31 +1600,31 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     </div>
   </div>
 
-  <!-- Tabla de pedido -->
+  <!-- Tabla de pedido — desktop -->
   <div class="table-wrap" style="margin-top:8px;">
-    <table class="data-table" style="table-layout:fixed;width:100%;">
+    <table class="data-table lp-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:100px;">
         <col>
         <col style="width:140px;">
         <col style="width:140px;">
-        <col style="width:36px;">
       </colgroup>
       <thead><tr>
         <th style="text-align:center;">Cant.</th>
         <th style="text-align:center;">Producto</th>
         <th style="text-align:center;">Precio</th>
         <th style="text-align:center;">Total</th>
-        <th></th>
       </tr></thead>
       <tbody id="tbodyListaPedido"></tbody>
       <tfoot><tr>
         <td colspan="3" style="text-align:right;padding:8px 12px;font-weight:800;color:var(--text-primary);">TOTAL PEDIDO:</td>
         <td><div class="grand-total" id="totalListaPedido">PEN 0.00</div></td>
-        <td></td>
       </tr></tfoot>
     </table>
   </div>
+
+  <!-- Vista móvil pedido -->
+  <div id="listaPedidoMobile" style="display:none;padding:0 12px;"></div>
 
   <!-- Toolbar -->
   <div class="toolbar">
@@ -7423,19 +7426,92 @@ function initListaPedido() {
 function renderListaPedido() {
   const sym = getSym();
   const tbody = document.getElementById('tbodyListaPedido');
+  const mobile = document.getElementById('listaPedidoMobile');
   if (!tbody) return;
   const dis = !pedidoEditando;
+
+  // ── Vista desktop ──
   tbody.innerHTML = db.pedidos.map((r, i) => {
-    const chk = pedidoModoSelect ? `<input type="checkbox" ${r._sel ? 'checked' : ''} onchange="db.pedidos[${i}]._sel=this.checked;" style="width:16px;height:16px;accent-color:#f59e0b;cursor:pointer;">` : '';
-    const delBtn = pedidoModoSelect ? '' : `<button class="delete-btn" onclick="eliminarFilaPedidoIdx(${i})">✕</button>`;
+    const chk = pedidoModoSelect
+      ? `<input type="checkbox" ${r._sel ? 'checked' : ''} onchange="db.pedidos[${i}]._sel=this.checked;" style="width:16px;height:16px;accent-color:#f59e0b;cursor:pointer;">`
+      : '';
+    const cantCell = pedidoModoSelect
+      ? `<div style="display:flex;align-items:center;justify-content:center;">${chk}</div>`
+      : `<input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad||''}" ${dis?'readonly':''} type="number" min="0" oninput="onCantPedido(${i},this.value)">`;
     return `<tr style="border-bottom:1px solid var(--table-border);">
-      <td style="text-align:center;">${pedidoModoSelect ? `<div style="display:flex;align-items:center;justify-content:center;">${chk}</div>` : `<input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad||''}" ${dis?'readonly':''} type="number" min="0" oninput="onCantPedido(${i},this.value)">`}</td>
+      <td style="text-align:center;">${cantCell}</td>
       <td><input class="cell-input" style="width:100%;" value="${(r.producto||'').replace(/"/g,'&quot;')}" ${dis?'readonly':''} onchange="db.pedidos[${i}].producto=this.value;calcFilaPedido(${i});renderListaPedido();"></td>
       <td><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${r.precioCompra||''}" ${dis?'readonly':''} oninput="onPrecioPedido(${i},this.value)" placeholder="${sym} 0.00"></td>
       <td><div class="total-cell" style="text-align:right;">${sym} ${parseFloat(r.total||0).toFixed(2)}</div></td>
-      <td>${delBtn}</td>
     </tr>`;
   }).join('');
+
+  // ── Vista móvil ──
+  if (mobile) {
+    if (!db.pedidos.length) {
+      mobile.innerHTML = `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en el pedido</div>`;
+    } else {
+      mobile.innerHTML = db.pedidos.map((r, i) => {
+        if (pedidoModoSelect) {
+          // Modo select: tarjeta con checkbox
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;gap:12px;">
+            <input type="checkbox" ${r._sel?'checked':''} onchange="db.pedidos[${i}]._sel=this.checked;"
+              style="width:20px;height:20px;accent-color:#f59e0b;cursor:pointer;flex-shrink:0;">
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+              <div style="font-weight:800;font-size:15px;color:var(--text-primary);">${r.producto||'—'}</div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 10px;font-size:13px;font-weight:800;">✕ ${r.cantidad||0}</span>
+                <span style="font-size:13px;color:var(--text-muted);">${sym} ${parseFloat(r.precioCompra||0).toFixed(2)}</span>
+                <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${sym} ${parseFloat(r.total||0).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>`;
+        } else if (!dis) {
+          // Modo edición: campos editables
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+            <div>
+              <div class="ejec-label">PRODUCTO</div>
+              <input class="cell-input" style="width:100%;box-sizing:border-box;" value="${(r.producto||'').replace(/"/g,'&quot;')}"
+                onchange="db.pedidos[${i}].producto=this.value;calcFilaPedido(${i});renderListaPedido();">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:flex-end;">
+              <div>
+                <div class="ejec-label">CANT.</div>
+                <input class="cell-input" style="width:100%;text-align:center;box-sizing:border-box;" value="${r.cantidad||''}"
+                  type="number" min="0" oninput="onCantPedido(${i},this.value)">
+              </div>
+              <div>
+                <div class="ejec-label">PRECIO</div>
+                <input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);box-sizing:border-box;" value="${r.precioCompra||''}"
+                  oninput="onPrecioPedido(${i},this.value)" placeholder="${sym} 0.00">
+              </div>
+              <div>
+                <div class="ejec-label">TOTAL</div>
+                <div class="total-cell" style="font-size:15px;font-weight:800;padding:7px 10px;text-align:right;">${sym} ${parseFloat(r.total||0).toFixed(2)}</div>
+              </div>
+            </div>
+          </div>`;
+        } else {
+          // Modo lectura: tarjeta compacta
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
+            <div style="font-weight:800;font-size:15px;color:var(--text-primary);">${r.producto||'—'}</div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 10px;font-size:13px;font-weight:800;">✕ ${r.cantidad||0}</span>
+              <span style="font-size:13px;color:var(--text-muted);">${sym} ${parseFloat(r.precioCompra||0).toFixed(2)}</span>
+              <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${sym} ${parseFloat(r.total||0).toFixed(2)}</span>
+            </div>
+          </div>`;
+        }
+      }).join('');
+    }
+    // Total en móvil
+    const totalMob = db.pedidos.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
+    mobile.innerHTML += `<div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
+      <span style="font-weight:800;font-size:16px;color:var(--text-primary);">TOTAL PEDIDO:</span>
+      <div class="grand-total" id="totalListaPedidoMobile" style="font-size:20px;">${sym} ${totalMob.toFixed(2)}</div>
+    </div>`;
+  }
+
   calcTotalPedido();
 }
 
@@ -7462,10 +7538,14 @@ function calcTotalPedido() {
 function nuevaFilaPedido() {
   db.pedidos.push({ cantidad: '', producto: '', precioCompra: '', total: '' });
   pedidoEditando = true;
-  const btnE = document.getElementById('btnEditPedido');
-  const btnS = document.getElementById('btnSavePedido');
-  if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
-  if (btnS) { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  const btnNuevo = document.getElementById('btnNuevoPedido');
+  const btnE    = document.getElementById('btnEditPedido');
+  const btnS    = document.getElementById('btnSavePedido');
+  const btnSel  = document.getElementById('btnSelectPedido');
+  if (btnE)    { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+  if (btnS)    { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  if (btnNuevo){ btnNuevo.disabled = true; btnNuevo.style.opacity = '0.4'; btnNuevo.style.cursor = 'not-allowed'; }
+  if (btnSel)  { btnSel.disabled = true;  btnSel.style.opacity  = '0.4'; btnSel.style.cursor  = 'not-allowed'; }
   renderListaPedido();
 }
 
@@ -7478,28 +7558,37 @@ function eliminarFilaPedidoIdx(i) {
 
 function pedidoToggleEdit() {
   pedidoEditando = !pedidoEditando;
-  const btnE = document.getElementById('btnEditPedido');
-  const btnS = document.getElementById('btnSavePedido');
+  const btnNuevo = document.getElementById('btnNuevoPedido');
+  const btnE    = document.getElementById('btnEditPedido');
+  const btnS    = document.getElementById('btnSavePedido');
+  const btnSel  = document.getElementById('btnSelectPedido');
   if (pedidoEditando) {
-    if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
-    if (btnS) { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+    if (btnE)    { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+    if (btnS)    { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+    if (btnNuevo){ btnNuevo.disabled = true; btnNuevo.style.opacity = '0.4'; btnNuevo.style.cursor = 'not-allowed'; }
+    if (btnSel)  { btnSel.disabled = true;  btnSel.style.opacity  = '0.4'; btnSel.style.cursor  = 'not-allowed'; }
   } else {
-    if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
-    if (btnS) { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+    if (btnE)    { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+    if (btnS)    { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+    if (btnNuevo){ btnNuevo.disabled = false; btnNuevo.style.opacity = '1'; btnNuevo.style.cursor = 'pointer'; }
+    if (btnSel)  { btnSel.disabled = false;  btnSel.style.opacity  = '1'; btnSel.style.cursor  = 'pointer'; }
   }
   renderListaPedido();
   toast(pedidoEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
 }
 
 async function guardarPedido() {
-  // Recalcular todos los totales antes de guardar
   db.pedidos.forEach((_, i) => calcFilaPedido(i));
   save();
   pedidoEditando = false;
-  const btnE = document.getElementById('btnEditPedido');
-  const btnS = document.getElementById('btnSavePedido');
-  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
-  if (btnS) { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  const btnNuevo = document.getElementById('btnNuevoPedido');
+  const btnE    = document.getElementById('btnEditPedido');
+  const btnS    = document.getElementById('btnSavePedido');
+  const btnSel  = document.getElementById('btnSelectPedido');
+  if (btnE)    { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnS)    { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  if (btnNuevo){ btnNuevo.disabled = false; btnNuevo.style.opacity = '1'; btnNuevo.style.cursor = 'pointer'; }
+  if (btnSel)  { btnSel.disabled = false;  btnSel.style.opacity  = '1'; btnSel.style.cursor  = 'pointer'; }
   renderListaPedido();
   toast('💾 Guardando...');
   if (getToken()) {
