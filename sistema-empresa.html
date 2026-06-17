@@ -231,6 +231,44 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .lp-table { display: none !important; }
   #listaPedidoMobile { display: block !important; }
   #page-lista-pedido { padding-bottom: 100px; }
+
+  /* Lista de Pedido — barra Imprimir+Búsqueda en columna en móvil */
+  .lp-topbar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 12px 14px !important;
+  }
+  .lp-topbar .search-input-wrap { max-width: 100% !important; width: 100% !important; }
+  .lp-topbar .search-label { display: none !important; }
+
+  /* Ingreso de Servicio — formulario responsive */
+  #page-ingresar-servicio .page-form-wrap {
+    margin: 16px auto !important;
+    padding: 0 14px !important;
+    gap: 14px !important;
+  }
+  #page-ingresar-servicio .form-field-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+  #page-ingresar-servicio .form-field-row .form-label {
+    min-width: unset !important;
+    font-size: 13px !important;
+  }
+  #page-ingresar-servicio .form-field-row .form-input {
+    width: 100% !important;
+  }
+  #page-ingresar-servicio .foto-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+  #page-ingresar-servicio .foto-row .form-input {
+    width: 100% !important;
+  }
+  #page-ingresar-servicio { padding-bottom: 100px; }
   .dprod-f1 { grid-template-columns: 1fr !important; }
   .dprod-f3 { grid-template-columns: 1fr 1fr !important; }
   .dprod-f4 { grid-template-columns: 1fr 1fr !important; }
@@ -708,29 +746,29 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Formulario -->
-  <div style="max-width:600px;margin:32px auto;padding:0 24px;display:flex;flex-direction:column;gap:20px;">
+  <div class="page-form-wrap" style="max-width:600px;margin:32px auto;padding:0 24px;display:flex;flex-direction:column;gap:20px;">
 
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
       <span class="form-label" style="min-width:100px;">Artefacto</span>
       <input class="form-input" id="srvArtefacto" placeholder="Nombre del artefacto" style="flex:1;max-width:100%;">
     </div>
 
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
       <span class="form-label" style="min-width:100px;">Cliente</span>
       <input class="form-input" id="srvCliente" placeholder="Nombre del cliente" style="flex:1;max-width:100%;">
     </div>
 
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
       <span class="form-label" style="min-width:100px;">Teléfono</span>
       <input class="form-input" id="srvTelefono" placeholder="Número de teléfono" style="flex:1;max-width:100%;">
     </div>
 
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
       <span class="form-label" style="min-width:100px;">Técnico</span>
       <input class="form-input" id="srvTecnico" placeholder="Nombre del técnico" style="flex:1;max-width:100%;">
     </div>
 
-    <div style="display:flex;align-items:center;gap:16px;">
+    <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
       <span class="form-label" style="min-width:100px;">Estado</span>
       <input class="form-input" id="srvEstado" placeholder="ej: Pendiente, En proceso..." style="flex:1;max-width:100%;">
     </div>
@@ -739,23 +777,23 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <div style="background:var(--total-cell-bg);border-radius:12px;padding:16px;border:1px solid var(--table-border);">
       <div style="font-size:13px;font-weight:800;color:var(--text-muted);margin-bottom:12px;">📷 Links de Fotos (opcional)</div>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;align-items:center;gap:10px;">
+        <div class="foto-row" style="display:flex;align-items:center;gap:10px;">
           <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 1</span>
           <input class="form-input" id="srvFoto1" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
+        <div class="foto-row" style="display:flex;align-items:center;gap:10px;">
           <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 2</span>
           <input class="form-input" id="srvFoto2" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
+        <div class="foto-row" style="display:flex;align-items:center;gap:10px;">
           <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 3</span>
           <input class="form-input" id="srvFoto3" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
+        <div class="foto-row" style="display:flex;align-items:center;gap:10px;">
           <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 4</span>
           <input class="form-input" id="srvFoto4" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
+        <div class="foto-row" style="display:flex;align-items:center;gap:10px;">
           <span style="font-size:13px;font-weight:700;color:var(--text-primary);min-width:50px;">Foto 5</span>
           <input class="form-input" id="srvFoto5" placeholder="https://..." style="flex:1;max-width:100%;font-size:13px;padding:7px 12px;">
         </div>
@@ -1559,7 +1597,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
 
   <!-- Barra superior: Imprimir + Búsqueda -->
-  <div style="display:flex;align-items:center;gap:18px;padding:14px 32px;flex-wrap:wrap;border-bottom:1.5px solid var(--toolbar-border);">
+  <div class="lp-topbar" style="display:flex;align-items:center;gap:18px;padding:14px 32px;flex-wrap:wrap;border-bottom:1.5px solid var(--toolbar-border);">
     <div style="position:relative;">
       <button id="btnImprimirPedido"
         onclick="toggleMenuImprimirPedido()"
