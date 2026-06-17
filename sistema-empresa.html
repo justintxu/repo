@@ -252,7 +252,21 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
     right: 0 !important;
     z-index: 100 !important;
   }
-  .almacen-content-top { margin-top: 84px !important; }
+  /* Buscador del Almacén — fijo justo debajo del header, dentro de la misma franja */
+  .search-wrap-almacen {
+    position: fixed !important;
+    top: 64px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 99 !important;
+    background: var(--bg-header) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 2px solid var(--header-border) !important;
+    padding: 8px 14px 10px !important;
+  }
+  .search-wrap-almacen .search-label { display: none !important; }
+  .search-wrap-almacen .search-input-wrap { max-width: 100% !important; width: 100% !important; }
+  .almacen-content-top { margin-top: 128px !important; }
   .btn-editar-empresa { display: none !important; }
 
   /* Toast por encima del toolbar fijo (cuando aplica, vía clase en body) */
@@ -867,14 +881,15 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <button class="back-btn" onclick="irA('page-menu')">‹</button>
     </div>
   </div>
-  <div class="stats-row almacen-content-top" id="almacenStats"></div>
-  <div class="search-wrap">
+  <!-- Búsqueda — en móvil se reubica dentro del header fijo -->
+  <div class="search-wrap search-wrap-almacen">
     <span class="search-label">Búsqueda</span>
     <div class="search-input-wrap">
       <input class="search-input" id="searchAlmacen" placeholder="Código – Producto - Descripción" oninput="filtrarAlmacen()">
       <span class="search-icon">🔍</span>
     </div>
   </div>
+  <div class="stats-row almacen-content-top" id="almacenStats"></div>
   <div class="table-wrap">
     <table class="data-table alm-table">
       <thead><tr>
