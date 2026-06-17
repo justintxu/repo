@@ -47,7 +47,7 @@
   --table-border: #c8e6c9;
   --table-hover: #f1f8e9;
   --cell-bg: #c8e6c9;
-  --cell-blue: #bbdefb;
+  --cell-blue: #e1f0c2;
   --toolbar-border: #c8e6c9;
   --modal-bg: white;
   --modal-overlay: rgba(0,0,0,0.5);
@@ -242,6 +242,7 @@ html.tema-rosa {
   --configuraciones-card-bg: #fffafc;
   --configuraciones-card-border: #fbcfe8;
   --toggle-active-bg: #ec4899;
+  --btn-calendario-bg: #f472b6;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .tema-card { outline: none; }
@@ -1905,7 +1906,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <input class="search-input" id="searchRegVentas" placeholder="Fecha - Cliente" oninput="renderRegVentas()">
       <span class="search-icon">🔍</span>
     </div>
-    <button class="btn btn-cal-regventas" style="background:#059669;color:white;margin-left:16px;" onclick="abrirCalendarioVentas()">📅 Ver Calendario</button>
+    <button class="btn btn-cal-regventas" style="background:var(--btn-calendario-bg,#059669);color:white;margin-left:16px;" onclick="abrirCalendarioVentas()">📅 Ver Calendario</button>
   </div>
   <div class="regventas-content-top"></div>
 
@@ -1961,11 +1962,6 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
   <!-- Vista móvil registro ventas -->
   <div id="regVentasMobile" style="display:none;padding:0 12px;"></div>
-  <div class="toolbar">
-    <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('ventas')">📥 Exportar CSV</button>
-    <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('ventas')">📤 Importar CSV</button>
-    <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('ventas')">☁️ Subir a GitHub</button>
-  </div>
 </div>
 
 <!-- ═══════════════════════════════════════ COMPRAS MENÚ ═════════ -->
@@ -2456,11 +2452,6 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   </div>
   <!-- Vista móvil registro compras -->
   <div id="regComprasMobile" style="display:none;padding:0 12px;"></div>
-  <div class="toolbar">
-    <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('compras')">📥 Exportar CSV</button>
-    <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('compras')">📤 Importar CSV</button>
-    <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('compras')">☁️ Subir a GitHub</button>
-  </div>
 </div>
 
 <!-- ═══════════════════════════════════════ PROVEEDORES ══════════ -->
@@ -2500,9 +2491,6 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <button class="btn btn-new" id="btnNuevoProv" onclick="nuevoProveedor()">➕ Nuevo</button>
     <button class="btn" id="btnEditarProv" onclick="editarProveedores()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
     <button class="btn" id="btnGuardarProv" onclick="guardarProveedores()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
-    <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('proveedores')">📥 Exportar CSV</button>
-    <button class="btn" style="background:#0891b2;color:white;" onclick="importarCSV('proveedores')">📤 Importar CSV</button>
-    <button class="btn" style="background:#1d4ed8;color:white;" onclick="subirAGitHub('proveedores')">☁️ Subir a GitHub</button>
   </div>
 </div>
 
@@ -8216,7 +8204,7 @@ function renderListaPrecios() {
       <tr style="border-bottom:1px solid var(--table-border);">
         <td><div style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--table-border);background:var(--cell-bg);color:var(--text-primary);font-size:14px;font-weight:700;text-align:left;">${p.producto||''}</div></td>
         <td><div class="total-cell" style="text-align:right;font-weight:800;color:#059669;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</div></td>
-        <td style="text-align:center;">${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:15px;cursor:pointer;box-shadow:0 2px 6px rgba(239,68,68,0.4);">🗑️</button>` : ''}</td>
+        <td style="text-align:center;">${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 2px 6px rgba(239,68,68,0.4);display:inline-flex;align-items:center;justify-content:center;">✕</button>` : ''}</td>
       </tr>`).join('');
   }
 
@@ -8225,7 +8213,7 @@ function renderListaPrecios() {
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
         <span style="font-weight:700;font-size:15px;color:var(--text-primary);flex:1;">${p.producto||''}</span>
         <span style="font-weight:800;font-size:16px;color:#059669;flex-shrink:0;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</span>
-        ${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:14px;cursor:pointer;flex-shrink:0;">🗑️</button>` : ''}
+        ${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:15px;font-weight:800;cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;">✕</button>` : ''}
       </div>`).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">${personalizar ? 'Busca y agrega productos arriba' : 'Sin productos en esta categoría'}</div>`;
   }
 }
