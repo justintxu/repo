@@ -3128,7 +3128,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <colgroup>
         <col style="width:60px;">
         <col style="width:120px;">
-        <col style="width:160px;">
+        <col style="width:432px;">
         <col>
         <col style="width:100px;">
         <col style="width:90px;">
@@ -3137,8 +3137,8 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <thead class="inv-thead"><tr>
         <th style="text-align:center;">Img</th>
         <th style="text-align:center;">Código</th>
-        <th style="text-align:center;">Producto</th>
-        <th style="text-align:center;">Descripción</th>
+        <th>Producto</th>
+        <th>Descripción</th>
         <th style="text-align:right;">Precio</th>
         <th style="text-align:center;">Stock</th>
         <th style="text-align:center;">Ubicación</th>
@@ -3840,7 +3840,7 @@ function renderInventario() {
     return `<tr class="inv-row">
       <td class="inv-col-img" style="text-align:center;">${imgHtml}</td>
       <td class="inv-col-cod" style="text-align:center;">${p.codigo||''}</td>
-      <td class="inv-col-prod" style="text-align:center;">${p.producto||''}</td>
+      <td class="inv-col-prod">${p.producto||''}</td>
       <td class="inv-col-desc">${p.descripcion||''}</td>
       <td class="inv-col-precio" style="text-align:right;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</td>
       <td class="inv-col-stock" style="text-align:center;">${p.cantidad||0}</td>
@@ -8442,7 +8442,7 @@ function renderListaPedido() {
     return `<tr style="border-bottom:1px solid var(--table-border);">
       <td style="text-align:center;">${cantCell}</td>
       <td><input class="cell-input" style="width:100%;" value="${(r.producto||'').replace(/"/g,'&quot;')}" ${dis?'readonly':''} onchange="db.pedidos[${i}].producto=this.value;calcFilaPedido(${i});renderListaPedido();"></td>
-      <td><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${r.precioCompra||''}" ${dis?'readonly':''} oninput="onPrecioPedido(${i},this.value)" placeholder="${sym} 0.00"></td>
+      <td><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${dis ? (r.precioCompra?sym+' '+parseFloat(r.precioCompra).toFixed(2):'') : (r.precioCompra||'')}" ${dis?'readonly':''} oninput="onPrecioPedido(${i},this.value)" placeholder="${sym} 0.00"></td>
       <td><div class="total-cell" style="text-align:right;">${sym} ${parseFloat(r.total||0).toFixed(2)}</div></td>
     </tr>`;
   }).join('');
