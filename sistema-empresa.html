@@ -244,6 +244,20 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #page-almacen { padding-bottom: 0 !important; overflow-y: auto; }
   #almacenMobile { padding-bottom: 200px !important; }
 
+  /* Almacén móvil — header fijo arriba */
+  .header-almacen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 100 !important;
+  }
+  .almacen-content-top { margin-top: 84px !important; }
+  .btn-editar-empresa { display: none !important; }
+
+  /* Toast por encima del toolbar fijo (cuando aplica, vía clase en body) */
+  body.toast-elevado .toast { bottom: 170px !important; }
+
   /* Header compacto en móvil — evita desbordamiento */
   .header { padding: 10px 14px 8px !important; gap: 8px !important; }
   .header-left { gap: 8px !important; }
@@ -840,7 +854,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 
 <!-- ═══════════════════════════════════════ ALMACÉN ═══════════════ -->
 <div class="page" id="page-almacen">
-  <div class="header">
+  <div class="header header-almacen">
     <div class="header-left">
       <div id="logoAlmacenWrap" onclick="abrirModal()"></div>
       <div class="header-titles">
@@ -849,11 +863,11 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px;">
-      <button class="btn" style="background:#f97316;color:white;" onclick="abrirModal()">⚙️ Editar Empresa</button>
+      <button class="btn btn-editar-empresa" style="background:#f97316;color:white;" onclick="abrirModal()">⚙️ Editar Empresa</button>
       <button class="back-btn" onclick="irA('page-menu')">‹</button>
     </div>
   </div>
-  <div class="stats-row" id="almacenStats"></div>
+  <div class="stats-row almacen-content-top" id="almacenStats"></div>
   <div class="search-wrap">
     <span class="search-label">Búsqueda</span>
     <div class="search-input-wrap">
@@ -3467,6 +3481,8 @@ function irA(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   actualizarBranding();
+  // Páginas con toolbar fijo en móvil necesitan el toast elevado para no ser tapado
+  document.body.classList.toggle('toast-elevado', pageId === 'page-almacen');
   if (pageId === 'page-almacen') renderAlmacen();
   if (pageId === 'page-inventario') renderInventario();
   if (pageId === 'page-proveedores') { renderProveedores(); document.getElementById('fechaProveedores').textContent = fechaHoy(); }
