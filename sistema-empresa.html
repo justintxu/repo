@@ -366,7 +366,11 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #stockMinimoMobile { display: block !important; }
   .lp-table { display: none !important; }
   #listaPedidoMobile { display: block !important; }
+  #listaPreciosMobile { display: block !important; }
+  #proformaMobile { display: block !important; }
   #page-lista-pedido { padding-bottom: 100px; }
+  #page-lista-precios { padding-bottom: 100px; }
+  #page-proforma { padding-bottom: 100px; }
 
   /* Lista de Pedido — barra Imprimir+Búsqueda en columna en móvil */
   .lp-topbar {
@@ -377,6 +381,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   }
   .lp-topbar .search-input-wrap { max-width: 100% !important; width: 100% !important; }
   .lp-topbar .search-label { display: none !important; }
+  .select-cat-precios { max-width: 100% !important; width: 100% !important; }
+  .input-cliente-proforma { max-width: 100% !important; width: 100% !important; }
 
   /* Ingreso de Servicio — formulario responsive */
   #page-ingresar-servicio .page-form-wrap {
@@ -1632,7 +1638,9 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <div class="menu-grid" style="max-width:600px;margin:40px auto;">
     <button class="menu-card" onclick="irA('page-ejec-venta')"><div class="card-icon">💰</div>Ejecución de Venta</button>
     <button class="menu-card" onclick="irA('page-reg-ventas')"><div class="card-icon">📋</div>Registro de Ventas</button>
-    <button class="menu-card" id="btnFacturacion" onclick="irA('page-facturacion')" style="display:none;grid-column:span 2;"><div class="card-icon">🧾</div>Facturación</button>
+    <button class="menu-card" id="btnFacturacion" onclick="irA('page-facturacion')" style="display:none;"><div class="card-icon">🧾</div>Facturación</button>
+    <button class="menu-card" onclick="irA('page-lista-precios')"><div class="card-icon">🏷️</div>Lista de Precios</button>
+    <button class="menu-card" onclick="irA('page-proforma')"><div class="card-icon">📄</div>Proforma</button>
   </div>
 </div>
 
@@ -1917,6 +1925,182 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
     <button class="btn" id="btnSavePedido" onclick="guardarPedido()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Save</button>
     <button class="btn" id="btnSelectPedido" onclick="pedidoToggleSelect()" style="background:#f59e0b;color:white;">☑️ SELECT</button>
     <button class="btn" id="btnEliminarPedido" onclick="eliminarFilasPedido()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>🗑️ Eliminar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ LISTA DE PRECIOS ═════ -->
+<div class="page" id="page-lista-precios">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoListaPreciosWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="listaPreciosNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--page-title-color);">Lista de Precios</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+        <span class="date-label">Fecha</span>
+        <span class="date-value" id="fechaListaPrecios"></span>
+      </div>
+      <button class="back-btn" onclick="irA('page-ventas')">‹</button>
+    </div>
+  </div>
+
+  <!-- Barra superior: Imprimir + Categoría -->
+  <div class="lp-topbar" style="display:flex;align-items:center;gap:18px;padding:14px 32px;flex-wrap:wrap;border-bottom:1.5px solid var(--toolbar-border);">
+    <div style="position:relative;">
+      <button id="btnImprimirListaPrecios"
+        onclick="toggleMenuImprimirListaPrecios()"
+        style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a6ed8,#0891b2);
+               color:white;border:none;border-radius:22px;padding:10px 22px;font-family:'Nunito',sans-serif;
+               font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(8,145,178,0.35);
+               transition:transform 0.13s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        🖨️ Imprimir ▾
+      </button>
+      <div id="menuImprimirListaPrecios"
+        style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;
+               border:1.5px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);
+               z-index:400;min-width:190px;overflow:hidden;">
+        <div onclick="imprimirListaPrecios('impresora')"
+          style="padding:11px 18px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;
+                 font-weight:700;color:#1f2937;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f3f4f6;"
+          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+          🖨️ Enviar a impresora
+        </div>
+        <div onclick="imprimirListaPrecios('pdf')"
+          style="padding:11px 18px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;
+                 font-weight:700;color:#1f2937;display:flex;align-items:center;gap:8px;"
+          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+          📄 Guardar como PDF
+        </div>
+      </div>
+    </div>
+    <span class="form-label">Categoría</span>
+    <select id="selectCatListaPrecios" class="form-input select-cat-precios" style="max-width:260px;" onchange="renderListaPrecios()">
+      <option value="">— Todas las categorías —</option>
+    </select>
+  </div>
+
+  <!-- Tabla — desktop -->
+  <div class="table-wrap" style="margin-top:8px;">
+    <table class="data-table lp-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col>
+        <col style="width:160px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:left;">Producto</th>
+        <th style="text-align:right;">Precio</th>
+      </tr></thead>
+      <tbody id="tbodyListaPrecios"></tbody>
+    </table>
+  </div>
+
+  <!-- Vista móvil -->
+  <div id="listaPreciosMobile" style="display:none;padding:0 12px;"></div>
+</div>
+
+<!-- ═══════════════════════════════════════ PROFORMA ══════════════ -->
+<div class="page" id="page-proforma">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoProformaWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="proformaNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--page-title-color);">Proforma</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+        <span class="date-label">Fecha</span>
+        <span class="date-value" id="fechaProforma"></span>
+      </div>
+      <button class="back-btn" onclick="irA('page-ventas')">‹</button>
+    </div>
+  </div>
+
+  <!-- Barra superior: Imprimir + Búsqueda -->
+  <div class="lp-topbar" style="display:flex;align-items:center;gap:18px;padding:14px 32px;flex-wrap:wrap;border-bottom:1.5px solid var(--toolbar-border);">
+    <div style="position:relative;">
+      <button id="btnImprimirProforma"
+        onclick="toggleMenuImprimirProforma()"
+        style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a6ed8,#0891b2);
+               color:white;border:none;border-radius:22px;padding:10px 22px;font-family:'Nunito',sans-serif;
+               font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(8,145,178,0.35);
+               transition:transform 0.13s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        🖨️ Imprimir ▾
+      </button>
+      <div id="menuImprimirProforma"
+        style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;
+               border:1.5px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);
+               z-index:400;min-width:190px;overflow:hidden;">
+        <div onclick="imprimirProforma('impresora')"
+          style="padding:11px 18px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;
+                 font-weight:700;color:#1f2937;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f3f4f6;"
+          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+          🖨️ Enviar a impresora
+        </div>
+        <div onclick="imprimirProforma('pdf')"
+          style="padding:11px 18px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;
+                 font-weight:700;color:#1f2937;display:flex;align-items:center;gap:8px;"
+          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+          📄 Guardar como PDF
+        </div>
+      </div>
+    </div>
+    <span class="search-label">Búsqueda</span>
+    <div class="search-input-wrap" style="flex:1;max-width:480px;">
+      <input class="search-input" id="searchProforma"
+        placeholder="Código – Producto - Descripción"
+        oninput="filtrarProforma()" autocomplete="off">
+      <span class="search-icon">🔍</span>
+      <div id="dropdownProforma"
+        style="display:none;position:absolute;top:100%;left:0;right:0;background:white;
+               border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);
+               z-index:200;max-height:280px;overflow-y:auto;margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- Campo Cliente — debajo del botón de Imprimir -->
+  <div class="form-row">
+    <span class="form-label">Cliente</span>
+    <input class="form-input input-cliente-proforma" id="clienteProforma" placeholder="Nombre del cliente..." oninput="onClienteProforma(this.value)">
+  </div>
+
+  <!-- Tabla — desktop -->
+  <div class="table-wrap" style="margin-top:8px;">
+    <table class="data-table lp-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:100px;">
+        <col>
+        <col style="width:140px;">
+        <col style="width:140px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Cant.</th>
+        <th style="text-align:center;">Producto</th>
+        <th style="text-align:center;">Precio</th>
+        <th style="text-align:center;">Total</th>
+      </tr></thead>
+      <tbody id="tbodyProforma"></tbody>
+      <tfoot><tr>
+        <td colspan="3" style="text-align:right;padding:8px 12px;font-weight:800;color:var(--text-primary);">TOTAL PROFORMA:</td>
+        <td><div class="grand-total" id="totalProforma">PEN 0.00</div></td>
+      </tr></tfoot>
+    </table>
+  </div>
+
+  <!-- Vista móvil -->
+  <div id="proformaMobile" style="display:none;padding:0 12px;"></div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn btn-new" id="btnNuevoProforma" onclick="nuevaFilaProforma()">➕ Nuevo</button>
+    <button class="btn" id="btnEditProforma" onclick="proformaToggleEdit()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
+    <button class="btn" id="btnSaveProforma" onclick="guardarProforma()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Save</button>
+    <button class="btn" id="btnSelectProforma" onclick="proformaToggleSelect()" style="background:#f59e0b;color:white;">☑️ SELECT</button>
+    <button class="btn" id="btnEliminarProforma" onclick="eliminarFilasProforma()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>🗑️ Eliminar</button>
   </div>
 </div>
 
@@ -3519,7 +3703,8 @@ let db = {
   sertecpen: [],
   sertecfin: [],
   categorias: [],
-  pedidos: []
+  pedidos: [],
+  quotation: []
 };
 
 let provIdx = -1;
@@ -3528,6 +3713,8 @@ let rowsVenta = [];
 let rowsCompra = [];
 let pedidoEditando = false;
 let pedidoModoSelect = false;
+let quotEditando = false;
+let quotModoSelect = false;
 
 // ═══════════════════════════ STORAGE ═══════════════════════════
 function save() { localStorage.setItem('sistemaDB', JSON.stringify(db)); }
@@ -3535,6 +3722,7 @@ function load() {
   const d = localStorage.getItem('sistemaDB');
   if (d) db = JSON.parse(d);
   if (!db.pedidos) db.pedidos = [];
+  if (!db.quotation) db.quotation = [];
 }
 // Guarda en localStorage Y sube tabla específica a GitHub silenciosamente
 async function saveAndSync(tipo) {
@@ -3621,6 +3809,8 @@ function irA(pageId) {
   if (pageId === 'page-ingresar-servicio') initIngresarServicio();
   if (pageId === 'page-sertecpen') initSertecpen();
   if (pageId === 'page-lista-pedido') initListaPedido();
+  if (pageId === 'page-lista-precios') initListaPrecios();
+  if (pageId === 'page-proforma') initProforma();
   if (pageId === 'page-nuevo-producto') initNuevoProducto();
   if (pageId === 'page-sertecfin') initSertecfin();
   if (pageId === 'page-stock-minimo') initStockMinimo();
@@ -3649,7 +3839,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido','NuevoProducto'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido','NuevoProducto','ListaPrecios','Proforma'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -4346,7 +4536,8 @@ const GH_FILES  = {
   sertecpen:   'data/sertecpen.csv',
   sertecfin:   'data/sertecfin.csv',
   categorias:  'data/categorias.csv',
-  pedidos:     'data/pedidos.csv'
+  pedidos:     'data/pedidos.csv',
+  quotation:   'data/quotation.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -4751,7 +4942,8 @@ const CSV_SCHEMAS = {
   ventas:      ['fecha','hora','cliente','codigo','cantidad','producto','precio','total'],
   compras:     ['fecha','hora','proveedor','codigo','cantidad','producto','precio','total','tipo','numero','emision'],
   proveedores: ['nombre','telefono','celular','email','direccion','site'],
-  pedidos:     ['cantidad','producto','precioCompra','total']
+  pedidos:     ['cantidad','producto','precioCompra','total'],
+  quotation:   ['cantidad','producto','precio','total','cliente']
 };
 
 function exportarCSV(tipo) {
@@ -7696,6 +7888,133 @@ async function subirSertecpenAGitHub() {
 
 // ═══════════════════════════ LISTA DE PEDIDO ══════════════════
 
+// ═══════════════════════════ LISTA DE PRECIOS ═══════════════════
+function initListaPrecios() {
+  document.getElementById('fechaListaPrecios').textContent = fechaHoy();
+  document.getElementById('listaPreciosNombreEmpresa').textContent = db.empresa?.nombre || 'Nombre de la Empresa';
+  const sel = document.getElementById('selectCatListaPrecios');
+  const catsEnUso = [...new Set(db.inventario.map(p => (p.categoria||'').trim()).filter(c => c !== ''))].sort();
+  sel.innerHTML = '<option value="">— Todas las categorías —</option>' +
+    catsEnUso.map(c => `<option value="${escHtml(c)}">${escHtml(c)}</option>`).join('');
+  renderListaPrecios();
+}
+
+function renderListaPrecios() {
+  const sym = getSym();
+  const cat = document.getElementById('selectCatListaPrecios').value;
+  const items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
+  const tbody = document.getElementById('tbodyListaPrecios');
+  const mobile = document.getElementById('listaPreciosMobile');
+
+  if (!items.length) {
+    tbody.innerHTML = `<tr><td colspan="2" style="text-align:center;padding:30px;color:#9ca3af;">Sin productos en esta categoría</td></tr>`;
+  } else {
+    tbody.innerHTML = items.map(p => `
+      <tr style="border-bottom:1px solid var(--table-border);">
+        <td style="text-align:left;font-weight:700;">${p.producto||''}</td>
+        <td style="text-align:right;font-weight:800;color:#059669;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</td>
+      </tr>`).join('');
+  }
+
+  if (mobile) {
+    mobile.innerHTML = items.length ? items.map(p => `
+      <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+        <span style="font-weight:700;font-size:15px;color:var(--text-primary);">${p.producto||''}</span>
+        <span style="font-weight:800;font-size:16px;color:#059669;flex-shrink:0;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</span>
+      </div>`).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en esta categoría</div>`;
+  }
+}
+
+function toggleMenuImprimirListaPrecios() {
+  const m = document.getElementById('menuImprimirListaPrecios');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
+  if (m.style.display === 'block') {
+    setTimeout(() => {
+      document.addEventListener('click', function cerrar(e) {
+        if (!m.contains(e.target) && e.target.id !== 'btnImprimirListaPrecios') {
+          m.style.display = 'none';
+        }
+        document.removeEventListener('click', cerrar);
+      });
+    }, 0);
+  }
+}
+
+function imprimirListaPrecios(modo) {
+  document.getElementById('menuImprimirListaPrecios').style.display = 'none';
+  const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
+  const logo = db.empresa?.logo || '';
+  const fecha = document.getElementById('fechaListaPrecios')?.textContent || fechaHoy();
+  const sym = getSym();
+  const cat = document.getElementById('selectCatListaPrecios').value;
+  const catLabel = cat || 'Todas las categorías';
+  const items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
+
+  const logoHtml = logo
+    ? `<img src="${logo}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">`
+    : `<div style="width:80px;height:80px;background:#fed7aa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;">🏪</div>`;
+
+  const filas = items.length ? items.map(p => `
+    <tr>
+      <td style="padding:8px 12px;font-weight:700;">${p.producto||''}</td>
+      <td style="padding:8px 12px;text-align:right;font-weight:800;color:#c2410c;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</td>
+    </tr>`).join('') :
+    `<tr><td colspan="2" style="text-align:center;padding:20px;color:#9ca3af;">Sin productos</td></tr>`;
+
+  const htmlContenido = `<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <title>Lista de Precios — ${empresa}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { font-family:'Nunito',sans-serif; background:white; color:#1f2937; }
+      .page { max-width:700px; margin:0 auto; padding:32px 28px; }
+      .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
+      .header-titles { flex:1; }
+      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .titulo { font-size:22px; font-weight:800; color:#f9a825; }
+      .cat-box { background:#ede9fe; border:1.5px solid #7c3aed; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#5b21b6; }
+      .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
+      table { width:100%; border-collapse:collapse; margin-top:8px; }
+      thead th { background:#2e7d32; color:white; padding:10px 12px; font-size:14px; font-weight:800; text-align:left; }
+      tbody tr:nth-child(even) { background:#f1f8e9; }
+      tbody tr:nth-child(odd) { background:white; }
+      tbody tr td { border-bottom:1px solid #e5e7eb; font-size:14px; }
+      @media print {
+        @page { margin:15mm; }
+        body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      }
+    </style>
+  </head><body>
+  <div class="page">
+    <div class="header">
+      ${logoHtml}
+      <div class="header-titles">
+        <div class="empresa">${empresa}</div>
+        <div class="titulo">Lista de Precios</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+        <span class="cat-box">🏷️ ${catLabel}</span>
+        <span class="fecha-box">${fecha}</span>
+      </div>
+    </div>
+    <table>
+      <thead><tr>
+        <th>Producto</th>
+        <th style="text-align:right;">Precio</th>
+      </tr></thead>
+      <tbody>${filas}</tbody>
+    </table>
+  </div>
+  </body></html>`;
+
+  const win = window.open('', '_blank', 'width=800,height=600');
+  win.document.write(htmlContenido);
+  win.document.close();
+  win.focus();
+  setTimeout(() => { win.print(); }, 600);
+}
+
 function initListaPedido() {
   document.getElementById('fechaListaPedido').textContent = fechaHoy();
   document.getElementById('listaPedidoNombreEmpresa').textContent = db.empresa?.nombre || 'Nombre de la Empresa';
@@ -8096,6 +8415,408 @@ function imprimirPedido(modo) {
     }, 600);
   } else {
     // Imprimir directo
+    const win = window.open('', '_blank', 'width=800,height=600');
+    win.document.write(htmlContenido);
+    win.document.close();
+    win.focus();
+    setTimeout(() => { win.print(); }, 600);
+  }
+}
+
+// ═══════════════════════════ PROFORMA ═══════════════════════════
+function initProforma() {
+  document.getElementById('fechaProforma').textContent = fechaHoy();
+  document.getElementById('proformaNombreEmpresa').textContent = db.empresa?.nombre || 'Nombre de la Empresa';
+  if (!db.quotation.length) db.quotation = [{ cantidad: '', producto: '', precio: '', total: '', cliente: '' }];
+  document.getElementById('clienteProforma').value = db.quotation[0]?.cliente || '';
+  quotEditando = false;
+  quotModoSelect = false;
+  document.getElementById('searchProforma').value = '';
+  document.getElementById('dropdownProforma').style.display = 'none';
+  renderProforma();
+  const btnE = document.getElementById('btnEditProforma');
+  const btnS = document.getElementById('btnSaveProforma');
+  const btnSel = document.getElementById('btnSelectProforma');
+  const btnDel = document.getElementById('btnEliminarProforma');
+  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnS) { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#f59e0b'; }
+  if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+}
+
+// Propaga el cliente a todas las filas actuales de la proforma
+function onClienteProforma(val) {
+  db.quotation.forEach(r => r.cliente = val);
+}
+
+function renderProforma() {
+  const sym = getSym();
+  const tbody = document.getElementById('tbodyProforma');
+  const mobile = document.getElementById('proformaMobile');
+  if (!tbody) return;
+  const dis = !quotEditando;
+
+  // ── Vista desktop ──
+  tbody.innerHTML = db.quotation.map((r, i) => {
+    const chk = quotModoSelect
+      ? `<input type="checkbox" ${r._sel ? 'checked' : ''} onchange="db.quotation[${i}]._sel=this.checked;" style="width:16px;height:16px;accent-color:#f59e0b;cursor:pointer;">`
+      : '';
+    const cantCell = quotModoSelect
+      ? `<div style="display:flex;align-items:center;justify-content:center;">${chk}</div>`
+      : `<input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad||''}" ${dis?'readonly':''} type="number" min="0" oninput="onCantProforma(${i},this.value)">`;
+    return `<tr style="border-bottom:1px solid var(--table-border);">
+      <td style="text-align:center;">${cantCell}</td>
+      <td><input class="cell-input" style="width:100%;" value="${(r.producto||'').replace(/"/g,'&quot;')}" ${dis?'readonly':''} onchange="db.quotation[${i}].producto=this.value;calcFilaProforma(${i});renderProforma();"></td>
+      <td><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${r.precio||''}" ${dis?'readonly':''} oninput="onPrecioProforma(${i},this.value)" placeholder="${sym} 0.00"></td>
+      <td><div class="total-cell" style="text-align:right;">${sym} ${parseFloat(r.total||0).toFixed(2)}</div></td>
+    </tr>`;
+  }).join('');
+
+  // ── Vista móvil ──
+  if (mobile) {
+    if (!db.quotation.length) {
+      mobile.innerHTML = `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en la proforma</div>`;
+    } else {
+      mobile.innerHTML = db.quotation.map((r, i) => {
+        if (quotModoSelect) {
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;gap:12px;">
+            <input type="checkbox" ${r._sel?'checked':''} onchange="db.quotation[${i}]._sel=this.checked;"
+              style="width:20px;height:20px;accent-color:#f59e0b;cursor:pointer;flex-shrink:0;">
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+              <div style="font-weight:800;font-size:15px;color:var(--text-primary);">${r.producto||'—'}</div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 10px;font-size:13px;font-weight:800;">✕ ${r.cantidad||0}</span>
+                <span style="font-size:13px;color:var(--text-muted);">${sym} ${parseFloat(r.precio||0).toFixed(2)}</span>
+                <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${sym} ${parseFloat(r.total||0).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>`;
+        } else if (!dis) {
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+            <div>
+              <div class="ejec-label">PRODUCTO</div>
+              <input class="cell-input" style="width:100%;box-sizing:border-box;" value="${(r.producto||'').replace(/"/g,'&quot;')}"
+                onchange="db.quotation[${i}].producto=this.value;calcFilaProforma(${i});renderProforma();">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:flex-end;">
+              <div>
+                <div class="ejec-label">CANT.</div>
+                <input class="cell-input" style="width:100%;text-align:center;box-sizing:border-box;" value="${r.cantidad||''}"
+                  type="number" min="0" oninput="onCantProforma(${i},this.value)">
+              </div>
+              <div>
+                <div class="ejec-label">PRECIO</div>
+                <input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);box-sizing:border-box;" value="${r.precio||''}"
+                  oninput="onPrecioProforma(${i},this.value)" placeholder="${sym} 0.00">
+              </div>
+              <div>
+                <div class="ejec-label">TOTAL</div>
+                <div class="total-cell" style="font-size:15px;font-weight:800;padding:7px 10px;text-align:right;">${sym} ${parseFloat(r.total||0).toFixed(2)}</div>
+              </div>
+            </div>
+          </div>`;
+        } else {
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
+            <div style="font-weight:800;font-size:15px;color:var(--text-primary);">${r.producto||'—'}</div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 10px;font-size:13px;font-weight:800;">✕ ${r.cantidad||0}</span>
+              <span style="font-size:13px;color:var(--text-muted);">${sym} ${parseFloat(r.precio||0).toFixed(2)}</span>
+              <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${sym} ${parseFloat(r.total||0).toFixed(2)}</span>
+            </div>
+          </div>`;
+        }
+      }).join('');
+    }
+    const totalMob = db.quotation.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
+    mobile.innerHTML += `<div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
+      <span style="font-weight:800;font-size:16px;color:var(--text-primary);">TOTAL PROFORMA:</span>
+      <div class="grand-total" id="totalProformaMobile" style="font-size:20px;">${sym} ${totalMob.toFixed(2)}</div>
+    </div>`;
+  }
+
+  calcTotalProforma();
+}
+
+function onCantProforma(i, val) {
+  db.quotation[i].cantidad = val;
+  calcFilaProforma(i);
+  calcTotalProforma();
+}
+function onPrecioProforma(i, val) {
+  db.quotation[i].precio = val;
+  calcFilaProforma(i);
+  calcTotalProforma();
+}
+function calcFilaProforma(i) {
+  const r = db.quotation[i];
+  r.total = ((parseFloat(r.precio)||0) * (parseFloat(r.cantidad)||0)).toFixed(2);
+}
+function calcTotalProforma() {
+  const total = db.quotation.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
+  const el = document.getElementById('totalProforma');
+  if (el) el.textContent = `${getSym()} ${total.toFixed(2)}`;
+}
+
+function nuevaFilaProforma() {
+  const clienteActual = document.getElementById('clienteProforma')?.value || '';
+  db.quotation.push({ cantidad: '', producto: '', precio: '', total: '', cliente: clienteActual });
+  quotEditando = true;
+  const btnNuevo = document.getElementById('btnNuevoProforma');
+  const btnE    = document.getElementById('btnEditProforma');
+  const btnS    = document.getElementById('btnSaveProforma');
+  const btnSel  = document.getElementById('btnSelectProforma');
+  if (btnE)    { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+  if (btnS)    { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  if (btnNuevo){ btnNuevo.disabled = true; btnNuevo.style.opacity = '0.4'; btnNuevo.style.cursor = 'not-allowed'; }
+  if (btnSel)  { btnSel.disabled = true;  btnSel.style.opacity  = '0.4'; btnSel.style.cursor  = 'not-allowed'; }
+  renderProforma();
+}
+
+function proformaToggleEdit() {
+  quotEditando = !quotEditando;
+  const btnNuevo = document.getElementById('btnNuevoProforma');
+  const btnE    = document.getElementById('btnEditProforma');
+  const btnS    = document.getElementById('btnSaveProforma');
+  const btnSel  = document.getElementById('btnSelectProforma');
+  if (quotEditando) {
+    if (btnE)    { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+    if (btnS)    { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+    if (btnNuevo){ btnNuevo.disabled = true; btnNuevo.style.opacity = '0.4'; btnNuevo.style.cursor = 'not-allowed'; }
+    if (btnSel)  { btnSel.disabled = true;  btnSel.style.opacity  = '0.4'; btnSel.style.cursor  = 'not-allowed'; }
+  } else {
+    if (btnE)    { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+    if (btnS)    { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+    if (btnNuevo){ btnNuevo.disabled = false; btnNuevo.style.opacity = '1'; btnNuevo.style.cursor = 'pointer'; }
+    if (btnSel)  { btnSel.disabled = false;  btnSel.style.opacity  = '1'; btnSel.style.cursor  = 'pointer'; }
+  }
+  renderProforma();
+  toast(quotEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
+}
+
+async function guardarProforma() {
+  const clienteActual = document.getElementById('clienteProforma')?.value || '';
+  db.quotation.forEach(r => r.cliente = clienteActual);
+  db.quotation.forEach((_, i) => calcFilaProforma(i));
+  save();
+  quotEditando = false;
+  const btnNuevo = document.getElementById('btnNuevoProforma');
+  const btnE    = document.getElementById('btnEditProforma');
+  const btnS    = document.getElementById('btnSaveProforma');
+  const btnSel  = document.getElementById('btnSelectProforma');
+  if (btnE)    { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnS)    { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  if (btnNuevo){ btnNuevo.disabled = false; btnNuevo.style.opacity = '1'; btnNuevo.style.cursor = 'pointer'; }
+  if (btnSel)  { btnSel.disabled = false;  btnSel.style.opacity  = '1'; btnSel.style.cursor  = 'pointer'; }
+  renderProforma();
+  toast('💾 Guardando...');
+  if (getToken()) {
+    try { await subirAGitHub('quotation'); }
+    catch(e) { toast(`⚠️ Guardado localmente — Error GitHub: ${e.message}`); }
+  } else {
+    toast('💾 Guardado localmente (sin token GitHub)');
+  }
+}
+
+function proformaToggleSelect() {
+  quotModoSelect = !quotModoSelect;
+  const btnNuevo = document.getElementById('btnNuevoProforma');
+  const btnE = document.getElementById('btnEditProforma');
+  const btnSel = document.getElementById('btnSelectProforma');
+  const btnDel = document.getElementById('btnEliminarProforma');
+  if (quotModoSelect) {
+    if (btnSel) { btnSel.textContent = '✖️ Cancelar SELECT'; btnSel.style.background = '#dc2626'; }
+    if (btnDel) { btnDel.disabled = false; btnDel.style.background = '#ef4444'; btnDel.style.cursor = 'pointer'; btnDel.style.opacity = '1'; }
+    if (btnNuevo) { btnNuevo.disabled = true; btnNuevo.style.background = '#9ca3af'; btnNuevo.style.cursor = 'not-allowed'; btnNuevo.style.opacity = '0.6'; }
+    if (btnE) { btnE.disabled = true; btnE.style.background = '#9ca3af'; btnE.style.cursor = 'not-allowed'; btnE.style.opacity = '0.6'; }
+    db.quotation.forEach(r => r._sel = false);
+  } else {
+    if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#f59e0b'; }
+    if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+    if (btnNuevo) { btnNuevo.disabled = false; btnNuevo.style.background = ''; btnNuevo.style.cursor = 'pointer'; btnNuevo.style.opacity = '1'; }
+    if (btnE) { btnE.disabled = false; btnE.style.background = '#1d4ed8'; btnE.style.cursor = 'pointer'; btnE.style.opacity = '1'; }
+    db.quotation.forEach(r => delete r._sel);
+  }
+  renderProforma();
+}
+
+async function eliminarFilasProforma() {
+  const selIdx = db.quotation.map((r, i) => r._sel ? i : -1).filter(i => i >= 0).sort((a,b) => b-a);
+  if (!selIdx.length) { toast('⚠️ No hay filas seleccionadas'); return; }
+  selIdx.forEach(i => db.quotation.splice(i, 1));
+  db.quotation.forEach(r => delete r._sel);
+  if (!db.quotation.length) db.quotation = [{ cantidad: '', producto: '', precio: '', total: '', cliente: document.getElementById('clienteProforma')?.value || '' }];
+  quotModoSelect = false;
+  const btnNuevo = document.getElementById('btnNuevoProforma');
+  const btnE2 = document.getElementById('btnEditProforma');
+  const btnSel = document.getElementById('btnSelectProforma');
+  const btnDel = document.getElementById('btnEliminarProforma');
+  if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#f59e0b'; }
+  if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+  if (btnNuevo) { btnNuevo.disabled = false; btnNuevo.style.background = ''; btnNuevo.style.cursor = 'pointer'; btnNuevo.style.opacity = '1'; }
+  if (btnE2) { btnE2.disabled = false; btnE2.style.background = '#1d4ed8'; btnE2.style.cursor = 'pointer'; btnE2.style.opacity = '1'; }
+  save();
+  renderProforma();
+  toast(`🗑️ ${selIdx.length} fila(s) eliminada(s)`);
+  if (getToken()) {
+    try { await subirAGitHub('quotation'); }
+    catch(e) { toast(`⚠️ Error GitHub: ${e.message}`); }
+  }
+}
+
+// Búsqueda de inventario para autocompletar en Proforma (usa precio de venta)
+function filtrarProforma() {
+  const q = (document.getElementById('searchProforma').value || '').toLowerCase().trim();
+  const dd = document.getElementById('dropdownProforma');
+  if (!q) { dd.style.display = 'none'; return; }
+  const found = db.inventario.filter(p =>
+    p.codigo?.toLowerCase().includes(q) ||
+    p.producto?.toLowerCase().includes(q) ||
+    p.descripcion?.toLowerCase().includes(q)
+  ).slice(0, 10);
+  if (!found.length) {
+    dd.innerHTML = '<div style="padding:10px 14px;color:#9ca3af;font-size:13px;">Sin resultados</div>';
+    dd.style.display = 'block'; return;
+  }
+  dd.innerHTML = found.map(p => `
+    <div onclick="seleccionarProductoProforma('${(p.producto||'').replace(/'/g,"\\'")}','${p.precio||''}')"
+      style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #f3f4f6;"
+      onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+      <div style="font-weight:700;font-size:14px;color:#1f2937;">${p.producto||''} <span style="font-size:12px;color:#9ca3af;">#${p.codigo||''}</span></div>
+      <div style="font-size:12px;color:#6b7280;">P.Venta: ${getSym()} ${parseFloat(p.precio||0).toFixed(2)} · Stock: ${p.cantidad||0}</div>
+    </div>`).join('');
+  dd.style.display = 'block';
+}
+
+function seleccionarProductoProforma(producto, precio) {
+  const clienteActual = document.getElementById('clienteProforma')?.value || '';
+  let idx = db.quotation.length - 1;
+  const emptyIdx = db.quotation.findIndex(r => !r.producto);
+  if (emptyIdx >= 0) {
+    idx = emptyIdx;
+  } else {
+    db.quotation.push({ cantidad: '', producto: '', precio: '', total: '', cliente: clienteActual });
+    idx = db.quotation.length - 1;
+  }
+  db.quotation[idx].producto = producto;
+  db.quotation[idx].precio = precio;
+  db.quotation[idx].cliente = clienteActual;
+  calcFilaProforma(idx);
+  document.getElementById('searchProforma').value = '';
+  document.getElementById('dropdownProforma').style.display = 'none';
+  quotEditando = true;
+  const btnNuevo = document.getElementById('btnNuevoProforma');
+  const btnE = document.getElementById('btnEditProforma');
+  const btnS = document.getElementById('btnSaveProforma');
+  const btnSel = document.getElementById('btnSelectProforma');
+  if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+  if (btnS) { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  if (btnNuevo) { btnNuevo.disabled = true; btnNuevo.style.opacity = '0.4'; btnNuevo.style.cursor = 'not-allowed'; }
+  if (btnSel) { btnSel.disabled = true; btnSel.style.opacity = '0.4'; btnSel.style.cursor = 'not-allowed'; }
+  renderProforma();
+  toast(`✅ "${producto}" agregado — ingresa la cantidad`);
+}
+
+function toggleMenuImprimirProforma() {
+  const m = document.getElementById('menuImprimirProforma');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
+  if (m.style.display === 'block') {
+    setTimeout(() => {
+      document.addEventListener('click', function cerrar(e) {
+        if (!m.contains(e.target) && e.target.id !== 'btnImprimirProforma') {
+          m.style.display = 'none';
+        }
+        document.removeEventListener('click', cerrar);
+      });
+    }, 0);
+  }
+}
+
+function imprimirProforma(modo) {
+  document.getElementById('menuImprimirProforma').style.display = 'none';
+  const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
+  const logo = db.empresa?.logo || '';
+  const fecha = document.getElementById('fechaProforma')?.textContent || fechaHoy();
+  const cliente = document.getElementById('clienteProforma')?.value || '';
+  const sym = getSym();
+  const items = db.quotation.filter(r => r.producto);
+  const total = items.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
+
+  const logoHtml = logo
+    ? `<img src="${logo}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">`
+    : `<div style="width:80px;height:80px;background:#fed7aa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;">🏪</div>`;
+
+  const filas = items.length ? items.map(r => `
+    <tr>
+      <td style="padding:8px 12px;text-align:center;font-weight:700;">${r.cantidad||''}</td>
+      <td style="padding:8px 12px;font-weight:700;">${r.producto||''}</td>
+      <td style="padding:8px 12px;text-align:right;">${sym} ${parseFloat(r.precio||0).toFixed(2)}</td>
+      <td style="padding:8px 12px;text-align:right;font-weight:800;color:#c2410c;">${sym} ${parseFloat(r.total||0).toFixed(2)}</td>
+    </tr>`).join('') :
+    `<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin productos</td></tr>`;
+
+  const htmlContenido = `<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <title>Proforma — ${empresa}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { font-family:'Nunito',sans-serif; background:white; color:#1f2937; }
+      .page { max-width:700px; margin:0 auto; padding:32px 28px; }
+      .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
+      .header-titles { flex:1; }
+      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .titulo { font-size:22px; font-weight:800; color:#f9a825; }
+      .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
+      table { width:100%; border-collapse:collapse; margin-top:8px; }
+      thead th { background:#2e7d32; color:white; padding:10px 12px; font-size:14px; font-weight:800; }
+      tbody tr:nth-child(even) { background:#f1f8e9; }
+      tbody tr:nth-child(odd) { background:white; }
+      tbody tr td { border-bottom:1px solid #e5e7eb; font-size:14px; }
+      tfoot td { padding:10px 12px; font-size:15px; background:#c8e6c9; }
+      .total-label { text-align:right; font-weight:800; color:#1b5e20; }
+      .total-val { text-align:right; font-weight:800; color:#c2410c; font-size:16px; }
+      @media print {
+        @page { margin:15mm; }
+        body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      }
+    </style>
+  </head><body>
+  <div class="page">
+    <div class="header">
+      ${logoHtml}
+      <div class="header-titles">
+        <div class="empresa">${empresa}</div>
+        <div class="titulo">Proforma</div>
+        ${cliente ? `<div style="font-size:14px;font-weight:700;color:#374151;margin-top:4px;">Cliente: ${cliente}</div>` : ''}
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+        <span style="font-size:12px;font-weight:700;color:#6b7280;">Fecha</span>
+        <span class="fecha-box">${fecha}</span>
+      </div>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:80px;text-align:center;">Cant.</th>
+        <th>Producto</th>
+        <th style="width:130px;text-align:right;">Precio</th>
+        <th style="width:130px;text-align:right;">Total</th>
+      </tr></thead>
+      <tbody>${filas}</tbody>
+      <tfoot><tr>
+        <td colspan="3" class="total-label">TOTAL PROFORMA:</td>
+        <td class="total-val">${sym} ${total.toFixed(2)}</td>
+      </tr></tfoot>
+    </table>
+  </div>
+  </body></html>`;
+
+  if (modo === 'pdf') {
+    const win = window.open('', '_blank', 'width=800,height=600');
+    win.document.write(htmlContenido);
+    win.document.close();
+    win.focus();
+    setTimeout(() => { win.print(); }, 600);
+  } else {
     const win = window.open('', '_blank', 'width=800,height=600');
     win.document.write(htmlContenido);
     win.document.close();
