@@ -517,6 +517,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .lp-topbar .search-label { display: none !important; }
   .select-cat-precios { max-width: 100% !important; width: 100% !important; }
   .input-cliente-proforma { max-width: 100% !important; width: 100% !important; }
+  #toggleModoCatalogo + .toggle-slider { flex-shrink: 0; }
+  .lp-topbar .theme-toggle { margin-left: 0 !important; width: 100%; justify-content: center; }
 
   /* Ingreso de Servicio — formulario responsive */
   #page-ingresar-servicio .page-form-wrap {
@@ -2125,10 +2127,40 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
         </div>
       </div>
     </div>
-    <span class="form-label">Categoría</span>
+    <span class="form-label" id="lblCategoriaListaPrecios">Categoría</span>
     <select id="selectCatListaPrecios" class="form-input select-cat-precios" style="max-width:260px;" onchange="renderListaPrecios()">
       <option value="">— Todas las categorías —</option>
     </select>
+    <div class="theme-toggle" style="display:inline-flex;">
+      <span>🏷️ Categoría</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="togglePersonalizarLP" onchange="togglePersonalizarLP(this.checked)">
+        <span class="toggle-slider"></span>
+      </label>
+      <span>🎯 Personalizar</span>
+    </div>
+    <div class="theme-toggle" style="display:inline-flex;margin-left:auto;">
+      <span>📋 Lista</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleModoCatalogo" onchange="toggleModoCatalogo(this.checked)">
+        <span class="toggle-slider"></span>
+      </label>
+      <span>🗂️ Catálogo</span>
+    </div>
+  </div>
+
+  <!-- Caja de búsqueda para modo Personalizar (solo visible si está activo) -->
+  <div id="lpPersonalizarBuscador" style="display:none;padding:14px 32px 0;position:relative;">
+    <div class="search-input-wrap" style="max-width:480px;">
+      <input class="search-input" id="searchLPPersonalizar"
+        placeholder="Buscar producto por código, nombre o descripción..."
+        oninput="filtrarLPPersonalizar()" autocomplete="off">
+      <span class="search-icon">🔍</span>
+    </div>
+    <div id="dropdownLPPersonalizar"
+      style="display:none;position:absolute;top:100%;left:32px;right:32px;max-width:480px;background:white;
+             border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);
+             z-index:200;max-height:280px;overflow-y:auto;margin-top:4px;"></div>
   </div>
 
   <!-- Tabla — desktop -->
@@ -2137,10 +2169,12 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
       <colgroup>
         <col>
         <col style="width:160px;">
+        <col id="colEliminarLP" style="width:0px;">
       </colgroup>
       <thead><tr>
         <th style="text-align:left;">Producto</th>
         <th style="text-align:right;">Precio</th>
+        <th id="thEliminarLP" style="width:0px;"></th>
       </tr></thead>
       <tbody id="tbodyListaPrecios"></tbody>
     </table>
@@ -8061,32 +8095,133 @@ function initListaPrecios() {
   const catsEnUso = [...new Set(db.inventario.map(p => (p.categoria||'').trim()).filter(c => c !== ''))].sort();
   sel.innerHTML = '<option value="">— Todas las categorías —</option>' +
     catsEnUso.map(c => `<option value="${escHtml(c)}">${escHtml(c)}</option>`).join('');
+  const tog = document.getElementById('toggleModoCatalogo');
+  if (tog) tog.checked = localStorage.getItem('modoCatalogoListaPrecios') === '1';
+  const togP = document.getElementById('togglePersonalizarLP');
+  const personalizar = getModoPersonalizar();
+  if (togP) togP.checked = personalizar;
+  aplicarVisibilidadPersonalizarLP(personalizar);
+  renderListaPrecios();
+}
+
+function toggleModoCatalogo(activo) {
+  localStorage.setItem('modoCatalogoListaPrecios', activo ? '1' : '0');
+}
+
+function getModoCatalogo() {
+  return localStorage.getItem('modoCatalogoListaPrecios') === '1';
+}
+
+// ── Modo Personalizar (selección manual de productos, en vez de por categoría) ──
+function getModoPersonalizar() {
+  return localStorage.getItem('lpModoPersonalizar') === '1';
+}
+
+function getCodigosPersonalizadosLP() {
+  try { return JSON.parse(localStorage.getItem('lpCodigosPersonalizados') || '[]'); }
+  catch { return []; }
+}
+
+function setCodigosPersonalizadosLP(arr) {
+  localStorage.setItem('lpCodigosPersonalizados', JSON.stringify(arr));
+}
+
+function aplicarVisibilidadPersonalizarLP(activo) {
+  const buscador = document.getElementById('lpPersonalizarBuscador');
+  const selectCat = document.getElementById('selectCatListaPrecios');
+  const lblCat = document.getElementById('lblCategoriaListaPrecios');
+  const colEliminar = document.getElementById('colEliminarLP');
+  const thEliminar = document.getElementById('thEliminarLP');
+  if (buscador) buscador.style.display = activo ? 'block' : 'none';
+  if (selectCat) { selectCat.disabled = activo; selectCat.style.opacity = activo ? '0.4' : '1'; }
+  if (lblCat) lblCat.style.opacity = activo ? '0.4' : '1';
+  if (colEliminar) colEliminar.style.width = activo ? '60px' : '0px';
+  if (thEliminar) thEliminar.style.width = activo ? '60px' : '0px';
+}
+
+function togglePersonalizarLP(activo) {
+  localStorage.setItem('lpModoPersonalizar', activo ? '1' : '0');
+  aplicarVisibilidadPersonalizarLP(activo);
+  if (!activo) {
+    document.getElementById('searchLPPersonalizar').value = '';
+    document.getElementById('dropdownLPPersonalizar').style.display = 'none';
+  }
+  renderListaPrecios();
+}
+
+function filtrarLPPersonalizar() {
+  const q = (document.getElementById('searchLPPersonalizar').value || '').toLowerCase().trim();
+  const dd = document.getElementById('dropdownLPPersonalizar');
+  if (!q) { dd.style.display = 'none'; return; }
+  const found = db.inventario.filter(p =>
+    p.codigo?.toLowerCase().includes(q) ||
+    p.producto?.toLowerCase().includes(q) ||
+    p.descripcion?.toLowerCase().includes(q)
+  ).slice(0, 10);
+  if (!found.length) {
+    dd.innerHTML = '<div style="padding:10px 14px;color:#9ca3af;font-size:13px;">Sin resultados</div>';
+    dd.style.display = 'block'; return;
+  }
+  dd.innerHTML = found.map(p => `
+    <div onclick="agregarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')"
+      style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #f3f4f6;"
+      onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+      <div style="font-weight:700;font-size:14px;color:#1f2937;">${p.producto||''} <span style="font-size:12px;color:#9ca3af;">#${p.codigo||''}</span></div>
+      <div style="font-size:12px;color:#6b7280;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</div>
+    </div>`).join('');
+  dd.style.display = 'block';
+}
+
+function agregarProductoLP(codigo) {
+  const codigos = getCodigosPersonalizadosLP();
+  if (!codigos.includes(codigo)) {
+    codigos.push(codigo);
+    setCodigosPersonalizadosLP(codigos);
+    renderListaPrecios();
+  }
+  document.getElementById('searchLPPersonalizar').value = '';
+  document.getElementById('dropdownLPPersonalizar').style.display = 'none';
+}
+
+function quitarProductoLP(codigo) {
+  const codigos = getCodigosPersonalizadosLP().filter(c => c !== codigo);
+  setCodigosPersonalizadosLP(codigos);
   renderListaPrecios();
 }
 
 function renderListaPrecios() {
   const sym = getSym();
-  const cat = document.getElementById('selectCatListaPrecios').value;
-  const items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
+  const personalizar = getModoPersonalizar();
+  let items;
+  if (personalizar) {
+    const codigos = getCodigosPersonalizadosLP();
+    items = codigos.map(c => db.inventario.find(p => p.codigo === c)).filter(Boolean);
+  } else {
+    const cat = document.getElementById('selectCatListaPrecios').value;
+    items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
+  }
   const tbody = document.getElementById('tbodyListaPrecios');
   const mobile = document.getElementById('listaPreciosMobile');
 
   if (!items.length) {
-    tbody.innerHTML = `<tr><td colspan="2" style="text-align:center;padding:30px;color:#9ca3af;">Sin productos en esta categoría</td></tr>`;
+    const msg = personalizar ? 'Busca y agrega productos arriba' : 'Sin productos en esta categoría';
+    tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;padding:30px;color:#9ca3af;">${msg}</td></tr>`;
   } else {
     tbody.innerHTML = items.map(p => `
       <tr style="border-bottom:1px solid var(--table-border);">
         <td><div style="width:100%;padding:7px 10px;border-radius:8px;border:1.5px solid var(--table-border);background:var(--cell-bg);color:var(--text-primary);font-size:14px;font-weight:700;text-align:left;">${p.producto||''}</div></td>
         <td><div class="total-cell" style="text-align:right;font-weight:800;color:#059669;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</div></td>
+        <td style="text-align:center;">${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:15px;cursor:pointer;box-shadow:0 2px 6px rgba(239,68,68,0.4);">🗑️</button>` : ''}</td>
       </tr>`).join('');
   }
 
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(p => `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
-        <span style="font-weight:700;font-size:15px;color:var(--text-primary);">${p.producto||''}</span>
+        <span style="font-weight:700;font-size:15px;color:var(--text-primary);flex:1;">${p.producto||''}</span>
         <span style="font-weight:800;font-size:16px;color:#059669;flex-shrink:0;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</span>
-      </div>`).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en esta categoría</div>`;
+        ${personalizar ? `<button onclick="quitarProductoLP('${(p.codigo||'').replace(/'/g,"\\'")}')" style="width:30px;height:30px;border-radius:50%;border:none;background:#ef4444;color:white;font-size:14px;cursor:pointer;flex-shrink:0;">🗑️</button>` : ''}
+      </div>`).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">${personalizar ? 'Busca y agrega productos arriba' : 'Sin productos en esta categoría'}</div>`;
   }
 }
 
@@ -8111,40 +8246,88 @@ function imprimirListaPrecios(modo) {
   const logo = db.empresa?.logo || '';
   const fecha = document.getElementById('fechaListaPrecios')?.textContent || fechaHoy();
   const sym = getSym();
-  const cat = document.getElementById('selectCatListaPrecios').value;
-  const catLabel = cat || 'Todas las categorías';
-  const items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
+  const personalizar = getModoPersonalizar();
+  let items, catLabel;
+  if (personalizar) {
+    const codigos = getCodigosPersonalizadosLP();
+    items = codigos.map(c => db.inventario.find(p => p.codigo === c)).filter(Boolean);
+    catLabel = 'Selección personalizada';
+  } else {
+    const cat = document.getElementById('selectCatListaPrecios').value;
+    catLabel = cat || 'Todas las categorías';
+    items = db.inventario.filter(p => !cat || (p.categoria||'') === cat);
+  }
+  const catalogo = getModoCatalogo();
 
   const logoHtml = logo
     ? `<img src="${logo}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">`
     : `<div style="width:80px;height:80px;background:#fed7aa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;">🏪</div>`;
 
-  const filas = items.length ? items.map(p => `
-    <tr>
-      <td style="padding:8px 12px;font-weight:700;">${p.producto||''}</td>
-      <td style="padding:8px 12px;text-align:right;font-weight:800;color:#c2410c;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</td>
-    </tr>`).join('') :
-    `<tr><td colspan="2" style="text-align:center;padding:20px;color:#9ca3af;">Sin productos</td></tr>`;
+  let cuerpoHtml, estiloExtra;
 
-  const htmlContenido = `<!DOCTYPE html><html lang="es"><head>
-    <meta charset="UTF-8">
-    <title>Lista de Precios — ${empresa}</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-      * { box-sizing:border-box; margin:0; padding:0; }
-      body { font-family:'Nunito',sans-serif; background:white; color:#1f2937; }
-      .page { max-width:700px; margin:0 auto; padding:32px 28px; }
-      .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
-      .header-titles { flex:1; }
-      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  if (catalogo) {
+    // ── Modo Catálogo: tarjetas con imagen ──
+    const tarjetas = items.length ? items.map(p => {
+      const img = p.imagen
+        ? `<img src="${p.imagen}" style="width:100%;height:220px;object-fit:cover;border-radius:6px;background:#f3f4f6;">`
+        : `<div style="width:100%;height:220px;border-radius:6px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:48px;color:#d1d5db;">📷</div>`;
+      return `
+      <div style="display:flex;align-items:center;gap:24px;break-inside:avoid;margin-bottom:36px;">
+        <div style="width:240px;flex-shrink:0;">${img}</div>
+        <div style="text-align:center;flex:1;">
+          <div style="font-size:18px;font-weight:800;color:#1f2937;margin-bottom:14px;">${p.producto||''}</div>
+          ${p.descripcion ? `<div style="font-size:14px;color:#374151;margin-bottom:14px;">${p.descripcion}</div>` : ''}
+          <div style="margin-top:10px;">
+            <span style="background:#a7d8a4;border:1.5px solid #6b9e69;border-radius:8px;padding:8px 22px;font-size:15px;font-weight:700;color:#1f2937;display:inline-block;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</span>
+          </div>
+        </div>
+      </div>`;
+    }).join('') : `<div style="text-align:center;padding:40px;color:#9ca3af;">Sin productos</div>`;
+
+    cuerpoHtml = `<div style="margin-top:24px;">${tarjetas}</div>`;
+    estiloExtra = `
       .titulo { font-size:22px; font-weight:800; color:#f9a825; }
-      .cat-box { background:#ede9fe; border:1.5px solid #7c3aed; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#5b21b6; }
-      .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
+    `;
+  } else {
+    // ── Modo Lista: tabla ──
+    const filas = items.length ? items.map(p => `
+      <tr>
+        <td style="padding:8px 12px;font-weight:700;">${p.producto||''}</td>
+        <td style="padding:8px 12px;text-align:right;font-weight:800;color:#c2410c;">${sym} ${parseFloat(p.precio||0).toFixed(2)}</td>
+      </tr>`).join('') :
+      `<tr><td colspan="2" style="text-align:center;padding:20px;color:#9ca3af;">Sin productos</td></tr>`;
+
+    cuerpoHtml = `
+    <table>
+      <thead><tr>
+        <th>Producto</th>
+        <th style="text-align:right;">Precio</th>
+      </tr></thead>
+      <tbody>${filas}</tbody>
+    </table>`;
+    estiloExtra = `
       table { width:100%; border-collapse:collapse; margin-top:8px; }
       thead th { background:#2e7d32; color:white; padding:10px 12px; font-size:14px; font-weight:800; text-align:left; }
       tbody tr:nth-child(even) { background:#f1f8e9; }
       tbody tr:nth-child(odd) { background:white; }
       tbody tr td { border-bottom:1px solid #e5e7eb; font-size:14px; }
+    `;
+  }
+
+  const htmlContenido = `<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <title>${catalogo ? 'Catálogo' : 'Lista de Precios'} — ${empresa}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { font-family:'Nunito',sans-serif; background:white; color:#1f2937; }
+      .page { max-width:${catalogo ? '780' : '700'}px; margin:0 auto; padding:32px 28px; }
+      .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
+      .header-titles { flex:1; }
+      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .cat-box { background:#ede9fe; border:1.5px solid #7c3aed; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#5b21b6; }
+      .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
+      ${estiloExtra}
       @media print {
         @page { margin:15mm; }
         body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -8156,24 +8339,18 @@ function imprimirListaPrecios(modo) {
       ${logoHtml}
       <div class="header-titles">
         <div class="empresa">${empresa}</div>
-        <div class="titulo">Lista de Precios</div>
+        <div class="titulo">${catalogo ? 'Catálogo' : 'Lista de Precios'}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
         <span class="cat-box">🏷️ ${catLabel}</span>
         <span class="fecha-box">${fecha}</span>
       </div>
     </div>
-    <table>
-      <thead><tr>
-        <th>Producto</th>
-        <th style="text-align:right;">Precio</th>
-      </tr></thead>
-      <tbody>${filas}</tbody>
-    </table>
+    ${cuerpoHtml}
   </div>
   </body></html>`;
 
-  const win = window.open('', '_blank', 'width=800,height=600');
+  const win = window.open('', '_blank', 'width=900,height=700');
   win.document.write(htmlContenido);
   win.document.close();
   win.focus();
