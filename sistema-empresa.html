@@ -867,14 +867,14 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <!-- Vista móvil almacén -->
   <div id="almacenMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar">
-    <button class="btn btn-new" onclick="nuevoProducto()">➕ Nuevo</button>
-    <button class="btn btn-delete" onclick="eliminarProductoActual()">🗑️ Eliminar</button>
+    <button class="btn btn-new" id="btnNuevoAlmacen" onclick="nuevoProducto()">➕ Nuevo</button>
+    <button class="btn btn-delete" id="btnEliminarAlmacen" onclick="eliminarProductoActual()">🗑️ Eliminar</button>
     <button class="btn" id="btnSeleccionar" style="background:#f59e0b;color:white;" onclick="toggleSeleccion()">☑️ Seleccionar</button>
     <button class="btn" id="btnEditarAlmacen" onclick="editarAlmacen()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
     <button class="btn" id="btnGuardarAlmacen" onclick="guardarAlmacen()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
-    <button class="btn" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
-    <button class="btn" style="background:#8b5cf6;color:white;" onclick="irA('page-categorias')">🏷️ Categorías</button>
-    <button class="btn" style="background:#374151;color:white;" onclick="navegarConProt('page-configuraciones','Configuraciones','protConfig')">⚙️ Configuraciones</button>
+    <button class="btn" id="btnProvAlmacen" style="background:#7b9fd4;color:#1a1a2e;" onclick="irA('page-proveedores')">🤝 Proveedores</button>
+    <button class="btn" id="btnCatAlmacen" style="background:#8b5cf6;color:white;" onclick="irA('page-categorias')">🏷️ Categorías</button>
+    <button class="btn" id="btnCfgAlmacen" style="background:#374151;color:white;" onclick="navegarConProt('page-configuraciones','Configuraciones','protConfig')">⚙️ Configuraciones</button>
   </div>
 </div>
 
@@ -3466,14 +3466,16 @@ function renderAlmacen() {
       <td style="text-align:center;">
         <button onclick="abrirDetalleProducto(${orig})"
           style="width:30px;height:30px;border-radius:50%;border:none;
-                 background:radial-gradient(circle at 40% 35%,#26c6da,#006064);
-                 color:white;font-size:15px;cursor:pointer;display:inline-flex;
+                 background:${(almacenEditando||modoSeleccion)?'#9ca3af':'radial-gradient(circle at 40% 35%,#26c6da,#006064)'};
+                 color:white;font-size:15px;cursor:${(almacenEditando||modoSeleccion)?'not-allowed':'pointer'};display:inline-flex;
                  align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);
+                 opacity:${(almacenEditando||modoSeleccion)?'0.4':'1'};
                  transition:transform 0.13s;"
-          onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
+          ${(almacenEditando||modoSeleccion)?'disabled':''} 
+          onmouseover="if(!this.disabled)this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"
           title="Ver detalle">➜</button>
       </td>
-      <td style="text-align:center;"><input type="checkbox" class="row-check" data-idx="${orig}" style="width:16px;height:16px;cursor:pointer;accent-color:#ef4444;display:${modoSeleccion?'inline-block':'none'}"></td>
+      <td style="text-align:center;"><input type="checkbox" class="row-check" data-idx="${orig}" onchange="setAlmacenBtns()" style="width:16px;height:16px;cursor:pointer;accent-color:#ef4444;display:${modoSeleccion?'inline-block':'none'}"></td>
       <td style="text-align:center;">
         ${p.imagen ? `<img src="${p.imagen}" class="thumb-img" data-url="${p.imagen.replace(/"/g,'&quot;')}" style="width:40px;height:40px;object-fit:cover;border-radius:6px;cursor:zoom-in;border:1px solid #e5e7eb;" title="Doble clic para ampliar">` : `<div style="width:40px;height:40px;background:#f3f4f6;border-radius:6px;border:1px dashed #d1d5db;display:inline-flex;align-items:center;justify-content:center;font-size:18px;">📷</div>`}
       </td>
@@ -3505,6 +3507,8 @@ function renderAlmacen() {
     <div class="stat-card"><div class="stat-label">Precio Total Venta</div><div class="stat-value">${getSym()} ${totalVenta.toFixed(2)}</div></div>
     <div class="stat-card"><div class="stat-label">Costo Total Compra</div><div class="stat-value">${getSym()} ${totalCompra.toFixed(2)}</div></div>
   `;
+  // Actualizar estado de botones tras cada render
+  setAlmacenBtns();
 
   // Vista móvil
   const mobile = document.getElementById('almacenMobile');
@@ -3519,7 +3523,23 @@ function renderAlmacen() {
         ? `<img src="${p.imagen}" onclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}');return false;" style="width:56px;height:56px;object-fit:cover;border-radius:10px;border:1px solid #e5e7eb;flex-shrink:0;">`
         : `<div style="width:56px;height:56px;background:#f3f4f6;border-radius:10px;border:1px dashed #d1d5db;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📷</div>`;
       if (dis) {
-        // Modo lectura
+        if (modoSeleccion) {
+          // Modo selección móvil: tarjeta con checkbox
+          return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;align-items:center;gap:12px;">
+            <input type="checkbox" class="row-check" data-idx="${orig}" onchange="setAlmacenBtns()"
+              style="width:22px;height:22px;accent-color:#ef4444;cursor:pointer;flex-shrink:0;">
+            ${imgHtml}
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+                <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
+                <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
+                <span style="font-weight:800;font-size:14px;color:#059669;">${getSym()} ${precio.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>`;
+        }
+        // Modo lectura normal
         return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;gap:10px;">
             <button onclick="abrirDetalleProducto(${orig})"
@@ -3573,16 +3593,79 @@ function renderAlmacen() {
     }).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en almacén</div>`;
   }
 }
-function selAlmacen(i) { almacenIdx = i; }
+function selAlmacen(i) { almacenIdx = i; setAlmacenBtns(); }
 function updateAlmacen(i, field, val) { db.inventario[i][field] = val; }
+// ── helper centralizado de botones Almacén ──
+function setAlmacenBtns() {
+  const btnN   = document.getElementById('btnNuevoAlmacen');
+  const btnDel = document.getElementById('btnEliminarAlmacen');
+  const btnSel = document.getElementById('btnSeleccionar');
+  const btnE   = document.getElementById('btnEditarAlmacen');
+  const btnG   = document.getElementById('btnGuardarAlmacen');
+  const btnProv = document.getElementById('btnProvAlmacen');
+  const btnCat  = document.getElementById('btnCatAlmacen');
+  const btnCfg  = document.getElementById('btnCfgAlmacen');
+
+  const enEdicion   = almacenEditando;
+  const enSeleccion = modoSeleccion;
+  const bloqueado   = enEdicion || enSeleccion;
+
+  // — EDITAR / CANCELAR —
+  if (btnE) {
+    btnE.textContent = enEdicion ? '✖️ Cancelar' : '✏️ Editar';
+    btnE.style.background = enEdicion ? '#dc2626' : '#1d4ed8';
+    btnE.disabled = enSeleccion;
+    btnE.style.opacity = enSeleccion ? '0.4' : '1';
+    btnE.style.cursor  = enSeleccion ? 'not-allowed' : 'pointer';
+  }
+
+  // — GUARDAR —
+  if (btnG) {
+    btnG.disabled = !enEdicion;
+    btnG.style.background = enEdicion ? 'var(--green)' : '#9ca3af';
+    btnG.style.cursor     = enEdicion ? 'pointer'      : 'not-allowed';
+    btnG.style.opacity    = enEdicion ? '1'            : '0.6';
+  }
+
+  // — SELECCIONAR —
+  if (btnSel) {
+    btnSel.textContent = enSeleccion ? '✖️ Cancelar Selección' : '☑️ Seleccionar';
+    btnSel.style.background = enSeleccion ? '#dc2626' : '#f59e0b';
+    btnSel.disabled = enEdicion;
+    btnSel.style.opacity = enEdicion ? '0.4' : '1';
+    btnSel.style.cursor  = enEdicion ? 'not-allowed' : 'pointer';
+  }
+
+  // — NUEVO — desactivado en edición O en selección
+  if (btnN) {
+    btnN.disabled = bloqueado;
+    btnN.style.opacity = bloqueado ? '0.4' : '1';
+    btnN.style.cursor  = bloqueado ? 'not-allowed' : 'pointer';
+  }
+
+  // — ELIMINAR — siempre desactivado fuera de selección; en selección solo con al menos 1 check
+  if (btnDel) {
+    const hayChecks = enSeleccion && document.querySelectorAll('.row-check:checked').length > 0;
+    const delActivo = !enEdicion && hayChecks;
+    btnDel.disabled = !delActivo;
+    btnDel.style.opacity = !delActivo ? '0.4' : '1';
+    btnDel.style.cursor  = !delActivo ? 'not-allowed' : 'pointer';
+  }
+
+  // — PROVEEDORES / CATEGORÍAS / CONFIGURACIONES — bloqueados en edición o selección
+  [btnProv, btnCat, btnCfg].forEach(btn => {
+    if (!btn) return;
+    btn.disabled = bloqueado;
+    btn.style.opacity = bloqueado ? '0.4' : '1';
+    btn.style.cursor  = bloqueado ? 'not-allowed' : 'pointer';
+  });
+}
+
 function nuevoProducto() {
   almacenEditando = true;
   db.inventario.push({codigo:'',producto:'',descripcion:'',precio:'',cantidad:'',ubicacion:'',precioCompra:'',ultimoProveedor:'',imagen:''});
   almacenIdx = db.inventario.length - 1;
-  const btnE = document.getElementById('btnEditarAlmacen');
-  const btnG = document.getElementById('btnGuardarAlmacen');
-  if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
-  if (btnG) { btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1'; }
+  setAlmacenBtns();
   renderAlmacen();
   toast('➕ Nueva fila agregada');
 }
@@ -3590,45 +3673,30 @@ function eliminarProducto(i) {
   db.inventario.splice(i,1); almacenIdx=-1; saveAndSync('inventario'); renderAlmacen(); toast('🗑️ Producto eliminado');
 }
 function eliminarProductoActual() {
-  if (modoSeleccion) {
-    const checks = document.querySelectorAll('.row-check:checked');
-    if (!checks.length) { toast('⚠️ No hay filas seleccionadas'); return; }
-    const idxs = Array.from(checks).map(c => parseInt(c.dataset.idx)).sort((a,b)=>b-a);
-    idxs.forEach(i => db.inventario.splice(i,1));
-    almacenIdx = -1; save(); renderAlmacen(); toast(`🗑️ ${idxs.length} producto(s) eliminado(s)`);
-  } else {
-    if (almacenIdx >= 0) eliminarProducto(almacenIdx);
-    else toast('⚠️ Selecciona una fila primero');
-  }
+  if (!modoSeleccion) { toast('⚠️ Usa Seleccionar para marcar los productos a eliminar'); return; }
+  const checks = document.querySelectorAll('.row-check:checked');
+  if (!checks.length) { toast('⚠️ No hay filas seleccionadas'); return; }
+  const idxs = Array.from(checks).map(c => parseInt(c.dataset.idx)).sort((a,b)=>b-a);
+  idxs.forEach(i => db.inventario.splice(i,1));
+  almacenIdx = -1;
+  modoSeleccion = false;
+  save(); setAlmacenBtns(); renderAlmacen(); toast(`🗑️ ${idxs.length} producto(s) eliminado(s)`);
 }
 function toggleSeleccion() {
   modoSeleccion = !modoSeleccion;
-  const btn = document.getElementById('btnSeleccionar');
-  btn.style.background = modoSeleccion ? '#dc2626' : '#f59e0b';
-  btn.textContent = modoSeleccion ? '✖️ Cancelar Selección' : '☑️ Seleccionar';
+  setAlmacenBtns();
   renderAlmacen();
 }
 function editarAlmacen() {
   almacenEditando = !almacenEditando;
-  const btnE = document.getElementById('btnEditarAlmacen');
-  const btnG = document.getElementById('btnGuardarAlmacen');
-  if (almacenEditando) {
-    btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626';
-    btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1';
-  } else {
-    btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8';
-    btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6';
-  }
+  setAlmacenBtns();
   renderAlmacen();
   toast(almacenEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
 }
 async function guardarAlmacen() {
   save();
   almacenEditando = false;
-  const btnE = document.getElementById('btnEditarAlmacen');
-  const btnG = document.getElementById('btnGuardarAlmacen');
-  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
-  if (btnG) { btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6'; }
+  setAlmacenBtns();
   renderAlmacen();
   toast('💾 Guardando...');
   if (getToken()) {
