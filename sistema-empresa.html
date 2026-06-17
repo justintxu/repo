@@ -711,6 +711,21 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   display: flex; align-items: center; justify-content: center; gap: 16px;
   padding: 16px 32px; border-top: 2px solid var(--toolbar-border); margin-top: 12px; flex-wrap: wrap;
 }
+
+/* Almacén desktop — toolbar inferior fija, igual que en móvil */
+.toolbar-almacen {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-header);
+  border-top: 2px solid var(--toolbar-border);
+  backdrop-filter: blur(12px);
+  margin: 0;
+  padding: 14px 32px;
+}
+#page-almacen { padding-bottom: 86px; }
 .btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 9px 20px; border-radius: 10px; border: none;
