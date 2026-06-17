@@ -964,7 +964,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 
   <!-- Toolbar -->
   <div class="toolbar">
-    <button class="btn btn-new" onclick="agregarCategoria()">➕ Agregar</button>
+    <button class="btn btn-new" id="btnAgregarCat" onclick="agregarCategoria()">➕ Agregar</button>
     <button class="btn" id="btnEditarCat" onclick="editarCategorias()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
     <button class="btn" id="btnGuardarCat" onclick="guardarCategorias()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
     <button class="btn" id="btnSelectCat" onclick="toggleSelectCat()" style="background:#f59e0b;color:white;">☑️ Select</button>
@@ -1532,6 +1532,104 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <div class="menu-grid" style="max-width:600px;margin:40px auto;">
     <button class="menu-card" onclick="irA('page-ejec-compra')"><div class="card-icon">📦</div>Ejecución de Compras</button>
     <button class="menu-card" onclick="irA('page-reg-compras')"><div class="card-icon">📋</div>Registro de Compras</button>
+    <button class="menu-card" onclick="irA('page-lista-pedido')" style="grid-column:span 2;"><div class="card-icon">📝</div>Lista de Pedido</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ LISTA DE PEDIDO ══════ -->
+<div class="page" id="page-lista-pedido">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoListaPedidoWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="listaPedidoNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title" style="color:var(--page-title-color);">Lista de Pedido</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+        <span class="date-label">Fecha</span>
+        <span class="date-value" id="fechaListaPedido"></span>
+      </div>
+      <button class="back-btn" onclick="irA('page-compras')">‹</button>
+    </div>
+  </div>
+
+  <!-- Barra superior: Imprimir + Búsqueda -->
+  <div style="display:flex;align-items:center;gap:18px;padding:14px 32px;flex-wrap:wrap;border-bottom:1.5px solid var(--toolbar-border);">
+    <div style="position:relative;">
+      <button id="btnImprimirPedido"
+        onclick="toggleMenuImprimirPedido()"
+        style="display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1a6ed8,#0891b2);
+               color:white;border:none;border-radius:22px;padding:10px 22px;font-family:'Nunito',sans-serif;
+               font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(8,145,178,0.35);
+               transition:transform 0.13s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        🖨️ Imprimir ▾
+      </button>
+      <div id="menuImprimirPedido"
+        style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;
+               border:1.5px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);
+               z-index:400;min-width:190px;overflow:hidden;">
+        <div onclick="imprimirPedido('impresora')"
+          style="padding:11px 18px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;
+                 font-weight:700;color:#1f2937;display:flex;align-items:center;gap:8px;border-bottom:1px solid #f3f4f6;"
+          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+          🖨️ Enviar a impresora
+        </div>
+        <div onclick="imprimirPedido('pdf')"
+          style="padding:11px 18px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;
+                 font-weight:700;color:#1f2937;display:flex;align-items:center;gap:8px;"
+          onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+          📄 Guardar como PDF
+        </div>
+      </div>
+    </div>
+    <span class="search-label">Búsqueda</span>
+    <div class="search-input-wrap" style="flex:1;max-width:480px;">
+      <input class="search-input" id="searchListaPedido"
+        placeholder="Código – Producto - Descripción"
+        oninput="filtrarListaPedido()" autocomplete="off">
+      <span class="search-icon">🔍</span>
+      <div id="dropdownListaPedido"
+        style="display:none;position:absolute;top:100%;left:0;right:0;background:white;
+               border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);
+               z-index:200;max-height:280px;overflow-y:auto;margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- Tabla de pedido -->
+  <div class="table-wrap" style="margin-top:8px;">
+    <table class="data-table" style="table-layout:fixed;width:100%;">
+      <colgroup>
+        <col style="width:100px;">
+        <col>
+        <col style="width:140px;">
+        <col style="width:140px;">
+        <col style="width:36px;">
+      </colgroup>
+      <thead><tr>
+        <th style="text-align:center;">Cant.</th>
+        <th style="text-align:center;">Producto</th>
+        <th style="text-align:center;">Precio</th>
+        <th style="text-align:center;">Total</th>
+        <th></th>
+      </tr></thead>
+      <tbody id="tbodyListaPedido"></tbody>
+      <tfoot><tr>
+        <td colspan="3" style="text-align:right;padding:8px 12px;font-weight:800;color:var(--text-primary);">TOTAL PEDIDO:</td>
+        <td><div class="grand-total" id="totalListaPedido">PEN 0.00</div></td>
+        <td></td>
+      </tr></tfoot>
+    </table>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="btn btn-new" id="btnNuevoPedido" onclick="nuevaFilaPedido()">➕ Nuevo</button>
+    <button class="btn" id="btnEditPedido" onclick="pedidoToggleEdit()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
+    <button class="btn" id="btnSavePedido" onclick="guardarPedido()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Save</button>
+    <button class="btn" id="btnSelectPedido" onclick="pedidoToggleSelect()" style="background:#f59e0b;color:white;">☑️ SELECT</button>
+    <button class="btn" id="btnEliminarPedido" onclick="eliminarFilasPedido()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>🗑️ Eliminar</button>
   </div>
 </div>
 
@@ -1736,7 +1834,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
   <!-- Vista móvil proveedores -->
   <div id="proveedoresMobile" style="display:none;padding:0 12px;"></div>
   <div class="toolbar">
-    <button class="btn btn-new" onclick="nuevoProveedor()">➕ Nuevo</button>
+    <button class="btn btn-new" id="btnNuevoProv" onclick="nuevoProveedor()">➕ Nuevo</button>
     <button class="btn" id="btnEditarProv" onclick="editarProveedores()" style="background:#1d4ed8;color:white;">✏️ Editar</button>
     <button class="btn" id="btnGuardarProv" onclick="guardarProveedores()" style="background:#9ca3af;color:white;cursor:not-allowed;opacity:0.6;" disabled>💾 Guardar</button>
     <button class="btn" style="background:#059669;color:white;" onclick="exportarCSV('proveedores')">📥 Exportar CSV</button>
@@ -3126,7 +3224,8 @@ let db = {
   sertec: {},
   sertecpen: [],
   sertecfin: [],
-  categorias: []
+  categorias: [],
+  pedidos: []
 };
 
 let almacenIdx = -1;
@@ -3136,12 +3235,15 @@ let provIdx = -1;
 let provEditando = false;
 let rowsVenta = [];
 let rowsCompra = [];
+let pedidoEditando = false;
+let pedidoModoSelect = false;
 
 // ═══════════════════════════ STORAGE ═══════════════════════════
 function save() { localStorage.setItem('sistemaDB', JSON.stringify(db)); }
 function load() {
   const d = localStorage.getItem('sistemaDB');
   if (d) db = JSON.parse(d);
+  if (!db.pedidos) db.pedidos = [];
 }
 // Guarda en localStorage Y sube tabla específica a GitHub silenciosamente
 async function saveAndSync(tipo) {
@@ -3225,6 +3327,7 @@ function irA(pageId) {
   if (pageId === 'page-facturacion') renderFacturacion();
   if (pageId === 'page-ingresar-servicio') initIngresarServicio();
   if (pageId === 'page-sertecpen') initSertecpen();
+  if (pageId === 'page-lista-pedido') initListaPedido();
   if (pageId === 'page-sertecfin') initSertecfin();
   if (pageId === 'page-stock-minimo') initStockMinimo();
   if (pageId === 'page-categorias') initCategorias();
@@ -3252,7 +3355,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -3950,18 +4053,36 @@ function renderProveedores(){
   }
 }
 function updateProv(i,f,v){db.proveedores[i][f]=v;}
-function nuevoProveedor(){provEditando=true;db.proveedores.push({nombre:'',telefono:'',celular:'',email:'',direccion:'',site:''});provIdx=db.proveedores.length-1;renderProveedores();toast('➕ Nuevo proveedor');}
+function nuevoProveedor(){
+  provEditando=true;
+  db.proveedores.push({nombre:'',telefono:'',celular:'',email:'',direccion:'',site:''});
+  provIdx=db.proveedores.length-1;
+  // Desactivar Editar al entrar en modo edición vía Nuevo
+  const btnE = document.getElementById('btnEditarProv');
+  const btnG = document.getElementById('btnGuardarProv');
+  if (btnE) { btnE.disabled = true; btnE.style.opacity = '0.4'; btnE.style.cursor = 'not-allowed'; }
+  if (btnG) { btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1'; }
+  renderProveedores();
+  toast('➕ Nuevo proveedor');
+}
 function eliminarProv(i){db.proveedores.splice(i,1);saveAndSync('proveedores');renderProveedores();toast('🗑️ Proveedor eliminado');}
 function editarProveedores() {
   provEditando = !provEditando;
+  const btnN = document.getElementById('btnNuevoProv');
   const btnE = document.getElementById('btnEditarProv');
   const btnG = document.getElementById('btnGuardarProv');
   if (provEditando) {
+    // Entrando en modo edición: cambiar Editar a Cancelar, desactivar Nuevo
     btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626';
+    btnE.disabled = false; btnE.style.opacity = '1'; btnE.style.cursor = 'pointer';
     btnG.disabled = false; btnG.style.background = 'var(--green)'; btnG.style.cursor = 'pointer'; btnG.style.opacity = '1';
+    if (btnN) { btnN.disabled = true; btnN.style.opacity = '0.4'; btnN.style.cursor = 'not-allowed'; }
   } else {
+    // Cancelando: restaurar todo
     btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8';
+    btnE.disabled = false; btnE.style.opacity = '1'; btnE.style.cursor = 'pointer';
     btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6';
+    if (btnN) { btnN.disabled = false; btnN.style.opacity = '1'; btnN.style.cursor = 'pointer'; }
   }
   renderProveedores();
   toast(provEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
@@ -3969,10 +4090,12 @@ function editarProveedores() {
 function guardarProveedores() {
   saveAndSync('proveedores');
   provEditando = false;
+  const btnN = document.getElementById('btnNuevoProv');
   const btnE = document.getElementById('btnEditarProv');
   const btnG = document.getElementById('btnGuardarProv');
-  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; btnE.disabled = false; btnE.style.opacity = '1'; btnE.style.cursor = 'pointer'; }
   if (btnG) { btnG.disabled = true; btnG.style.background = '#9ca3af'; btnG.style.cursor = 'not-allowed'; btnG.style.opacity = '0.6'; }
+  if (btnN) { btnN.disabled = false; btnN.style.opacity = '1'; btnN.style.cursor = 'pointer'; }
   renderProveedores();
   toast('💾 Proveedores guardados y sincronizando...');
 }
@@ -4023,7 +4146,8 @@ const GH_FILES  = {
   sertec:      'data/sertec.csv',
   sertecpen:   'data/sertecpen.csv',
   sertecfin:   'data/sertecfin.csv',
-  categorias:  'data/categorias.csv'
+  categorias:  'data/categorias.csv',
+  pedidos:     'data/pedidos.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -4126,6 +4250,8 @@ async function cargarDesdeGitHub() {
         if (parsed.length) {
           db.categorias = parsed.map(r => ({ nombre: (r.nombre || r.id || '').toString().trim() })).filter(c => c.nombre !== '');
         }
+      } else if (tipo === 'pedidos') {
+        if (parsed.length) db.pedidos = parsed;
       } else {
         if (parsed.length) { db[tipo] = parsed; cargados++; }
       }
@@ -4425,7 +4551,8 @@ const CSV_SCHEMAS = {
   inventario:  ['codigo','cantidad','producto','descripcion','precio','ubicacion','precioCompra','ultimoProveedor','imagen','stockMinimo','categoria'],
   ventas:      ['fecha','hora','cliente','codigo','cantidad','producto','precio','total'],
   compras:     ['fecha','hora','proveedor','codigo','cantidad','producto','precio','total','tipo','numero','emision'],
-  proveedores: ['nombre','telefono','celular','email','direccion','site']
+  proveedores: ['nombre','telefono','celular','email','direccion','site'],
+  pedidos:     ['cantidad','producto','precioCompra','total']
 };
 
 function exportarCSV(tipo) {
@@ -6469,10 +6596,19 @@ function initCategorias() {
 }
 
 function setCatBtns() {
+  const btnA = document.getElementById('btnAgregarCat');
   const btnE = document.getElementById('btnEditarCat');
   const btnG = document.getElementById('btnGuardarCat');
   const btnD = document.getElementById('btnEliminarCat');
   const btnS = document.getElementById('btnSelectCat');
+
+  // Agregar: desactivado si se está editando O en modo select
+  const agregarBloqueado = catEditando || catModoSelect;
+  if (btnA) {
+    btnA.disabled = agregarBloqueado;
+    btnA.style.opacity = agregarBloqueado ? '0.4' : '1';
+    btnA.style.cursor = agregarBloqueado ? 'not-allowed' : 'pointer';
+  }
 
   if (catEditando) {
     btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626';
@@ -7258,6 +7394,330 @@ async function subirSertecpenAGitHub() {
       }
     }
     throw e;
+  }
+}
+
+// ═══════════════════════════ LISTA DE PEDIDO ══════════════════
+
+function initListaPedido() {
+  document.getElementById('fechaListaPedido').textContent = fechaHoy();
+  document.getElementById('listaPedidoNombreEmpresa').textContent = db.empresa?.nombre || 'Nombre de la Empresa';
+  // Asegurar que exista al menos una fila vacía
+  if (!db.pedidos.length) db.pedidos = [{ cantidad: '', producto: '', precioCompra: '', total: '' }];
+  pedidoEditando = false;
+  pedidoModoSelect = false;
+  document.getElementById('searchListaPedido').value = '';
+  document.getElementById('dropdownListaPedido').style.display = 'none';
+  renderListaPedido();
+  // Resetear botones
+  const btnE = document.getElementById('btnEditPedido');
+  const btnS = document.getElementById('btnSavePedido');
+  const btnSel = document.getElementById('btnSelectPedido');
+  const btnDel = document.getElementById('btnEliminarPedido');
+  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnS) { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#f59e0b'; }
+  if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+}
+
+function renderListaPedido() {
+  const sym = getSym();
+  const tbody = document.getElementById('tbodyListaPedido');
+  if (!tbody) return;
+  const dis = !pedidoEditando;
+  tbody.innerHTML = db.pedidos.map((r, i) => {
+    const chk = pedidoModoSelect ? `<input type="checkbox" ${r._sel ? 'checked' : ''} onchange="db.pedidos[${i}]._sel=this.checked;" style="width:16px;height:16px;accent-color:#f59e0b;cursor:pointer;">` : '';
+    const delBtn = pedidoModoSelect ? '' : `<button class="delete-btn" onclick="eliminarFilaPedidoIdx(${i})">✕</button>`;
+    return `<tr style="border-bottom:1px solid var(--table-border);">
+      <td style="text-align:center;">${pedidoModoSelect ? `<div style="display:flex;align-items:center;justify-content:center;">${chk}</div>` : `<input class="cell-input" style="width:100%;text-align:center;" value="${r.cantidad||''}" ${dis?'readonly':''} type="number" min="0" oninput="onCantPedido(${i},this.value)">`}</td>
+      <td><input class="cell-input" style="width:100%;" value="${(r.producto||'').replace(/"/g,'&quot;')}" ${dis?'readonly':''} onchange="db.pedidos[${i}].producto=this.value;calcFilaPedido(${i});renderListaPedido();"></td>
+      <td><input class="cell-input" style="width:100%;text-align:right;background:var(--cell-blue);" value="${r.precioCompra||''}" ${dis?'readonly':''} oninput="onPrecioPedido(${i},this.value)" placeholder="${sym} 0.00"></td>
+      <td><div class="total-cell" style="text-align:right;">${sym} ${parseFloat(r.total||0).toFixed(2)}</div></td>
+      <td>${delBtn}</td>
+    </tr>`;
+  }).join('');
+  calcTotalPedido();
+}
+
+function onCantPedido(i, val) {
+  db.pedidos[i].cantidad = val;
+  calcFilaPedido(i);
+  calcTotalPedido();
+}
+function onPrecioPedido(i, val) {
+  db.pedidos[i].precioCompra = val;
+  calcFilaPedido(i);
+  calcTotalPedido();
+}
+function calcFilaPedido(i) {
+  const r = db.pedidos[i];
+  r.total = ((parseFloat(r.precioCompra)||0) * (parseFloat(r.cantidad)||0)).toFixed(2);
+}
+function calcTotalPedido() {
+  const total = db.pedidos.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
+  const el = document.getElementById('totalListaPedido');
+  if (el) el.textContent = `${getSym()} ${total.toFixed(2)}`;
+}
+
+function nuevaFilaPedido() {
+  db.pedidos.push({ cantidad: '', producto: '', precioCompra: '', total: '' });
+  pedidoEditando = true;
+  const btnE = document.getElementById('btnEditPedido');
+  const btnS = document.getElementById('btnSavePedido');
+  if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+  if (btnS) { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  renderListaPedido();
+}
+
+function eliminarFilaPedidoIdx(i) {
+  db.pedidos.splice(i, 1);
+  if (!db.pedidos.length) db.pedidos = [{ cantidad: '', producto: '', precioCompra: '', total: '' }];
+  renderListaPedido();
+  save();
+}
+
+function pedidoToggleEdit() {
+  pedidoEditando = !pedidoEditando;
+  const btnE = document.getElementById('btnEditPedido');
+  const btnS = document.getElementById('btnSavePedido');
+  if (pedidoEditando) {
+    if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+    if (btnS) { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  } else {
+    if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+    if (btnS) { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  }
+  renderListaPedido();
+  toast(pedidoEditando ? '✏️ Modo edición' : '👁️ Modo lectura');
+}
+
+async function guardarPedido() {
+  // Recalcular todos los totales antes de guardar
+  db.pedidos.forEach((_, i) => calcFilaPedido(i));
+  save();
+  pedidoEditando = false;
+  const btnE = document.getElementById('btnEditPedido');
+  const btnS = document.getElementById('btnSavePedido');
+  if (btnE) { btnE.textContent = '✏️ Editar'; btnE.style.background = '#1d4ed8'; }
+  if (btnS) { btnS.disabled = true; btnS.style.background = '#9ca3af'; btnS.style.cursor = 'not-allowed'; btnS.style.opacity = '0.6'; }
+  renderListaPedido();
+  toast('💾 Guardando...');
+  if (getToken()) {
+    try { await subirAGitHub('pedidos'); }
+    catch(e) { toast(`⚠️ Guardado localmente — Error GitHub: ${e.message}`); }
+  } else {
+    toast('💾 Guardado localmente (sin token GitHub)');
+  }
+}
+
+function pedidoToggleSelect() {
+  pedidoModoSelect = !pedidoModoSelect;
+  const btnNuevo = document.getElementById('btnNuevoPedido');
+  const btnE = document.getElementById('btnEditPedido');
+  const btnSel = document.getElementById('btnSelectPedido');
+  const btnDel = document.getElementById('btnEliminarPedido');
+  if (pedidoModoSelect) {
+    if (btnSel) { btnSel.textContent = '✖️ Cancelar SELECT'; btnSel.style.background = '#dc2626'; }
+    if (btnDel) { btnDel.disabled = false; btnDel.style.background = '#ef4444'; btnDel.style.cursor = 'pointer'; btnDel.style.opacity = '1'; }
+    // Desactivar Nuevo y Editar
+    if (btnNuevo) { btnNuevo.disabled = true; btnNuevo.style.background = '#9ca3af'; btnNuevo.style.cursor = 'not-allowed'; btnNuevo.style.opacity = '0.6'; }
+    if (btnE) { btnE.disabled = true; btnE.style.background = '#9ca3af'; btnE.style.cursor = 'not-allowed'; btnE.style.opacity = '0.6'; }
+    db.pedidos.forEach(r => r._sel = false);
+  } else {
+    if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#f59e0b'; }
+    if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+    // Reactivar Nuevo y Editar
+    if (btnNuevo) { btnNuevo.disabled = false; btnNuevo.style.background = ''; btnNuevo.style.cursor = 'pointer'; btnNuevo.style.opacity = '1'; }
+    if (btnE) { btnE.disabled = false; btnE.style.background = '#1d4ed8'; btnE.style.cursor = 'pointer'; btnE.style.opacity = '1'; }
+    db.pedidos.forEach(r => delete r._sel);
+  }
+  renderListaPedido();
+}
+
+async function eliminarFilasPedido() {
+  const selIdx = db.pedidos.map((r, i) => r._sel ? i : -1).filter(i => i >= 0).sort((a,b) => b-a);
+  if (!selIdx.length) { toast('⚠️ No hay filas seleccionadas'); return; }
+  selIdx.forEach(i => db.pedidos.splice(i, 1));
+  db.pedidos.forEach(r => delete r._sel);
+  if (!db.pedidos.length) db.pedidos = [{ cantidad: '', producto: '', precioCompra: '', total: '' }];
+  pedidoModoSelect = false;
+  const btnNuevo = document.getElementById('btnNuevoPedido');
+  const btnE2 = document.getElementById('btnEditPedido');
+  const btnSel = document.getElementById('btnSelectPedido');
+  const btnDel = document.getElementById('btnEliminarPedido');
+  if (btnSel) { btnSel.textContent = '☑️ SELECT'; btnSel.style.background = '#f59e0b'; }
+  if (btnDel) { btnDel.disabled = true; btnDel.style.background = '#9ca3af'; btnDel.style.cursor = 'not-allowed'; btnDel.style.opacity = '0.6'; }
+  if (btnNuevo) { btnNuevo.disabled = false; btnNuevo.style.background = ''; btnNuevo.style.cursor = 'pointer'; btnNuevo.style.opacity = '1'; }
+  if (btnE2) { btnE2.disabled = false; btnE2.style.background = '#1d4ed8'; btnE2.style.cursor = 'pointer'; btnE2.style.opacity = '1'; }
+  save();
+  renderListaPedido();
+  toast(`🗑️ ${selIdx.length} fila(s) eliminada(s)`);
+  if (getToken()) {
+    try { await subirAGitHub('pedidos'); }
+    catch(e) { toast(`⚠️ Error GitHub: ${e.message}`); }
+  }
+}
+
+// Búsqueda de inventario para autocompletar en Lista de Pedido
+function filtrarListaPedido() {
+  const q = (document.getElementById('searchListaPedido').value || '').toLowerCase().trim();
+  const dd = document.getElementById('dropdownListaPedido');
+  if (!q) { dd.style.display = 'none'; return; }
+  const found = db.inventario.filter(p =>
+    p.codigo?.toLowerCase().includes(q) ||
+    p.producto?.toLowerCase().includes(q) ||
+    p.descripcion?.toLowerCase().includes(q)
+  ).slice(0, 10);
+  if (!found.length) {
+    dd.innerHTML = '<div style="padding:10px 14px;color:#9ca3af;font-size:13px;">Sin resultados</div>';
+    dd.style.display = 'block'; return;
+  }
+  dd.innerHTML = found.map(p => `
+    <div onclick="seleccionarProductoPedido('${(p.producto||'').replace(/'/g,"\\'")}','${p.precioCompra||p.precio||''}')"
+      style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #f3f4f6;"
+      onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='white'">
+      <div style="font-weight:700;font-size:14px;color:#1f2937;">${p.producto||''} <span style="font-size:12px;color:#9ca3af;">#${p.codigo||''}</span></div>
+      <div style="font-size:12px;color:#6b7280;">P.Compra: ${getSym()} ${parseFloat(p.precioCompra||0).toFixed(2)} · Stock: ${p.cantidad||0}</div>
+    </div>`).join('');
+  dd.style.display = 'block';
+}
+
+function seleccionarProductoPedido(producto, precioCompra) {
+  // Encontrar la última fila vacía o crear una nueva
+  let idx = db.pedidos.length - 1;
+  // Buscar la última fila que tenga producto vacío
+  const emptyIdx = db.pedidos.findIndex(r => !r.producto);
+  if (emptyIdx >= 0) {
+    idx = emptyIdx;
+  } else {
+    db.pedidos.push({ cantidad: '', producto: '', precioCompra: '', total: '' });
+    idx = db.pedidos.length - 1;
+  }
+  db.pedidos[idx].producto = producto;
+  db.pedidos[idx].precioCompra = precioCompra;
+  calcFilaPedido(idx);
+  document.getElementById('searchListaPedido').value = '';
+  document.getElementById('dropdownListaPedido').style.display = 'none';
+  // Activar edición para que el usuario pueda poner la cantidad
+  pedidoEditando = true;
+  const btnE = document.getElementById('btnEditPedido');
+  const btnS = document.getElementById('btnSavePedido');
+  if (btnE) { btnE.textContent = '✖️ Cancelar'; btnE.style.background = '#dc2626'; }
+  if (btnS) { btnS.disabled = false; btnS.style.background = 'var(--green)'; btnS.style.cursor = 'pointer'; btnS.style.opacity = '1'; }
+  renderListaPedido();
+  toast(`✅ "${producto}" agregado — ingresa la cantidad`);
+}
+
+function toggleMenuImprimirPedido() {
+  const m = document.getElementById('menuImprimirPedido');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
+  // Cerrar al hacer clic afuera
+  if (m.style.display === 'block') {
+    setTimeout(() => {
+      document.addEventListener('click', function cerrar(e) {
+        if (!m.contains(e.target) && e.target.id !== 'btnImprimirPedido') {
+          m.style.display = 'none';
+        }
+        document.removeEventListener('click', cerrar);
+      });
+    }, 0);
+  }
+}
+
+function imprimirPedido(modo) {
+  document.getElementById('menuImprimirPedido').style.display = 'none';
+  const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
+  const logo = db.empresa?.logo || '';
+  const fecha = document.getElementById('fechaListaPedido')?.textContent || fechaHoy();
+  const sym = getSym();
+  const items = db.pedidos.filter(r => r.producto);
+  const total = items.reduce((s, r) => s + (parseFloat(r.total)||0), 0);
+
+  const logoHtml = logo
+    ? `<img src="${logo}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">`
+    : `<div style="width:80px;height:80px;background:#fed7aa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;">🏪</div>`;
+
+  const filas = items.length ? items.map(r => `
+    <tr>
+      <td style="padding:8px 12px;text-align:center;font-weight:700;">${r.cantidad||''}</td>
+      <td style="padding:8px 12px;font-weight:700;">${r.producto||''}</td>
+      <td style="padding:8px 12px;text-align:right;">${sym} ${parseFloat(r.precioCompra||0).toFixed(2)}</td>
+      <td style="padding:8px 12px;text-align:right;font-weight:800;color:#c2410c;">${sym} ${parseFloat(r.total||0).toFixed(2)}</td>
+    </tr>`).join('') :
+    `<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin productos</td></tr>`;
+
+  const htmlContenido = `<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8">
+    <title>Lista de Pedido — ${empresa}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { font-family:'Nunito',sans-serif; background:white; color:#1f2937; }
+      .page { max-width:700px; margin:0 auto; padding:32px 28px; }
+      .header { display:flex; align-items:center; gap:20px; margin-bottom:24px; }
+      .header-titles { flex:1; }
+      .empresa { font-size:28px; font-weight:800; background:linear-gradient(90deg,#2e7d32,#f9a825); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+      .titulo { font-size:22px; font-weight:800; color:#f9a825; }
+      .fecha-box { background:#fff3e8; border:1.5px solid #f97316; border-radius:8px; padding:6px 16px; font-size:14px; font-weight:700; color:#c2410c; }
+      table { width:100%; border-collapse:collapse; margin-top:8px; }
+      thead th { background:#2e7d32; color:white; padding:10px 12px; font-size:14px; font-weight:800; }
+      tbody tr:nth-child(even) { background:#f1f8e9; }
+      tbody tr:nth-child(odd) { background:white; }
+      tbody tr td { border-bottom:1px solid #e5e7eb; font-size:14px; }
+      tfoot td { padding:10px 12px; font-size:15px; background:#c8e6c9; }
+      .total-label { text-align:right; font-weight:800; color:#1b5e20; }
+      .total-val { text-align:right; font-weight:800; color:#c2410c; font-size:16px; }
+      @media print {
+        @page { margin:15mm; }
+        body { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      }
+    </style>
+  </head><body>
+  <div class="page">
+    <div class="header">
+      ${logoHtml}
+      <div class="header-titles">
+        <div class="empresa">${empresa}</div>
+        <div class="titulo">Lista de Pedido</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+        <span style="font-size:12px;font-weight:700;color:#6b7280;">Fecha</span>
+        <span class="fecha-box">${fecha}</span>
+      </div>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:80px;text-align:center;">Cant.</th>
+        <th>Producto</th>
+        <th style="width:130px;text-align:right;">Precio</th>
+        <th style="width:130px;text-align:right;">Total</th>
+      </tr></thead>
+      <tbody>${filas}</tbody>
+      <tfoot><tr>
+        <td colspan="3" class="total-label">TOTAL PEDIDO:</td>
+        <td class="total-val">${sym} ${total.toFixed(2)}</td>
+      </tr></tfoot>
+    </table>
+  </div>
+  </body></html>`;
+
+  if (modo === 'pdf') {
+    // Guardar como PDF usando print con destino PDF
+    const win = window.open('', '_blank', 'width=800,height=600');
+    win.document.write(htmlContenido);
+    win.document.close();
+    win.focus();
+    setTimeout(() => {
+      win.print();
+      // El diálogo de impresión con "Guardar como PDF" se abre automáticamente
+    }, 600);
+  } else {
+    // Imprimir directo
+    const win = window.open('', '_blank', 'width=800,height=600');
+    win.document.write(htmlContenido);
+    win.document.close();
+    win.focus();
+    setTimeout(() => { win.print(); }, 600);
   }
 }
 
