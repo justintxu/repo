@@ -1,4 +1,4 @@
 codigo,cantidad,producto,descripcion,precio,ubicacion,precioCompra,ultimoProveedor,imagen,stockMinimo,categoria
 ICLA4440,2,LA4440,Circuito Integrado,8,3RD5,4.00,JR,https://www.electronicscomp.com/image/cache/catalog/la4440-6w-audio-amplifier-ic-800x800.jpg,2,INTEGRADO
-ICTEA2025,25,TEA2025,Circuito Integrado,5.00,4K2DR,2.50,JR,https://i.imgur.com/UyoUvjX.jpeg,4,INTEGRADO
+ICTEA2025,20,TEA2025,Circuito Integrado,5.00,4K2DR,2.50,JR,https://i.imgur.com/UyoUvjX.jpeg,4,INTEGRADO
 ACATV6,1,Amplficador CATV de 6 vías,Amplificador de Señal de Cable,150.00,3D5T,75.00,Arroyo,https://i.imgur.com/xJ1J3k6.jpeg,1,Amplificador CATV
