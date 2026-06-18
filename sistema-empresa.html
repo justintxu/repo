@@ -4511,9 +4511,9 @@ function seleccionarProductoVenta(codigo) {
   renderEjecVenta();
 }
 function procesarVenta() {
-  const cliente=document.getElementById('clienteVenta').value||'Sin nombre';
-  const fecha=fechaHoy();
-  const hora=horaHoy();
+  const cliente=(document.getElementById('clienteVenta')?.value||'').trim()||'Sin nombre';
+  const fecha=fechaHoy()||'00/00/0000';
+  const hora=horaHoy()||'00:00 AM';
   const filas=rowsVenta.filter(r=>r.codigo&&r.codigo.trim()&&r.cantidad);
   if(!filas.length){toast('⚠️ Agrega al menos un producto');return;}
   filas.forEach(r=>{
@@ -4573,13 +4573,12 @@ function renderRegVentas() {
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(v => `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
-        <!-- Fila 1: fecha + hora + cliente (solo si hay datos) -->
-        ${(v.fecha||v.hora||v.cliente) ? `
+        <!-- Fila 1: fecha + hora + cliente (siempre visible) -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          ${v.fecha ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha}</span>` : ''}
-          ${v.hora ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(v.hora)}</span>` : ''}
-          ${v.cliente ? `<span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente}</span>` : ''}
-        </div>` : ''}
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha||'—'}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?formatHora(v.hora):'—'}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||'Sin nombre'}</span>
+        </div>
         <!-- Fila 2: producto con código -->
         <div>
           <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${v.producto||''}</div>
@@ -4756,12 +4755,12 @@ function seleccionarProductoCompra(codigo) {
   renderEjecCompra();
 }
 function procesarCompra(){
-  const proveedor=document.getElementById('proveedorCompra').value||'Sin nombre';
+  const proveedor=(document.getElementById('proveedorCompra')?.value||'').trim()||'Sin proveedor';
   const tipo=document.getElementById('tipoDocCompra').value||'Factura';
   const numero=document.getElementById('numeroDocCompra').value||'';
   const emision=document.getElementById('emisionDocCompra').value||'';
-  const fecha=fechaHoy();
-  const hora=horaHoy();
+  const fecha=fechaHoy()||'00/00/0000';
+  const hora=horaHoy()||'00:00 AM';
   const filas=rowsCompra.filter(r=>r.codigo&&r.codigo.trim()&&r.cantidad);
   if(!filas.length){toast('⚠️ Agrega al menos un producto');return;}
   filas.forEach(r=>{
@@ -4817,12 +4816,11 @@ function renderRegCompras(){
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(c => `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
-        ${(c.fecha||c.hora||c.proveedor) ? `
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          ${c.fecha ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha}</span>` : ''}
-          ${c.hora ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(c.hora)}</span>` : ''}
-          ${c.proveedor ? `<span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor}</span>` : ''}
-        </div>` : ''}
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha||'—'}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${c.hora?formatHora(c.hora):'—'}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor||'Sin proveedor'}</span>
+        </div>
         <div>
           <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${c.producto||''}</div>
           <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${c.codigo||''}</span>
