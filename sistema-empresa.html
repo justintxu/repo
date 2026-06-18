@@ -3154,15 +3154,17 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   <div class="table-wrap">
     <table class="reg-table inv-table" style="table-layout:fixed;width:100%;">
       <colgroup>
+        <col style="width:50px;">
         <col style="width:60px;">
         <col style="width:120px;">
-        <col style="width:432px;">
+        <col style="width:346px;">
         <col>
         <col style="width:100px;">
         <col style="width:90px;">
         <col style="width:110px;">
       </colgroup>
       <thead class="inv-thead"><tr>
+        <th></th>
         <th style="text-align:center;">Img</th>
         <th style="text-align:center;">Código</th>
         <th>Producto</th>
@@ -3870,10 +3872,12 @@ function renderInventario() {
   // Vista desktop (tabla)
   const tbody=document.getElementById('tbodyInventario');
   tbody.innerHTML=items.length?items.map(p=>{
+    const orig = db.inventario.indexOf(p);
     const imgHtml = p.imagen
       ? `<img src="${p.imagen}" class="thumb-img" data-url="${p.imagen.replace(/"/g,'&quot;')}" style="width:44px;height:44px;object-fit:cover;border-radius:8px;cursor:zoom-in;border:1px solid #e5e7eb;" title="Doble clic para ampliar">`
       : `<div style="width:44px;height:44px;background:#f3f4f6;border-radius:8px;border:1px dashed #d1d5db;display:inline-flex;align-items:center;justify-content:center;font-size:20px;">📷</div>`;
     return `<tr class="inv-row">
+      <td style="text-align:center;"><button onclick="invAbrirMenuCompartir(event,${orig})" title="Compartir" style="width:32px;height:32px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">📤</button></td>
       <td class="inv-col-img" style="text-align:center;">${imgHtml}</td>
       <td class="inv-col-cod" style="text-align:center;">${p.codigo||''}</td>
       <td class="inv-col-prod">${p.producto||''}</td>
@@ -3882,7 +3886,7 @@ function renderInventario() {
       <td class="inv-col-stock" style="text-align:center;">${p.cantidad||0}</td>
       <td class="inv-col-ubic" style="text-align:center;">${p.ubicacion||''}</td>
     </tr>`;
-  }).join(''):`<tr><td colspan="7" style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en inventario</td></tr>`;
+  }).join(''):`<tr><td colspan="8" style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en inventario</td></tr>`;
   tbody.querySelectorAll('.thumb-img').forEach(img => {
     img.addEventListener('dblclick', () => abrirImagen(img.dataset.url));
   });
@@ -3891,17 +3895,19 @@ function renderInventario() {
   const mobile = document.getElementById('inventarioMobile');
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(p => {
+      const orig = db.inventario.indexOf(p);
       const imgHtml = p.imagen
         ? `<img src="${p.imagen}" onclick="abrirImagen('${p.imagen.replace(/'/g,"\\'")}');return false;" style="width:52px;height:52px;object-fit:cover;border-radius:10px;border:1px solid #e5e7eb;cursor:zoom-in;flex-shrink:0;">`
         : `<div style="width:52px;height:52px;background:#f3f4f6;border-radius:10px;border:1px dashed #d1d5db;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📷</div>`;
       return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
-        <!-- Fila 1: imagen + nombre + código -->
+        <!-- Fila 1: imagen + nombre + código + compartir -->
         <div style="display:flex;align-items:center;gap:10px;">
           ${imgHtml}
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
             <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
           </div>
+          <button onclick="invAbrirMenuCompartir(event,${orig})" title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
         </div>
         ${p.descripcion ? `<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>` : ''}
         <!-- Fila 2: precio + stock + ubicación -->
@@ -3913,6 +3919,52 @@ function renderInventario() {
       </div>`;
     }).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin productos en inventario</div>`;
   }
+}
+
+function invAbrirMenuCompartir(event, idx) {
+  event.stopPropagation();
+  cerrarMenuTelefono();
+  const p = db.inventario[idx];
+  if (!p) return;
+
+  const lineas = [
+    p.producto || 'Producto',
+    p.descripcion || '',
+    `Precio: ${getSym()} ${parseFloat(p.precio||0).toFixed(2)}`,
+    p.imagen || ''
+  ].filter(Boolean);
+
+  const texto = encodeURIComponent(lineas.join('\n'));
+  const asunto = encodeURIComponent(`Producto: ${p.producto || ''}`);
+
+  const menu = document.createElement('div');
+  menu.id = 'menuTelefonoPopover';
+  menu.style.position = 'fixed';
+  menu.style.zIndex = '2000';
+  menu.style.background = 'var(--modal-bg)';
+  menu.style.border = '1px solid var(--header-border)';
+  menu.style.borderRadius = '12px';
+  menu.style.boxShadow = '0 12px 32px rgba(0,0,0,0.35)';
+  menu.style.padding = '8px';
+  menu.style.display = 'flex';
+  menu.style.flexDirection = 'column';
+  menu.style.gap = '4px';
+  menu.style.minWidth = '200px';
+  menu.innerHTML = `
+    <a href="https://wa.me/?text=${texto}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp</a>
+    <a href="https://t.me/share/url?url=&text=${texto}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram</a>
+    <a href="mailto:?subject=${asunto}&body=${texto}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📧 Email</a>
+  `;
+  document.body.appendChild(menu);
+
+  const rect = event.target.getBoundingClientRect();
+  const menuWidth = 200;
+  let left = rect.left;
+  if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
+  menu.style.left = `${left}px`;
+  menu.style.top = `${rect.bottom + 6}px`;
+
+  setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
 
 // ═══════════════════════════ LIGHTBOX IMAGEN ═══════════════════
@@ -3930,7 +3982,7 @@ function cerrarImagen() {
 document.addEventListener('keydown', e => { if(e.key==='Escape') cerrarImagen(); });
 
 // ═══════════════════════════ MENÚ TELÉFONO (Llamar / WhatsApp) ══
-function abrirMenuTelefono(event, telefono) {
+function abrirMenuTelefono(event, telefono, soloLlamar) {
   event.stopPropagation();
   cerrarMenuTelefono();
   const tel = (telefono || '').replace(/[^\d+]/g, '');
@@ -3949,7 +4001,9 @@ function abrirMenuTelefono(event, telefono) {
   menu.style.flexDirection = 'column';
   menu.style.gap = '4px';
   menu.style.minWidth = '180px';
-  menu.innerHTML = `
+  menu.innerHTML = soloLlamar
+    ? `<a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>`
+    : `
     <a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>
     <a href="https://wa.me/${tel}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp</a>
     <a href="https://t.me/${tel.startsWith('+')?tel:'+'+tel}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram</a>
@@ -4673,9 +4727,9 @@ function renderProveedores(){
       : `<input class="cell-input" value="${p.site||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'site',this.value)" placeholder="https://...">`;
     tbody.innerHTML+=`<tr data-idx="${orig}">
       <td><input class="cell-input" value="${p.nombre||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'nombre',this.value)"></td>
-      <td><input class="cell-input" value="${p.telefono||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'telefono',this.value)" style="max-width:110px;"></td>
-      <td><input class="cell-input" value="${p.celular||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'celular',this.value)" style="max-width:110px;"></td>
-      <td><input class="cell-input" value="${p.email||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'email',this.value)"></td>
+      <td><input class="cell-input" value="${p.telefono||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'telefono',this.value)" style="max-width:110px;${dis&&p.telefono?'cursor:pointer;':''}" ${dis&&p.telefono?`onclick="abrirMenuTelefono(event,'${p.telefono.replace(/'/g,"\\'")}',true)"`:''}></td>
+      <td><input class="cell-input" value="${p.celular||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'celular',this.value)" style="max-width:110px;${dis&&p.celular?'cursor:pointer;':''}" ${dis&&p.celular?`onclick="abrirMenuTelefono(event,'${p.celular.replace(/'/g,"\\'")}')"`:''}></td>
+      <td>${dis && p.email ? `<a href="mailto:${p.email}" style="color:#3b82f6;font-weight:700;text-decoration:underline;font-size:13px;">✉️ ${p.email}</a>` : `<input class="cell-input" value="${p.email||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'email',this.value)">`}</td>
       <td><input class="cell-input" value="${p.direccion||''}" ${dis?'readonly':''} onchange="updateProv(${orig},'direccion',this.value)"></td>
       <td style="min-width:160px;">${siteLink}</td>
       <td><button class="delete-btn" onclick="eliminarProv(${orig})">✕</button></td>
@@ -4692,10 +4746,10 @@ function renderProveedores(){
         return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
           <div style="font-weight:800;font-size:16px;color:var(--text-primary);">🤝 ${p.nombre||''}</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            ${p.telefono?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📞 ${p.telefono}</span>`:''}
-            ${p.celular?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📱 ${p.celular}</span>`:''}
+            ${p.telefono?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${p.telefono.replace(/'/g,"\\'")}',true)">📞 ${p.telefono}</span>`:''}
+            ${p.celular?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${p.celular.replace(/'/g,"\\'")}')">📱 ${p.celular}</span>`:''}
           </div>
-          ${p.email?`<div style="font-size:13px;color:#3b82f6;">✉️ ${p.email}</div>`:''}
+          ${p.email?`<a href="mailto:${p.email}" style="font-size:13px;color:#3b82f6;text-decoration:underline;">✉️ ${p.email}</a>`:''}
           ${p.direccion?`<div style="font-size:12px;color:var(--text-muted);">📍 ${p.direccion}</div>`:''}
           ${p.site?`<a href="${p.site.startsWith('http')?p.site:'https://'+p.site}" target="_blank" style="font-size:13px;color:#3b82f6;font-weight:700;text-decoration:underline;">🌐 ${p.site}</a>`:''}
           <div style="display:flex;justify-content:flex-end;">
@@ -8250,6 +8304,7 @@ function sdetAbrirMenuCompartir(event) {
   if (!urls.length) { toast('⚠️ Selecciona al menos una foto (marca la casilla sobre la miniatura)'); return; }
 
   const texto = encodeURIComponent(`Fotos de ${r.artefacto || 'servicio'} — ${r.cliente || ''}\n\n` + urls.join('\n'));
+  const asunto = encodeURIComponent(`Fotos del servicio: ${r.artefacto || ''}`);
 
   const menu = document.createElement('div');
   menu.id = 'menuTelefonoPopover';
@@ -8267,6 +8322,7 @@ function sdetAbrirMenuCompartir(event) {
   menu.innerHTML = `
     <a href="https://wa.me/?text=${texto}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp (${urls.length} foto${urls.length===1?'':'s'})</a>
     <a href="https://t.me/share/url?url=&text=${texto}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram (${urls.length} foto${urls.length===1?'':'s'})</a>
+    <a href="mailto:?subject=${asunto}&body=${texto}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📧 Email (${urls.length} foto${urls.length===1?'':'s'})</a>
   `;
   document.body.appendChild(menu);
 
