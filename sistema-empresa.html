@@ -1666,67 +1666,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <div id="cfgGhStatus" style="margin-top:12px;font-size:13px;font-weight:600;color:var(--text-muted);"></div>
     </div>
 
-    <!-- Exportar / Importar -->
-    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:20px;">
-      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">📁 Exportar / Importar CSV</h2>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Descarga o carga cada tabla en formato CSV compatible con Excel.</p>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-
-        <!-- Inventario -->
-        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <span style="font-size:18px;">📦</span>
-            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Inventario</span>
-          </div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('inventario')">📥 Exportar</button>
-            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('inventario')">📤 Importar</button>
-            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('inventario')">☁️ GitHub</button>
-          </div>
-        </div>
-
-        <!-- Ventas -->
-        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <span style="font-size:18px;">🛒</span>
-            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Ventas</span>
-          </div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('ventas')">📥 Exportar</button>
-            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('ventas')">📤 Importar</button>
-            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('ventas')">☁️ GitHub</button>
-          </div>
-        </div>
-
-        <!-- Compras -->
-        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <span style="font-size:18px;">📥</span>
-            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Compras</span>
-          </div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('compras')">📥 Exportar</button>
-            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('compras')">📤 Importar</button>
-            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('compras')">☁️ GitHub</button>
-          </div>
-        </div>
-
-        <!-- Proveedores -->
-        <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <span style="font-size:18px;">🤝</span>
-            <span style="font-weight:800;font-size:14px;color:var(--text-primary);">Proveedores</span>
-          </div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <button class="btn-csv" style="background:#059669;" onclick="exportarCSV('proveedores')">📥 Exportar</button>
-            <button class="btn-csv" style="background:#0891b2;" onclick="importarCSV('proveedores')">📤 Importar</button>
-            <button class="btn-csv" style="background:#1d4ed8;" onclick="subirAGitHub('proveedores')">☁️ GitHub</button>
-          </div>
-        </div>
-
-        <!-- Subir Todo -->
-        <button class="btn btn-save" style="font-size:15px;padding:12px 24px;" onclick="subirTodoGitHub()">☁️ Subir Todo a GitHub</button>
-      </div>
+    <!-- Base de Datos -->
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">🗄️ Base de Datos</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Accede a las 15 tablas del sistema para exportar, importar o sincronizar cada una con GitHub. Acceso protegido por contraseña.</p>
+      <button class="btn" style="background:#0f766e;color:white;" onclick="abrirModalClave('page-base-datos','Base de Datos')">🗄️ Base de Datos</button>
     </div>
 
     <!-- Cambiar Clave -->
@@ -1817,6 +1761,56 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ BASE DE DATOS ════════ -->
+<div class="page" id="page-base-datos">
+  <div class="header">
+    <div class="header-left">
+      <div id="logoBaseDatosWrap"></div>
+      <div class="header-titles">
+        <div class="company-name" id="baseDatosNombreEmpresa">Nombre de la Empresa</div>
+        <div class="page-title">🗄️ Base de Datos</div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="irA('page-configuraciones')">‹</button>
+  </div>
+
+  <div style="max-width:900px;margin:32px auto;padding:0 32px 60px;display:flex;flex-direction:column;gap:28px;">
+
+    <!-- Tarjeta: 15 tablas -->
+    <div style="background:var(--configuraciones-card-bg);border:1px solid var(--configuraciones-card-border);border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">📋 Tablas del Sistema</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Exporta, importa o sincroniza cada tabla individualmente con GitHub.</p>
+      <div id="listaTablasBD" style="display:flex;flex-direction:column;gap:8px;"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn btn-save" style="font-size:15px;padding:12px 24px;" onclick="subirTodasLasTablasBD()">☁️ Subir Todo a GitHub</button>
+        <button class="btn" style="background:#7c3aed;color:white;font-size:15px;padding:12px 24px;" onclick="descargarTodoZIP()">📦 Descargar Todo (ZIP)</button>
+      </div>
+    </div>
+
+    <!-- Tarjeta: Resetear base de datos -->
+    <div style="background:var(--configuraciones-card-bg);border:2px solid #ef4444;border-radius:14px;padding:28px;">
+      <h2 style="font-size:17px;font-weight:800;color:#ef4444;margin-bottom:6px;">⚠️ Zona de Riesgo</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Esta acción borra todos los registros de las 15 tablas, dejándolas completamente en blanco (solo conservan sus encabezados de columna). No se puede deshacer.</p>
+      <button class="btn" style="background:#ef4444;color:white;" onclick="abrirModalResetBD()">🗑️ Resetear Base de Datos</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal de confirmación: Resetear Base de Datos -->
+<div class="modal-overlay" id="modalResetBD">
+  <div class="modal" style="max-width:440px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:12px;">⚠️</div>
+    <h3 style="font-size:19px;font-weight:800;color:#ef4444;margin-bottom:14px;">¿Borrar toda la base de datos?</h3>
+    <p style="font-size:14px;color:var(--text-primary);margin-bottom:8px;line-height:1.5;">Esta acción eliminará <b>todos los registros</b> de las 15 tablas del sistema. Solo quedarán los encabezados de cada columna.</p>
+    <p style="font-size:14px;font-weight:800;color:#ef4444;margin-bottom:24px;">No olvides hacer un backup completo antes de continuar.</p>
+    <div class="modal-btns" style="justify-content:center;">
+      <button class="btn" style="background:#9ca3af;color:white;" onclick="cerrarModalResetBD()">Cancelar</button>
+      <button class="btn" style="background:#ef4444;color:white;" onclick="resetearBaseDeDatos()">Continuar</button>
+    </div>
   </div>
 </div>
 
@@ -4046,6 +4040,7 @@ function irA(pageId) {
     const err = document.getElementById('errorProtSeccion');
     if (err) err.style.display = 'none';
   }
+  if (pageId === 'page-base-datos') initBaseDatos();
 }
 
 // ═══════════════════════════ BRANDING ══════════════════════════
@@ -4055,7 +4050,7 @@ function actualizarBranding() {
   const logoHTML = logo
     ? `<img class="company-logo" src="${logo}" alt="logo">`
     : `<div class="company-logo-placeholder">🍊</div>`;
-  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido','NuevoProducto','ListaPrecios','Proforma'].forEach(n => {
+  ['Menu','Almacen','Ventas','Compras','Proveedores','Estadisticas','EjecVenta','EjecCompra','RegVentas','RegCompras','Inventario','Configuraciones','MasVendido','MasComprado','ProveedorUsado','ClientesRecurrentes','DetalleComprasDia','DetalleVentasDia','UtilidadBruta','UtilidadNeta','Facturacion','Servicios','IngresarServicio','Sertecpen','Sertecfin','SertecDetalle','SertecfinDetalle','Categorias','DetalleProducto','StockMinimo','ListaPedido','NuevoProducto','ListaPrecios','Proforma','BaseDatos'].forEach(n => {
     const wrap = document.getElementById(`logo${n}Wrap`);
     if (wrap) wrap.innerHTML = logoHTML;
     const nameEl = document.getElementById(`${n.charAt(0).toLowerCase()+n.slice(1)}NombreEmpresa`);
@@ -4753,7 +4748,9 @@ const GH_FILES  = {
   sertecfin:   'data/sertecfin.csv',
   categorias:  'data/categorias.csv',
   pedidos:     'data/pedidos.csv',
-  quotation:   'data/quotation.csv'
+  quotation:   'data/quotation.csv',
+  psswd:       'data/psswd.csv',
+  psswdsm:     'data/psswdsm.csv'
 };
 
 function getGhUser()  { return localStorage.getItem('ghUser')  || GH_USER_DEFAULT; }
@@ -5175,8 +5172,27 @@ const CSV_SCHEMAS = {
   compras:     ['fecha','hora','proveedor','codigo','cantidad','producto','precio','total','tipo','numero','emision'],
   proveedores: ['nombre','telefono','celular','email','direccion','site'],
   pedidos:     ['cantidad','producto','precioCompra','total'],
-  quotation:   ['cantidad','producto','precio','total','cliente']
+  quotation:   ['cantidad','producto','precio','total','cliente'],
+  categorias:  ['nombre'],
+  sertecpen:   ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5'],
+  sertecfin:   ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5'],
+  emn:         ['nombre','logo'],
+  txs:         ['nombre','porcentaje'],
+  factonoff:   ['situacion','bt1s','bt1n','bt1l','bti','bt2s','bt2n','bt2l','bt2i','bt3s','bt3n','bt3l','bt3i','bt4s','bt4n','bt4l','bt4i','bt5s','bt5n','bt5l','bt5i','bt6s','bt6n','bt6l','bt6i'],
+  sertec:      ['situacion','nombre'],
+  psswd:       ['user','repo','token'],
+  psswdsm:     ['clave','protAlmacen','protCompras','protVentas','protEstadist','protServicios','protConfig']
 };
+
+// Tablas que se guardan como objeto único (no array) dentro de `db`
+const TABLAS_OBJETO = ['empresa','factonoff','sertec'];
+
+function getTablaComoArray(tipo) {
+  if (tipo === 'emn') return db.empresa ? [db.empresa] : [];
+  const data = db[tipo];
+  if (!data) return [];
+  return Array.isArray(data) ? data : [data];
+}
 
 function exportarCSV(tipo) {
   const schema = CSV_SCHEMAS[tipo];
@@ -5216,6 +5232,241 @@ function importarCSV(tipo) {
     reader.readAsText(file, 'UTF-8');
   };
   csvFileInput.click();
+}
+
+// ═══════════════════════ BASE DE DATOS (15 tablas) ══════════════
+function exportarTabla(tipo) {
+  const schema = CSV_SCHEMAS[tipo];
+  const data = getTablaComoArray(tipo);
+  if (!schema) { toast('⚠️ Esquema no definido para esta tabla'); return; }
+  const content = schema.join(',') + '\n' + data.map(item => schema.map(k => csvCell(item[k])).join(',')).join('\n');
+  const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = `${tipo}.csv`;
+  a.click(); URL.revokeObjectURL(a.href);
+  toast(`📥 ${tipo}.csv exportado`);
+}
+
+function importarTabla(tipo) {
+  csvFileInput.onchange = null; csvFileInput.value = '';
+  csvFileInput.onchange = e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const parsed = parseCSV(ev.target.result);
+        if (!parsed.length) { toast('⚠️ CSV vacío o formato incorrecto'); return; }
+        if (tipo === 'emn') {
+          db.empresa.nombre = parsed[0].nombre || db.empresa.nombre;
+          db.empresa.logo = parsed[0].logo || '';
+          actualizarBranding();
+        } else if (TABLAS_OBJETO.includes(tipo)) {
+          db[tipo] = parsed[0];
+          if (tipo === 'factonoff') aplicarFactonoff();
+          if (tipo === 'sertec') aplicarSertec();
+        } else {
+          db[tipo] = parsed;
+          if (tipo==='inventario') renderAlmacen();
+          if (tipo==='ventas') renderRegVentas();
+          if (tipo==='compras') renderRegCompras();
+          if (tipo==='proveedores') renderProveedores();
+        }
+        save();
+        if (getToken() && tipo !== 'psswd' && tipo !== 'psswdsm') subirTablaGitHub(tipo);
+        toast(`📤 ${tipo}.csv importado (${parsed.length} fila${parsed.length===1?'':'s'})`);
+      } catch(err) { toast('❌ Error al leer el CSV'); }
+    };
+    reader.readAsText(file, 'UTF-8');
+  };
+  csvFileInput.click();
+}
+
+async function subirTablaGitHub(tipo) {
+  if (!getToken()) { toast('⚠️ Configura tu token de GitHub en Configuraciones'); return; }
+  const path = GH_FILES[tipo];
+  if (!path) { toast('⚠️ Ruta no definida para esta tabla'); return; }
+  const schema = CSV_SCHEMAS[tipo];
+  const data = getTablaComoArray(tipo);
+  const content = schema.join(',') + '\n' + data.map(item => schema.map(k => csvCell(item[k])).join(',')).join('\n');
+  try {
+    const apiUrl = `https://api.github.com/repos/${getGhUser()}/${getGhRepo()}/contents/${path}`;
+    let sha;
+    const getRes = await fetch(apiUrl, { headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json' } });
+    if (getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+    const putBody = { message: `Update ${path}`, content: btoa(unescape(encodeURIComponent(content))), branch: GH_BRANCH };
+    if (sha) putBody.sha = sha;
+    const putRes = await fetch(apiUrl, { method: 'PUT', headers: { Authorization: `token ${getToken()}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(putBody) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message); }
+    toast(`✅ ${tipo}.csv subido a GitHub`);
+  } catch(e) {
+    toast(`❌ Error al subir ${tipo}.csv: ${e.message}`);
+  }
+}
+
+const TABLAS_BD = [
+  { tipo: 'categorias',  archivo: 'categorias.csv',  icono: '🏷️' },
+  { tipo: 'compras',     archivo: 'compras.csv',     icono: '📥' },
+  { tipo: 'emn',         archivo: 'emn.csv',         icono: '🏢' },
+  { tipo: 'factonoff',   archivo: 'factonoff.csv',   icono: '🧾' },
+  { tipo: 'inventario',  archivo: 'inventario.csv',  icono: '📦' },
+  { tipo: 'pedidos',     archivo: 'pedidos.csv',     icono: '🛍️' },
+  { tipo: 'proveedores', archivo: 'proveedores.csv', icono: '🤝' },
+  { tipo: 'psswd',       archivo: 'psswd.csv',       icono: '🔑' },
+  { tipo: 'psswdsm',     archivo: 'psswdsm.csv',     icono: '🔒' },
+  { tipo: 'quotation',   archivo: 'quotation.csv',   icono: '📝' },
+  { tipo: 'sertec',      archivo: 'sertec.csv',      icono: '🔧' },
+  { tipo: 'sertecfin',   archivo: 'sertecfin.csv',   icono: '✅' },
+  { tipo: 'sertecpen',   archivo: 'sertecpen.csv',   icono: '⏳' },
+  { tipo: 'txs',         archivo: 'txs.csv',         icono: '💰' },
+  { tipo: 'ventas',      archivo: 'ventas.csv',      icono: '🛒' }
+];
+
+function initBaseDatos() {
+  document.getElementById('baseDatosNombreEmpresa').textContent = db.empresa?.nombre || 'Nombre de la Empresa';
+  const cont = document.getElementById('listaTablasBD');
+  cont.innerHTML = TABLAS_BD.map(t => `
+    <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-size:18px;">${t.icono}</span>
+      <span style="font-weight:800;font-size:14px;color:var(--text-primary);min-width:140px;">${t.archivo}</span>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;">
+        <button class="btn-csv" style="background:#059669;" onclick="exportarTabla('${t.tipo}')">📥 Exportar</button>
+        <button class="btn-csv" style="background:#0891b2;" onclick="importarTabla('${t.tipo}')">📤 Importar</button>
+        <button class="btn-csv" style="background:#1d4ed8;" onclick="subirTablaGitHub('${t.tipo}')">☁️ GitHub</button>
+      </div>
+    </div>`).join('');
+}
+
+async function subirTodasLasTablasBD() {
+  if (!getToken()) { toast('⚠️ Configura tu token de GitHub en Configuraciones'); return; }
+  toast('☁️ Subiendo las 15 tablas a GitHub...');
+  for (const t of TABLAS_BD) {
+    await subirTablaGitHub(t.tipo);
+  }
+  toast('✅ Las 15 tablas fueron sincronizadas con GitHub');
+}
+
+// ── Generador ZIP nativo (método "store", sin compresión, sin dependencias externas) ──
+function crc32(bytes) {
+  let crc = ~0;
+  for (let i = 0; i < bytes.length; i++) {
+    crc ^= bytes[i];
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 1) ? (crc >>> 1) ^ 0xEDB88320 : crc >>> 1;
+    }
+  }
+  return (~crc) >>> 0;
+}
+
+function construirZip(archivos) {
+  // archivos: [{ nombre, contenido (string) }]
+  const localParts = [];
+  const centralParts = [];
+  let offset = 0;
+
+  archivos.forEach(({ nombre, contenido }) => {
+    const nameBytes = new TextEncoder().encode(nombre);
+    const dataBytes = new TextEncoder().encode(contenido);
+    const crc = crc32(dataBytes);
+    const size = dataBytes.length;
+
+    const localHeader = new DataView(new ArrayBuffer(30));
+    localHeader.setUint32(0, 0x04034b50, true);   // local file header signature
+    localHeader.setUint16(4, 20, true);            // version needed
+    localHeader.setUint16(6, 0, true);             // flags
+    localHeader.setUint16(8, 0, true);             // compression: 0 = store
+    localHeader.setUint16(10, 0, true);            // mod time
+    localHeader.setUint16(12, 0, true);            // mod date
+    localHeader.setUint32(14, crc, true);          // crc32
+    localHeader.setUint32(18, size, true);         // compressed size
+    localHeader.setUint32(22, size, true);         // uncompressed size
+    localHeader.setUint16(26, nameBytes.length, true); // filename length
+    localHeader.setUint16(28, 0, true);            // extra length
+
+    localParts.push(new Uint8Array(localHeader.buffer), nameBytes, dataBytes);
+
+    const centralHeader = new DataView(new ArrayBuffer(46));
+    centralHeader.setUint32(0, 0x02014b50, true);  // central dir signature
+    centralHeader.setUint16(4, 20, true);
+    centralHeader.setUint16(6, 20, true);
+    centralHeader.setUint16(8, 0, true);
+    centralHeader.setUint16(10, 0, true);
+    centralHeader.setUint16(12, 0, true);
+    centralHeader.setUint16(14, 0, true);
+    centralHeader.setUint32(16, crc, true);
+    centralHeader.setUint32(20, size, true);
+    centralHeader.setUint32(24, size, true);
+    centralHeader.setUint16(28, nameBytes.length, true);
+    centralHeader.setUint16(30, 0, true);
+    centralHeader.setUint16(32, 0, true);
+    centralHeader.setUint16(34, 0, true);
+    centralHeader.setUint16(36, 0, true);
+    centralHeader.setUint32(38, 0, true);
+    centralHeader.setUint32(42, offset, true);     // offset of local header
+
+    centralParts.push(new Uint8Array(centralHeader.buffer), nameBytes);
+    offset += 30 + nameBytes.length + size;
+  });
+
+  const centralSize = centralParts.reduce((s, p) => s + p.length, 0);
+  const localSize = localParts.reduce((s, p) => s + p.length, 0);
+
+  const endRecord = new DataView(new ArrayBuffer(22));
+  endRecord.setUint32(0, 0x06054b50, true);       // end of central dir signature
+  endRecord.setUint16(4, 0, true);
+  endRecord.setUint16(6, 0, true);
+  endRecord.setUint16(8, archivos.length, true);  // entries this disk
+  endRecord.setUint16(10, archivos.length, true); // entries total
+  endRecord.setUint32(12, centralSize, true);
+  endRecord.setUint32(16, localSize, true);       // offset of central dir
+  endRecord.setUint16(20, 0, true);
+
+  const allParts = [...localParts, ...centralParts, new Uint8Array(endRecord.buffer)];
+  return new Blob(allParts, { type: 'application/zip' });
+}
+
+function descargarTodoZIP() {
+  const archivos = TABLAS_BD.map(t => {
+    const schema = CSV_SCHEMAS[t.tipo];
+    const data = getTablaComoArray(t.tipo);
+    const contenido = schema.join(',') + '\n' + data.map(item => schema.map(k => csvCell(item[k])).join(',')).join('\n');
+    return { nombre: t.archivo, contenido };
+  });
+  const blob = construirZip(archivos);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `base-datos_${fechaHoy().replace(/\//g,'-')}.zip`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('📦 Las 15 tablas fueron descargadas en un ZIP');
+}
+
+function resetearBaseDeDatos() {
+  db.inventario = [];
+  db.ventas = [];
+  db.compras = [];
+  db.proveedores = [];
+  db.categorias = [];
+  db.pedidos = [];
+  db.quotation = [];
+  db.sertecpen = [];
+  db.sertecfin = [];
+  db.txs = [];
+  db.factonoff = {};
+  db.sertec = {};
+  save();
+  renderAlmacen();
+  renderRegVentas();
+  renderRegCompras();
+  renderProveedores();
+  toast('🗑️ Base de datos reseteada — todas las tablas quedaron en blanco');
+  cerrarModalResetBD();
+}
+
+function abrirModalResetBD() {
+  document.getElementById('modalResetBD').classList.add('active');
+}
+function cerrarModalResetBD() {
+  document.getElementById('modalResetBD').classList.remove('active');
 }
 
 // ═══════════════════════════ CALENDARIO VENTAS ═════════════════
