@@ -6,8 +6,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Electrónica ARVI">
 <meta name="theme-color" content="#2e7d32">
 <title>Sistema Empresarial</title>
+<link id="appleTouchIcon" rel="apple-touch-icon" sizes="180x180" href="">
+<link id="faviconIcon" rel="icon" type="image/png" href="">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -4190,6 +4193,19 @@ function actualizarBranding() {
     if (nameEl) nameEl.textContent = nombre;
   });
   document.getElementById('menuNombreEmpresa').textContent = nombre;
+
+  // Ícono de la app al agregarla a la pantalla de inicio (iOS / Android)
+  const icon = document.getElementById('appleTouchIcon');
+  if (icon && logo) icon.setAttribute('href', logo);
+  const appTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+  if (appTitle && nombre) appTitle.setAttribute('content', nombre);
+
+  // Favicon — ícono en la pestaña del navegador y al guardar en Favoritos/Marcadores
+  const favicon = document.getElementById('faviconIcon');
+  if (favicon && logo) favicon.setAttribute('href', logo);
+
+  // Título de la pestaña del navegador — usado también como nombre sugerido al guardar en Favoritos
+  if (nombre) document.title = nombre;
 }
 
 // ═══════════════════════════ MODAL EMPRESA ═════════════════════
