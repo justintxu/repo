@@ -4537,8 +4537,20 @@ function renderRegVentas() {
     if (!v.fecha) return -1;
     const p = v.fecha.split('/');
     if (p.length!==3) return -1;
-    const t = new Date(+p[2], +p[1]-1, +p[0]).getTime();
-    return isNaN(t) ? -1 : t;
+    const base = new Date(+p[2], +p[1]-1, +p[0]).getTime();
+    if (isNaN(base)) return -1;
+    let horaMs = 0;
+    if (v.hora) {
+      const m = v.hora.match(/(\d+):(\d+)\s*(AM|PM)/i);
+      if (m) {
+        let h = parseInt(m[1]);
+        const min = parseInt(m[2]);
+        if (m[3].toUpperCase()==='PM' && h!==12) h+=12;
+        if (m[3].toUpperCase()==='AM' && h===12) h=0;
+        horaMs = (h*60+min)*60000;
+      } else return -1; // hora existe pero no tiene formato válido
+    } else return -1; // sin hora = entrada incompleta → va al fondo
+    return base + horaMs;
   };
   const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q))
     .slice().sort((a,b) => toTs(b) - toTs(a));
@@ -4773,8 +4785,16 @@ function renderRegCompras(){
     if (!c.fecha) return -1;
     const p = c.fecha.split('/');
     if (p.length!==3) return -1;
-    const t = new Date(+p[2], +p[1]-1, +p[0]).getTime();
-    return isNaN(t) ? -1 : t;
+    const base = new Date(+p[2], +p[1]-1, +p[0]).getTime();
+    if (isNaN(base)) return -1;
+    if (!c.hora) return -1;
+    const m = c.hora.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if (!m) return -1;
+    let h = parseInt(m[1]);
+    const min = parseInt(m[2]);
+    if (m[3].toUpperCase()==='PM' && h!==12) h+=12;
+    if (m[3].toUpperCase()==='AM' && h===12) h=0;
+    return base + (h*60+min)*60000;
   };
   const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q))
     .slice().sort((a,b) => toTs(b) - toTs(a));
