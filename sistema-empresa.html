@@ -4583,18 +4583,19 @@ function renderRegVentas() {
   // Vista móvil
   const mobile = document.getElementById('regVentasMobile');
   if (mobile) {
-    mobile.innerHTML = items.length ? items.map(v => `
+    mobile.innerHTML = items.length ? items.map(v => {
+      try {
+        return `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
-        <!-- Fila 1: fecha + hora + cliente (siempre visible) -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha||'—'}</span>
-          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?formatHora(v.hora):'—'}</span>
-          <span class="cliente-text" style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||'Sin nombre'}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
+          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
         </div>
         <!-- Fila 2: producto con código -->
         <div>
-          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${v.producto||''}</div>
-          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${v.codigo||''}</span>
+          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
         </div>
         <!-- Fila 3: cantidad + precio + total -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -4602,12 +4603,17 @@ function renderRegVentas() {
           <span style="font-size:13px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
           <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
         </div>
-      </div>
-    `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
+      </div>`;
+      } catch(e) {
+        return `<div style="border:2px solid #ef4444;border-radius:8px;padding:10px;margin:4px 0;font-size:11px;color:#ef4444;">
+          ⚠️ Error: ${e.message}<br>
+          Datos: f=${JSON.stringify(v.fecha)} h=${JSON.stringify(v.hora)} c=${JSON.stringify(v.cliente)} p=${JSON.stringify(v.producto)}
+        </div>`;
+      }
+    }).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
+    mobile.scrollTop = 0;
   }
 }
-
-// ═══════════════════════════ EJECUCIÓN COMPRA ═════════════════
 function initEjecCompra() {
   rowsCompra=[{codigo:'',cantidad:'',producto:'',precio:'',total:''}];
   document.getElementById('proveedorCompra').value='';
@@ -4848,10 +4854,9 @@ function renderRegCompras(){
         </div>
       </div>
     `).join('') : `<div style="text-align:center;padding:24px;color:#9ca3af;">Sin registros</div>`;
+    if (mobile) mobile.scrollTop = 0;
   }
 }
-
-// ═══════════════════════════ PROVEEDORES ══════════════════════
 function renderProveedores(){
   const q=(document.getElementById('searchProveedores').value||'').toLowerCase();
   const items=db.proveedores.filter(p=>!q||p.nombre?.toLowerCase().includes(q)||p.telefono?.includes(q)||p.email?.toLowerCase().includes(q));
