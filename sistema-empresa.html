@@ -4522,7 +4522,13 @@ function procesarVenta() {
 // ═══════════════════════════ REGISTRO VENTAS ══════════════════
 function renderRegVentas() {
   const q=(document.getElementById('searchRegVentas').value||'').toLowerCase();
-  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q)).slice().reverse();
+  const toSortable = v => {
+    if (!v.fecha) return '';
+    const p = v.fecha.split('/');
+    return p.length===3 ? `${p[2]}-${p[1]}-${p[0]} ${v.hora||''}` : '';
+  };
+  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q))
+    .slice().sort((a,b) => toSortable(b).localeCompare(toSortable(a)));
 
   // Vista desktop
   const tbody=document.getElementById('tbodyRegVentas');
@@ -4750,7 +4756,13 @@ function procesarCompra(){
 // ═══════════════════════════ REGISTRO COMPRAS ═════════════════
 function renderRegCompras(){
   const q=(document.getElementById('searchRegCompras').value||'').toLowerCase();
-  const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q)).slice().reverse();
+  const toSortable = c => {
+    if (!c.fecha) return '';
+    const p = c.fecha.split('/');
+    return p.length===3 ? `${p[2]}-${p[1]}-${p[0]} ${c.hora||''}` : '';
+  };
+  const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q))
+    .slice().sort((a,b) => toSortable(b).localeCompare(toSortable(a)));
 
   // Desktop
   const tbody=document.getElementById('tbodyRegCompras');
