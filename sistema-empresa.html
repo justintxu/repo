@@ -726,6 +726,11 @@ html.tema-gris #page-base-datos div[style*="background:var(--input-bg)"] span { 
 html.tema-gris .spen-tel-badge { background: #f1f5f9 !important; color: #1f2937 !important; }
 html.tema-gris #menuTelefonoPopover { background: #f1f5f9 !important; border-color: #94a3b8 !important; }
 html.tema-gris #menuTelefonoPopover a { color: #1f2937 !important; }
+/* Badges de fecha/hora en Registro de Ventas y Compras más visibles en tema Gris Espacial */
+html.tema-gris #regVentasMobile .fecha-badge,
+html.tema-gris #regComprasMobile .fecha-badge { background: rgba(148,163,184,0.45) !important; color: #f1f5f9 !important; }
+html.tema-gris #regVentasMobile .cliente-text,
+html.tema-gris #regComprasMobile .cliente-text { color: #f8fafc !important; }
 
 input.cell-input {
   width: 100%; padding: 7px 10px; border-radius: 8px;
@@ -4575,9 +4580,9 @@ function renderRegVentas() {
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
         <!-- Fila 1: fecha + hora + cliente (siempre visible) -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha||'—'}</span>
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?formatHora(v.hora):'—'}</span>
-          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||'Sin nombre'}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha||'—'}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?formatHora(v.hora):'—'}</span>
+          <span class="cliente-text" style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||'Sin nombre'}</span>
         </div>
         <!-- Fila 2: producto con código -->
         <div>
@@ -4817,9 +4822,9 @@ function renderRegCompras(){
     mobile.innerHTML = items.length ? items.map(c => `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha||'—'}</span>
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${c.hora?formatHora(c.hora):'—'}</span>
-          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor||'Sin proveedor'}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha||'—'}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${c.hora?formatHora(c.hora):'—'}</span>
+          <span class="cliente-text" style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor||'Sin proveedor'}</span>
         </div>
         <div>
           <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${c.producto||''}</div>
