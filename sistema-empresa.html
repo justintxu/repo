@@ -521,8 +521,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .header-left { gap: 8px !important; }
   .company-logo,
   .company-logo-placeholder { width: 44px !important; height: 44px !important; font-size: 18px !important; }
-  .company-name { font-size: 15px !important; letter-spacing: 0 !important; }
-  .page-title { font-size: 14px !important; }
+  .company-name { font-size: 18px !important; letter-spacing: 0 !important; }
+  .page-title { font-size: 15px !important; }
   .back-btn { width: 40px !important; height: 40px !important; font-size: 20px !important; }
   /* Fecha/Hora en header — texto más pequeño */
   .date-value { font-size: 12px !important; padding: 4px 8px !important; }
@@ -3948,12 +3948,12 @@ function renderInventario() {
         <div style="display:flex;align-items:center;gap:10px;">
           ${imgHtml}
           <div style="flex:1;min-width:0;">
-            <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
+            <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
+            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
           </div>
           <button onclick="invAbrirMenuCompartir(event,${orig})" title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
         </div>
-        ${p.descripcion ? `<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>` : ''}
+        ${p.descripcion ? `<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>` : ''}
         <!-- Fila 2: precio + stock + ubicación -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</span>
