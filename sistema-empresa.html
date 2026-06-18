@@ -364,8 +364,9 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .sdet-f2 { grid-template-columns: 1fr 1fr !important; }
   #page-sertec-detalle .sdet-f3 { grid-template-columns: 1fr 1fr !important; }
   #page-sertec-detalle .sdet-f3 > div:first-child { grid-column: 1 / -1; }
-  /* Estado Inicial y Procedimiento: doble de alto en móvil */
-  #sdet_estado, #sdet_procedimiento { min-height: 160px !important; }
+  /* Estado Inicial y Procedimiento: alturas ajustadas en móvil */
+  #sdet_estado { min-height: 112px !important; }
+  #sdet_procedimiento { min-height: 208px !important; }
   /* Texto en negrita en todas las cajas de esta página */
   #page-sertec-detalle .sdet-input, #page-sertec-detalle .sdet-textarea { font-weight: 800 !important; }
   /* Tamaños de texto: títulos 13px, cajas 15px */
@@ -3609,10 +3610,12 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       </div>
 
       <!-- Botón Compartir fotos seleccionadas -->
-      <button onclick="sdetAbrirMenuCompartir(event)"
+      <button id="btnSdetCompartir" onclick="sdetAbrirMenuCompartir(event)"
+        disabled
         style="display:flex;align-items:center;justify-content:center;gap:6px;
-               background:#0ea5e9;color:white;border:none;border-radius:10px;
-               padding:9px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;width:100%;">
+               background:#9ca3af;color:white;border:none;border-radius:10px;
+               padding:9px 14px;cursor:not-allowed;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;width:100%;
+               opacity:0.5;transition:background 0.2s,opacity 0.2s;">
         📤 Compartir Fotos
       </button>
 
@@ -3626,12 +3629,13 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
           onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
           <span id="btnSdetEditIcon" style="font-size:20px;">✏️</span><span id="btnSdetEditLabel">EDIT</span>
         </button>
-        <button onclick="sdetGuardar()"
+        <button id="btnSdetSave" onclick="sdetGuardar()"
+          disabled
           style="display:flex;flex-direction:column;align-items:center;justify-content:center;
-                 background:#4caf50;color:white;border:none;border-radius:10px;
-                 padding:10px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;
-                 gap:4px;transition:transform 0.12s;"
-          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
+                 background:#9ca3af;color:white;border:none;border-radius:10px;
+                 padding:10px 14px;cursor:not-allowed;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;
+                 gap:4px;opacity:0.5;transition:background 0.2s,opacity 0.2s;"
+          onmouseover="if(!this.disabled)this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'">
           <span style="font-size:20px;">💾</span>Save
         </button>
       </div>
@@ -8434,6 +8438,8 @@ function initSertecDetalle() {
     btnFin.style.opacity = '1';
     btnFin.style.boxShadow = '0 3px 10px rgba(76,175,80,0.4)';
   }
+  // Save desactivado por defecto
+  sdetActualizarBtnSave(false);
 
   // Renderizar miniaturas de imágenes
   sdetRenderImgs();
@@ -8490,9 +8496,13 @@ function sdetRenderImgs() {
       if (checkbox) {
         checkbox.style.display = url ? 'block' : 'none';
         checkbox.checked = false;
+        checkbox.onchange = sdetActualizarBtnCompartir;
       }
     }
   });
+
+  // Reiniciar estado de Compartir tras re-render
+  sdetActualizarBtnCompartir();
 
   // En modo edición el grid de imágenes debe ser una columna
   const grid = document.querySelector('.sdet-imgs-grid');
@@ -8516,6 +8526,25 @@ function sdetRenderImgs() {
 function sdetUpdateFoto(n, url) {
   const r = db.sertecpen[sdetIdx];
   if (r) r[`foto${n}`] = url.trim();
+}
+
+function sdetActualizarBtnCompartir() {
+  const hay = [1,2,3,4,5].some(n => document.getElementById(`sdet_imgsel${n}`)?.checked);
+  const btn = document.getElementById('btnSdetCompartir');
+  if (!btn) return;
+  btn.disabled = !hay;
+  btn.style.background = hay ? '#0ea5e9' : '#9ca3af';
+  btn.style.cursor = hay ? 'pointer' : 'not-allowed';
+  btn.style.opacity = hay ? '1' : '0.5';
+}
+
+function sdetActualizarBtnSave(activo) {
+  const btn = document.getElementById('btnSdetSave');
+  if (!btn) return;
+  btn.disabled = !activo;
+  btn.style.background = activo ? '#4caf50' : '#9ca3af';
+  btn.style.cursor = activo ? 'pointer' : 'not-allowed';
+  btn.style.opacity = activo ? '1' : '0.5';
 }
 
 function sdetAbrirMenuCompartir(event) {
@@ -8609,6 +8638,8 @@ function sdetToggleEdit() {
       btnLabel.textContent = 'EDIT';
     }
   }
+  // Save: activo solo mientras se edita
+  sdetActualizarBtnSave(sdetEditando);
   toast(sdetEditando ? '✏️ Modo edición activado' : '👁️ Modo lectura');
 }
 
@@ -8654,6 +8685,8 @@ async function sdetGuardar() {
     document.getElementById('btnSdetEditIcon').textContent = '✏️';
     document.getElementById('btnSdetEditLabel').textContent = 'EDIT';
   }
+  // Desactivar Save tras guardar
+  sdetActualizarBtnSave(false);
 
   save();
   toast('💾 Guardando...');
