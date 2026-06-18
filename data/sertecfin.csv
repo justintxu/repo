@@ -1,6 +1,6 @@
-artefacto,cliente,telefono,tecnico,hontec,cotizacion,cotizaciont,reparvi,reptec,prefin,formpag,utinet,estado,procedimiento,foto1,foto2,foto3,foto4,foto5,fechent,hora1,fechfin,hora2
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
+artefacto,cliente,telefono,fechent,hora1,tecnico,estado,foto1,foto2,foto3,foto4,foto5
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
