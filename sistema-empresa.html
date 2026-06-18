@@ -347,7 +347,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .sfin-f2 { grid-template-columns: 1fr 1fr !important; }
   .sfin-f3 { grid-template-columns: 1fr 1fr !important; }
   /* Estado Inicial y Procedimiento: doble de alto en móvil */
-  #sfin_estado, #sfin_procedimiento { min-height: 160px !important; }
+  #sfin_estado { min-height: 112px !important; }
+  #sfin_procedimiento { min-height: 208px !important; }
   /* Texto en negrita en todas las cajas de esta página */
   #page-sertecfin-detalle .sdet-input, #page-sertecfin-detalle .sdet-textarea { font-weight: 800 !important; }
   /* Tamaños de texto: títulos 13px, cajas 15px */
@@ -4521,7 +4522,7 @@ function procesarVenta() {
 // ═══════════════════════════ REGISTRO VENTAS ══════════════════
 function renderRegVentas() {
   const q=(document.getElementById('searchRegVentas').value||'').toLowerCase();
-  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q));
+  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q)).slice().reverse();
 
   // Vista desktop
   const tbody=document.getElementById('tbodyRegVentas');
@@ -4748,7 +4749,7 @@ function procesarCompra(){
 // ═══════════════════════════ REGISTRO COMPRAS ═════════════════
 function renderRegCompras(){
   const q=(document.getElementById('searchRegCompras').value||'').toLowerCase();
-  const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q));
+  const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q)).slice().reverse();
 
   // Desktop
   const tbody=document.getElementById('tbodyRegCompras');
