@@ -3988,6 +3988,11 @@ function abrirMenuTelefono(event, telefono, soloLlamar) {
   const tel = (telefono || '').replace(/[^\d+]/g, '');
   if (!tel) { toast('⚠️ Sin número de teléfono'); return; }
 
+  // Para WhatsApp/Telegram se necesita el número en formato internacional completo.
+  // Si no trae "+" y tiene pinta de número local (9 dígitos, como en Perú), se le antepone el código de país (51).
+  let telIntl = tel.replace(/^\+/, '');
+  if (!tel.startsWith('+') && telIntl.length === 9) telIntl = '51' + telIntl;
+
   const menu = document.createElement('div');
   menu.id = 'menuTelefonoPopover';
   menu.style.position = 'fixed';
@@ -4005,8 +4010,8 @@ function abrirMenuTelefono(event, telefono, soloLlamar) {
     ? `<a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>`
     : `
     <a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>
-    <a href="https://wa.me/${tel}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp</a>
-    <a href="https://t.me/${tel.startsWith('+')?tel:'+'+tel}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram</a>
+    <a href="https://wa.me/${telIntl}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp</a>
+    <a href="https://t.me/+${telIntl}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram</a>
   `;
   document.body.appendChild(menu);
 
