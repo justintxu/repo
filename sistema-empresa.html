@@ -1794,6 +1794,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     <div style="background:var(--configuraciones-card-bg);border:2px solid #ef4444;border-radius:14px;padding:28px;">
       <h2 style="font-size:17px;font-weight:800;color:#ef4444;margin-bottom:6px;">⚠️ Zona de Riesgo</h2>
       <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">Esta acción borra todos los registros de las 15 tablas, dejándolas completamente en blanco (solo conservan sus encabezados de columna). No se puede deshacer.</p>
+
+      <h3 style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:6px;">Resetear tabla individual</h3>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">Borra los registros de una sola tabla, dejando solo sus encabezados.</p>
+      <div id="listaResetIndividual" style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;"></div>
+
       <button class="btn" style="background:#ef4444;color:white;" onclick="abrirModalResetBD()">🗑️ Resetear Base de Datos</button>
     </div>
 
@@ -1810,6 +1815,20 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     <div class="modal-btns" style="justify-content:center;">
       <button class="btn" style="background:#9ca3af;color:white;" onclick="cerrarModalResetBD()">Cancelar</button>
       <button class="btn" style="background:#ef4444;color:white;" onclick="resetearBaseDeDatos()">Continuar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmación: Resetear tabla individual -->
+<div class="modal-overlay" id="modalResetTabla">
+  <div class="modal" style="max-width:440px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:12px;">⚠️</div>
+    <h3 style="font-size:19px;font-weight:800;color:#ef4444;margin-bottom:14px;">¿Borrar <span id="modalResetTablaNombre">esta tabla</span>?</h3>
+    <p style="font-size:14px;color:var(--text-primary);margin-bottom:8px;line-height:1.5;">Esta acción eliminará <b>todos los registros</b> de esta tabla. Solo quedarán los encabezados de columna.</p>
+    <p style="font-size:14px;font-weight:800;color:#ef4444;margin-bottom:24px;">No olvides hacer un backup antes de continuar.</p>
+    <div class="modal-btns" style="justify-content:center;">
+      <button class="btn" style="background:#9ca3af;color:white;" onclick="cerrarModalResetTabla()">Cancelar</button>
+      <button class="btn" style="background:#ef4444;color:white;" onclick="confirmarResetTabla()">Continuar</button>
     </div>
   </div>
 </div>
@@ -3901,6 +3920,53 @@ function cerrarImagen() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') cerrarImagen(); });
+
+// ═══════════════════════════ MENÚ TELÉFONO (Llamar / WhatsApp) ══
+function abrirMenuTelefono(event, telefono) {
+  event.stopPropagation();
+  cerrarMenuTelefono();
+  const tel = (telefono || '').replace(/[^\d+]/g, '');
+  if (!tel) { toast('⚠️ Sin número de teléfono'); return; }
+
+  const menu = document.createElement('div');
+  menu.id = 'menuTelefonoPopover';
+  menu.style.position = 'fixed';
+  menu.style.zIndex = '2000';
+  menu.style.background = 'var(--modal-bg)';
+  menu.style.border = '1px solid var(--header-border)';
+  menu.style.borderRadius = '12px';
+  menu.style.boxShadow = '0 12px 32px rgba(0,0,0,0.35)';
+  menu.style.padding = '8px';
+  menu.style.display = 'flex';
+  menu.style.flexDirection = 'column';
+  menu.style.gap = '4px';
+  menu.style.minWidth = '180px';
+  menu.innerHTML = `
+    <a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>
+    <a href="https://wa.me/${tel}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp</a>
+    <a href="https://t.me/${tel.startsWith('+')?tel:'+'+tel}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram</a>
+  `;
+  document.body.appendChild(menu);
+
+  const rect = event.target.getBoundingClientRect();
+  const menuWidth = 180;
+  let left = rect.left;
+  if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
+  menu.style.left = `${left}px`;
+  menu.style.top = `${rect.bottom + 6}px`;
+
+  setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
+}
+function cerrarMenuTelefono() {
+  const m = document.getElementById('menuTelefonoPopover');
+  if (m) m.remove();
+  document.removeEventListener('click', cerrarMenuTelefonoOutside);
+}
+function cerrarMenuTelefonoOutside(e) {
+  const m = document.getElementById('menuTelefonoPopover');
+  if (m && !m.contains(e.target)) cerrarMenuTelefono();
+}
+
 let db = {
   empresa: { nombre: 'Nombre de la Empresa', logo: '' },
   inventario: [],
@@ -5334,6 +5400,57 @@ function initBaseDatos() {
         <button class="btn-csv" style="background:#1d4ed8;" onclick="subirTablaGitHub('${t.tipo}')">☁️ GitHub</button>
       </div>
     </div>`).join('');
+
+  const contReset = document.getElementById('listaResetIndividual');
+  contReset.innerHTML = TABLAS_BD.map(t => `
+    <div style="padding:10px 12px;background:var(--input-bg);border-radius:10px;border:1px solid var(--table-border);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-size:18px;">${t.icono}</span>
+      <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${t.archivo}</span>
+      <button class="btn-csv" style="background:#ef4444;margin-left:auto;" onclick="abrirModalResetTabla('${t.tipo}','${t.archivo}')">🗑️ Resetear</button>
+    </div>`).join('');
+}
+
+let tablaAResetear = null;
+
+function abrirModalResetTabla(tipo, archivo) {
+  tablaAResetear = tipo;
+  document.getElementById('modalResetTablaNombre').textContent = archivo;
+  document.getElementById('modalResetTabla').classList.add('active');
+}
+function cerrarModalResetTabla() {
+  document.getElementById('modalResetTabla').classList.remove('active');
+  tablaAResetear = null;
+}
+function confirmarResetTabla() {
+  if (tablaAResetear) resetearTablaIndividual(tablaAResetear);
+  cerrarModalResetTabla();
+}
+
+function resetearTablaIndividual(tipo) {
+  if (tipo === 'emn') {
+    db.empresa = { nombre: 'Nombre de la Empresa', logo: '' };
+    actualizarBranding();
+  } else if (tipo === 'factonoff') {
+    db.factonoff = {};
+  } else if (tipo === 'sertec') {
+    db.sertec = {};
+  } else if (tipo === 'psswd') {
+    localStorage.removeItem('ghUser');
+    localStorage.removeItem('ghRepo');
+    localStorage.removeItem('ghToken');
+  } else if (tipo === 'psswdsm') {
+    claveAcceso = '';
+    localStorage.setItem('claveAcceso', '');
+    localStorage.removeItem('proteccionMenu');
+  } else {
+    db[tipo] = [];
+  }
+  save();
+  if (tipo === 'inventario') renderAlmacen();
+  if (tipo === 'ventas') renderRegVentas();
+  if (tipo === 'compras') renderRegCompras();
+  if (tipo === 'proveedores') renderProveedores();
+  toast(`🗑️ ${tipo}.csv reseteado — quedó en blanco`);
 }
 
 async function subirTodasLasTablasBD() {
@@ -7903,7 +8020,7 @@ function renderSertecpen() {
       ${checkCell}
       <td><input class="cell-input blue-cell" value="${escHtml(r.artefacto||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
-      <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;cursor:pointer;" onclick="abrirMenuTelefono(event,'${(r.telefono||'').replace(/'/g,"\\'")}')"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.hora1||'')}" readonly style="width:100%;text-align:center;"></td>
     </tr>`;
@@ -7927,7 +8044,7 @@ function renderSertecpen() {
           <div style="font-weight:800;font-size:15px;color:var(--text-primary);">${escHtml(r.artefacto||'')}</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
             <span style="font-weight:700;font-size:13px;color:var(--text-primary);">${escHtml(r.cliente||'')}</span>
-            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📞 ${escHtml(r.telefono||'')}</span>
+            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${(r.telefono||'').replace(/'/g,"\\'")}')">📞 ${escHtml(r.telefono||'')}</span>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📅 ${escHtml(r.fechent||'')}</span>
