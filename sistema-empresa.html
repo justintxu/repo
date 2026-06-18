@@ -4560,8 +4560,12 @@ function renderRegVentas() {
     } else return -1; // sin hora = entrada incompleta → va al fondo
     return base + horaMs;
   };
-  const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q))
-    .slice().sort((a,b) => toTs(b) - toTs(a));
+  // Filtrar: solo mostrar entradas con al menos fecha o cliente válido
+  const items=db.ventas.filter(v=>{
+    const tieneInfo = (v.fecha&&v.fecha!=='') || (v.cliente&&v.cliente!=='');
+    if (!tieneInfo) return false;
+    return !q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q);
+  }).slice().sort((a,b) => toTs(b) - toTs(a));
 
   // Vista desktop
   const tbody=document.getElementById('tbodyRegVentas');
@@ -4803,8 +4807,12 @@ function renderRegCompras(){
     if (m[3].toUpperCase()==='AM' && h===12) h=0;
     return base + (h*60+min)*60000;
   };
-  const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q))
-    .slice().sort((a,b) => toTs(b) - toTs(a));
+  // Filtrar: solo mostrar entradas con al menos fecha o proveedor válido
+  const items=db.compras.filter(c=>{
+    const tieneInfo = (c.fecha&&c.fecha!=='') || (c.proveedor&&c.proveedor!=='');
+    if (!tieneInfo) return false;
+    return !q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q);
+  }).slice().sort((a,b) => toTs(b) - toTs(a));
 
   // Desktop
   const tbody=document.getElementById('tbodyRegCompras');
