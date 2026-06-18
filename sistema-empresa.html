@@ -3544,15 +3544,23 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <!-- Grid 3 + 2 -->
       <div class="sdet-imgs-grid" style="display:flex;flex-direction:column;gap:8px;align-items:center;">
         <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
-          <div id="sdet_img1_wrap" onclick="sdetClickImg(1)" class="sdet-img-cell"></div>
-          <div id="sdet_img2_wrap" onclick="sdetClickImg(2)" class="sdet-img-cell"></div>
-          <div id="sdet_img3_wrap" onclick="sdetClickImg(3)" class="sdet-img-cell"></div>
+          <div style="position:relative;"><div id="sdet_img1_wrap" onclick="sdetClickImg(1)" class="sdet-img-cell"></div><input type="checkbox" id="sdet_imgsel1" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
+          <div style="position:relative;"><div id="sdet_img2_wrap" onclick="sdetClickImg(2)" class="sdet-img-cell"></div><input type="checkbox" id="sdet_imgsel2" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
+          <div style="position:relative;"><div id="sdet_img3_wrap" onclick="sdetClickImg(3)" class="sdet-img-cell"></div><input type="checkbox" id="sdet_imgsel3" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
         </div>
         <div style="display:grid;grid-template-columns:repeat(2,52px);gap:8px;">
-          <div id="sdet_img4_wrap" onclick="sdetClickImg(4)" class="sdet-img-cell"></div>
-          <div id="sdet_img5_wrap" onclick="sdetClickImg(5)" class="sdet-img-cell"></div>
+          <div style="position:relative;"><div id="sdet_img4_wrap" onclick="sdetClickImg(4)" class="sdet-img-cell"></div><input type="checkbox" id="sdet_imgsel4" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
+          <div style="position:relative;"><div id="sdet_img5_wrap" onclick="sdetClickImg(5)" class="sdet-img-cell"></div><input type="checkbox" id="sdet_imgsel5" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
         </div>
       </div>
+
+      <!-- Botón Compartir fotos seleccionadas -->
+      <button onclick="sdetAbrirMenuCompartir(event)"
+        style="display:flex;align-items:center;justify-content:center;gap:6px;
+               background:#0ea5e9;color:white;border:none;border-radius:10px;
+               padding:9px 14px;cursor:pointer;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;width:100%;">
+        📤 Compartir Fotos
+      </button>
 
       <!-- Botones EDIT + SAVE -->
       <div style="display:flex;gap:8px;">
@@ -8166,6 +8174,7 @@ function sdetRenderImgs() {
   [1,2,3,4,5].forEach(n => {
     const url = r[`foto${n}`] || '';
     const wrap = document.getElementById(`sdet_img${n}_wrap`);
+    const checkbox = document.getElementById(`sdet_imgsel${n}`);
     if (sdetEditando) {
       // En modo edición: mostrar input de URL
       wrap.style.width = '100%';
@@ -8182,6 +8191,7 @@ function sdetRenderImgs() {
                  border:1px solid #a5d6a7;background:white;font-family:Nunito,sans-serif;outline:none;">
         ${url ? `<img src="${url}" style="width:100%;height:48px;object-fit:cover;border-radius:5px;margin-top:4px;">` : ''}
       `;
+      if (checkbox) checkbox.style.display = 'none';
     } else {
       // En modo lectura: miniatura normal
       wrap.style.width = '52px';
@@ -8194,6 +8204,10 @@ function sdetRenderImgs() {
       } else {
         wrap.innerHTML = `<span style="font-size:26px;filter:grayscale(1);opacity:0.4;" title="Sin imagen">🖼️</span>`;
         wrap.style.border = '2px dashed #a5d6a7';
+      }
+      if (checkbox) {
+        checkbox.style.display = url ? 'block' : 'none';
+        checkbox.checked = false;
       }
     }
   });
@@ -8220,6 +8234,50 @@ function sdetRenderImgs() {
 function sdetUpdateFoto(n, url) {
   const r = db.sertecpen[sdetIdx];
   if (r) r[`foto${n}`] = url.trim();
+}
+
+function sdetAbrirMenuCompartir(event) {
+  event.stopPropagation();
+  cerrarMenuTelefono();
+  const r = db.sertecpen[sdetIdx];
+  if (!r) return;
+
+  const urls = [1,2,3,4,5]
+    .filter(n => document.getElementById(`sdet_imgsel${n}`)?.checked)
+    .map(n => r[`foto${n}`])
+    .filter(Boolean);
+
+  if (!urls.length) { toast('⚠️ Selecciona al menos una foto (marca la casilla sobre la miniatura)'); return; }
+
+  const texto = encodeURIComponent(`Fotos de ${r.artefacto || 'servicio'} — ${r.cliente || ''}\n\n` + urls.join('\n'));
+
+  const menu = document.createElement('div');
+  menu.id = 'menuTelefonoPopover';
+  menu.style.position = 'fixed';
+  menu.style.zIndex = '2000';
+  menu.style.background = 'var(--modal-bg)';
+  menu.style.border = '1px solid var(--header-border)';
+  menu.style.borderRadius = '12px';
+  menu.style.boxShadow = '0 12px 32px rgba(0,0,0,0.35)';
+  menu.style.padding = '8px';
+  menu.style.display = 'flex';
+  menu.style.flexDirection = 'column';
+  menu.style.gap = '4px';
+  menu.style.minWidth = '200px';
+  menu.innerHTML = `
+    <a href="https://wa.me/?text=${texto}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp (${urls.length} foto${urls.length===1?'':'s'})</a>
+    <a href="https://t.me/share/url?url=&text=${texto}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram (${urls.length} foto${urls.length===1?'':'s'})</a>
+  `;
+  document.body.appendChild(menu);
+
+  const rect = event.target.getBoundingClientRect();
+  const menuWidth = 200;
+  let left = rect.left;
+  if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
+  menu.style.left = `${left}px`;
+  menu.style.top = `${rect.bottom + 6}px`;
+
+  setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
 
 function sdetToggleEdit() {
