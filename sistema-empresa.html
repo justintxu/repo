@@ -4542,12 +4542,13 @@ function renderRegVentas() {
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(v => `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
-        <!-- Fila 1: fecha + hora + cliente -->
+        <!-- Fila 1: fecha + hora + cliente (solo si hay datos) -->
+        ${(v.fecha||v.hora||v.cliente) ? `
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha||''}</span>
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(v.hora)}</span>
-          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente||''}</span>
-        </div>
+          ${v.fecha ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${v.fecha}</span>` : ''}
+          ${v.hora ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(v.hora)}</span>` : ''}
+          ${v.cliente ? `<span style="font-weight:800;font-size:14px;color:var(--text-primary);">${v.cliente}</span>` : ''}
+        </div>` : ''}
         <!-- Fila 2: producto con código -->
         <div>
           <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${v.producto||''}</div>
@@ -4769,11 +4770,12 @@ function renderRegCompras(){
   if (mobile) {
     mobile.innerHTML = items.length ? items.map(c => `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
+        ${(c.fecha||c.hora||c.proveedor) ? `
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha||''}</span>
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(c.hora)}</span>
-          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor||''}</span>
-        </div>
+          ${c.fecha ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${c.fecha}</span>` : ''}
+          ${c.hora ? `<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${formatHora(c.hora)}</span>` : ''}
+          ${c.proveedor ? `<span style="font-weight:800;font-size:14px;color:var(--text-primary);">${c.proveedor}</span>` : ''}
+        </div>` : ''}
         <div>
           <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${c.producto||''}</div>
           <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${c.codigo||''}</span>
@@ -5059,7 +5061,15 @@ async function cargarDesdeGitHub() {
       } else if (tipo === 'pedidos') {
         if (parsed.length) db.pedidos = parsed;
       } else {
-        if (parsed.length) { db[tipo] = parsed; cargados++; }
+        if (parsed.length) {
+          // Para ventas y compras: no sobreescribir si hay más entradas locales
+          // (previene condición de carrera con ventas/compras recién registradas)
+          if ((tipo === 'ventas' || tipo === 'compras') && db[tipo]?.length > parsed.length) {
+            console.log(`⚠️ ${tipo}: local(${db[tipo].length}) > GitHub(${parsed.length}) — conservando datos locales`);
+          } else {
+            db[tipo] = parsed; cargados++;
+          }
+        }
       }
     } catch(e) { console.warn(`No se pudo cargar ${tipo}:`, e.message); }
   }
