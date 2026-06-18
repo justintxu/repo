@@ -4123,6 +4123,17 @@ function load() {
   if (d) db = JSON.parse(d);
   if (!db.pedidos) db.pedidos = [];
   if (!db.quotation) db.quotation = [];
+  // Normalizar campos que pueden faltar en datos viejos
+  if (db.ventas) db.ventas.forEach(v => {
+    v.fecha   = v.fecha   ?? '';
+    v.hora    = v.hora    ?? '';
+    v.cliente = v.cliente ?? '';
+  });
+  if (db.compras) db.compras.forEach(c => {
+    c.fecha     = c.fecha     ?? '';
+    c.hora      = c.hora      ?? '';
+    c.proveedor = c.proveedor ?? '';
+  });
 }
 // Guarda en localStorage Y sube tabla específica a GitHub silenciosamente
 async function saveAndSync(tipo) {
@@ -4522,13 +4533,15 @@ function procesarVenta() {
 // ═══════════════════════════ REGISTRO VENTAS ══════════════════
 function renderRegVentas() {
   const q=(document.getElementById('searchRegVentas').value||'').toLowerCase();
-  const toSortable = v => {
-    if (!v.fecha) return '';
+  const toTs = v => {
+    if (!v.fecha) return -1;
     const p = v.fecha.split('/');
-    return p.length===3 ? `${p[2]}-${p[1]}-${p[0]} ${v.hora||''}` : '';
+    if (p.length!==3) return -1;
+    const t = new Date(+p[2], +p[1]-1, +p[0]).getTime();
+    return isNaN(t) ? -1 : t;
   };
   const items=db.ventas.filter(v=>!q||v.fecha?.includes(q)||v.cliente?.toLowerCase().includes(q)||v.hora?.includes(q))
-    .slice().sort((a,b) => toSortable(b).localeCompare(toSortable(a)));
+    .slice().sort((a,b) => toTs(b) - toTs(a));
 
   // Vista desktop
   const tbody=document.getElementById('tbodyRegVentas');
@@ -4756,13 +4769,15 @@ function procesarCompra(){
 // ═══════════════════════════ REGISTRO COMPRAS ═════════════════
 function renderRegCompras(){
   const q=(document.getElementById('searchRegCompras').value||'').toLowerCase();
-  const toSortable = c => {
-    if (!c.fecha) return '';
+  const toTs = c => {
+    if (!c.fecha) return -1;
     const p = c.fecha.split('/');
-    return p.length===3 ? `${p[2]}-${p[1]}-${p[0]} ${c.hora||''}` : '';
+    if (p.length!==3) return -1;
+    const t = new Date(+p[2], +p[1]-1, +p[0]).getTime();
+    return isNaN(t) ? -1 : t;
   };
   const items=db.compras.filter(c=>!q||c.fecha?.includes(q)||c.proveedor?.toLowerCase().includes(q)||c.hora?.includes(q))
-    .slice().sort((a,b) => toSortable(b).localeCompare(toSortable(a)));
+    .slice().sort((a,b) => toTs(b) - toTs(a));
 
   // Desktop
   const tbody=document.getElementById('tbodyRegCompras');
@@ -5074,8 +5089,22 @@ async function cargarDesdeGitHub() {
         if (parsed.length) db.pedidos = parsed;
       } else {
         if (parsed.length) {
-          // Para ventas y compras: no sobreescribir si hay más entradas locales
-          // (previene condición de carrera con ventas/compras recién registradas)
+          // Para ventas y compras: normalizar campos que pueden faltar en CSVs viejos
+          if (tipo === 'ventas') {
+            parsed.forEach(v => {
+              v.fecha   = v.fecha   ?? '';
+              v.hora    = v.hora    ?? '';
+              v.cliente = v.cliente ?? '';
+            });
+          }
+          if (tipo === 'compras') {
+            parsed.forEach(c => {
+              c.fecha     = c.fecha     ?? '';
+              c.hora      = c.hora      ?? '';
+              c.proveedor = c.proveedor ?? '';
+            });
+          }
+          // No sobreescribir si hay más entradas locales (previene condición de carrera)
           if ((tipo === 'ventas' || tipo === 'compras') && db[tipo]?.length > parsed.length) {
             console.log(`⚠️ ${tipo}: local(${db[tipo].length}) > GitHub(${parsed.length}) — conservando datos locales`);
           } else {
