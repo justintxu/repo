@@ -3953,7 +3953,7 @@ function renderInventario() {
           </div>
           <button onclick="invAbrirMenuCompartir(event,${orig})" title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
         </div>
-        ${p.descripcion ? `<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>` : ''}
+        ${p.descripcion ? `<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;min-height:52px;display:flex;align-items:center;">${p.descripcion}</div>` : ''}
         <!-- Fila 2: precio + stock + ubicación -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${parseFloat(p.precio||0).toFixed(2)}</span>
@@ -4355,11 +4355,11 @@ function renderAlmacen() {
                    align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,150,200,0.4);">➜</button>
           ${imgHtml}
           <div style="flex:1;min-width:0;">
-            <div style="font-weight:800;font-size:15px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
+            <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
+            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
           </div>
         </div>
-        ${p.descripcion?`<div style="font-size:12px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;">${p.descripcion}</div>`:''}
+        ${p.descripcion?`<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;min-height:52px;display:flex;align-items:center;">${p.descripcion}</div>`:''}
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
           <span style="font-weight:800;font-size:15px;color:#059669;">${getSym()} ${precio.toFixed(2)}</span>
           <span style="background:#dcfce7;color:#15803d;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">📦 ${p.cantidad||0}</span>
