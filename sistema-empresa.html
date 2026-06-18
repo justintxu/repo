@@ -346,6 +346,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .sfin-f1 > div:first-child { grid-column: 1 / -1; }
   .sfin-f2 { grid-template-columns: 1fr 1fr !important; }
   .sfin-f3 { grid-template-columns: 1fr 1fr !important; }
+  /* Estado Inicial y Procedimiento: doble de alto en móvil */
+  #sfin_estado, #sfin_procedimiento { min-height: 160px !important; }
+  /* Texto en negrita en todas las cajas de esta página */
+  #page-sertecfin-detalle .sdet-input, #page-sertecfin-detalle .sdet-textarea { font-weight: 800 !important; }
   .sdet-input, .sdet-textarea { font-size: 13px !important; }
 
   /* Detalle servicio pendiente */
@@ -356,6 +360,11 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   .sdet-f1 > div:first-child { grid-column: 1 / -1; }
   .sdet-f2 { grid-template-columns: 1fr 1fr !important; }
   .sdet-f3 { grid-template-columns: 1fr 1fr !important; }
+  .sdet-f3 > div:first-child { grid-column: 1 / -1; }
+  /* Estado Inicial y Procedimiento: doble de alto en móvil */
+  #sdet_estado, #sdet_procedimiento { min-height: 160px !important; }
+  /* Texto en negrita en todas las cajas de esta página */
+  #page-sertec-detalle .sdet-input, #page-sertec-detalle .sdet-textarea { font-weight: 800 !important; }
   /* Hora/Fecha actuales en móvil: izquierda en vez de derecha */
   #page-sertec-detalle .header + div { justify-content: flex-start !important; padding: 10px 14px 0 !important; gap: 12px !important; }
   /* Padding abajo para que la barra del navegador no tape los botones */
@@ -371,6 +380,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #page-mas-comprado { padding-bottom: 100px; }
   #page-proveedor-usado { padding-bottom: 100px; }
   #page-clientes-recurrentes { padding-bottom: 100px; }
+  /* Ranking + Gráfico en una sola columna en móvil */
+  .stats-grid-2col { grid-template-columns: 1fr !important; max-height: none !important; overflow-y: visible !important; padding: 16px 16px 0 !important; gap: 16px !important; }
 
   /* Almacén móvil — toolbar fijo al fondo, contenido scrollable */
   .toolbar-almacen {
@@ -2960,7 +2971,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   </div>
 
   <div style="display:flex;align-items:center;gap:16px;padding:20px 32px 0;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
+    <div style="display:flex;gap:4px;background:#f3f4f6;border-radius:10px;padding:4px;">
+      <button type="button" id="btnPeriodoMensualClientes" onclick="setPeriodoClientes('mensual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:#7c3aed;color:white;">📅 Mensual</button>
+      <button type="button" id="btnPeriodoAnualClientes" onclick="setPeriodoClientes('anual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:transparent;color:#6b7280;">🗓️ Anual</button>
+    </div>
+    <span id="labelPeriodoClientes" style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
     <select id="selectMesClientes" onchange="renderClientesRecurrentes()" style="padding:8px 16px;border-radius:10px;border:2px solid #e5e7eb;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:white;color:#1f2937;"></select>
     <div style="display:flex;gap:10px;margin-left:auto;">
       <button class="btn" id="btnOrdenVisitasClientes" style="background:#7c3aed;color:white;" onclick="setOrdenClientes('visitas')">🛍️ Por N° Visitas</button>
@@ -2969,7 +2984,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
+  <div class="stats-grid-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
     <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
       <div style="background:#7c3aed;color:white;padding:12px 20px;font-weight:800;font-size:15px;">📋 Ranking Top 20</div>
       <table style="width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:14px;">
@@ -3005,7 +3020,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   </div>
 
   <div style="display:flex;align-items:center;gap:16px;padding:20px 32px 0;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
+    <div style="display:flex;gap:4px;background:#f3f4f6;border-radius:10px;padding:4px;">
+      <button type="button" id="btnPeriodoMensualProv" onclick="setPeriodoProv('mensual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:#059669;color:white;">📅 Mensual</button>
+      <button type="button" id="btnPeriodoAnualProv" onclick="setPeriodoProv('anual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:transparent;color:#6b7280;">🗓️ Anual</button>
+    </div>
+    <span id="labelPeriodoProv" style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
     <select id="selectMesProv" onchange="renderProveedorUsado()" style="padding:8px 16px;border-radius:10px;border:2px solid #e5e7eb;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:white;color:#1f2937;"></select>
     <div style="display:flex;gap:10px;margin-left:auto;">
       <button class="btn" id="btnOrdenComprasProv" style="background:#059669;color:white;" onclick="setOrdenProv('compras')">🛒 Por N° Compras</button>
@@ -3014,7 +3033,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
+  <div class="stats-grid-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
     <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
       <div style="background:#059669;color:white;padding:12px 20px;font-weight:800;font-size:15px;">📋 Ranking Top 20</div>
       <table style="width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:14px;">
@@ -3051,7 +3070,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
 
   <!-- Selector de mes -->
   <div style="display:flex;align-items:center;gap:16px;padding:20px 32px 0;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
+    <div style="display:flex;gap:4px;background:#f3f4f6;border-radius:10px;padding:4px;">
+      <button type="button" id="btnPeriodoMensualVendido" onclick="setPeriodoVendido('mensual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:#f97316;color:white;">📅 Mensual</button>
+      <button type="button" id="btnPeriodoAnualVendido" onclick="setPeriodoVendido('anual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:transparent;color:#6b7280;">🗓️ Anual</button>
+    </div>
+    <span id="labelPeriodoVendido" style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
     <select id="selectMesVendido" onchange="renderMasVendido()" style="padding:8px 16px;border-radius:10px;border:2px solid #e5e7eb;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:white;color:#1f2937;">
     </select>
     <div style="display:flex;gap:10px;margin-left:auto;">
@@ -3062,7 +3085,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   </div>
 
   <!-- Ranking + Gráfico -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
+  <div class="stats-grid-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
 
     <!-- Tabla ranking -->
     <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
@@ -3103,7 +3126,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   </div>
 
   <div style="display:flex;align-items:center;gap:16px;padding:20px 32px 0;flex-wrap:wrap;">
-    <span style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
+    <div style="display:flex;gap:4px;background:#f3f4f6;border-radius:10px;padding:4px;">
+      <button type="button" id="btnPeriodoMensualComprado" onclick="setPeriodoComprado('mensual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:#3b82f6;color:white;">📅 Mensual</button>
+      <button type="button" id="btnPeriodoAnualComprado" onclick="setPeriodoComprado('anual')" style="padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;background:transparent;color:#6b7280;">🗓️ Anual</button>
+    </div>
+    <span id="labelPeriodoComprado" style="font-size:16px;font-weight:800;color:#1f2937;">Mes:</span>
     <select id="selectMesComprado" onchange="renderMasComprado()" style="padding:8px 16px;border-radius:10px;border:2px solid #e5e7eb;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;cursor:pointer;background:white;color:#1f2937;"></select>
     <div style="display:flex;gap:10px;margin-left:auto;">
       <button class="btn" id="btnOrdenUnidadesC" style="background:#3b82f6;color:white;" onclick="setOrdenComprado('cantidad')">📦 Por Unidades</button>
@@ -3112,7 +3139,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
+  <div class="stats-grid-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:20px 32px;max-height:calc(100vh - 200px);overflow-y:auto;">
     <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">
       <div style="background:#3b82f6;color:white;padding:12px 20px;font-weight:800;font-size:15px;">📋 Ranking Top 20</div>
       <table style="width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:14px;">
@@ -6697,21 +6724,57 @@ function animarContadorMonto(id, target) {
 
 // ═══════════════════════════ CLIENTES RECURRENTES ══════════════
 let ordenClientes = 'visitas';
+let periodoClientes = 'mensual';
+
+function actualizarSelectorClientes() {
+  const sel = document.getElementById('selectMesClientes');
+  if (periodoClientes === 'anual') {
+    const anios = {};
+    db.ventas.forEach(v => {
+      if (!v.fecha) return;
+      const p = v.fecha.split('/');
+      if (p.length < 3) return;
+      anios[p[2]] = p[2];
+    });
+    const sorted = Object.keys(anios).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${k}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  } else {
+    const meses = {};
+    db.ventas.forEach(v => {
+      if (!v.fecha) return;
+      const p = v.fecha.split('/');
+      if (p.length < 3) return;
+      const key = `${p[2]}-${p[1]}`;
+      meses[key] = `${p[1]}/${p[2]}`;
+    });
+    const sorted = Object.keys(meses).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  }
+}
+
+function setPeriodoClientes(periodo) {
+  periodoClientes = periodo;
+  document.getElementById('btnPeriodoMensualClientes').style.background = periodo==='mensual'?'#7c3aed':'transparent';
+  document.getElementById('btnPeriodoMensualClientes').style.color = periodo==='mensual'?'white':'#6b7280';
+  document.getElementById('btnPeriodoAnualClientes').style.background = periodo==='anual'?'#7c3aed':'transparent';
+  document.getElementById('btnPeriodoAnualClientes').style.color = periodo==='anual'?'white':'#6b7280';
+  document.getElementById('labelPeriodoClientes').textContent = periodo==='anual'?'Año:':'Mes:';
+  actualizarSelectorClientes();
+  renderClientesRecurrentes();
+}
 
 function initClientesRecurrentes() {
-  const meses = {};
-  db.ventas.forEach(v => {
-    if (!v.fecha) return;
-    const p = v.fecha.split('/');
-    if (p.length < 3) return;
-    const key = `${p[2]}-${p[1]}`;
-    meses[key] = `${p[1]}/${p[2]}`;
-  });
-  const sorted = Object.keys(meses).sort().reverse();
-  const sel = document.getElementById('selectMesClientes');
-  sel.innerHTML = sorted.length
-    ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
-    : '<option value="">Sin datos</option>';
+  periodoClientes = 'mensual';
+  document.getElementById('labelPeriodoClientes').textContent = 'Mes:';
+  document.getElementById('btnPeriodoMensualClientes').style.background = '#7c3aed';
+  document.getElementById('btnPeriodoMensualClientes').style.color = 'white';
+  document.getElementById('btnPeriodoAnualClientes').style.background = 'transparent';
+  document.getElementById('btnPeriodoAnualClientes').style.color = '#6b7280';
+  actualizarSelectorClientes();
   ordenClientes = 'visitas';
   actualizarBotonesOrdenClientes();
   renderClientesRecurrentes();
@@ -6734,11 +6797,13 @@ function actualizarBotonesOrdenClientes() {
 function renderClientesRecurrentes() {
   const mesVal = document.getElementById('selectMesClientes').value;
   if (!mesVal) return;
-  const [yyyy, mm] = mesVal.split('-');
+  let yyyy, mm;
+  if (periodoClientes === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
   const ventas = db.ventas.filter(v => {
     if (!v.fecha) return false;
     const p = v.fecha.split('/');
-    return p.length===3 && p[1]===mm && p[2]===yyyy;
+    if (p.length !== 3) return false;
+    return periodoClientes === 'anual' ? p[2]===yyyy : (p[1]===mm && p[2]===yyyy);
   });
   const agrupado = {};
   ventas.forEach(v => {
@@ -6750,7 +6815,7 @@ function renderClientesRecurrentes() {
   let items = Object.values(agrupado).sort((a,b)=>b[ordenClientes==='monto'?'monto':'visitas']-a[ordenClientes==='monto'?'monto':'visitas']).slice(0,20);
 
   if (!items.length) {
-    document.getElementById('tbodyClientesRecurrentes').innerHTML='<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas este mes</td></tr>';
+    document.getElementById('tbodyClientesRecurrentes').innerHTML=`<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas ${periodoClientes==='anual'?'este año':'este mes'}</td></tr>`;
     document.getElementById('graficoClientesRecurrentes').innerHTML='<p style="text-align:center;color:#9ca3af;padding:20px;">Sin datos</p>';
     return;
   }
@@ -6786,14 +6851,16 @@ function renderClientesRecurrentes() {
 function imprimirClientesRecurrentes() {
   const mesVal = document.getElementById('selectMesClientes').value;
   if (!mesVal) { toast('⚠️ No hay datos para imprimir'); return; }
-  const [yyyy, mm] = mesVal.split('-');
-  const mesLabel = `${mm}/${yyyy}`;
+  let yyyy, mm;
+  if (periodoClientes === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
+  const mesLabel = periodoClientes === 'anual' ? `Año ${yyyy}` : `${mm}/${yyyy}`;
   const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
   const ordenLabel = ordenClientes==='monto'?'Monto Total S/':'N° de Visitas';
   const ventas = db.ventas.filter(v => {
     if (!v.fecha) return false;
     const p = v.fecha.split('/');
-    return p.length===3 && p[1]===mm && p[2]===yyyy;
+    if (p.length !== 3) return false;
+    return periodoClientes === 'anual' ? p[2]===yyyy : (p[1]===mm && p[2]===yyyy);
   });
   const agrupado = {};
   ventas.forEach(v => {
@@ -6876,23 +6943,59 @@ function imprimirClientesRecurrentes() {
 
 // ═══════════════════════════ PROVEEDOR MÁS USADO ═══════════════
 let ordenProv = 'compras';
+let periodoProv = 'mensual';
 
 function initProveedorUsado() {
-  const meses = {};
-  db.compras.forEach(c => {
-    if (!c.fecha) return;
-    const p = c.fecha.split('/');
-    if (p.length < 3) return;
-    const key = `${p[2]}-${p[1]}`;
-    meses[key] = `${p[1]}/${p[2]}`;
-  });
-  const sorted = Object.keys(meses).sort().reverse();
-  const sel = document.getElementById('selectMesProv');
-  sel.innerHTML = sorted.length
-    ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
-    : '<option value="">Sin datos</option>';
+  periodoProv = 'mensual';
+  document.getElementById('labelPeriodoProv').textContent = 'Mes:';
+  document.getElementById('btnPeriodoMensualProv').style.background = '#059669';
+  document.getElementById('btnPeriodoMensualProv').style.color = 'white';
+  document.getElementById('btnPeriodoAnualProv').style.background = 'transparent';
+  document.getElementById('btnPeriodoAnualProv').style.color = '#6b7280';
+  actualizarSelectorProv();
   ordenProv = 'compras';
   actualizarBotonesOrdenProv();
+  renderProveedorUsado();
+}
+
+function actualizarSelectorProv() {
+  const sel = document.getElementById('selectMesProv');
+  if (periodoProv === 'anual') {
+    const anios = {};
+    db.compras.forEach(c => {
+      if (!c.fecha) return;
+      const p = c.fecha.split('/');
+      if (p.length < 3) return;
+      anios[p[2]] = p[2];
+    });
+    const sorted = Object.keys(anios).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${k}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  } else {
+    const meses = {};
+    db.compras.forEach(c => {
+      if (!c.fecha) return;
+      const p = c.fecha.split('/');
+      if (p.length < 3) return;
+      const key = `${p[2]}-${p[1]}`;
+      meses[key] = `${p[1]}/${p[2]}`;
+    });
+    const sorted = Object.keys(meses).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  }
+}
+
+function setPeriodoProv(periodo) {
+  periodoProv = periodo;
+  document.getElementById('btnPeriodoMensualProv').style.background = periodo==='mensual'?'#059669':'transparent';
+  document.getElementById('btnPeriodoMensualProv').style.color = periodo==='mensual'?'white':'#6b7280';
+  document.getElementById('btnPeriodoAnualProv').style.background = periodo==='anual'?'#059669':'transparent';
+  document.getElementById('btnPeriodoAnualProv').style.color = periodo==='anual'?'white':'#6b7280';
+  document.getElementById('labelPeriodoProv').textContent = periodo==='anual'?'Año:':'Mes:';
+  actualizarSelectorProv();
   renderProveedorUsado();
 }
 
@@ -6913,11 +7016,13 @@ function actualizarBotonesOrdenProv() {
 function renderProveedorUsado() {
   const mesVal = document.getElementById('selectMesProv').value;
   if (!mesVal) return;
-  const [yyyy, mm] = mesVal.split('-');
+  let yyyy, mm;
+  if (periodoProv === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
   const compras = db.compras.filter(c => {
     if (!c.fecha) return false;
     const p = c.fecha.split('/');
-    return p.length===3 && p[1]===mm && p[2]===yyyy;
+    if (p.length !== 3) return false;
+    return periodoProv === 'anual' ? p[2]===yyyy : (p[1]===mm && p[2]===yyyy);
   });
   const agrupado = {};
   compras.forEach(c => {
@@ -6929,7 +7034,7 @@ function renderProveedorUsado() {
   let items = Object.values(agrupado).sort((a,b)=>b[ordenProv==='monto'?'monto':'compras']-a[ordenProv==='monto'?'monto':'compras']).slice(0,20);
 
   if (!items.length) {
-    document.getElementById('tbodyProveedorUsado').innerHTML='<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin compras este mes</td></tr>';
+    document.getElementById('tbodyProveedorUsado').innerHTML=`<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin compras ${periodoProv==='anual'?'este año':'este mes'}</td></tr>`;
     document.getElementById('graficoProveedorUsado').innerHTML='<p style="text-align:center;color:#9ca3af;padding:20px;">Sin datos</p>';
     return;
   }
@@ -6965,14 +7070,16 @@ function renderProveedorUsado() {
 function imprimirProveedorUsado() {
   const mesVal = document.getElementById('selectMesProv').value;
   if (!mesVal) { toast('⚠️ No hay datos para imprimir'); return; }
-  const [yyyy, mm] = mesVal.split('-');
-  const mesLabel = `${mm}/${yyyy}`;
+  let yyyy, mm;
+  if (periodoProv === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
+  const mesLabel = periodoProv === 'anual' ? `Año ${yyyy}` : `${mm}/${yyyy}`;
   const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
   const ordenLabel = ordenProv==='monto'?'Monto Total S/':'N° de Compras';
   const compras = db.compras.filter(c => {
     if (!c.fecha) return false;
     const p = c.fecha.split('/');
-    return p.length===3 && p[1]===mm && p[2]===yyyy;
+    if (p.length !== 3) return false;
+    return periodoProv === 'anual' ? p[2]===yyyy : (p[1]===mm && p[2]===yyyy);
   });
   const agrupado = {};
   compras.forEach(c => {
@@ -7055,23 +7162,59 @@ function imprimirProveedorUsado() {
 
 // ═══════════════════════════ MÁS COMPRADO ══════════════════════
 let ordenComprado = 'cantidad';
+let periodoComprado = 'mensual';
 
 function initMasComprado() {
-  const meses = {};
-  db.compras.forEach(c => {
-    if (!c.fecha) return;
-    const parts = c.fecha.split('/');
-    if (parts.length < 3) return;
-    const key = `${parts[2]}-${parts[1]}`;
-    meses[key] = `${parts[1]}/${parts[2]}`;
-  });
-  const sorted = Object.keys(meses).sort().reverse();
-  const sel = document.getElementById('selectMesComprado');
-  sel.innerHTML = sorted.length
-    ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
-    : '<option value="">Sin datos</option>';
+  periodoComprado = 'mensual';
+  document.getElementById('labelPeriodoComprado').textContent = 'Mes:';
+  document.getElementById('btnPeriodoMensualComprado').style.background = '#3b82f6';
+  document.getElementById('btnPeriodoMensualComprado').style.color = 'white';
+  document.getElementById('btnPeriodoAnualComprado').style.background = 'transparent';
+  document.getElementById('btnPeriodoAnualComprado').style.color = '#6b7280';
+  actualizarSelectorComprado();
   ordenComprado = 'cantidad';
   actualizarBotonesOrdenC();
+  renderMasComprado();
+}
+
+function actualizarSelectorComprado() {
+  const sel = document.getElementById('selectMesComprado');
+  if (periodoComprado === 'anual') {
+    const anios = {};
+    db.compras.forEach(c => {
+      if (!c.fecha) return;
+      const parts = c.fecha.split('/');
+      if (parts.length < 3) return;
+      anios[parts[2]] = parts[2];
+    });
+    const sorted = Object.keys(anios).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${k}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  } else {
+    const meses = {};
+    db.compras.forEach(c => {
+      if (!c.fecha) return;
+      const parts = c.fecha.split('/');
+      if (parts.length < 3) return;
+      const key = `${parts[2]}-${parts[1]}`;
+      meses[key] = `${parts[1]}/${parts[2]}`;
+    });
+    const sorted = Object.keys(meses).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  }
+}
+
+function setPeriodoComprado(periodo) {
+  periodoComprado = periodo;
+  document.getElementById('btnPeriodoMensualComprado').style.background = periodo==='mensual'?'#3b82f6':'transparent';
+  document.getElementById('btnPeriodoMensualComprado').style.color = periodo==='mensual'?'white':'#6b7280';
+  document.getElementById('btnPeriodoAnualComprado').style.background = periodo==='anual'?'#3b82f6':'transparent';
+  document.getElementById('btnPeriodoAnualComprado').style.color = periodo==='anual'?'white':'#6b7280';
+  document.getElementById('labelPeriodoComprado').textContent = periodo==='anual'?'Año:':'Mes:';
+  actualizarSelectorComprado();
   renderMasComprado();
 }
 
@@ -7092,11 +7235,13 @@ function actualizarBotonesOrdenC() {
 function renderMasComprado() {
   const mesVal = document.getElementById('selectMesComprado').value;
   if (!mesVal) return;
-  const [yyyy, mm] = mesVal.split('-');
+  let yyyy, mm;
+  if (periodoComprado === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
   const compras = db.compras.filter(c => {
     if (!c.fecha) return false;
     const p = c.fecha.split('/');
-    return p.length===3 && p[1]===mm && p[2]===yyyy;
+    if (p.length !== 3) return false;
+    return periodoComprado === 'anual' ? p[2]===yyyy : (p[1]===mm && p[2]===yyyy);
   });
   const agrupado = {};
   compras.forEach(c => {
@@ -7107,7 +7252,7 @@ function renderMasComprado() {
   });
   let items = Object.values(agrupado).sort((a,b)=>b[ordenComprado==='monto'?'monto':'cantidad']-a[ordenComprado==='monto'?'monto':'cantidad']).slice(0,20);
   if (!items.length) {
-    document.getElementById('tbodyMasComprado').innerHTML='<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin compras este mes</td></tr>';
+    document.getElementById('tbodyMasComprado').innerHTML=`<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin compras ${periodoComprado==='anual'?'este año':'este mes'}</td></tr>`;
     document.getElementById('graficoMasComprado').innerHTML='<p style="text-align:center;color:#9ca3af;padding:20px;">Sin datos</p>';
     return;
   }
@@ -7143,14 +7288,16 @@ function renderMasComprado() {
 function imprimirMasComprado() {
   const mesVal = document.getElementById('selectMesComprado').value;
   if (!mesVal) { toast('⚠️ No hay datos para imprimir'); return; }
-  const [yyyy, mm] = mesVal.split('-');
-  const mesLabel = `${mm}/${yyyy}`;
+  let yyyy, mm;
+  if (periodoComprado === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
+  const mesLabel = periodoComprado === 'anual' ? `Año ${yyyy}` : `${mm}/${yyyy}`;
   const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
   const ordenLabel = ordenComprado==='monto'?'Monto Total S/':'Unidades Compradas';
   const compras = db.compras.filter(c => {
     if (!c.fecha) return false;
     const p = c.fecha.split('/');
-    return p.length===3 && p[1]===mm && p[2]===yyyy;
+    if (p.length !== 3) return false;
+    return periodoComprado === 'anual' ? p[2]===yyyy : (p[1]===mm && p[2]===yyyy);
   });
   const agrupado = {};
   compras.forEach(c => {
@@ -7231,26 +7378,60 @@ function imprimirMasComprado() {
   w.document.close();
 }
 let ordenVendido = 'cantidad'; // 'cantidad' | 'monto'
+let periodoVendido = 'mensual';
 
 function initMasVendido() {
-  // Obtener meses disponibles desde db.ventas
-  const meses = {};
-  db.ventas.forEach(v => {
-    if (!v.fecha) return;
-    // fecha formato DD/MM/YYYY
-    const parts = v.fecha.split('/');
-    if (parts.length < 3) return;
-    const key = `${parts[2]}-${parts[1]}`; // YYYY-MM
-    const label = `${parts[1]}/${parts[2]}`; // MM/YYYY
-    meses[key] = label;
-  });
-  const sorted = Object.keys(meses).sort().reverse();
-  const sel = document.getElementById('selectMesVendido');
-  sel.innerHTML = sorted.length
-    ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
-    : '<option value="">Sin datos</option>';
+  periodoVendido = 'mensual';
+  document.getElementById('labelPeriodoVendido').textContent = 'Mes:';
+  document.getElementById('btnPeriodoMensualVendido').style.background = '#f97316';
+  document.getElementById('btnPeriodoMensualVendido').style.color = 'white';
+  document.getElementById('btnPeriodoAnualVendido').style.background = 'transparent';
+  document.getElementById('btnPeriodoAnualVendido').style.color = '#6b7280';
+  actualizarSelectorVendido();
   ordenVendido = 'cantidad';
   actualizarBotonesOrden();
+  renderMasVendido();
+}
+
+function actualizarSelectorVendido() {
+  const sel = document.getElementById('selectMesVendido');
+  if (periodoVendido === 'anual') {
+    const anios = {};
+    db.ventas.forEach(v => {
+      if (!v.fecha) return;
+      const parts = v.fecha.split('/');
+      if (parts.length < 3) return;
+      anios[parts[2]] = parts[2];
+    });
+    const sorted = Object.keys(anios).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${k}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  } else {
+    const meses = {};
+    db.ventas.forEach(v => {
+      if (!v.fecha) return;
+      const parts = v.fecha.split('/');
+      if (parts.length < 3) return;
+      const key = `${parts[2]}-${parts[1]}`;
+      const label = `${parts[1]}/${parts[2]}`;
+      meses[key] = label;
+    });
+    const sorted = Object.keys(meses).sort().reverse();
+    sel.innerHTML = sorted.length
+      ? sorted.map(k => `<option value="${k}">${meses[k]}</option>`).join('')
+      : '<option value="">Sin datos</option>';
+  }
+}
+
+function setPeriodoVendido(periodo) {
+  periodoVendido = periodo;
+  document.getElementById('btnPeriodoMensualVendido').style.background = periodo==='mensual'?'#f97316':'transparent';
+  document.getElementById('btnPeriodoMensualVendido').style.color = periodo==='mensual'?'white':'#6b7280';
+  document.getElementById('btnPeriodoAnualVendido').style.background = periodo==='anual'?'#f97316':'transparent';
+  document.getElementById('btnPeriodoAnualVendido').style.color = periodo==='anual'?'white':'#6b7280';
+  document.getElementById('labelPeriodoVendido').textContent = periodo==='anual'?'Año:':'Mes:';
+  actualizarSelectorVendido();
   renderMasVendido();
 }
 
@@ -7271,13 +7452,15 @@ function actualizarBotonesOrden() {
 function renderMasVendido() {
   const mesVal = document.getElementById('selectMesVendido').value;
   if (!mesVal) { document.getElementById('tbodyMasVendido').innerHTML = '<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin datos</td></tr>'; return; }
-  const [yyyy, mm] = mesVal.split('-');
+  let yyyy, mm;
+  if (periodoVendido === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
 
-  // Filtrar ventas del mes seleccionado
+  // Filtrar ventas del período seleccionado
   const ventas = db.ventas.filter(v => {
     if (!v.fecha) return false;
     const p = v.fecha.split('/');
-    return p.length === 3 && p[1] === mm && p[2] === yyyy;
+    if (p.length !== 3) return false;
+    return periodoVendido === 'anual' ? p[2]===yyyy : (p[1] === mm && p[2] === yyyy);
   });
 
   // Agrupar por producto
@@ -7293,7 +7476,7 @@ function renderMasVendido() {
   let items = Object.values(agrupado).sort((a, b) => b[ordenVendido === 'monto' ? 'monto' : 'cantidad'] - a[ordenVendido === 'monto' ? 'monto' : 'cantidad']).slice(0, 20);
 
   if (!items.length) {
-    document.getElementById('tbodyMasVendido').innerHTML = '<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas este mes</td></tr>';
+    document.getElementById('tbodyMasVendido').innerHTML = `<tr><td colspan="4" style="text-align:center;padding:20px;color:#9ca3af;">Sin ventas ${periodoVendido==='anual'?'este año':'este mes'}</td></tr>`;
     document.getElementById('graficoMasVendido').innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px;">Sin datos</p>';
     return;
   }
@@ -7334,8 +7517,9 @@ function renderMasVendido() {
 function imprimirMasVendido() {
   const mesVal = document.getElementById('selectMesVendido').value;
   if (!mesVal) { toast('⚠️ No hay datos para imprimir'); return; }
-  const [yyyy, mm] = mesVal.split('-');
-  const mesLabel = `${mm}/${yyyy}`;
+  let yyyy, mm;
+  if (periodoVendido === 'anual') { yyyy = mesVal; } else { [yyyy, mm] = mesVal.split('-'); }
+  const mesLabel = periodoVendido === 'anual' ? `Año ${yyyy}` : `${mm}/${yyyy}`;
   const empresa = db.empresa?.nombre || 'Nombre de la Empresa';
   const ordenLabel = ordenVendido === 'monto' ? 'Monto Total S/' : 'Unidades Vendidas';
 
@@ -7343,7 +7527,8 @@ function imprimirMasVendido() {
   const ventas = db.ventas.filter(v => {
     if (!v.fecha) return false;
     const p = v.fecha.split('/');
-    return p.length === 3 && p[1] === mm && p[2] === yyyy;
+    if (p.length !== 3) return false;
+    return periodoVendido === 'anual' ? p[2]===yyyy : (p[1] === mm && p[2] === yyyy);
   });
   const agrupado = {};
   ventas.forEach(v => {
