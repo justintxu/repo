@@ -953,6 +953,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   .search-label { font-size: 14px; }
   .search-input-wrap { max-width: 100%; }
   .search-input { font-size: 14px; padding: 8px 38px 8px 14px; }
+  #page-reg-ventas .search-input { font-size: 16px !important; }
 
   /* Table wrap */
   .table-wrap { padding: 0 8px; max-height: calc(100vh - 260px); }
@@ -1027,7 +1028,17 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   .est-grid { padding: 14px 10px; gap: 10px; }
   .est-card { font-size: 15px; padding: 16px; }
 }
+
+/* Ejecución de Venta — en escritorio mantener Cliente a la izquierda y Búsqueda a la derecha,
+   aunque en el DOM ahora Búsqueda va primero (necesario para el orden correcto en móvil) */
+@media (min-width: 601px) {
+  #ejecventaBusquedaLabel { order: 3; margin-left: 30px !important; }
+  #ejecventaBusquedaWrap { order: 4; }
+  #ejecventaClienteLabel { order: 1; }
+  #clienteVenta { order: 2; }
+}
 </style>
+
 <body>
 
 <!-- TOAST -->
@@ -1945,15 +1956,15 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <button class="back-btn" onclick="irA('page-ventas')">‹</button>
     </div>
   </div>
-  <div class="form-row">
-    <span class="form-label">Cliente</span>
-    <input class="form-input" id="clienteVenta" placeholder="Nombre del cliente">
-    <span class="search-label" style="margin-left:30px;">Búsqueda</span>
-    <div class="search-input-wrap">
+  <div class="form-row" id="ejecventaRowTop">
+    <span class="search-label" id="ejecventaBusquedaLabel" style="margin-left:0;">Búsqueda</span>
+    <div class="search-input-wrap" id="ejecventaBusquedaWrap">
       <input class="search-input" id="searchEjecVenta" placeholder="Código – Producto - Descripción" oninput="filtrarEjecVenta()">
       <span class="search-icon">🔍</span>
       <div id="dropdownEjecVenta" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:200;max-height:280px;overflow-y:auto;margin-top:4px;"></div>
     </div>
+    <span class="form-label" id="ejecventaClienteLabel" style="margin-left:0;">Cliente</span>
+    <input class="form-input" id="clienteVenta" placeholder="Nombre del cliente">
   </div>
   <div class="form-row" style="margin-top:8px;">
     <span class="form-label">DNI</span>
@@ -4636,25 +4647,25 @@ function renderRegVentas() {
         return `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
-          <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
+          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
+          <span style="font-weight:800;font-size:16px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
         </div>
         ${(v.dni||v.telefono) ? `
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          ${v.dni ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🪪 ${String(v.dni)}</span>` : ''}
-          ${v.telefono ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📞 ${String(v.telefono)}</span>` : ''}
+          ${v.dni ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">🪪 ${String(v.dni)}</span>` : ''}
+          ${v.telefono ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">📞 ${String(v.telefono)}</span>` : ''}
         </div>` : ''}
         <!-- Fila 2: producto con código -->
         <div>
-          <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
-          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
+          <div style="font-weight:800;font-size:16px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
         </div>
         <!-- Fila 3: cantidad + precio + total -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:800;">✕ ${v.cantidad||0}</span>
-          <span style="font-size:13px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
-          <span style="margin-left:auto;font-weight:800;font-size:16px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;">✕ ${v.cantidad||0}</span>
+          <span style="font-size:15px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span style="margin-left:auto;font-weight:800;font-size:18px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
         </div>
       </div>`;
       } catch(e) {
