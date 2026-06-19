@@ -750,8 +750,14 @@ html.tema-gris #regVentasMobile .fecha-badge,
 html.tema-gris #regComprasMobile .fecha-badge { background: rgba(148,163,184,0.45) !important; color: #f1f5f9 !important; }
 html.tema-gris #regVentasMobile .cliente-text,
 html.tema-gris #regComprasMobile .cliente-text { color: #f8fafc !important; }
-/* Precio con mejor contraste en Registro de Ventas, solo tema Gris Espacial */
-html.tema-gris #page-reg-ventas .rv-precio-cell { color: #22c55e !important; }
+/* Precio y Total con mejor contraste en Registro de Ventas, solo tema Gris Espacial */
+html.tema-gris #page-reg-ventas .rv-precio-cell,
+html.tema-gris #page-reg-ventas .rv-dni-cell,
+html.tema-gris #page-reg-ventas .rv-total-cell { color: #22c55e !important; }
+/* Etiquetas de DNI y Teléfono más visibles en móvil, solo tema Gris Espacial */
+html.tema-gris #regVentasMobile .rv-dni-badge,
+html.tema-gris #regVentasMobile .rv-tel-badge { background: #f1f5f9 !important; }
+html.tema-gris #regVentasMobile .rv-tel-badge { color: #1f2937 !important; }
 
 input.cell-input {
   width: 100%; padding: 7px 10px; border-radius: 8px;
@@ -863,6 +869,7 @@ input.cell-input.readonly { background: var(--total-cell-bg); color: var(--text-
 
 /* ── REGISTRO TABLE ── */
 .reg-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+#page-reg-ventas .reg-table { font-size: 15px; }
 .reg-table th {
   background: var(--total-cell-bg); padding: 10px 12px; text-align: left;
   font-weight: 800; color: var(--reg-table-header); border-bottom: 2px solid var(--reg-table-border);
@@ -963,7 +970,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   .search-label { font-size: 14px; }
   .search-input-wrap { max-width: 100%; }
   .search-input { font-size: 14px; padding: 8px 38px 8px 14px; }
-  #page-reg-ventas .search-input { font-size: 16px !important; }
+  #page-reg-ventas .search-input { font-size: 17px !important; }
 
   /* Table wrap */
   .table-wrap { padding: 0 8px; max-height: calc(100vh - 260px); }
@@ -4685,13 +4692,13 @@ function renderRegVentas() {
     <td style="text-align:center;">${v.fecha||''}</td>
     <td style="text-align:center;">${formatHora(v.hora)}</td>
     <td>${v.cliente||''}</td>
-    <td style="text-align:center;">${v.dni||''}</td>
+    <td class="rv-dni-cell" style="text-align:center;">${v.dni?`<span style="cursor:pointer;" onclick="abrirMenuDNI(event,'${v.dni.replace(/'/g,"\\'")}')">${v.dni}</span>`:''}</td>
     <td style="text-align:center;">${v.telefono?`<span style="cursor:pointer;" onclick="abrirMenuTelefono(event,'${v.telefono.replace(/'/g,"\\'")}')">${v.telefono}</span>`:''}</td>
     <td style="text-align:center;">${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
     <td>${v.producto||''}</td>
     <td class="rv-precio-cell" style="text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
-    <td style="text-align:right;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
+    <td class="rv-total-cell" style="text-align:right;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="10" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 
   // Vista móvil
@@ -4702,25 +4709,25 @@ function renderRegVentas() {
         return `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
-          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
-          <span class="cliente-text" style="font-weight:800;font-size:16px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:15px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:15px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
+          <span class="cliente-text" style="font-weight:800;font-size:17px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
         </div>
         ${(v.dni||v.telefono) ? `
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          ${v.dni ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuDNI(event,'${String(v.dni).replace(/'/g,"\\'")}')">🪪 ${String(v.dni)}</span>` : ''}
-          ${v.telefono ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${String(v.telefono).replace(/'/g,"\\'")}')">📞 ${String(v.telefono)}</span>` : ''}
+          ${v.dni ? `<span class="rv-dni-badge rv-dni-cell" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuDNI(event,'${String(v.dni).replace(/'/g,"\\'")}')">🪪 ${String(v.dni)}</span>` : ''}
+          ${v.telefono ? `<span class="rv-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${String(v.telefono).replace(/'/g,"\\'")}')">📞 ${String(v.telefono)}</span>` : ''}
         </div>` : ''}
         <!-- Fila 2: producto con código -->
         <div>
-          <div style="font-weight:800;font-size:16px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
-          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
+          <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
+          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
         </div>
         <!-- Fila 3: cantidad + precio + total -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;">✕ ${v.cantidad||0}</span>
-          <span class="rv-precio-cell" style="font-size:15px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
-          <span style="margin-left:auto;font-weight:800;font-size:18px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
+          <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:15px;font-weight:800;">✕ ${v.cantidad||0}</span>
+          <span class="rv-precio-cell" style="font-size:16px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span class="rv-total-cell" style="margin-left:auto;font-weight:800;font-size:19px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
         </div>
       </div>`;
       } catch(e) {
