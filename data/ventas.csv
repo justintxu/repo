@@ -1,4 +1,4 @@
-fecha,hora,cliente,codigo,cantidad,producto,precio,total
+fecha,hora,cliente,codigo,cantidad,producto,precio,total,dni,telefono
 12/06/2026,23:23,Sin nombre,ICTEA2025,5,TEA2025,5,25
 13/06/2026,12:21 PM,Sin nombre,ICLA4440,2,LA4440,8,16
 13/06/2026,01:29 PM,Sin nombre,ACATV6,2,Amplficador CATV de 6 vías,150,300
