@@ -3405,8 +3405,8 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
         </div>
       </div>
 
-      <!-- Fila 2: FechaEnt | HoraEnt | FechaFin | HoraFin | Técnico | Cotización -->
-      <div class="sfin-f2" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px;align-items:end;">
+      <!-- Fila 2: FechaEnt | HoraEnt | FechaFin | HoraFin | Técnico | HonTec | Cotización -->
+      <div class="sfin-f2" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrada</div>
           <input id="sfin_fechent" class="sdet-input sdet-locked" readonly>
@@ -3426,6 +3426,10 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Técnico</div>
           <input id="sfin_tecnico" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Honorarios del Técnico</div>
+          <input id="sfin_hontec" class="sdet-input sdet-locked" readonly>
         </div>
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Cotización</div>
@@ -3470,18 +3474,28 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       </div>
     </div>
 
-    <!-- COLUMNA DERECHA: solo imágenes -->
+    <!-- COLUMNA DERECHA: Imágenes + botón compartir -->
     <div class="sfin-imgs" style="display:flex;flex-direction:column;align-items:center;gap:14px;min-width:160px;">
       <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:14px;color:var(--text-primary);align-self:flex-start;">Imágenes</div>
       <div style="display:grid;grid-template-columns:repeat(3,52px);gap:8px;">
-        <div id="sfin_img1_wrap" onclick="sfinClickImg(1)" class="sdet-img-cell"></div>
-        <div id="sfin_img2_wrap" onclick="sfinClickImg(2)" class="sdet-img-cell"></div>
-        <div id="sfin_img3_wrap" onclick="sfinClickImg(3)" class="sdet-img-cell"></div>
+        <div style="position:relative;"><div id="sfin_img1_wrap" onclick="sfinClickImg(1)" class="sdet-img-cell"></div><input type="checkbox" id="sfin_imgsel1" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
+        <div style="position:relative;"><div id="sfin_img2_wrap" onclick="sfinClickImg(2)" class="sdet-img-cell"></div><input type="checkbox" id="sfin_imgsel2" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
+        <div style="position:relative;"><div id="sfin_img3_wrap" onclick="sfinClickImg(3)" class="sdet-img-cell"></div><input type="checkbox" id="sfin_imgsel3" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(2,52px);gap:8px;">
-        <div id="sfin_img4_wrap" onclick="sfinClickImg(4)" class="sdet-img-cell"></div>
-        <div id="sfin_img5_wrap" onclick="sfinClickImg(5)" class="sdet-img-cell"></div>
+        <div style="position:relative;"><div id="sfin_img4_wrap" onclick="sfinClickImg(4)" class="sdet-img-cell"></div><input type="checkbox" id="sfin_imgsel4" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
+        <div style="position:relative;"><div id="sfin_img5_wrap" onclick="sfinClickImg(5)" class="sdet-img-cell"></div><input type="checkbox" id="sfin_imgsel5" class="sdet-img-checkbox" onclick="event.stopPropagation()" style="position:absolute;top:2px;left:2px;width:16px;height:16px;cursor:pointer;accent-color:#22c55e;"></div>
       </div>
+
+      <!-- Botón Compartir fotos seleccionadas -->
+      <button id="btnSfinCompartir" onclick="sfinAbrirMenuCompartir(event)"
+        disabled
+        style="display:flex;align-items:center;justify-content:center;gap:6px;
+               background:#9ca3af;color:white;border:none;border-radius:10px;
+               padding:9px 14px;cursor:not-allowed;font-family:Nunito,sans-serif;font-weight:800;font-size:12px;width:100%;
+               opacity:0.5;transition:background 0.2s,opacity 0.2s;">
+        📤 Compartir Fotos
+      </button>
     </div>
   </div>
 </div>
@@ -8243,6 +8257,7 @@ function initSertecfinDetalle() {
   document.getElementById('sfin_fechfin').value      = r.fechfin      || '';
   document.getElementById('sfin_hora2').value        = r.hora2        || '';
   document.getElementById('sfin_tecnico').value      = r.tecnico      || '';
+  document.getElementById('sfin_hontec').value       = r.hontec       || '';
   document.getElementById('sfin_cotizacion').value   = r.cotizacion   || '';
   document.getElementById('sfin_cotizaciont').value  = r.cotizaciont  || '';
   document.getElementById('sfin_reptec').value       = r.reptec       || '';
