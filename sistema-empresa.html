@@ -387,6 +387,14 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg-body); min-height
   #page-sertecfin-detalle { padding-bottom: 80px; }
   #page-ejec-compra { padding-bottom: 100px; }
   #page-ejec-venta { padding-bottom: 100px; }
+  /* Ejecución de Venta: cada título arriba de su caja, en columna y a ancho completo */
+  #page-ejec-venta .form-row { flex-direction: column !important; align-items: stretch !important; gap: 4px !important; }
+  #page-ejec-venta .form-label,
+  #page-ejec-venta .search-label { margin-left: 0 !important; min-width: 0 !important; }
+  #page-ejec-venta .form-input,
+  #page-ejec-venta .search-input-wrap { width: 100% !important; max-width: 100% !important; }
+  #page-ejec-venta .form-row + .form-row { margin-top: 12px !important; }
+  #ejecventaClienteLabel, #ejecventaTelefonoLabel { margin-top: 12px !important; }
   #page-detalle-compras-dia { padding-bottom: 100px; }
   #page-almacen { padding-bottom: 100px; }
   #page-utilidad-bruta { padding-bottom: 100px; }
@@ -742,6 +750,8 @@ html.tema-gris #regVentasMobile .fecha-badge,
 html.tema-gris #regComprasMobile .fecha-badge { background: rgba(148,163,184,0.45) !important; color: #f1f5f9 !important; }
 html.tema-gris #regVentasMobile .cliente-text,
 html.tema-gris #regComprasMobile .cliente-text { color: #f8fafc !important; }
+/* Precio con mejor contraste en Registro de Ventas, solo tema Gris Espacial */
+html.tema-gris #page-reg-ventas .rv-precio-cell { color: #22c55e !important; }
 
 input.cell-input {
   width: 100%; padding: 7px 10px; border-radius: 8px;
@@ -1969,7 +1979,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   <div class="form-row" style="margin-top:8px;">
     <span class="form-label">DNI</span>
     <input class="form-input" id="dniVenta" placeholder="DNI del cliente" style="max-width:180px;">
-    <span class="form-label" style="margin-left:20px;">Teléfono</span>
+    <span class="form-label" id="ejecventaTelefonoLabel" style="margin-left:20px;">Teléfono</span>
     <input class="form-input" id="telefonoVenta" placeholder="Teléfono del cliente" style="max-width:180px;">
   </div>
   <div class="table-wrap" style="margin-top:12px;">
@@ -4142,6 +4152,51 @@ function abrirMenuTelefono(event, telefono, soloLlamar) {
 
   setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
+
+function abrirMenuDNI(event, dni) {
+  event.stopPropagation();
+  cerrarMenuTelefono();
+  if (!dni) { toast('⚠️ Sin número de DNI'); return; }
+
+  const menu = document.createElement('div');
+  menu.id = 'menuTelefonoPopover';
+  menu.style.position = 'fixed';
+  menu.style.zIndex = '2000';
+  menu.style.background = 'var(--modal-bg)';
+  menu.style.border = '1px solid var(--header-border)';
+  menu.style.borderRadius = '12px';
+  menu.style.boxShadow = '0 12px 32px rgba(0,0,0,0.35)';
+  menu.style.padding = '8px';
+  menu.style.display = 'flex';
+  menu.style.flexDirection = 'column';
+  menu.style.gap = '4px';
+  menu.style.minWidth = '180px';
+  menu.innerHTML = `
+    <a href="#" onclick="copiarDNI(event,'${dni.replace(/'/g,"\\'")}')" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📋 Copiar número</a>
+  `;
+  document.body.appendChild(menu);
+
+  const rect = event.target.getBoundingClientRect();
+  const menuWidth = 180;
+  let left = rect.left;
+  if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
+  menu.style.left = `${left}px`;
+  const menuHeight = menu.offsetHeight;
+  if (rect.bottom + 6 + menuHeight > window.innerHeight - 10) {
+    menu.style.top = `${Math.max(10, rect.top - menuHeight - 6)}px`;
+  } else {
+    menu.style.top = `${rect.bottom + 6}px`;
+  }
+
+  setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
+}
+
+function copiarDNI(event, dni) {
+  event.preventDefault();
+  navigator.clipboard.writeText(dni).then(() => toast('📋 DNI copiado')).catch(() => toast('⚠️ No se pudo copiar'));
+  cerrarMenuTelefono();
+}
+
 function cerrarMenuTelefono() {
   const m = document.getElementById('menuTelefonoPopover');
   if (m) m.remove();
@@ -4631,11 +4686,11 @@ function renderRegVentas() {
     <td style="text-align:center;">${formatHora(v.hora)}</td>
     <td>${v.cliente||''}</td>
     <td style="text-align:center;">${v.dni||''}</td>
-    <td style="text-align:center;">${v.telefono||''}</td>
+    <td style="text-align:center;">${v.telefono?`<span style="cursor:pointer;" onclick="abrirMenuTelefono(event,'${v.telefono.replace(/'/g,"\\'")}')">${v.telefono}</span>`:''}</td>
     <td style="text-align:center;">${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
     <td>${v.producto||''}</td>
-    <td style="text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
+    <td class="rv-precio-cell" style="text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
     <td style="text-align:right;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
   </tr>`).join(''):`<tr><td colspan="10" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 
@@ -4647,14 +4702,14 @@ function renderRegVentas() {
         return `
       <div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
-          <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
-          <span style="font-weight:800;font-size:16px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;color:var(--text-muted);">📅 ${String(v.fecha||'—')}</span>
+          <span class="fecha-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
+          <span class="cliente-text" style="font-weight:800;font-size:16px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
         </div>
         ${(v.dni||v.telefono) ? `
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          ${v.dni ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">🪪 ${String(v.dni)}</span>` : ''}
-          ${v.telefono ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);">📞 ${String(v.telefono)}</span>` : ''}
+          ${v.dni ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuDNI(event,'${String(v.dni).replace(/'/g,"\\'")}')">🪪 ${String(v.dni)}</span>` : ''}
+          ${v.telefono ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${String(v.telefono).replace(/'/g,"\\'")}')">📞 ${String(v.telefono)}</span>` : ''}
         </div>` : ''}
         <!-- Fila 2: producto con código -->
         <div>
@@ -4664,7 +4719,7 @@ function renderRegVentas() {
         <!-- Fila 3: cantidad + precio + total -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:14px;font-weight:800;">✕ ${v.cantidad||0}</span>
-          <span style="font-size:15px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
+          <span class="rv-precio-cell" style="font-size:15px;color:var(--text-muted);">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</span>
           <span style="margin-left:auto;font-weight:800;font-size:18px;color:#059669;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</span>
         </div>
       </div>`;
