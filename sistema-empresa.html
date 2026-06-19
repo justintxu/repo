@@ -1955,6 +1955,12 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <div id="dropdownEjecVenta" style="display:none;position:absolute;top:100%;left:0;right:0;background:white;border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:200;max-height:280px;overflow-y:auto;margin-top:4px;"></div>
     </div>
   </div>
+  <div class="form-row" style="margin-top:8px;">
+    <span class="form-label">DNI</span>
+    <input class="form-input" id="dniVenta" placeholder="DNI del cliente" style="max-width:180px;">
+    <span class="form-label" style="margin-left:20px;">Teléfono</span>
+    <input class="form-input" id="telefonoVenta" placeholder="Teléfono del cliente" style="max-width:180px;">
+  </div>
   <div class="table-wrap" style="margin-top:12px;">
     <table class="data-table ejec-table" style="table-layout:fixed;width:100%;">
       <colgroup>
@@ -2047,7 +2053,9 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
       <colgroup>
         <col style="width:110px;">
         <col style="width:95px;">
-        <col style="width:240px;">
+        <col style="width:180px;">
+        <col style="width:100px;">
+        <col style="width:120px;">
         <col style="width:110px;">
         <col style="width:60px;">
         <col>
@@ -2058,6 +2066,8 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
         <th style="text-align:center;">Fecha</th>
         <th style="text-align:center;">Hora</th>
         <th>Cliente</th>
+        <th style="text-align:center;">DNI</th>
+        <th style="text-align:center;">Teléfono</th>
         <th style="text-align:center;">Código</th>
         <th style="text-align:center;">Cant.</th>
         <th>Producto</th>
@@ -4440,6 +4450,8 @@ function filtrarAlmacen() { renderAlmacen(); }
 function initEjecVenta() {
   rowsVenta = [{codigo:'',cantidad:'',producto:'',precio:'',total:''}];
   document.getElementById('clienteVenta').value='';
+  document.getElementById('dniVenta').value='';
+  document.getElementById('telefonoVenta').value='';
   document.getElementById('searchEjecVenta').value='';
   renderEjecVenta();
 }
@@ -4552,13 +4564,15 @@ function seleccionarProductoVenta(codigo) {
 }
 function procesarVenta() {
   const cliente=(document.getElementById('clienteVenta')?.value||'').trim()||'Sin nombre';
+  const dni=(document.getElementById('dniVenta')?.value||'').trim();
+  const telefono=(document.getElementById('telefonoVenta')?.value||'').trim();
   const fecha=fechaHoy()||'00/00/0000';
   const hora=horaHoy()||'00:00 AM';
   const filas=rowsVenta.filter(r=>r.codigo&&r.codigo.trim()&&r.cantidad);
   if(!filas.length){toast('⚠️ Agrega al menos un producto');return;}
   filas.forEach(r=>{
     const p=db.inventario.find(x=>x.codigo===r.codigo);
-    db.ventas.push({fecha,hora,cliente,codigo:r.codigo,cantidad:parseFloat(r.cantidad)||0,producto:r.producto,precio:parseFloat(r.precio)||0,total:parseFloat(r.total)||0});
+    db.ventas.push({fecha,hora,cliente,dni,telefono,codigo:r.codigo,cantidad:parseFloat(r.cantidad)||0,producto:r.producto,precio:parseFloat(r.precio)||0,total:parseFloat(r.total)||0});
     if(p) p.cantidad=Math.max(0,(parseFloat(p.cantidad)||0)-(parseFloat(r.cantidad)||0));
   });
   save();
@@ -4605,12 +4619,14 @@ function renderRegVentas() {
     <td style="text-align:center;">${v.fecha||''}</td>
     <td style="text-align:center;">${formatHora(v.hora)}</td>
     <td>${v.cliente||''}</td>
+    <td style="text-align:center;">${v.dni||''}</td>
+    <td style="text-align:center;">${v.telefono||''}</td>
     <td style="text-align:center;">${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
     <td>${v.producto||''}</td>
     <td style="text-align:right;">${getSym()} ${parseFloat(v.precio||0).toFixed(2)}</td>
     <td style="text-align:right;">${getSym()} ${parseFloat(v.total||0).toFixed(2)}</td>
-  </tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
+  </tr>`).join(''):`<tr><td colspan="10" style="text-align:center;padding:20px;color:#9ca3af;">Sin registros</td></tr>`;
 
   // Vista móvil
   const mobile = document.getElementById('regVentasMobile');
@@ -4624,6 +4640,11 @@ function renderRegVentas() {
           <span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🕐 ${v.hora?String(formatHora(v.hora)):'—'}</span>
           <span style="font-weight:800;font-size:14px;color:var(--text-primary);">${String(v.cliente||'Sin nombre')}</span>
         </div>
+        ${(v.dni||v.telefono) ? `
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          ${v.dni ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">🪪 ${String(v.dni)}</span>` : ''}
+          ${v.telefono ? `<span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--text-muted);">📞 ${String(v.telefono)}</span>` : ''}
+        </div>` : ''}
         <!-- Fila 2: producto con código -->
         <div>
           <div style="font-weight:800;font-size:14px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
@@ -5493,7 +5514,7 @@ function parseCSV(text) {
 
 const CSV_SCHEMAS = {
   inventario:  ['codigo','cantidad','producto','descripcion','precio','ubicacion','precioCompra','ultimoProveedor','imagen','stockMinimo','categoria'],
-  ventas:      ['fecha','hora','cliente','codigo','cantidad','producto','precio','total'],
+  ventas:      ['fecha','hora','cliente','dni','telefono','codigo','cantidad','producto','precio','total'],
   compras:     ['fecha','hora','proveedor','codigo','cantidad','producto','precio','total','tipo','numero','emision'],
   proveedores: ['nombre','telefono','celular','email','direccion','site'],
   pedidos:     ['cantidad','producto','precioCompra','total'],
