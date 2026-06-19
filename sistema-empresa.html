@@ -8284,12 +8284,27 @@ function initSertecfin() {
 
 function renderSertecfin() {
   const q = (document.getElementById('searchSertecfin').value || '').toLowerCase().trim();
+  const toTs = r => {
+    if (!r.fechent) return -1;
+    const p = r.fechent.split('/');
+    if (p.length!==3) return -1;
+    const base = new Date(+p[2], +p[1]-1, +p[0]).getTime();
+    if (isNaN(base)) return -1;
+    if (!r.hora1) return -1;
+    const m = r.hora1.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if (!m) return -1;
+    let h = parseInt(m[1]);
+    const min = parseInt(m[2]);
+    if (m[3].toUpperCase()==='PM' && h!==12) h+=12;
+    if (m[3].toUpperCase()==='AM' && h===12) h=0;
+    return base + (h*60+min)*60000;
+  };
   const datos = (db.sertecfin || []).filter(r =>
     !q ||
     (r.artefacto || '').toLowerCase().includes(q) ||
     (r.cliente   || '').toLowerCase().includes(q) ||
     (r.telefono  || '').includes(q)
-  );
+  ).slice().sort((a,b) => toTs(b) - toTs(a));
   const tbody = document.getElementById('tbodySertecfin');
   const mobile = document.getElementById('sertecfinMobile');
 
@@ -8366,12 +8381,27 @@ function initSertecpen() {
 
 function renderSertecpen() {
   const q = (document.getElementById('searchSertecpen').value || '').toLowerCase().trim();
+  const toTs = r => {
+    if (!r.fechent) return -1;
+    const p = r.fechent.split('/');
+    if (p.length!==3) return -1;
+    const base = new Date(+p[2], +p[1]-1, +p[0]).getTime();
+    if (isNaN(base)) return -1;
+    if (!r.hora1) return -1;
+    const m = r.hora1.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if (!m) return -1;
+    let h = parseInt(m[1]);
+    const min = parseInt(m[2]);
+    if (m[3].toUpperCase()==='PM' && h!==12) h+=12;
+    if (m[3].toUpperCase()==='AM' && h===12) h=0;
+    return base + (h*60+min)*60000;
+  };
   const datos = (db.sertecpen || []).filter(r =>
     !q ||
     (r.artefacto || '').toLowerCase().includes(q) ||
     (r.cliente   || '').toLowerCase().includes(q) ||
     (r.telefono  || '').includes(q)
-  );
+  ).slice().sort((a,b) => toTs(b) - toTs(a));
   const tbody = document.getElementById('tbodySertecpen');
   const mobile = document.getElementById('sertecpenMobile');
 
