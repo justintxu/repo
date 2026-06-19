@@ -3405,8 +3405,8 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
         </div>
       </div>
 
-      <!-- Fila 2: FechaEnt | HoraEnt | FechaFin | HoraFin | Técnico | HonTec | Cotización -->
-      <div class="sfin-f2" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:10px;align-items:end;">
+      <!-- Fila 2: FechaEnt | HoraEnt | FechaFin | HoraFin | Técnico | HonTec -->
+      <div class="sfin-f2" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Fecha de Entrada</div>
           <input id="sfin_fechent" class="sdet-input sdet-locked" readonly>
@@ -3431,14 +3431,14 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Honorarios del Técnico</div>
           <input id="sfin_hontec" class="sdet-input sdet-locked" readonly>
         </div>
+      </div>
+
+      <!-- Fila 3: Cotización | CotizaciónX | RepTec | PrecFin | FormPag | UtiNet -->
+      <div class="sfin-f3" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">Cotización</div>
           <input id="sfin_cotizacion" class="sdet-input sdet-locked" readonly>
         </div>
-      </div>
-
-      <!-- Fila 3: CotizaciónX | RepTec | PrecFin | FormPag | UtiNet -->
-      <div class="sfin-f3" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label" style="min-height:32px;display:flex;align-items:flex-end;">CotizaciónX</div>
           <input id="sfin_cotizaciont" class="sdet-input sdet-locked" readonly>
@@ -4042,7 +4042,12 @@ function invAbrirMenuCompartir(event, idx) {
   let left = rect.left;
   if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
   menu.style.left = `${left}px`;
-  menu.style.top = `${rect.bottom + 6}px`;
+  const menuHeight = menu.offsetHeight;
+  if (rect.bottom + 6 + menuHeight > window.innerHeight - 10) {
+    menu.style.top = `${Math.max(10, rect.top - menuHeight - 6)}px`;
+  } else {
+    menu.style.top = `${rect.bottom + 6}px`;
+  }
 
   setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
@@ -4100,7 +4105,12 @@ function abrirMenuTelefono(event, telefono, soloLlamar) {
   let left = rect.left;
   if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
   menu.style.left = `${left}px`;
-  menu.style.top = `${rect.bottom + 6}px`;
+  const menuHeight = menu.offsetHeight;
+  if (rect.bottom + 6 + menuHeight > window.innerHeight - 10) {
+    menu.style.top = `${Math.max(10, rect.top - menuHeight - 6)}px`;
+  } else {
+    menu.style.top = `${rect.bottom + 6}px`;
+  }
 
   setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
@@ -8350,7 +8360,12 @@ function sfinAbrirMenuCompartir(event) {
   let left = rect.left;
   if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
   menu.style.left = `${left}px`;
-  menu.style.top = `${rect.bottom + 6}px`;
+  const menuHeight = menu.offsetHeight;
+  if (rect.bottom + 6 + menuHeight > window.innerHeight - 10) {
+    menu.style.top = `${Math.max(10, rect.top - menuHeight - 6)}px`;
+  } else {
+    menu.style.top = `${rect.bottom + 6}px`;
+  }
 
   setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
@@ -8788,7 +8803,12 @@ function sdetAbrirMenuCompartir(event) {
   let left = rect.left;
   if (left + menuWidth > window.innerWidth - 10) left = window.innerWidth - menuWidth - 10;
   menu.style.left = `${left}px`;
-  menu.style.top = `${rect.bottom + 6}px`;
+  const menuHeight = menu.offsetHeight;
+  if (rect.bottom + 6 + menuHeight > window.innerHeight - 10) {
+    menu.style.top = `${Math.max(10, rect.top - menuHeight - 6)}px`;
+  } else {
+    menu.style.top = `${rect.bottom + 6}px`;
+  }
 
   setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
