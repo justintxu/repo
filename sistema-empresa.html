@@ -1158,6 +1158,11 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     </div>
 
     <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
+      <span class="form-label" style="min-width:100px;">DNI</span>
+      <input class="form-input" id="srvDni" placeholder="DNI del cliente" style="flex:1;max-width:100%;">
+    </div>
+
+    <div class="form-field-row" style="display:flex;align-items:center;gap:16px;">
       <span class="form-label" style="min-width:100px;">Técnico</span>
       <input class="form-input" id="srvTecnico" placeholder="Nombre del técnico" style="flex:1;max-width:100%;">
     </div>
@@ -3334,17 +3339,19 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     <table class="data-table spen-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:44px;">
-        <col style="width:340px;">
-        <col style="width:200px;">
-        <col style="width:130px;">
+        <col style="width:300px;">
+        <col style="width:180px;">
         <col style="width:120px;">
-        <col style="width:120px;">
+        <col style="width:110px;">
+        <col style="width:110px;">
+        <col style="width:110px;">
       </colgroup>
       <thead><tr>
         <th style="text-align:center;"></th>
         <th style="text-align:center;">Artefacto</th>
         <th style="text-align:center;">Cliente</th>
         <th style="text-align:center;">Teléfono</th>
+        <th style="text-align:center;">DNI</th>
         <th style="text-align:center;">Fecha de Entrada</th>
         <th style="text-align:center;">Hora de Entrada</th>
       </tr></thead>
@@ -3393,17 +3400,19 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     <table class="data-table sfin-table" style="table-layout:fixed;width:100%;">
       <colgroup>
         <col style="width:44px;">
-        <col style="width:340px;">
-        <col style="width:200px;">
-        <col style="width:130px;">
+        <col style="width:300px;">
+        <col style="width:180px;">
         <col style="width:120px;">
-        <col style="width:120px;">
+        <col style="width:110px;">
+        <col style="width:110px;">
+        <col style="width:110px;">
       </colgroup>
       <thead><tr>
         <th style="text-align:center;"></th>
         <th style="text-align:center;">Artefacto</th>
         <th style="text-align:center;">Cliente</th>
         <th style="text-align:center;">Teléfono</th>
+        <th style="text-align:center;">DNI</th>
         <th style="text-align:center;">Fecha de Entrada</th>
         <th style="text-align:center;">Hora de Entrada</th>
       </tr></thead>
@@ -3434,8 +3443,8 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     <!-- COLUMNA IZQUIERDA: formulario -->
     <div style="flex:1;min-width:0;">
 
-      <!-- Fila 1: Artefacto | Cliente | Teléfono -->
-      <div class="sfin-f1" style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+      <!-- Fila 1: Artefacto | Cliente | Teléfono | DNI -->
+      <div class="sfin-f1" style="display:grid;grid-template-columns:2fr 1.1fr 0.9fr 0.9fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Artefacto</div>
           <input id="sfin_artefacto" class="sdet-input sdet-locked" readonly>
@@ -3447,6 +3456,10 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
         <div>
           <div class="field-label">Teléfono</div>
           <input id="sfin_telefono" class="sdet-input sdet-locked" readonly>
+        </div>
+        <div>
+          <div class="field-label">DNI</div>
+          <input id="sfin_dni" class="sdet-input sdet-locked" readonly>
         </div>
       </div>
 
@@ -3578,8 +3591,8 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
     <!-- COLUMNA IZQUIERDA: formulario -->
     <div style="flex:1;min-width:0;">
 
-      <!-- Fila 1: Artefacto | Cliente | Teléfono -->
-      <div class="sdet-f1" style="display:grid;grid-template-columns:2fr 1.3fr 1fr;gap:10px;margin-bottom:10px;align-items:end;">
+      <!-- Fila 1: Artefacto | Cliente | Teléfono | DNI -->
+      <div class="sdet-f1" style="display:grid;grid-template-columns:2fr 1.1fr 0.9fr 0.9fr;gap:10px;margin-bottom:10px;align-items:end;">
         <div>
           <div class="field-label">Artefacto</div>
           <input id="sdet_artefacto" class="sdet-input sdet-locked" readonly>
@@ -3591,6 +3604,10 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
         <div>
           <div class="field-label">Teléfono</div>
           <input id="sdet_telefono" class="sdet-input sdet-editable" readonly>
+        </div>
+        <div>
+          <div class="field-label">DNI</div>
+          <input id="sdet_dni" class="sdet-input sdet-editable" readonly>
         </div>
       </div>
 
@@ -5593,8 +5610,8 @@ const CSV_SCHEMAS = {
   pedidos:     ['cantidad','producto','precioCompra','total'],
   quotation:   ['cantidad','producto','precio','total','cliente'],
   categorias:  ['nombre'],
-  sertecpen:   ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5'],
-  sertecfin:   ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5'],
+  sertecpen:   ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5','dni'],
+  sertecfin:   ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5','dni'],
   emn:         ['nombre','logo'],
   txs:         ['nombre','porcentaje'],
   factonoff:   ['situacion','bt1s','bt1n','bt1l','bti','bt2s','bt2n','bt2l','bt2i','bt3s','bt3n','bt3l','bt3i','bt4s','bt4n','bt4l','bt4i','bt5s','bt5n','bt5l','bt5i','bt6s','bt6n','bt6l','bt6i'],
@@ -6379,7 +6396,7 @@ function imprimirDetalleComprasDia() {
 }
 
 // ═══════════════════════════ INGRESAR SERVICIO ═════════════════
-const CSV_SCHEMA_SERTECPEN = ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5'];
+const CSV_SCHEMA_SERTECPEN = ['artefacto','cliente','telefono','fechent','hora1','tecnico','estado','foto1','foto2','foto3','foto4','foto5','dni'];
 
 function initIngresarServicio() {
   document.getElementById('fechaIngServicio').textContent = fechaHoy();
@@ -6392,6 +6409,7 @@ function initIngresarServicio() {
   document.getElementById('srvArtefacto').value = '';
   document.getElementById('srvCliente').value   = '';
   document.getElementById('srvTelefono').value  = '';
+  document.getElementById('srvDni').value       = '';
   document.getElementById('srvTecnico').value   = '';
   document.getElementById('srvEstado').value    = '';
   for (let i = 1; i <= 5; i++) document.getElementById(`srvFoto${i}`).value = '';
@@ -6403,6 +6421,7 @@ async function ingresarServicio() {
   const artefacto = document.getElementById('srvArtefacto').value.trim();
   const cliente  = document.getElementById('srvCliente').value.trim();
   const telefono = document.getElementById('srvTelefono').value.trim();
+  const dni      = document.getElementById('srvDni').value.trim();
   const tecnico  = document.getElementById('srvTecnico').value.trim();
   const estado   = document.getElementById('srvEstado').value.trim();
   const fechent  = fechaHoy();
@@ -6415,7 +6434,7 @@ async function ingresarServicio() {
 
   if (!cliente) { toast('⚠️ Ingresa el nombre del cliente'); return; }
 
-  const nuevo = { artefacto, cliente, telefono, fechent, hora1, tecnico, estado, foto1, foto2, foto3, foto4, foto5 };
+  const nuevo = { artefacto, cliente, telefono, dni, fechent, hora1, tecnico, estado, foto1, foto2, foto3, foto4, foto5 };
   db.sertecpen.push(nuevo);
   save();
   statusEl.textContent = '⏳ Guardando en sertecpen.csv...';
@@ -8363,6 +8382,7 @@ function initSertecfinDetalle() {
   document.getElementById('sfin_artefacto').value    = r.artefacto    || '';
   document.getElementById('sfin_cliente').value      = r.cliente      || '';
   document.getElementById('sfin_telefono').value     = r.telefono     || '';
+  document.getElementById('sfin_dni').value          = r.dni          || '';
   document.getElementById('sfin_fechent').value      = r.fechent      || '';
   document.getElementById('sfin_hora1').value        = r.hora1        || '';
   document.getElementById('sfin_fechfin').value      = r.fechfin      || '';
@@ -8498,13 +8518,14 @@ function renderSertecfin() {
     !q ||
     (r.artefacto || '').toLowerCase().includes(q) ||
     (r.cliente   || '').toLowerCase().includes(q) ||
-    (r.telefono  || '').includes(q)
+    (r.telefono  || '').includes(q) ||
+    (r.dni       || '').includes(q)
   ).slice().sort((a,b) => toTs(b) - toTs(a));
   const tbody = document.getElementById('tbodySertecfin');
   const mobile = document.getElementById('sertecfinMobile');
 
   if (!datos.length) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios finalizados</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios finalizados</td></tr>`;
     if (mobile) mobile.innerHTML = `<div style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios finalizados</div>`;
     return;
   }
@@ -8525,6 +8546,7 @@ function renderSertecfin() {
       <td><input class="cell-input blue-cell" value="${escHtml(r.artefacto||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;cursor:pointer;" onclick="abrirMenuTelefono(event,'${(r.telefono||'').replace(/'/g,"\\'")}')"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.dni||'')}" readonly style="width:100%;text-align:center;cursor:pointer;" onclick="abrirMenuDNI(event,'${(r.dni||'').replace(/'/g,"\\'")}')"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.hora1||'')}" readonly style="width:100%;text-align:center;"></td>
     </tr>`;
@@ -8545,6 +8567,7 @@ function renderSertecfin() {
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
             <span style="font-weight:800;font-size:15px;color:var(--text-primary);">${escHtml(r.cliente||'')}</span>
             <span class="sfin-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${(r.telefono||'').replace(/'/g,"\\'")}')">📞 ${escHtml(r.telefono||'')}</span>
+            ${r.dni ? `<span class="sfin-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuDNI(event,'${r.dni.replace(/'/g,"\\'")}')">🪪 ${escHtml(r.dni)}</span>` : ''}
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <span style="background:#dcfce7;color:#166534;border-radius:6px;padding:3px 8px;font-size:15px;font-weight:800;">📅 ${escHtml(r.fechent||'')}</span>
@@ -8595,13 +8618,14 @@ function renderSertecpen() {
     !q ||
     (r.artefacto || '').toLowerCase().includes(q) ||
     (r.cliente   || '').toLowerCase().includes(q) ||
-    (r.telefono  || '').includes(q)
+    (r.telefono  || '').includes(q) ||
+    (r.dni       || '').includes(q)
   ).slice().sort((a,b) => toTs(b) - toTs(a));
   const tbody = document.getElementById('tbodySertecpen');
   const mobile = document.getElementById('sertecpenMobile');
 
   if (!datos.length) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios pendientes</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios pendientes</td></tr>`;
     if (mobile) mobile.innerHTML = `<div style="text-align:center;padding:28px;color:var(--text-muted);font-size:15px;">Sin servicios pendientes</div>`;
     return;
   }
@@ -8631,6 +8655,7 @@ function renderSertecpen() {
       <td><input class="cell-input blue-cell" value="${escHtml(r.artefacto||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.cliente||'')}" readonly style="width:100%;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.telefono||'')}" readonly style="width:100%;text-align:center;cursor:pointer;" onclick="abrirMenuTelefono(event,'${(r.telefono||'').replace(/'/g,"\\'")}')"></td>
+      <td><input class="cell-input blue-cell" value="${escHtml(r.dni||'')}" readonly style="width:100%;text-align:center;cursor:pointer;" onclick="abrirMenuDNI(event,'${(r.dni||'').replace(/'/g,"\\'")}')"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.fechent||'')}" readonly style="width:100%;text-align:center;"></td>
       <td><input class="cell-input blue-cell" value="${escHtml(r.hora1||'')}" readonly style="width:100%;text-align:center;"></td>
     </tr>`;
@@ -8655,6 +8680,7 @@ function renderSertecpen() {
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
             <span style="font-weight:800;font-size:15px;color:var(--text-primary);">${escHtml(r.cliente||'')}</span>
             <span class="spen-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${(r.telefono||'').replace(/'/g,"\\'")}')">📞 ${escHtml(r.telefono||'')}</span>
+            ${r.dni ? `<span class="spen-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuDNI(event,'${r.dni.replace(/'/g,"\\'")}')">🪪 ${escHtml(r.dni)}</span>` : ''}
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:15px;font-weight:800;">📅 ${escHtml(r.fechent||'')}</span>
@@ -8725,6 +8751,7 @@ function initSertecDetalle() {
   document.getElementById('sdet_artefacto').value    = r.artefacto    || '';
   document.getElementById('sdet_cliente').value      = r.cliente      || '';
   document.getElementById('sdet_telefono').value     = r.telefono     || '';
+  document.getElementById('sdet_dni').value          = r.dni          || '';
   document.getElementById('sdet_fechent').value      = r.fechent      || '';
   document.getElementById('sdet_hora').value         = r.hora1         || '';
   document.getElementById('sdet_tecnico').value      = r.tecnico      || '';
@@ -8970,6 +8997,7 @@ async function sdetGuardar() {
 
   // Leer campos editables
   r.telefono      = document.getElementById('sdet_telefono').value;
+  r.dni           = document.getElementById('sdet_dni').value;
   r.tecnico       = document.getElementById('sdet_tecnico').value;
   r.hontec        = document.getElementById('sdet_hontec').value;
   r.cotizacion    = document.getElementById('sdet_cotizacion').value;
@@ -9026,6 +9054,7 @@ async function finalizarServicio() {
   // Guardar primero cualquier edición pendiente en memoria
   const r = db.sertecpen[sdetIdx];
   r.telefono      = document.getElementById('sdet_telefono').value;
+  r.dni           = document.getElementById('sdet_dni').value;
   r.tecnico       = document.getElementById('sdet_tecnico').value;
   r.hontec        = document.getElementById('sdet_hontec').value;
   r.cotizacion    = document.getElementById('sdet_cotizacion').value;
@@ -9068,7 +9097,7 @@ async function finalizarServicio() {
 
 async function subirSertecfinAGitHub() {
   // Schema fijo para sertecfin — siempre en este orden
-  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora1','fechfin','hora2'];
+  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora1','fechfin','hora2','dni'];
   const data = db.sertecfin;
   const content = schema.join(',') + '\n' +
     data.map(item => schema.map(k => csvCell(item[k] !== undefined ? item[k] : '')).join(',')).join('\n');
@@ -9145,7 +9174,7 @@ async function eliminarSertecpenSeleccion() {
 
 async function subirSertecpenAGitHub() {
   // Schema fijo para sertecpen — siempre en este orden, incluye todos los campos posibles
-  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora1'];
+  const schema = ['artefacto','cliente','telefono','tecnico','hontec','cotizacion','cotizaciont','reparvi','reptec','prefin','formpag','utinet','estado','procedimiento','foto1','foto2','foto3','foto4','foto5','fechent','hora1','dni'];
   const data = db.sertecpen;
   const content = schema.join(',') + '\n' +
     data.map(item => schema.map(k => csvCell(item[k] !== undefined ? item[k] : '')).join(',')).join('\n');
