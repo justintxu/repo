@@ -178,27 +178,28 @@ html.tema-magenta {
   --date-bg: rgba(251,207,232,0.18);
   --date-border: #f472b6;
   --date-color: #fff1f5;
-  --card-bg: linear-gradient(135deg, #be185d, #ec4899);
-  --card-color: #fff1f5;
+  --card-bg: linear-gradient(135deg, #fce7f3, #ffffff);
+  --card-color: #831843;
   --card-shadow: 0 4px 20px rgba(236,72,153,0.4);
   --search-border: #f9a8d4;
-  --search-bg: rgba(157,23,77,0.85);
+  --search-bg: #ffffff;
   --table-header-color: #fce7f3;
   --table-border: #be185d;
-  --table-hover: rgba(249,168,212,0.16);
-  --cell-bg: rgba(253,164,175,0.18);
-  --cell-blue: rgba(244,114,182,0.22);
+  --table-hover: #fce7f3;
+  --cell-bg: #ffffff;
+  --cell-blue: #ffffff;
   --toolbar-border: #be185d;
   --modal-bg: #9d174d;
   --modal-overlay: rgba(0,0,0,0.65);
-  --input-bg: rgba(157,23,77,0.85);
+  --input-bg: #ffffff;
+  --input-text: #831843;
   --input-border: #f472b6;
   --stat-bg: rgba(249,168,212,0.14);
   --stat-border: #ec4899;
   --back-btn: radial-gradient(circle at 40% 35%, #f9a8d4, #be185d);
   --back-shadow: rgba(236,72,153,0.45);
-  --est-card-bg: linear-gradient(135deg, #be185d, #ec4899);
-  --est-card-color: #fff1f5;
+  --est-card-bg: linear-gradient(135deg, #fce7f3, #ffffff);
+  --est-card-color: #831843;
   --reg-table-header: #fbcfe8;
   --reg-table-border: #be185d;
   --total-cell-bg: rgba(249,168,212,0.14);
@@ -3754,8 +3755,9 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
 
 <!-- MODAL CONTRASEÑA ACCESO -->
 <!-- MODAL IMAGEN AMPLIADA -->
-<div id="modalImagen" onclick="cerrarImagen()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:3000;align-items:center;justify-content:center;cursor:zoom-out;">
-  <img id="imgAmpliada" src="" style="max-width:92vw;max-height:92vh;border-radius:14px;box-shadow:0 8px 48px rgba(0,0,0,0.7);object-fit:contain;" onclick="event.stopPropagation()">
+<div id="modalImagen" onclick="cerrarImagen()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:3000;align-items:center;justify-content:center;cursor:zoom-out;overflow:hidden;touch-action:none;">
+  <img id="imgAmpliada" src="" style="max-width:92vw;max-height:92vh;border-radius:14px;box-shadow:0 8px 48px rgba(0,0,0,0.7);object-fit:contain;touch-action:none;will-change:transform;" onclick="event.stopPropagation()">
+  <button onclick="event.stopPropagation();cerrarImagen()" style="position:fixed;top:18px;right:18px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,0.18);color:white;font-size:22px;cursor:pointer;z-index:3001;display:flex;align-items:center;justify-content:center;">✕</button>
 </div>
 
 <div class="modal-overlay" id="modalClave">
@@ -4124,10 +4126,15 @@ function invAbrirMenuCompartir(event, idx) {
   setTimeout(() => document.addEventListener('click', cerrarMenuTelefonoOutside), 0);
 }
 
-// ═══════════════════════════ LIGHTBOX IMAGEN ═══════════════════
+// ═══════════════════════════ LIGHTBOX IMAGEN (con zoom táctil) ═══════════════════
+let _imgZoomState = { scale: 1, x: 0, y: 0, startDist: 0, startScale: 1, lastTapTime: 0, panStartX: 0, panStartY: 0, isPanning: false };
+
 function abrirImagen(url) {
   const modal = document.getElementById('modalImagen');
-  document.getElementById('imgAmpliada').src = url;
+  const img = document.getElementById('imgAmpliada');
+  img.src = url;
+  _imgZoomState.scale = 1; _imgZoomState.x = 0; _imgZoomState.y = 0;
+  img.style.transform = 'translate(0px, 0px) scale(1)';
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
@@ -4137,6 +4144,66 @@ function cerrarImagen() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') cerrarImagen(); });
+
+// Zoom táctil (pellizco) + arrastre + doble-tap. Necesario porque al agregar el sistema
+// a la pantalla de inicio en iOS (modo standalone/app), el gesto nativo de pellizco del
+// navegador queda deshabilitado dentro de la webview — por eso se implementa a mano.
+(function initImgZoom() {
+  const img = document.getElementById('imgAmpliada');
+  if (!img) return;
+  const st = _imgZoomState;
+
+  function dist(t1, t2) {
+    return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+  }
+  function applyTransform() {
+    img.style.transform = `translate(${st.x}px, ${st.y}px) scale(${st.scale})`;
+  }
+
+  img.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
+      st.startDist = dist(e.touches[0], e.touches[1]);
+      st.startScale = st.scale;
+      e.preventDefault();
+    } else if (e.touches.length === 1) {
+      const now = Date.now();
+      if (now - st.lastTapTime < 300) {
+        // Doble tap: alternar entre zoom normal y acercado
+        st.scale = st.scale > 1 ? 1 : 2.5;
+        st.x = 0; st.y = 0;
+        applyTransform();
+      }
+      st.lastTapTime = now;
+      if (st.scale > 1) {
+        st.isPanning = true;
+        st.panStartX = e.touches[0].clientX - st.x;
+        st.panStartY = e.touches[0].clientY - st.y;
+      }
+    }
+  }, { passive: false });
+
+  img.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const newDist = dist(e.touches[0], e.touches[1]);
+      let newScale = st.startScale * (newDist / st.startDist);
+      st.scale = Math.min(Math.max(newScale, 1), 5);
+      applyTransform();
+    } else if (e.touches.length === 1 && st.isPanning && st.scale > 1) {
+      e.preventDefault();
+      st.x = e.touches[0].clientX - st.panStartX;
+      st.y = e.touches[0].clientY - st.panStartY;
+      applyTransform();
+    }
+  }, { passive: false });
+
+  img.addEventListener('touchend', e => {
+    if (e.touches.length === 0) {
+      st.isPanning = false;
+      if (st.scale < 1.05) { st.scale = 1; st.x = 0; st.y = 0; applyTransform(); }
+    }
+  });
+})();
 
 // ═══════════════════════════ MENÚ TELÉFONO (Llamar / WhatsApp) ══
 function abrirMenuTelefono(event, telefono, soloLlamar) {
