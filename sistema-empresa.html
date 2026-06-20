@@ -760,6 +760,13 @@ html.tema-gris #page-reg-ventas .rv-total-cell { color: #22c55e !important; }
 html.tema-gris #regVentasMobile .rv-dni-badge,
 html.tema-gris #regVentasMobile .rv-tel-badge { background: #f1f5f9 !important; }
 html.tema-gris #regVentasMobile .rv-tel-badge { color: #1f2937 !important; }
+/* Cualquier etiqueta con el mismo verde apagado (#059669) pasa a verde encendido (Almacén, Inventario, Lista de Precios, Proforma, Registro de Compras, Lista de Pedido, etc.) */
+html.tema-gris [style*="color:#059669"] { color: #22c55e !important; }
+/* Total general (Proforma y similares) en verde encendido */
+html.tema-gris .grand-total { color: #22c55e !important; }
+/* Ejecución de Venta/Compra: título TOTAL en blanco */
+html.tema-gris #totalCompraLabelMobile,
+html.tema-gris #totalVentaLabelMobile { color: #ffffff !important; }
 
 /* ════════════ AJUSTES TEMA MAGENTA ════════════ */
 /* Etiquetas de totales: fondo claro y texto negro */
