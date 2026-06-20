@@ -760,6 +760,44 @@ html.tema-gris #page-reg-ventas .rv-total-cell { color: #22c55e !important; }
 html.tema-gris #regVentasMobile .rv-dni-badge,
 html.tema-gris #regVentasMobile .rv-tel-badge { background: #f1f5f9 !important; }
 html.tema-gris #regVentasMobile .rv-tel-badge { color: #1f2937 !important; }
+
+/* ════════════ AJUSTES TEMA MAGENTA ════════════ */
+/* Etiquetas de totales: fondo claro y texto negro */
+html.tema-magenta { --total-cell-bg: #fce7f3; --grand-total-bg: #fbcfe8; --reg-table-header: #000000; }
+html.tema-magenta .total-cell,
+html.tema-magenta input.cell-input.readonly,
+html.tema-magenta #badgeImpuesto,
+html.tema-magenta div[style*="background:var(--total-cell-bg)"],
+html.tema-magenta div[style*="background:var(--total-cell-bg)"] span,
+html.tema-magenta div[style*="background:var(--total-cell-bg)"] label { color: #000000 !important; }
+
+/* Registro de Compras: fecha, hora y código en magenta muy oscuro (móvil) */
+html.tema-magenta #regComprasMobile .fecha-badge,
+html.tema-magenta #regComprasMobile .rc-codigo-badge { color: #4a044e !important; }
+
+/* Ingresar Servicio: títulos Fecha/Hora en blanco */
+html.tema-magenta .ingserv-date-label { color: #ffffff !important; }
+
+/* Servicios Pendientes y Finalizados: teléfono/DNI en negro + menú desplegable más claro */
+html.tema-magenta #page-sertecpen input.cell-input.blue-cell,
+html.tema-magenta #page-sertecfin input.cell-input.blue-cell,
+html.tema-magenta .spen-tel-badge,
+html.tema-magenta .sfin-tel-badge { color: #000000 !important; }
+html.tema-magenta #menuTelefonoPopover { background: #fce7f3 !important; border-color: #f9a8d4 !important; }
+html.tema-magenta #menuTelefonoPopover a { color: #000000 !important; }
+
+/* Utilidad Bruta: oscurecer texto en sus 3 tarjetas */
+html.tema-magenta #contadoresUB [style*="color:var(--text-muted)"],
+html.tema-magenta #contadoresUB [style*="color:var(--text-primary)"] { color: #4a044e !important; }
+/* Utilidad Neta: oscurecer texto solo en las 3 primeras tarjetas (no en Servicio Técnico) */
+html.tema-magenta #page-utilidad-neta > div[style*="display:grid"] > div:nth-child(-n+3) [style*="color:var(--text-muted)"],
+html.tema-magenta #page-utilidad-neta > div[style*="display:grid"] > div:nth-child(-n+3) [style*="color:var(--text-primary)"] { color: #4a044e !important; }
+
+/* Rankings (Más Vendido/Comprado, Proveedor más usado, Clientes recurrentes): título de período en blanco negrita */
+html.tema-magenta #labelPeriodoVendido,
+html.tema-magenta #labelPeriodoComprado,
+html.tema-magenta #labelPeriodoProv,
+html.tema-magenta #labelPeriodoClientes { color: #ffffff !important; font-weight: 800 !important; }
 /* Selectores de Período y badge de IGV con texto negro, solo tema Gris Espacial */
 html.tema-gris #selectNivelUN, html.tema-gris #selectAnioUN, html.tema-gris #selectMesUN, html.tema-gris #selectSemanaUN,
 html.tema-gris #selectNivelUB, html.tema-gris #selectAnioUB, html.tema-gris #selectMesUB, html.tema-gris #selectSemanaUB,
@@ -5067,7 +5105,7 @@ function renderRegCompras(){
         </div>
         <div>
           <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${c.producto||''}</div>
-          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);"># ${c.codigo||''}</span>
+          <span class="rc-codigo-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);"># ${c.codigo||''}</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="background:#fef9c3;color:#92400e;border-radius:6px;padding:3px 8px;font-size:15px;font-weight:800;">✕ ${c.cantidad||0}</span>
