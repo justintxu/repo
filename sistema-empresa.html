@@ -908,6 +908,13 @@ html.dark #page-configuraciones div[style*="background:var(--total-cell-bg)"] la
 html.dark #page-configuraciones div[style*="background:var(--input-bg)"] span,
 html.dark #page-configuraciones div[style*="background:var(--input-bg)"] label { color: #000000 !important; }
 html.dark #page-configuraciones input[style*="background:var(--input-bg)"] { color: #000000 !important; }
+/* Base de Datos: texto negro dentro de las filas blancas de cada tabla */
+html.dark #page-base-datos div[style*="background:var(--input-bg)"] span { color: #000000 !important; }
+/* Ejecución de Compra/Venta: título TOTAL en blanco */
+html.dark #totalCompraLabelMobile,
+html.dark #totalVentaLabelMobile { color: #ffffff !important; }
+/* Proveedores: etiquetas de teléfono y celular en negro */
+html.dark #page-proveedores .prov-tel-badge { color: #000000 !important; }
 /* Selectores de Período y badge de IGV con texto negro, solo tema Gris Espacial */
 html.tema-gris #selectNivelUN, html.tema-gris #selectAnioUN, html.tema-gris #selectMesUN, html.tema-gris #selectSemanaUN,
 html.tema-gris #selectNivelUB, html.tema-gris #selectAnioUB, html.tema-gris #selectMesUB, html.tema-gris #selectSemanaUB,
@@ -2184,7 +2191,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   <div id="ejecVentaMobile" style="display:none;padding:0 12px;">
     <div id="ejecVentaMobileItems"></div>
     <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
-      <span style="font-weight:800;font-size:16px;">TOTAL VENTA:</span>
+      <span id="totalVentaLabelMobile" style="font-weight:800;font-size:16px;">TOTAL VENTA:</span>
       <div class="grand-total" id="totalVentaMobile" style="font-size:20px;">0.00</div>
     </div>
   </div>
@@ -2677,7 +2684,7 @@ html.tema-gris .theme-toggle span { color: #1f2937; }
   <div id="ejecCompraMobile" style="display:none;padding:0 12px;">
     <div id="ejecCompraMobileItems"></div>
     <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:12px 4px;border-top:2px solid var(--table-border);margin-top:4px;">
-      <span style="font-weight:800;font-size:15px;">TOTAL COMPRA:</span>
+      <span id="totalCompraLabelMobile" style="font-weight:800;font-size:15px;">TOTAL COMPRA:</span>
       <div class="grand-total" id="totalCompraMobile" style="font-size:20px;">0.00</div>
     </div>
   </div>
