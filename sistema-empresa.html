@@ -803,6 +803,17 @@ html.tema-magenta #selectNivelUN, html.tema-magenta #selectAnioUN, html.tema-mag
 html.tema-magenta #selectNivelUB, html.tema-magenta #selectAnioUB, html.tema-magenta #selectMesUB, html.tema-magenta #selectSemanaUB { color: #000000 !important; }
 /* Registro de Ventas: fecha y hora en negro */
 html.tema-magenta #regVentasMobile .fecha-badge { color: #000000 !important; }
+/* Registro de Ventas: DNI y celular en negro (escritorio y móvil) */
+html.tema-magenta #page-reg-ventas .rv-dni-cell,
+html.tema-magenta #page-reg-ventas .rv-tel-cell,
+html.tema-magenta .rv-dni-badge,
+html.tema-magenta .rv-tel-badge { color: #000000 !important; }
+/* Registro de Ventas: cifra Total en verde encendido */
+html.tema-magenta .rv-total-cell { color: #22c55e !important; }
+/* Cualquier etiqueta con el mismo verde apagado (#059669) pasa a verde encendido */
+html.tema-magenta [style*="color:#059669"] { color: #22c55e !important; }
+/* Lista de Precios: selector de categoría en negro */
+html.tema-magenta #selectCatListaPrecios { color: #000000 !important; }
 
 /* ════════════ MISMOS AJUSTES, ADAPTADOS AL TEMA OSCURO ════════════ */
 /* Rediseño base: tarjetas, cajas de texto y etiquetas en tonos claros violeta/blanco con texto violeta oscuro */
@@ -4889,7 +4900,7 @@ function renderRegVentas() {
     <td style="text-align:center;">${formatHora(v.hora)}</td>
     <td>${v.cliente||''}</td>
     <td class="rv-dni-cell" style="text-align:center;">${v.dni?`<span style="cursor:pointer;" onclick="abrirMenuDNI(event,'${v.dni.replace(/'/g,"\\'")}')">${v.dni}</span>`:''}</td>
-    <td style="text-align:center;">${v.telefono?`<span style="cursor:pointer;" onclick="abrirMenuTelefono(event,'${v.telefono.replace(/'/g,"\\'")}')">${v.telefono}</span>`:''}</td>
+    <td class="rv-tel-cell" style="text-align:center;">${v.telefono?`<span style="cursor:pointer;" onclick="abrirMenuTelefono(event,'${v.telefono.replace(/'/g,"\\'")}')">${v.telefono}</span>`:''}</td>
     <td style="text-align:center;">${v.codigo||''}</td>
     <td style="text-align:center;">${v.cantidad||0}</td>
     <td>${v.producto||''}</td>
