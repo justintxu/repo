@@ -870,7 +870,44 @@ html.dark #labelPeriodoProv,
 html.dark #labelPeriodoClientes { color: #ffffff !important; font-weight: 800 !important; }
 
 /* Registro de Ventas: fecha y hora en negro */
+/* Lista de Precios: toggles Categoría/Personalizar y Lista/Catálogo en negro */
+html.tema-magenta .theme-toggle span { color: #000000 !important; }
+/* Badges de código (Inventario, Almacén, Registro de Ventas) en negro */
+html.tema-magenta .tbl-codigo-badge { color: #000000 !important; }
+/* Total general (Proforma y similares) en verde encendido */
+html.tema-magenta .grand-total { color: #22c55e !important; }
+/* Configuraciones: texto negro dentro de tarjetas/recuadros blancos (Botón de Facturación, etc.) */
+html.tema-magenta #page-configuraciones div[style*="background:var(--total-cell-bg)"] span,
+html.tema-magenta #page-configuraciones div[style*="background:var(--total-cell-bg)"] label,
+html.tema-magenta #page-configuraciones div[style*="background:var(--input-bg)"] span,
+html.tema-magenta #page-configuraciones div[style*="background:var(--input-bg)"] label { color: #000000 !important; }
+html.tema-magenta #page-configuraciones input[style*="background:var(--input-bg)"] { color: #000000 !important; }
+
+/* Registro de Ventas: fecha y hora en negro */
 html.dark #regVentasMobile .fecha-badge { color: #000000 !important; }
+/* ════════ MISMO MIRROR PARA TEMA OSCURO (faltaba lo añadido recién en Magenta) ════════ */
+/* Registro de Ventas: DNI y celular en negro (escritorio y móvil) */
+html.dark #page-reg-ventas .rv-dni-cell,
+html.dark #page-reg-ventas .rv-tel-cell,
+html.dark .rv-dni-badge,
+html.dark .rv-tel-badge { color: #000000 !important; }
+/* Registro de Ventas: cifra Total en verde encendido */
+html.dark .rv-total-cell { color: #22c55e !important; }
+/* Cualquier etiqueta con el mismo verde apagado (#059669) pasa a verde encendido */
+html.dark [style*="color:#059669"] { color: #22c55e !important; }
+/* Lista de Precios: selector de categoría y toggles en negro */
+html.dark #selectCatListaPrecios { color: #000000 !important; }
+html.dark .theme-toggle span { color: #000000 !important; }
+/* Badges de código (Inventario, Almacén, Registro de Ventas) en negro */
+html.dark .tbl-codigo-badge { color: #000000 !important; }
+/* Total general (Proforma y similares) en verde encendido */
+html.dark .grand-total { color: #22c55e !important; }
+/* Configuraciones: texto negro dentro de tarjetas/recuadros claros */
+html.dark #page-configuraciones div[style*="background:var(--total-cell-bg)"] span,
+html.dark #page-configuraciones div[style*="background:var(--total-cell-bg)"] label,
+html.dark #page-configuraciones div[style*="background:var(--input-bg)"] span,
+html.dark #page-configuraciones div[style*="background:var(--input-bg)"] label { color: #000000 !important; }
+html.dark #page-configuraciones input[style*="background:var(--input-bg)"] { color: #000000 !important; }
 /* Selectores de Período y badge de IGV con texto negro, solo tema Gris Espacial */
 html.tema-gris #selectNivelUN, html.tema-gris #selectAnioUN, html.tema-gris #selectMesUN, html.tema-gris #selectSemanaUN,
 html.tema-gris #selectNivelUB, html.tema-gris #selectAnioUB, html.tema-gris #selectMesUB, html.tema-gris #selectSemanaUB,
@@ -4170,9 +4207,7 @@ function renderInventario() {
           ${imgHtml}
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
-          </div>
-          <button onclick="invAbrirMenuCompartir(event,${orig})" title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
+            <span class="tbl-codigo-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span> title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
         </div>
         ${p.descripcion ? `<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;min-height:52px;display:flex;align-items:center;">${p.descripcion}</div>` : ''}
         <!-- Fila 2: precio + stock + ubicación -->
@@ -4710,7 +4745,7 @@ function renderAlmacen() {
           ${imgHtml}
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-            <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
+            <span class="tbl-codigo-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
           </div>
         </div>
         ${p.descripcion?`<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;min-height:52px;display:flex;align-items:center;">${p.descripcion}</div>`:''}
@@ -4928,7 +4963,7 @@ function renderRegVentas() {
         <!-- Fila 2: producto con código -->
         <div>
           <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${String(v.producto||'')}</div>
-          <span style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
+          <span class="tbl-codigo-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:14px;font-weight:700;color:var(--text-muted);"># ${String(v.codigo||'')}</span>
         </div>
         <!-- Fila 3: cantidad + precio + total -->
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
