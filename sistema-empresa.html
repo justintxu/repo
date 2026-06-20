@@ -798,6 +798,68 @@ html.tema-magenta #labelPeriodoVendido,
 html.tema-magenta #labelPeriodoComprado,
 html.tema-magenta #labelPeriodoProv,
 html.tema-magenta #labelPeriodoClientes { color: #ffffff !important; font-weight: 800 !important; }
+/* Utilidad Neta/Bruta: selector de período en negro */
+html.tema-magenta #selectNivelUN, html.tema-magenta #selectAnioUN, html.tema-magenta #selectMesUN, html.tema-magenta #selectSemanaUN,
+html.tema-magenta #selectNivelUB, html.tema-magenta #selectAnioUB, html.tema-magenta #selectMesUB, html.tema-magenta #selectSemanaUB { color: #000000 !important; }
+/* Registro de Ventas: fecha y hora en negro */
+html.tema-magenta #regVentasMobile .fecha-badge { color: #000000 !important; }
+
+/* ════════════ MISMOS AJUSTES, ADAPTADOS AL TEMA OSCURO ════════════ */
+/* Rediseño base: tarjetas, cajas de texto y etiquetas en tonos claros violeta/blanco con texto violeta oscuro */
+html.dark {
+  --card-bg: linear-gradient(135deg, #ede9fe, #ffffff);
+  --card-color: #4c1d95;
+  --search-bg: #ffffff;
+  --table-hover: #ede9fe;
+  --cell-bg: #ffffff;
+  --cell-blue: #ffffff;
+  --input-bg: #ffffff;
+  --input-text: #4c1d95;
+  --est-card-bg: linear-gradient(135deg, #ede9fe, #ffffff);
+  --est-card-color: #4c1d95;
+}
+/* Etiquetas de totales: fondo claro y texto negro */
+html.dark { --total-cell-bg: #ede9fe; --grand-total-bg: #ddd6fe; --reg-table-header: #000000; }
+html.dark .total-cell,
+html.dark input.cell-input.readonly,
+html.dark #badgeImpuesto,
+html.dark div[style*="background:var(--total-cell-bg)"],
+html.dark div[style*="background:var(--total-cell-bg)"] span,
+html.dark div[style*="background:var(--total-cell-bg)"] label { color: #000000 !important; }
+
+/* Registro de Compras: fecha, hora y código en violeta muy oscuro (móvil) */
+html.dark #regComprasMobile .fecha-badge,
+html.dark #regComprasMobile .rc-codigo-badge { color: #2e1065 !important; }
+
+/* Ingresar Servicio: títulos Fecha/Hora en blanco */
+html.dark .ingserv-date-label { color: #ffffff !important; }
+
+/* Servicios Pendientes y Finalizados: teléfono/DNI en negro + menú desplegable más claro */
+html.dark #page-sertecpen input.cell-input.blue-cell,
+html.dark #page-sertecfin input.cell-input.blue-cell,
+html.dark .spen-tel-badge,
+html.dark .sfin-tel-badge { color: #000000 !important; }
+html.dark #menuTelefonoPopover { background: #ede9fe !important; border-color: #c4b5fd !important; }
+html.dark #menuTelefonoPopover a { color: #000000 !important; }
+
+/* Utilidad Bruta: oscurecer texto en sus 3 tarjetas */
+html.dark #contadoresUB [style*="color:var(--text-muted)"],
+html.dark #contadoresUB [style*="color:var(--text-primary)"] { color: #2e1065 !important; }
+/* Utilidad Neta: oscurecer texto solo en las 3 primeras tarjetas (no en Servicio Técnico) */
+html.dark #page-utilidad-neta > div[style*="display:grid"] > div:nth-child(-n+3) [style*="color:var(--text-muted)"],
+html.dark #page-utilidad-neta > div[style*="display:grid"] > div:nth-child(-n+3) [style*="color:var(--text-primary)"] { color: #2e1065 !important; }
+/* Utilidad Neta/Bruta: selector de período en negro */
+html.dark #selectNivelUN, html.dark #selectAnioUN, html.dark #selectMesUN, html.dark #selectSemanaUN,
+html.dark #selectNivelUB, html.dark #selectAnioUB, html.dark #selectMesUB, html.dark #selectSemanaUB { color: #000000 !important; }
+
+/* Rankings: título de período en blanco negrita */
+html.dark #labelPeriodoVendido,
+html.dark #labelPeriodoComprado,
+html.dark #labelPeriodoProv,
+html.dark #labelPeriodoClientes { color: #ffffff !important; font-weight: 800 !important; }
+
+/* Registro de Ventas: fecha y hora en negro */
+html.dark #regVentasMobile .fecha-badge { color: #000000 !important; }
 /* Selectores de Período y badge de IGV con texto negro, solo tema Gris Espacial */
 html.tema-gris #selectNivelUN, html.tema-gris #selectAnioUN, html.tema-gris #selectMesUN, html.tema-gris #selectSemanaUN,
 html.tema-gris #selectNivelUB, html.tema-gris #selectAnioUB, html.tema-gris #selectMesUB, html.tema-gris #selectSemanaUB,
