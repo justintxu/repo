@@ -4207,7 +4207,9 @@ function renderInventario() {
           ${imgHtml}
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;font-size:17px;color:var(--text-primary);margin-bottom:4px;">${p.producto||''}</div>
-            <span class="tbl-codigo-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span> title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
+            <span class="tbl-codigo-badge" style="background:var(--table-hover);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700;color:var(--text-muted);"># ${p.codigo||''}</span>
+          </div>
+          <button onclick="invAbrirMenuCompartir(event,${orig})" title="Compartir" style="width:36px;height:36px;border-radius:50%;border:none;background:#0ea5e9;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📤</button>
         </div>
         ${p.descripcion ? `<div style="font-size:15px;font-weight:800;color:#92400e;background:#fef9c3;border-radius:6px;padding:4px 8px;min-height:52px;display:flex;align-items:center;">${p.descripcion}</div>` : ''}
         <!-- Fila 2: precio + stock + ubicación -->
