@@ -759,6 +759,12 @@ html.tema-gris #page-reg-ventas .rv-total-cell { color: #22c55e !important; }
 html.tema-gris #regVentasMobile .rv-dni-badge,
 html.tema-gris #regVentasMobile .rv-tel-badge { background: #f1f5f9 !important; }
 html.tema-gris #regVentasMobile .rv-tel-badge { color: #1f2937 !important; }
+/* Selectores de Período y badge de IGV con texto negro, solo tema Gris Espacial */
+html.tema-gris #selectNivelUN, html.tema-gris #selectAnioUN, html.tema-gris #selectMesUN, html.tema-gris #selectSemanaUN,
+html.tema-gris #selectNivelUB, html.tema-gris #selectAnioUB, html.tema-gris #selectMesUB, html.tema-gris #selectSemanaUB,
+html.tema-gris #badgeImpuesto { color: #1f2937 !important; }
+/* Etiquetas de Teléfono y Celular más visibles en móvil, solo tema Gris Espacial */
+html.tema-gris #page-proveedores .prov-tel-badge { background: #f1f5f9 !important; color: #1f2937 !important; }
 
 input.cell-input {
   width: 100%; padding: 7px 10px; border-radius: 8px;
@@ -4158,11 +4164,13 @@ function abrirMenuTelefono(event, telefono, soloLlamar) {
   menu.style.gap = '4px';
   menu.style.minWidth = '180px';
   menu.innerHTML = soloLlamar
-    ? `<a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>`
+    ? `<a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>
+    <a href="#" onclick="event.preventDefault();navigator.clipboard.writeText('${telefono.replace(/'/g,"\\'")}').then(()=>toast('📋 Número copiado')).catch(()=>toast('⚠️ No se pudo copiar'));cerrarMenuTelefono();" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📋 Copiar Número</a>`
     : `
     <a href="tel:${tel}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📞 Llamar</a>
     <a href="https://wa.me/${telIntl}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">💬 WhatsApp</a>
     <a href="https://t.me/+${telIntl}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">✈️ Telegram</a>
+    <a href="#" onclick="event.preventDefault();navigator.clipboard.writeText('${telefono.replace(/'/g,"\\'")}').then(()=>toast('📋 Número copiado')).catch(()=>toast('⚠️ No se pudo copiar'));cerrarMenuTelefono();" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:14px;background:transparent;" onmouseover="this.style.background='var(--table-hover)'" onmouseout="this.style.background='transparent'">📋 Copiar Número</a>
   `;
   document.body.appendChild(menu);
 
@@ -5036,8 +5044,8 @@ function renderProveedores(){
         return `<div style="border-bottom:2px solid var(--table-border);padding:12px 4px;display:flex;flex-direction:column;gap:6px;">
           <div style="font-weight:800;font-size:19px;color:var(--text-primary);">🤝 ${p.nombre||''}</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            ${p.telefono?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${p.telefono.replace(/'/g,"\\'")}',true)">📞 ${p.telefono}</span>`:''}
-            ${p.celular?`<span style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${p.celular.replace(/'/g,"\\'")}')">📱 ${p.celular}</span>`:''}
+            ${p.telefono?`<span class="prov-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${p.telefono.replace(/'/g,"\\'")}',true)">📞 ${p.telefono}</span>`:''}
+            ${p.celular?`<span class="prov-tel-badge" style="background:var(--table-hover);border-radius:6px;padding:3px 8px;font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;" onclick="abrirMenuTelefono(event,'${p.celular.replace(/'/g,"\\'")}')">📱 ${p.celular}</span>`:''}
           </div>
           ${p.email?`<a href="mailto:${p.email}" style="font-size:16px;color:#3b82f6;text-decoration:underline;">✉️ ${p.email}</a>`:''}
           ${p.direccion?`<div style="font-size:15px;color:var(--text-muted);">📍 ${p.direccion}</div>`:''}
