@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Trading Log">
-    <link rel="apple-touch-icon" href="Bita_icon180x180.png">
+    <link class="apple-touch-icon" href="Bita_icon180x180.png">
     
     <!-- Ícono para el Navegador de Escritorio (Favicon) -->
     <link rel="icon" type="image/x-icon" href="Bitacora.ico">
@@ -28,10 +28,10 @@
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
         }
-        /* Incremento del 25% de la fuente base únicamente en pantallas de Escritorio (md) */
+        /* Incremento base del 25% global en desktop */
         @media (min-width: 768px) {
             html {
-                font-size: 125%; /* Incremento exacto del 25% global en desktop */
+                font-size: 125%; 
             }
         }
         ::-webkit-scrollbar {
@@ -527,9 +527,11 @@
     // --- MEMORIA DE DATOS LOCALES ---
     let historialOperaciones = [];
     let currentDetailLink = ""; 
+    let ultimaVistaActiva = "view-home";
 
-    // --- ENRUTADOR CLIENT-SIDE DE VISTAS ---
+    // --- ENRUTADOR CLIENT-SIDE DE VISTAS CON ESCALADO DE FUENTE INTEGRADO ---
     function cambiarVista(vistaId) {
+        ultimaVistaActiva = vistaId;
         document.getElementById('view-home').classList.add('hidden');
         document.getElementById('view-insert').classList.add('hidden');
         document.getElementById('view-list').classList.add('hidden');
@@ -537,7 +539,25 @@
         document.getElementById('view-settings').classList.add('hidden');
         document.getElementById(vistaId).classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        actualizarEscaladoFuenteDesktop();
     }
+
+    // Ajusta la fuente un 35% extra en las páginas especificadas (125% * 1.35 = 168.75%)
+    function actualizarEscaladoFuenteDesktop() {
+        if (window.innerWidth >= 768) {
+            if (ultimaVistaActiva === 'view-list' || ultimaVistaActiva === 'view-detail' || ultimaVistaActiva === 'view-settings') {
+                document.documentElement.style.fontSize = "168.75%";
+            } else {
+                document.documentElement.style.fontSize = "125%";
+            }
+        } else {
+            document.documentElement.style.fontSize = ""; // Limpia estilos inline en móvil
+        }
+    }
+
+    // Listener para asegurar la consistencia si se cambia el tamaño de ventana del escritorio
+    window.addEventListener('resize', actualizarEscaladoFuenteDesktop);
 
     // --- LOGICA COMPARTIR ---
     function toggleShareMenu() {
