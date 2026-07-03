@@ -399,19 +399,19 @@
                     <h3 name="theme-btn-title" class="text-sm font-extrabold uppercase tracking-wider text-[#2a44a7] border-b border-slate-100 pb-2 transition-colors duration-300">Volúmenes y Cierre</h3>
                     <div class="grid grid-cols-2 gap-3 text-xs">
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Tamaño máx:</span>
+                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Tamaño máx:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-tamano-max">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor máx:</span>
+                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor máx:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-valor-max">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Cantidad cierre:</span>
+                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Cantidad cierre:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-cant-cierre">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor cierre:</span>
+                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor cierre:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-valor-cierre">-</div>
                         </div>
                     </div>
@@ -568,6 +568,7 @@
 
         // Textos dentro de subcards en la vista de detalle
         const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
+        const detailSubcardTitles = document.querySelectorAll('[name="theme-subcard-title"]');
         const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
         const ocrBoxTitle = document.getElementById('ocr-box-title');
         const ocrBoxDesc = document.getElementById('ocr-box-desc');
@@ -615,11 +616,16 @@
             tokenTexts.forEach(tt => tt.classList.replace('text-[#3452c1]', 'text-zinc-800'));
             if(tableHeader) tableHeader.classList.replace('bg-slate-50', 'bg-zinc-400');
 
-            // MODIFICACIONES ADICIONALES PARA TEMA OSCURO (Captura 1 y Captura 4)
-            if(ocrBoxTitle) ocrBoxTitle.classList.replace('text-[#2a44a7]', 'text-white');
-            if(ocrBoxDesc) ocrBoxDesc.classList.replace('text-zinc-500', 'text-white');
-            detailSubcardTexts.forEach(dst => dst.classList.replace('text-zinc-900', 'text-white'));
-            detailPrimaryTexts.forEach(dpt => dpt.classList.replace('text-zinc-900', 'text-white'));
+            // MODIFICACIONES ADICIONALES PARA TEMA OSCURO (Captura 1, 3 y 4)
+            if(ocrBoxTitle) { ocrBoxTitle.classList.remove('text-zinc-900', 'text-[#2a44a7]'); ocrBoxTitle.classList.add('text-white'); }
+            if(ocrBoxDesc) { ocrBoxDesc.classList.remove('text-zinc-700', 'text-zinc-500'); ocrBoxDesc.classList.add('text-white'); }
+            
+            // Captura 3: Cambiar color de blanco a negro en el texto de Información del Trade
+            detailPrimaryTexts.forEach(dpt => { dpt.classList.remove('text-zinc-900', 'text-white'); dpt.classList.add('text-black'); });
+            
+            // Captura 4: Títulos de tarjetas inferiores de Gris a Blanco, e interior blanco
+            detailSubcardTexts.forEach(dst => { dst.classList.remove('text-zinc-900'); dst.classList.add('text-white'); });
+            detailSubcardTitles.forEach(dst => { dst.classList.remove('text-zinc-400'); dst.classList.add('text-white'); });
 
         } else {
             // Revertir a Tema Claro
@@ -650,7 +656,7 @@
 
             if(ocrBox) {
                 ocrBox.classList.add('bg-blue-50', 'border-[#3452c1]/40', 'hover:border-[#3452c1]');
-                ocrBox.classList.remove('bg-zinc-700', 'border-zinc-500', 'hover:border-zinc-400');
+                ocrBox.remove('bg-zinc-700', 'border-zinc-500', 'hover:border-zinc-400');
             }
             if(ocrIcon) ocrIcon.classList.replace('bg-zinc-600', 'bg-blue-100');
             if(tokenBadge) tokenBadge.classList.add('bg-blue-50', 'text-[#3452c1]');
@@ -660,8 +666,9 @@
             // REVERTIR CAMBIOS EXCLUSIVOS
             if(ocrBoxTitle) { ocrBoxTitle.classList.remove('text-white'); ocrBoxTitle.classList.add('text-[#2a44a7]'); }
             if(ocrBoxDesc) { ocrBoxDesc.classList.remove('text-white'); ocrBoxDesc.classList.add('text-zinc-500'); }
+            detailPrimaryTexts.forEach(dpt => { dpt.classList.remove('text-black', 'text-white'); dpt.classList.add('text-zinc-900'); });
             detailSubcardTexts.forEach(dst => { dst.classList.remove('text-white'); dst.classList.add('text-zinc-900'); });
-            detailPrimaryTexts.forEach(dpt => { dpt.classList.remove('text-white'); dpt.classList.add('text-zinc-900'); });
+            detailSubcardTitles.forEach(dst => { dst.classList.remove('text-white'); dst.classList.add('text-zinc-400'); });
         }
         localStorage.setItem('_selected_theme', tema);
         if(themeSelector) themeSelector.value = tema;
@@ -803,10 +810,10 @@
                 const apalStr = getValor(op, "Apalancamiento", 2) || "-";
                 const margenStr = getValor(op, "Margen", 3) || "Aislado";
 
-                // ASIGNACIÓN DE COLORES DINÁMICOS EN TEMA OSCURO (Rojo encendido / Verde encendido)
+                // ASIGNACIÓN DE COLORES DINÁMICOS EN TEMA OSCURO (Captura 2: Verde más oscuro/contrastado)
                 let pnlColor = "";
                 if (currentTheme === 'oscuro') {
-                    pnlColor = pnlVal >= 0 ? 'text-green-400' : 'text-red-500';
+                    pnlColor = pnlVal >= 0 ? 'text-emerald-700 font-extrabold' : 'text-red-500';
                 } else {
                     pnlColor = pnlVal >= 0 ? 'text-emerald-600' : 'text-rose-600';
                 }
@@ -855,7 +862,7 @@
         utilidadContador.innerText = `${utilidadFiltrada >= 0 ? '+' : ''}${utilidadFiltrada.toFixed(4)} USDT`;
         
         if (currentTheme === 'oscuro') {
-            utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-green-400" : "text-2xl font-black text-red-500";
+            utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-emerald-700" : "text-2xl font-black text-red-500";
         } else {
             utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-emerald-600" : "text-2xl font-black text-rose-600";
         }
@@ -890,7 +897,7 @@
         
         // Asignación de clases dinámicas para insignias
         if (currentTheme === 'oscuro') {
-            bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-zinc-800 text-red-500 border border-zinc-700" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-zinc-800 text-green-400 border border-zinc-700";
+            bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-zinc-800 text-red-500 border border-zinc-700" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-zinc-800 text-emerald-700 border border-zinc-700";
         } else {
             bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-600 border border-emerald-100";
         }
@@ -900,8 +907,8 @@
         
         // Colores de texto encendidos o estándar en detalle
         if (currentTheme === 'oscuro') {
-            document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-3xl font-black text-green-400 mt-2" : "text-xl md:text-3xl font-black text-red-500 mt-2"; 
-            document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-3xl font-black text-green-400 mt-2" : "text-xl md:text-3xl font-black text-red-500 mt-2"; 
+            document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-3xl font-black text-emerald-700 mt-2" : "text-xl md:text-3xl font-black text-red-500 mt-2"; 
+            document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-3xl font-black text-emerald-700 mt-2" : "text-xl md:text-3xl font-black text-red-500 mt-2"; 
         } else {
             document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-3xl font-black text-emerald-600 mt-2" : "text-xl md:text-3xl font-black text-rose-600 mt-2"; 
             document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-3xl font-black text-emerald-600 mt-2" : "text-xl md:text-3xl font-black text-rose-600 mt-2"; 
@@ -936,14 +943,19 @@
         
         // Forzar actualización de colores según el tema activo al renderizar datos dinámicos
         const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
+        const detailSubcardTitles = document.querySelectorAll('[name="theme-subcard-title"]');
         const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
         detailSubcardTexts.forEach(dst => {
             if (currentTheme === 'oscuro') { dst.classList.remove('text-zinc-900'); dst.classList.add('text-white'); }
             else { dst.classList.remove('text-white'); dst.classList.add('text-zinc-900'); }
         });
+        detailSubcardTitles.forEach(dst => {
+            if (currentTheme === 'oscuro') { dst.classList.remove('text-zinc-400'); dst.classList.add('text-white'); }
+            else { dst.classList.remove('text-white'); dst.classList.add('text-zinc-400'); }
+        });
         detailPrimaryTexts.forEach(dpt => {
-            if (currentTheme === 'oscuro') { dpt.classList.remove('text-zinc-900'); dpt.classList.add('text-white'); }
-            else { dpt.classList.remove('text-white'); dpt.classList.add('text-zinc-900'); }
+            if (currentTheme === 'oscuro') { dpt.classList.remove('text-zinc-900', 'text-white'); dpt.classList.add('text-black'); }
+            else { dpt.classList.remove('text-black', 'text-white'); dpt.classList.add('text-zinc-900'); }
         });
     }
 
