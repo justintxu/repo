@@ -28,6 +28,12 @@
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
         }
+        /* Incremento del 25% de la fuente base únicamente en pantallas de Escritorio (md) */
+        @media (min-width: 768px) {
+            html {
+                font-size: 125%; /* Incremento exacto del 25% global en desktop */
+            }
+        }
         ::-webkit-scrollbar {
             width: 5px;
             height: 5px;
@@ -117,8 +123,9 @@
 
     <!-- ================= VISTA 2: INGRESAR OPERACIÓN (FORMULARIO) ================= -->
     <div id="view-insert" class="hidden space-y-6">
-        <div class="flex flex-col md:flex-row md:items-center justify-between pb-2 border-b border-white/20 gap-2">
-            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs md:text-sm font-semibold self-start">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-2 border-b border-white/20 gap-4">
+            <!-- Botón de retorno móvil adaptado de forma rectangular con bordes redondeados -->
+            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl transition-all text-xs md:text-sm font-bold border border-white/10 shadow-sm active:scale-95 self-start">
                 <span>← Volver al Menú Principal</span>
             </button>
             <h2 class="text-base md:text-xl font-bold text-white">Registro Manual y Escáner OCR</h2>
@@ -260,8 +267,9 @@
 
     <!-- ================= VISTA 3: HISTORIAL DE OPERACIONES (LISTA) ================= -->
     <div id="view-list" class="hidden space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-white/20">
-            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs font-semibold self-start">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-white/20">
+            <!-- Botón de retorno móvil adaptado de forma rectangular con bordes redondeados -->
+            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl transition-all text-xs font-bold border border-white/10 shadow-sm active:scale-95 self-start">
                 <span>← Menú Principal</span>
             </button>
             
@@ -329,8 +337,9 @@
 
     <!-- ================= VISTA 4: DETALLE DE OPERACIÓN ================= -->
     <div id="view-detail" class="hidden space-y-6">
-        <div class="flex items-center justify-between pb-2 border-b border-white/20">
-            <button onclick="cambiarVista('view-list')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs font-semibold">
+        <div class="flex items-center justify-between pb-2 border-b border-white/20 gap-4">
+            <!-- Botón de retorno móvil adaptado de forma rectangular con bordes redondeados -->
+            <button onclick="cambiarVista('view-list')" class="flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl transition-all text-xs font-bold border border-white/10 shadow-sm active:scale-95">
                 <span>← Volver al Historial</span>
             </button>
             <h2 class="text-sm md:text-xl font-bold text-white flex items-center gap-2">
@@ -439,8 +448,9 @@
 
     <!-- ================= VISTA 5: CONFIGURACIONES ================= -->
     <div id="view-settings" class="hidden space-y-6">
-        <div class="flex items-center justify-between pb-2 border-b border-white/20">
-            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs font-semibold">
+        <div class="flex items-center justify-between pb-2 border-b border-white/20 gap-4">
+            <!-- Botón de retorno móvil adaptado de forma rectangular con bordes redondeados -->
+            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl transition-all text-xs font-bold border border-white/10 shadow-sm active:scale-95">
                 <span>← Volver al Menú Principal</span>
             </button>
             <h2 class="text-base font-bold text-white">Configuración Remota</h2>
@@ -749,7 +759,6 @@
         return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");     
     }
 
-    // Corregida redundancia devolviendo op[key] directo si falla coincidencia o indice estructurado
     function getValor(op, key, index) {
         if (!op) return "";
         const normKey = normalizarLlave(key);
@@ -865,7 +874,7 @@
 
                 // Render para Móviles (Tarjetas Compactas Estilo Captura)
                 const mobileCard = document.createElement('div');
-                mobileCard.className = "bg-white text-zinc-800 rounded-2xl p-4 flex justify-between items-center gap-2 shadow-md border border-slate-100";
+                mobileCard.className = "bg-white text-zinc-800 rounded-2xl p-4 flex justify-between items-center gap-2 shadow-md border border-slate-100 cursor-pointer";
                 mobileCard.onclick = () => verDetalleOperacion(index);
                 mobileCard.innerHTML = `
                     <div class="space-y-1">
