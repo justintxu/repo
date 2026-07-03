@@ -144,7 +144,7 @@
             </div>
 
             <details name="theme-subcard" class="bg-slate-50 border border-slate-200 rounded-xl p-3 transition-colors duration-300">
-                <summary name="theme-desc" class="text-xs font-semibold text-zinc-500 cursor-pointer hover:text-zinc-800 select-none transition-colors duration-300">🔍 Ver lectura bruta OCR</summary>
+                <summary id="theme-ocr-summary" name="theme-desc" class="text-xs font-semibold text-zinc-500 cursor-pointer hover:text-zinc-800 select-none transition-colors duration-300">🔍 Ver lectura bruta OCR</summary>
                 <div class="mt-2">
                     <textarea id="raw-ocr-text" class="w-full h-24 bg-white border border-slate-200 rounded-lg p-2 text-xs font-mono text-zinc-600 focus:outline-none focus:border-[#3452c1]" readonly placeholder="Texto detectado..."></textarea>
                 </div>
@@ -366,31 +366,31 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs font-semibold text-zinc-700" id="detail-trade-info-grid">
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Par de Trading:</span>
-                            <span id="detail-val-par" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-par" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm transition-colors duration-300">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Apalancamiento:</span>
-                            <span id="detail-val-apal" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-apal" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm transition-colors duration-300">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Margen:</span>
-                            <span id="detail-val-margen" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-margen" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm transition-colors duration-300">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Entrada Media:</span>
-                            <span id="detail-val-entrada" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-entrada" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm transition-colors duration-300">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Salida Promedio:</span>
-                            <span id="detail-val-salida" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-salida" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm transition-colors duration-300">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Tiempo Abierto:</span>
-                            <span id="detail-val-tiempo-abierto" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-tiempo-abierto" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm transition-colors duration-300">-</span>
                         </div>
                         <div class="col-span-2">
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Fecha de Cierre:</span>
-                            <span id="detail-val-fecha-cierre" name="detail-text-primary" class="font-mono text-zinc-900 text-xs font-bold">-</span>
+                            <span id="detail-val-fecha-cierre" name="detail-text-primary" class="font-mono text-zinc-900 text-xs font-bold transition-colors duration-300">-</span>
                         </div>
                     </div>
                 </div>
@@ -399,19 +399,19 @@
                     <h3 name="theme-btn-title" class="text-sm font-extrabold uppercase tracking-wider text-[#2a44a7] border-b border-slate-100 pb-2 transition-colors duration-300">Volúmenes y Cierre</h3>
                     <div class="grid grid-cols-2 gap-3 text-xs">
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Tamaño máx:</span>
+                            <span name="theme-desc-subcard" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Tamaño máx:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-tamano-max">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor máx:</span>
+                            <span name="theme-desc-subcard" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor máx:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-valor-max">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Cantidad cierre:</span>
+                            <span name="theme-desc-subcard" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Cantidad cierre:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-cant-cierre">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
-                            <span name="theme-subcard-title" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor cierre:</span>
+                            <span name="theme-desc-subcard" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor cierre:</span>
                             <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-valor-cierre">-</div>
                         </div>
                     </div>
@@ -566,12 +566,15 @@
         const mobileMenu = document.getElementById('theme-mobile-menu');
         const themeSelector = document.getElementById('theme-selector');
 
-        // Textos dentro de subcards en la vista de detalle
-        const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
-        const detailSubcardTitles = document.querySelectorAll('[name="theme-subcard-title"]');
-        const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
+        // Elementos interactivos OCR
         const ocrBoxTitle = document.getElementById('ocr-box-title');
         const ocrBoxDesc = document.getElementById('ocr-box-desc');
+        const ocrSummary = document.getElementById('theme-ocr-summary');
+
+        // Textos dentro de subcards en la vista de detalle
+        const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
+        const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
+        const descSubcards = document.querySelectorAll('[name="theme-desc-subcard"]');
 
         if (tema === 'oscuro') {
             // Fondo Azul -> Negro
@@ -616,16 +619,17 @@
             tokenTexts.forEach(tt => tt.classList.replace('text-[#3452c1]', 'text-zinc-800'));
             if(tableHeader) tableHeader.classList.replace('bg-slate-50', 'bg-zinc-400');
 
-            // MODIFICACIONES ADICIONALES PARA TEMA OSCURO (Captura 1, 3 y 4)
+            // MODIFICACIONES COMPLETAS SOLAMENTE PARA TEMA OSCURO
             if(ocrBoxTitle) { ocrBoxTitle.classList.remove('text-zinc-900', 'text-[#2a44a7]'); ocrBoxTitle.classList.add('text-white'); }
             if(ocrBoxDesc) { ocrBoxDesc.classList.remove('text-zinc-700', 'text-zinc-500'); ocrBoxDesc.classList.add('text-white'); }
+            if(ocrSummary) { ocrSummary.classList.remove('text-zinc-500', 'text-zinc-700'); ocrSummary.classList.add('text-white'); }
             
-            // Captura 3: Cambiar color de blanco a negro en el texto de Información del Trade
+            // Títulos de sub-tarjetas internas a blanco puro (Volúmenes y Cierre)
+            descSubcards.forEach(dsc => { dsc.classList.remove('text-zinc-400', 'text-zinc-600'); dsc.classList.add('text-white'); });
+
+            // Textos de información del Trade pasados de blanco a negro puro
             detailPrimaryTexts.forEach(dpt => { dpt.classList.remove('text-zinc-900', 'text-white'); dpt.classList.add('text-black'); });
-            
-            // Captura 4: Títulos de tarjetas inferiores de Gris a Blanco, e interior blanco
-            detailSubcardTexts.forEach(dst => { dst.classList.remove('text-zinc-900'); dst.classList.add('text-white'); });
-            detailSubcardTitles.forEach(dst => { dst.classList.remove('text-zinc-400'); dst.classList.add('text-white'); });
+            detailSubcardTexts.forEach(dst => { dst.classList.remove('text-zinc-900', 'text-black'); dst.classList.add('text-white'); });
 
         } else {
             // Revertir a Tema Claro
@@ -655,8 +659,9 @@
             iconBgs.forEach(ib => ib.classList.add('bg-blue-100', 'text-[#3452c1]'));
 
             if(ocrBox) {
+                ocrBox.grid = 'bg-blue-50';
                 ocrBox.classList.add('bg-blue-50', 'border-[#3452c1]/40', 'hover:border-[#3452c1]');
-                ocrBox.remove('bg-zinc-700', 'border-zinc-500', 'hover:border-zinc-400');
+                ocrBox.classList.remove('bg-zinc-700', 'border-zinc-500', 'hover:border-zinc-400');
             }
             if(ocrIcon) ocrIcon.classList.replace('bg-zinc-600', 'bg-blue-100');
             if(tokenBadge) tokenBadge.classList.add('bg-blue-50', 'text-[#3452c1]');
@@ -666,14 +671,16 @@
             // REVERTIR CAMBIOS EXCLUSIVOS
             if(ocrBoxTitle) { ocrBoxTitle.classList.remove('text-white'); ocrBoxTitle.classList.add('text-[#2a44a7]'); }
             if(ocrBoxDesc) { ocrBoxDesc.classList.remove('text-white'); ocrBoxDesc.classList.add('text-zinc-500'); }
+            if(ocrSummary) { ocrSummary.classList.remove('text-white'); ocrSummary.classList.add('text-zinc-500'); }
+            
+            descSubcards.forEach(dsc => { dsc.classList.remove('text-white'); dsc.classList.add('text-zinc-400'); });
             detailPrimaryTexts.forEach(dpt => { dpt.classList.remove('text-black', 'text-white'); dpt.classList.add('text-zinc-900'); });
             detailSubcardTexts.forEach(dst => { dst.classList.remove('text-white'); dst.classList.add('text-zinc-900'); });
-            detailSubcardTitles.forEach(dst => { dst.classList.remove('text-white'); dst.classList.add('text-zinc-400'); });
         }
         localStorage.setItem('_selected_theme', tema);
         if(themeSelector) themeSelector.value = tema;
         
-        // Refrescar el renderizado del historial si está cargado para aplicar los nuevos colores encendidos
+        // Refrescar el renderizado del historial si está cargado para aplicar los nuevos colores
         if(historialOperaciones.length > 0 && ultimaVistaActiva === "view-list") {
             filtrarPorPeriodo();
         }
@@ -810,10 +817,10 @@
                 const apalStr = getValor(op, "Apalancamiento", 2) || "-";
                 const margenStr = getValor(op, "Margen", 3) || "Aislado";
 
-                // ASIGNACIÓN DE COLORES DINÁMICOS EN TEMA OSCURO (Captura 2: Verde más oscuro/contrastado)
+                // ASIGNACIÓN DE COLORES DINÁMICOS EN TEMA OSCURO (Verde oscurecido para mayor contraste frente a fondo gris claro)
                 let pnlColor = "";
                 if (currentTheme === 'oscuro') {
-                    pnlColor = pnlVal >= 0 ? 'text-emerald-700 font-extrabold' : 'text-red-500';
+                    pnlColor = pnlVal >= 0 ? 'text-emerald-700' : 'text-red-500';
                 } else {
                     pnlColor = pnlVal >= 0 ? 'text-emerald-600' : 'text-rose-600';
                 }
@@ -943,19 +950,20 @@
         
         // Forzar actualización de colores según el tema activo al renderizar datos dinámicos
         const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
-        const detailSubcardTitles = document.querySelectorAll('[name="theme-subcard-title"]');
         const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
+        const descSubcards = document.querySelectorAll('[name="theme-desc-subcard"]');
+
         detailSubcardTexts.forEach(dst => {
             if (currentTheme === 'oscuro') { dst.classList.remove('text-zinc-900'); dst.classList.add('text-white'); }
             else { dst.classList.remove('text-white'); dst.classList.add('text-zinc-900'); }
         });
-        detailSubcardTitles.forEach(dst => {
-            if (currentTheme === 'oscuro') { dst.classList.remove('text-zinc-400'); dst.classList.add('text-white'); }
-            else { dst.classList.remove('text-white'); dst.classList.add('text-zinc-400'); }
-        });
         detailPrimaryTexts.forEach(dpt => {
             if (currentTheme === 'oscuro') { dpt.classList.remove('text-zinc-900', 'text-white'); dpt.classList.add('text-black'); }
-            else { dpt.classList.remove('text-black', 'text-white'); dpt.classList.add('text-zinc-900'); }
+            else { dpt.classList.remove('text-white', 'text-black'); dpt.classList.add('text-zinc-900'); }
+        });
+        descSubcards.forEach(dsc => {
+            if (currentTheme === 'oscuro') { dsc.classList.remove('text-zinc-400'); dsc.classList.add('text-white'); }
+            else { dsc.classList.remove('text-white'); dsc.classList.add('text-zinc-400'); }
         });
     }
 
