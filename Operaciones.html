@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="Bitacora.ico">
     
     <!-- Manifest inline con el nuevo ícono asignado -->
-    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Bitacora%20de%20Trading%22,%22short_name%22:%22TradingLog%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%2309090b%22,%22theme_color%22:%22%2309090b%22,%22icons%22:[{%22src%22:%22Bita_icon180x180.png%22,%22sizes%22:%22180x180%22,%22type%22:%22image/png%22}]}">
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Bitacora%20de%20Trading%22,%22short_name%22:%22TradingLog%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%232546ad%22,%22theme_color%22:%22%232546ad%22,%22icons%22:[{%22src%22:%22Bita_icon180x180.png%22,%22sizes%22:%22180x180%22,%22type%22:%22image/png%22}]}">
 
     <!-- Tailwind CSS para diseño moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,31 +25,27 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap');
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #09090b;
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
         }
-        .custom-shadow {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.04);
-        }
         ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: #18181b;
+            background: #f1f5f9;
         }
         ::-webkit-scrollbar-thumb {
-            background: #27272a;
+            background: #cbd5e1;
             border-radius: 4px;
         }
     </style>
 </head>
-<body class="text-zinc-200 min-h-screen antialiased select-none">
+<body class="bg-gradient-to-b from-[#2546ad] to-[#3b59ca] text-white min-h-screen antialiased select-none">
 
 <!-- Visor de Pantalla Completa (Lightbox) para Imágenes -->
 <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
-    <button onclick="cerrarLightbox()" class="absolute top-6 right-6 bg-zinc-900/80 hover:bg-zinc-800 text-white p-3 rounded-full border border-zinc-800 transition-all">
+    <button onclick="cerrarLightbox()" class="absolute top-6 right-6 bg-white text-zinc-900 p-3 rounded-full shadow-lg transition-all">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -58,265 +54,261 @@
 </div>
 
 <!-- Contenedor Principal Adaptable Movil/Escritorio -->
-<div class="max-w-6xl mx-auto px-4 py-4 md:py-8 mb-20 md:mb-0">
+<div class="max-w-6xl mx-auto px-4 py-6 md:py-12 mb-20 md:mb-0">
 
     <!-- ================= VISTA 1: MENÚ PRINCIPAL (HOME) ================= -->
-    <div id="view-home" class="space-y-6 md:space-y-8 py-4 md:py-12">
-        <div class="text-center space-y-3 md:space-y-4">
-            <div class="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">
-                <span>Plataforma de Control Financiero</span>
+    <div id="view-home" class="space-y-8 md:space-y-12 py-4">
+        <!-- Header estilo Captura -->
+        <div class="text-center space-y-4">
+            <div class="inline-flex items-center space-x-2 bg-white/10 text-white px-4 py-1.5 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-wider">
+                <span>📊 Plataforma de Control Financiero</span>
             </div>
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-                📈 Bitácora de Trading <br class="hidden sm:inline"> Inteligente
+                Bitácora de Trading <br class="hidden sm:inline"> Inteligente
             </h1>
-            <p class="text-zinc-400 text-xs md:text-lg max-w-xl mx-auto px-2">
+            <p class="text-blue-100 text-sm md:text-lg max-w-xl mx-auto px-4 font-medium opacity-90">
                 Gestiona, automatiza y analiza tu rendimiento en futuros sincronizándolo directamente con tu bitácora de GitHub.
             </p>
         </div>
 
-        <!-- Botones de Acción de Inicio -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto pt-4">
-            <!-- Botón Ingresar Operación -->
-            <button onclick="cambiarVista('view-insert')" class="group relative flex flex-row md:flex-col items-center p-4 md:p-6 bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 rounded-xl md:rounded-2xl text-left md:text-center transition-all duration-300 custom-shadow active:scale-[0.98] md:hover:scale-[1.02]">
-                <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mr-4 md:mr-0 md:mb-4 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-7 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-base md:text-lg font-bold text-white mb-1">Ingresar Operación</h3>
-                    <p class="text-zinc-400 text-xs line-clamp-2 md:line-clamp-none">Escanea capturas con OCR o introduce datos manualmente.</p>
-                </div>
-            </button>
+        <!-- Panel de Bienvenida Estilo Tarjeta Blanca -->
+        <div class="bg-white text-zinc-800 rounded-[2.5rem] p-6 md:p-10 shadow-2xl max-w-4xl mx-auto relative mt-8">
+            <div class="absolute -top-3 left-12 w-6 h-6 bg-white rotate-45 transform hidden md:block"></div>
+            
+            <h2 class="text-2xl md:text-3xl font-black text-[#2a44a7] mb-6 tracking-tight">Panel Principal</h2>
+            
+            <!-- Botones de Acción de Inicio -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Botón Ingresar Operación -->
+                <button onclick="cambiarVista('view-insert')" class="group relative flex flex-row md:flex-col items-center p-5 bg-slate-50 hover:bg-blue-50/50 border border-slate-200/80 rounded-2xl text-left md:text-center transition-all duration-300 active:scale-[0.98] md:hover:scale-[1.02]">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-100 flex items-center justify-center text-[#3452c1] mr-4 md:mr-0 md:mb-4 shrink-0 font-bold text-xl shadow-sm">
+                        📈
+                    </div>
+                    <div>
+                        <h3 class="text-base md:text-lg font-bold text-[#2a44a7] mb-1">Ingresar Operación</h3>
+                        <p class="text-zinc-500 text-xs line-clamp-2">Escanea capturas con OCR o introduce datos manualmente.</p>
+                    </div>
+                </button>
 
-            <!-- Botón Ver Operaciones -->
-            <button onclick="cargarListadoOperaciones()" class="group relative flex flex-row md:flex-col items-center p-4 md:p-6 bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 hover:border-indigo-500/40 rounded-xl md:rounded-2xl text-left md:text-center transition-all duration-300 custom-shadow active:scale-[0.98] md:hover:scale-[1.02]">
-                <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 mr-4 md:mr-0 md:mb-4 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-7 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-base md:text-lg font-bold text-white mb-1">Operaciones</h3>
-                    <p class="text-zinc-400 text-xs line-clamp-2 md:line-clamp-none">Consulta tu historial, filtra por fechas y accede a gráficos.</p>
-                </div>
-            </button>
+                <!-- Botón Ver Operaciones -->
+                <button onclick="cargarListadoOperaciones()" class="group relative flex flex-row md:flex-col items-center p-5 bg-slate-50 hover:bg-blue-50/50 border border-slate-200/80 rounded-2xl text-left md:text-center transition-all duration-300 active:scale-[0.98] md:hover:scale-[1.02]">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-100 flex items-center justify-center text-[#3452c1] mr-4 md:mr-0 md:mb-4 shrink-0 font-bold text-xl shadow-sm">
+                        📋
+                    </div>
+                    <div>
+                        <h3 class="text-base md:text-lg font-bold text-[#2a44a7] mb-1">Historial</h3>
+                        <p class="text-zinc-500 text-xs line-clamp-2">Consulta tu historial, filtra por fechas y accede a gráficos.</p>
+                    </div>
+                </button>
 
-            <!-- Botón Configuraciones -->
-            <button onclick="irAConfiguraciones()" class="group relative flex flex-row md:flex-col items-center p-4 md:p-6 bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 hover:border-amber-500/40 rounded-xl md:rounded-2xl text-left md:text-center transition-all duration-300 custom-shadow active:scale-[0.98] md:hover:scale-[1.02]">
-                <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mr-4 md:mr-0 md:mb-4 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-7 md:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-base md:text-lg font-bold text-white mb-1">Configuraciones</h3>
-                    <p class="text-zinc-400 text-xs line-clamp-2 md:line-clamp-none">Administra las credenciales de tu repositorio de GitHub.</p>
-                </div>
-            </button>
+                <!-- Botón Configuraciones -->
+                <button onclick="irAConfiguraciones()" class="group relative flex flex-row md:flex-col items-center p-5 bg-slate-50 hover:bg-blue-50/50 border border-slate-200/80 rounded-2xl text-left md:text-center transition-all duration-300 active:scale-[0.98] md:hover:scale-[1.02]">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-100 flex items-center justify-center text-[#3452c1] mr-4 md:mr-0 md:mb-4 shrink-0 font-bold text-xl shadow-sm">
+                        ⚙️
+                    </div>
+                    <div>
+                        <h3 class="text-base md:text-lg font-bold text-[#2a44a7] mb-1">Configuraciones</h3>
+                        <p class="text-zinc-500 text-xs line-clamp-2">Administra las credenciales de tu repositorio de GitHub.</p>
+                    </div>
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- ================= VISTA 2: INGRESAR OPERACIÓN (FORMULARIO) ================= -->
-    <div id="view-insert" class="hidden space-y-4 md:space-y-6">
-        <div class="flex flex-col md:flex-row md:items-center justify-between pb-3 border-b border-zinc-800 gap-2">
-            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors text-xs md:text-sm font-semibold self-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-                <span>Volver al Menú Principal</span>
+    <div id="view-insert" class="hidden space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-2 border-b border-white/20 gap-2">
+            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs md:text-sm font-semibold self-start">
+                <span>← Volver al Menú Principal</span>
             </button>
-            <h2 class="text-base md:text-lg font-bold text-white">Registro Manual y Escáner OCR</h2>
+            <h2 class="text-base md:text-xl font-bold text-white">Registro Manual y Escáner OCR</h2>
         </div>
 
-        <div class="bg-zinc-900 border-2 border-dashed border-amber-500/30 hover:border-amber-500/80 rounded-xl p-4 md:p-6 text-center cursor-pointer transition-all duration-200" onclick="document.getElementById('ocr-file').click()">
-            <div class="mx-auto w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+        <div class="bg-white text-zinc-800 rounded-[2.5rem] p-6 md:p-8 shadow-2xl space-y-6">
+            <!-- Zona de Carga Inteligente -->
+            <div class="bg-blue-50 border-2 border-dashed border-[#3452c1]/40 hover:border-[#3452c1] rounded-2xl p-6 text-center cursor-pointer transition-all duration-200" onclick="document.getElementById('ocr-file').click()">
+                <div class="mx-auto w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-xl mb-3">
+                    📸
+                </div>
+                <h3 class="text-[#2a44a7] font-bold text-sm md:text-base mb-1">Cargar Captura de Pantalla</h3>
+                <p class="text-zinc-500 text-xs max-w-sm mx-auto">Selecciona la captura para autorellenar la plantilla.</p>
+                <input type="file" id="ocr-file" accept="image/*" class="hidden" onchange="procesarCaptura(this)">
+                <div id="ocr-status" class="mt-2 text-xs font-bold text-[#3452c1]"></div>
             </div>
-            <h3 class="text-amber-400 font-bold text-xs md:text-sm mb-1">Cargar Captura de Pantalla</h3>
-            <p class="text-zinc-500 text-[11px] md:text-xs max-w-sm mx-auto">Selecciona la captura para autorellenar la plantilla.</p>
-            <input type="file" id="ocr-file" accept="image/*" class="hidden" onchange="procesarCaptura(this)">
-            <div id="ocr-status" class="mt-2 text-xs font-semibold text-white"></div>
-        </div>
 
-        <details class="bg-zinc-950 border border-zinc-800 rounded-xl p-3">
-            <summary class="text-xs font-semibold text-zinc-500 cursor-pointer hover:text-white select-none">🔍 Ver lectura bruta OCR</summary>
-            <div class="mt-2">
-                <textarea id="raw-ocr-text" class="w-full h-24 bg-zinc-900 border border-zinc-800 rounded-lg p-2 text-xs text-mono text-zinc-400 focus:outline-none" readonly placeholder="Texto detectado..."></textarea>
-            </div>
-        </details>
+            <details class="bg-slate-50 border border-slate-200 rounded-xl p-3">
+                <summary class="text-xs font-semibold text-zinc-500 cursor-pointer hover:text-zinc-800 select-none">🔍 Ver lectura bruta OCR</summary>
+                <div class="mt-2">
+                    <textarea id="raw-ocr-text" class="w-full h-24 bg-white border border-slate-200 rounded-lg p-2 text-xs font-mono text-zinc-600 focus:outline-none focus:border-[#3452c1]" readonly placeholder="Texto detectado..."></textarea>
+                </div>
+            </details>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 md:p-6 custom-shadow">
+            <!-- Formulario Principal -->
             <form id="trading-form" class="space-y-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                    <div class="sm:col-span-2 lg:col-span-4 border-b border-zinc-800 pb-2">
-                        <h4 class="text-[11px] font-bold uppercase text-emerald-400 tracking-wider">Sección 1: Especificaciones del Par</h4>
+                    <div class="sm:col-span-2 lg:col-span-4 border-b border-slate-100 pb-2">
+                        <h4 class="text-xs font-extrabold uppercase text-[#2a44a7] tracking-wider">Sección 1: Especificaciones del Par</h4>
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Par de Trading</label>
-                        <input type="text" id="par" value="HYPEUSDT" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Par de Trading</label>
+                        <input type="text" id="par" value="HYPEUSDT" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Dirección de Operación</label>
-                        <select id="direccion" class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Dirección de Operación</label>
+                        <select id="direccion" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all cursor-pointer">
                             <option value="Corto">Corto (Short / Down)</option>
                             <option value="Largo">Largo (Long / Up)</option>
                         </select>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Apalancamiento</label>
-                        <input type="text" id="apalancamiento" value="20x" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Apalancamiento</label>
+                        <input type="text" id="apalancamiento" value="20x" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Margen</label>
-                        <select id="margen" class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Margen</label>
+                        <select id="margen" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all cursor-pointer">
                             <option value="Aislado">Aislado (Isolated)</option>
                             <option value="Cruzado">Cruzado (Cross)</option>
                         </select>
                     </div>
 
-                    <div class="sm:col-span-2 lg:col-span-4 border-b border-zinc-800 pt-2 pb-2">
-                        <h4 class="text-[11px] font-bold uppercase text-emerald-400 tracking-wider">Sección 2: Métricas de Rendimiento</h4>
+                    <div class="sm:col-span-2 lg:col-span-4 border-b border-slate-100 pt-2 pb-2">
+                        <h4 class="text-xs font-extrabold uppercase text-[#2a44a7] tracking-wider">Sección 2: Métricas de Rendimiento</h4>
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">PnL de la posición (USDT)</label>
-                        <input type="text" id="pnl" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">PnL de la posición (USDT)</label>
+                        <input type="text" id="pnl" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">ROI de la posición (%)</label>
-                        <input type="text" id="roi" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">ROI de la posición (%)</label>
+                        <input type="text" id="roi" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Precio medio de entrada</label>
-                        <input type="text" id="precio_entrada" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Precio medio de entrada</label>
+                        <input type="text" id="precio_entrada" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Precio de salida promedio</label>
-                        <input type="text" id="precio_salida" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Precio de salida promedio</label>
+                        <input type="text" id="precio_salida" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
 
-                    <div class="sm:col-span-2 lg:col-span-4 border-b border-zinc-800 pt-2 pb-2">
+                    <div class="sm:col-span-2 lg:col-span-4 border-b border-slate-100 pt-2 pb-2">
                         <div class="flex justify-between items-center">
-                            <h4 class="text-[11px] font-bold uppercase text-emerald-400 tracking-wider">Sección 3: Tamaños y Cierres</h4>
-                            <span class="text-[10px] bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded font-mono">Token: <span id="token_base_val" class="text-amber-400 font-bold">HYPE</span></span>
+                            <h4 class="text-xs font-extrabold uppercase text-[#2a44a7] tracking-wider">Sección 3: Tamaños y Cierres</h4>
+                            <span class="text-[10px] bg-blue-50 text-[#3452c1] px-2 py-0.5 rounded-md font-bold">Token: <span id="token_base_val">HYPE</span></span>
                         </div>
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Tamaño máx. (<span class="token-label">HYPE</span>)</label>
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Tamaño máx. (<span class="token-label">HYPE</span>)</label>
                         <div class="relative">
-                            <input type="text" id="tamano_max" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-3 pr-14 py-2 text-sm text-white font-medium focus:outline-none">
-                            <span class="absolute right-3 top-2.5 text-[10px] font-bold text-amber-500 token-label">HYPE</span>
+                            <input type="text" id="tamano_max" required class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-4 pr-16 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
+                            <span class="absolute right-4 top-3 text-[11px] font-bold text-[#3452c1] token-label">HYPE</span>
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Valor máx. (USDT)</label>
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Valor máx. (USDT)</label>
                         <div class="relative">
-                            <input type="text" id="valor_max" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-3 pr-14 py-2 text-sm text-white font-medium focus:outline-none">
-                            <span class="absolute right-3 top-2.5 text-[10px] font-bold text-emerald-500">USDT</span>
+                            <input type="text" id="valor_max" required class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-4 pr-16 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
+                            <span class="absolute right-4 top-3 text-[11px] font-bold text-emerald-600">USDT</span>
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Cantidad de cierre (<span class="token-label">HYPE</span>)</label>
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Cantidad de cierre (<span class="token-label">HYPE</span>)</label>
                         <div class="relative">
-                            <input type="text" id="cant_cierre" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-3 pr-14 py-2 text-sm text-white font-medium focus:outline-none">
-                            <span class="absolute right-3 top-2.5 text-[10px] font-bold text-amber-500 token-label">HYPE</span>
+                            <input type="text" id="cant_cierre" required class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-4 pr-16 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
+                            <span class="absolute right-4 top-3 text-[11px] font-bold text-[#3452c1] token-label">HYPE</span>
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Valor de cierre (USDT)</label>
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Valor de cierre (USDT)</label>
                         <div class="relative">
-                            <input type="text" id="valor_cierre" required class="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-3 pr-14 py-2 text-sm text-white font-medium focus:outline-none">
-                            <span class="absolute right-3 top-2.5 text-[10px] font-bold text-emerald-500">USDT</span>
+                            <input type="text" id="valor_cierre" required class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-4 pr-16 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
+                            <span class="absolute right-4 top-3 text-[11px] font-bold text-emerald-600">USDT</span>
                         </div>
                     </div>
 
-                    <div class="sm:col-span-2 lg:col-span-4 border-b border-zinc-800 pt-2 pb-2">
-                        <h4 class="text-[11px] font-bold uppercase text-emerald-400 tracking-wider">Sección 4: Fecha y Gráfico</h4>
+                    <div class="sm:col-span-2 lg:col-span-4 border-b border-slate-100 pt-2 pb-2">
+                        <h4 class="text-xs font-extrabold uppercase text-[#2a44a7] tracking-wider">Sección 4: Fecha y Gráfico</h4>
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Tiempo abierto</label>
-                        <input type="text" id="tiempo_abierto" placeholder="AAAA-MM-DD HH:MM:SS" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Tiempo abierto</label>
+                        <input type="text" id="tiempo_abierto" placeholder="AAAA-MM-DD HH:MM:SS" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Fecha de cierre</label>
-                        <input type="text" id="fecha_cierre" placeholder="AAAA-MM-DD HH:MM:SS" required class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Fecha de cierre</label>
+                        <input type="text" id="fecha_cierre" placeholder="AAAA-MM-DD HH:MM:SS" required class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                     <div class="flex flex-col sm:col-span-2">
-                        <label class="text-xs font-semibold text-zinc-400 mb-1">Enlace de la captura (URL)</label>
-                        <input type="url" id="enlace_imagen" placeholder="https://image-host.com/mi-grafico.jpg" class="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-sm text-white font-medium focus:outline-none">
+                        <label class="text-xs font-bold text-zinc-500 mb-1">Enlace de la captura (URL)</label>
+                        <input type="url" id="enlace_imagen" placeholder="https://image-host.com/mi-grafico.jpg" class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-zinc-800 font-semibold focus:outline-none focus:border-[#3452c1] focus:bg-white transition-all">
                     </div>
                 </div>
 
-                <div id="status-box" class="p-4 rounded-lg font-bold text-center hidden text-xs"></div>
+                <div id="status-box" class="p-4 rounded-xl font-bold text-center hidden text-xs shadow-inner"></div>
 
-                <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-zinc-800">
-                    <button type="button" onclick="limpiarFormulario()" class="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-zinc-800 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all text-xs font-semibold order-2 sm:order-1">Vaciar Formulario</button>
-                    <button type="submit" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-extrabold px-8 py-2.5 rounded-lg transition-all text-xs shadow-md order-1 sm:order-2">Sincronizar a GitHub</button>
+                <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="limpiarFormulario()" class="w-full sm:w-auto px-6 py-3 rounded-full border border-slate-200 hover:bg-slate-100 text-zinc-500 font-bold transition-all text-sm order-2 sm:order-1">Vaciar Formulario</button>
+                    <button type="submit" class="w-full sm:w-auto bg-[#3452c1] hover:bg-[#2841a1] text-white font-black px-10 py-3 rounded-full transition-all text-sm shadow-md order-1 sm:order-2 tracking-wide uppercase">Sincronizar a GitHub</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- ================= VISTA 3: HISTORIAL DE OPERACIONES (LISTA) ================= -->
-    <div id="view-list" class="hidden space-y-4 md:space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-zinc-800">
-            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors text-xs font-semibold self-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-                <span>Menú Principal</span>
+    <div id="view-list" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-white/20">
+            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs font-semibold self-start">
+                <span>← Menú Principal</span>
             </button>
             
             <div class="flex items-center justify-between sm:justify-end space-x-3 w-full sm:w-auto">
-                <label for="filtro-periodo" class="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Período:</label>
-                <select id="filtro-periodo" onchange="filtrarPorPeriodo()" class="bg-zinc-900 border border-zinc-800 text-zinc-200 text-xs rounded-lg px-3 py-2 font-semibold focus:outline-none focus:border-indigo-500 cursor-pointer">
-                    <option value="total">Histórico Total</option>
-                    <option value="diario">Hoy (Diario)</option>
-                    <option value="semanal">Esta Semana</option>
-                    <option value="mensual">Este Mes</option>
-                    <option value="anual">Este Año</option>
+                <label for="filtro-periodo" class="text-xs font-bold uppercase tracking-wider text-blue-100">Período:</label>
+                <select id="filtro-periodo" onchange="filtrarPorPeriodo()" class="bg-white/10 border border-white/20 text-white text-xs rounded-xl px-4 py-2 font-bold focus:outline-none cursor-pointer">
+                    <option class="text-zinc-800" value="total">Histórico Total</option>
+                    <option class="text-zinc-800" value="diario">Hoy (Diario)</option>
+                    <option class="text-zinc-800" value="semanal">Esta Semana</option>
+                    <option class="text-zinc-800" value="mensual">Este Mes</option>
+                    <option class="text-zinc-800" value="anual">Este Año</option>
                 </select>
             </div>
         </div>
 
         <!-- Contador de Utilidad Dinámico -->
-        <div id="utilidad-container" class="hidden bg-zinc-900 border border-zinc-800 rounded-xl p-4 md:p-5 custom-shadow flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+        <div id="utilidad-container" class="hidden bg-white text-zinc-800 rounded-[2.5rem] p-6 shadow-2xl flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
             <div>
                 <h3 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Utilidad del Período</h3>
-                <p class="text-[10px] text-zinc-500 mt-0.5" id="utilidad-leyenda">Sumatoria neta filtrada según el rango seleccionado.</p>
+                <p class="text-[11px] text-zinc-500 mt-0.5" id="utilidad-leyenda">Sumatoria neta filtrada según el rango seleccionado.</p>
             </div>
-            <div id="utilidad-contador" class="text-2xl md:text-3xl font-extrabold tracking-tight">0.00 USDT</div>
+            <div id="utilidad-contador" class="text-2xl md:text-3xl font-black tracking-tight">0.00 USDT</div>
         </div>
 
-        <div id="list-loading-state" class="p-8 text-center bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-3">
-            <div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <p class="text-xs text-zinc-400">Descargando operaciones desde GitHub...</p>
+        <div id="list-loading-state" class="p-12 text-center bg-white/10 border border-white/20 rounded-[2.5rem] space-y-3">
+            <div class="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p class="text-xs text-blue-100 font-medium">Descargando operaciones desde GitHub...</p>
         </div>
 
-        <div id="list-error-state" class="hidden p-6 text-center bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl space-y-4">
-            <p class="text-xs font-semibold" id="list-error-msg">No se pudo acceder al archivo remoto.</p>
-            <button onclick="cargarListadoOperaciones()" class="bg-rose-500 hover:bg-rose-400 text-zinc-950 text-xs font-bold px-4 py-2 rounded-lg mx-auto block">Reintentar</button>
+        <div id="list-error-state" class="hidden p-8 text-center bg-rose-50 border border-rose-200 text-rose-600 rounded-[2.5rem] space-y-4">
+            <p class="text-sm font-bold" id="list-error-msg">No se pudo acceder al archivo remoto.</p>
+            <button onclick="cargarListadoOperaciones()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-6 py-2.5 rounded-full mx-auto block uppercase tracking-wide">Reintentar</button>
         </div>
 
-        <div id="list-empty-state" class="hidden p-8 text-center bg-zinc-900/60 border border-zinc-800 rounded-xl space-y-4">
-            <p class="text-xs text-zinc-400">Tu archivo CSV no contiene filas registradas.</p>
-            <button onclick="cambiarVista('view-insert')" class="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold px-4 py-2 rounded-lg">Crear Operación</button>
+        <div id="list-empty-state" class="hidden p-12 text-center bg-white text-zinc-800 rounded-[2.5rem] shadow-2xl space-y-4">
+            <p class="text-sm text-zinc-500 font-medium">Tu archivo CSV no contiene filas registradas.</p>
+            <button onclick="cambiarVista('view-insert')" class="bg-[#3452c1] hover:bg-[#2841a1] text-white text-xs font-black px-6 py-2.5 rounded-full uppercase tracking-wide shadow-md">Crear Operación</button>
         </div>
 
         <!-- Contenedor Alternable de Datos: Tabla para PC, Tarjetas para Móvil -->
         <div id="list-table-container" class="hidden space-y-3">
             <!-- Modo Tabla (Invisible en móvil, visible en PC) -->
-            <div class="hidden md:block bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden custom-shadow">
+            <div class="hidden md:block bg-white text-zinc-800 rounded-[2.5rem] overflow-hidden shadow-2xl">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-zinc-950 text-zinc-400 text-[10px] uppercase tracking-wider font-bold">
+                            <tr class="bg-slate-50 text-zinc-500 text-[11px] uppercase tracking-wider font-extrabold border-b border-slate-100">
                                 <th class="px-6 py-4 text-center">Detalles</th>
                                 <th class="px-6 py-4">Fecha y Hora (Cierre)</th>
                                 <th class="px-6 py-4">Activo</th>
@@ -325,7 +317,7 @@
                                 <th class="px-6 py-4">ROI %</th>
                             </tr>
                         </thead>
-                        <tbody id="list-table-body" class="divide-y divide-zinc-800 text-sm"></tbody>
+                        <tbody id="list-table-body" class="divide-y divide-slate-100 text-sm font-semibold text-zinc-700"></tbody>
                     </table>
                 </div>
             </div>
@@ -336,16 +328,13 @@
     </div>
 
     <!-- ================= VISTA 4: DETALLE DE OPERACIÓN ================= -->
-    <div id="view-detail" class="hidden space-y-4 md:space-y-6">
-        <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
-            <button onclick="cambiarVista('view-list')" class="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors text-xs font-semibold">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-                <span>Volver al Historial</span>
+    <div id="view-detail" class="hidden space-y-6">
+        <div class="flex items-center justify-between pb-2 border-b border-white/20">
+            <button onclick="cambiarVista('view-list')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs font-semibold">
+                <span>← Volver al Historial</span>
             </button>
-            <h2 class="text-sm md:text-lg font-bold text-white flex items-center gap-2">
-                <span id="detail-badge-direction" class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">CORTO</span>
+            <h2 class="text-sm md:text-xl font-bold text-white flex items-center gap-2">
+                <span id="detail-badge-direction" class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase">CORTO</span>
                 <span id="detail-par-title">HYPEUSDT</span>
             </h2>
         </div>
@@ -353,94 +342,94 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
             <div class="lg:col-span-2 space-y-4 md:space-y-6">
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
-                        <span class="text-[10px] md:text-xs text-zinc-400 font-medium">PnL de la posición</span>
-                        <div id="detail-val-pnl" class="text-lg md:text-3xl font-extrabold mt-1">+0.00 USDT</div>
+                    <div class="bg-white text-zinc-800 rounded-3xl p-5 text-center shadow-xl">
+                        <span class="text-xs text-zinc-400 font-bold uppercase tracking-wider">PnL de la posición</span>
+                        <div id="detail-val-pnl" class="text-xl md:text-3xl font-black mt-2">+0.00 USDT</div>
                     </div>
-                    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
-                        <span class="text-[10px] md:text-xs text-zinc-400 font-medium">ROI de la posición</span>
-                        <div id="detail-val-roi" class="text-lg md:text-3xl font-extrabold mt-1">+0.00%</div>
+                    <div class="bg-white text-zinc-800 rounded-3xl p-5 text-center shadow-xl">
+                        <span class="text-xs text-zinc-400 font-bold uppercase tracking-wider">ROI de la posición</span>
+                        <div id="detail-val-roi" class="text-xl md:text-3xl font-black mt-2">+0.00%</div>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 md:p-6 space-y-4">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 border-b border-zinc-800 pb-2">Información del Trade</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                <div class="bg-white text-zinc-800 rounded-[2.5rem] p-6 md:p-8 shadow-2xl space-y-4">
+                    <h3 class="text-sm font-extrabold uppercase tracking-wider text-[#2a44a7] border-b border-slate-100 pb-2">Información del Trade</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs font-semibold text-zinc-700">
                         <div>
-                            <span class="block text-[10px] text-zinc-500">Par de Trading:</span>
-                            <span id="detail-val-par" class="font-bold text-white">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Par de Trading:</span>
+                            <span id="detail-val-par" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] text-zinc-500">Apalancamiento:</span>
-                            <span id="detail-val-apal" class="font-bold text-white">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Apalancamiento:</span>
+                            <span id="detail-val-apal" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] text-zinc-500">Margen:</span>
-                            <span id="detail-val-margen" class="font-bold text-white">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Margen:</span>
+                            <span id="detail-val-margen" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] text-zinc-500">Entrada Media:</span>
-                            <span id="detail-val-entrada" class="font-bold text-white">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Entrada Media:</span>
+                            <span id="detail-val-entrada" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] text-zinc-500">Salida Promedio:</span>
-                            <span id="detail-val-salida" class="font-bold text-white">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Salida Promedio:</span>
+                            <span id="detail-val-salida" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] text-zinc-500">Tiempo Abierto:</span>
-                            <span id="detail-val-tiempo-abierto" class="font-bold text-white">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Tiempo Abierto:</span>
+                            <span id="detail-val-tiempo-abierto" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div class="col-span-2">
-                            <span class="block text-[10px] text-zinc-500">Fecha de Cierre:</span>
-                            <span id="detail-val-fecha-cierre" class="font-bold text-white font-mono text-[11px]">-</span>
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase">Fecha de Cierre:</span>
+                            <span id="detail-val-fecha-cierre" class="font-mono text-zinc-900 text-xs font-bold">-</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 md:p-6 space-y-4">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 border-b border-zinc-800 pb-2">Volúmenes y Cierre</h3>
+                <div class="bg-white text-zinc-800 rounded-[2.5rem] p-6 md:p-8 shadow-2xl space-y-4">
+                    <h3 class="text-sm font-extrabold uppercase tracking-wider text-[#2a44a7] border-b border-slate-100 pb-2">Volúmenes y Cierre</h3>
                     <div class="grid grid-cols-2 gap-3 text-xs">
-                        <div class="bg-zinc-950 p-3 rounded-lg border border-zinc-800">
-                            <span class="block text-[10px] text-zinc-500 mb-0.5">Tamaño máx:</span>
-                            <div class="font-bold text-white text-sm" id="detail-val-tamano-max">-</div>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5">Tamaño máx:</span>
+                            <div class="font-black text-zinc-900 text-sm" id="detail-val-tamano-max">-</div>
                         </div>
-                        <div class="bg-zinc-950 p-3 rounded-lg border border-zinc-800">
-                            <span class="block text-[10px] text-zinc-500 mb-0.5">Valor máx:</span>
-                            <div class="font-bold text-white text-sm" id="detail-val-valor-max">-</div>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5">Valor máx:</span>
+                            <div class="font-black text-zinc-900 text-sm" id="detail-val-valor-max">-</div>
                         </div>
-                        <div class="bg-zinc-950 p-3 rounded-lg border border-zinc-800">
-                            <span class="block text-[10px] text-zinc-500 mb-0.5">Cantidad cierre:</span>
-                            <div class="font-bold text-white text-sm" id="detail-val-cant-cierre">-</div>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5">Cantidad cierre:</span>
+                            <div class="font-black text-zinc-900 text-sm" id="detail-val-cant-cierre">-</div>
                         </div>
-                        <div class="bg-zinc-950 p-3 rounded-lg border border-zinc-800">
-                            <span class="block text-[10px] text-zinc-500 mb-0.5">Valor cierre:</span>
-                            <div class="font-bold text-white text-sm" id="detail-val-valor-cierre">-</div>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+                            <span class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5">Valor cierre:</span>
+                            <div class="font-black text-zinc-900 text-sm" id="detail-val-valor-cierre">-</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="space-y-4">
-                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 md:p-6 h-full flex flex-col">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 border-b border-zinc-800 pb-2 mb-4">Evidencia Gráfica</h3>
-                    <div id="detail-img-box" onclick="abrirLightbox()" class="flex-1 min-h-[200px] max-h-[300px] lg:max-h-none relative rounded-lg bg-zinc-950 border border-zinc-800 overflow-hidden flex items-center justify-center cursor-pointer group">
+                <div class="bg-white text-zinc-800 rounded-[2.5rem] p-6 shadow-2xl h-full flex flex-col">
+                    <h3 class="text-sm font-extrabold uppercase tracking-wider text-[#2a44a7] border-b border-slate-100 pb-2 mb-4">Evidencia Gráfica</h3>
+                    <div id="detail-img-box" onclick="abrirLightbox()" class="flex-1 min-h-[200px] max-h-[300px] lg:max-h-none relative rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden flex items-center justify-center cursor-pointer group shadow-inner">
                         <img id="detail-img" src="" alt="Gráfico" class="w-full h-full object-cover hidden">
                         <div id="detail-img-empty" class="text-center p-6 space-y-2">
-                            <p class="text-[11px] text-zinc-500">No hay ninguna imagen cargada mediante URL en esta operación.</p>
+                            <p class="text-xs font-semibold text-zinc-400">No hay ninguna imagen cargada mediante URL en esta operación.</p>
                         </div>
-                        <div id="detail-img-hover" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white font-bold text-[10px] uppercase tracking-wider transition-opacity hidden">
+                        <div id="detail-img-hover" class="absolute inset-0 bg-[#3452c1]/80 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white font-black text-xs uppercase tracking-wider transition-opacity hidden">
                             🔎 Clic para Maximizar
                         </div>
                     </div>
                     
                     <div id="share-container" class="mt-4 relative">
-                        <button onclick="toggleShareMenu()" class="w-full flex items-center justify-center gap-2 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/20 py-2.5 rounded-lg text-xs font-bold transition-all">
+                        <button onclick="toggleShareMenu()" class="w-full flex items-center justify-center gap-2 bg-[#3452c1] hover:bg-[#2841a1] text-white py-3 rounded-full text-xs font-bold transition-all shadow-md uppercase tracking-wider">
                             <span>Compartir Trade</span>
                         </button>
-                        <div id="share-menu" class="hidden absolute bottom-full left-0 right-0 mb-2 bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl z-10">
-                            <button onclick="shareAction('whatsapp')" class="w-full text-left px-4 py-2.5 text-xs text-zinc-300 hover:bg-zinc-800">📱 WhatsApp</button>
-                            <button onclick="shareAction('telegram')" class="w-full text-left px-4 py-2.5 text-xs text-zinc-300 hover:bg-zinc-800">✈️ Telegram</button>
-                            <button onclick="shareAction('copy')" class="w-full text-left px-4 py-2.5 text-xs text-zinc-300 hover:bg-zinc-800">📋 Copiar Link</button>
+                        <div id="share-menu" class="hidden absolute bottom-full left-0 right-0 mb-2 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xl z-10">
+                            <button onclick="shareAction('whatsapp')" class="w-full text-left px-4 py-3 text-xs text-zinc-700 font-bold hover:bg-slate-50">📱 WhatsApp</button>
+                            <button onclick="shareAction('telegram')" class="w-full text-left px-4 py-3 text-xs text-zinc-700 font-bold hover:bg-slate-50">✈️ Telegram</button>
+                            <button onclick="shareAction('copy')" class="w-full text-left px-4 py-3 text-xs text-zinc-700 font-bold hover:bg-slate-50">📋 Copiar Link</button>
                         </div>
                     </div>
                 </div>
@@ -449,78 +438,75 @@
     </div>
 
     <!-- ================= VISTA 5: CONFIGURACIONES ================= -->
-    <div id="view-settings" class="hidden space-y-4 md:space-y-6">
-        <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
-            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-zinc-400 hover:text-white transition-colors text-xs font-semibold">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-                <span>Volver al Menú Principal</span>
+    <div id="view-settings" class="hidden space-y-6">
+        <div class="flex items-center justify-between pb-2 border-b border-white/20">
+            <button onclick="cambiarVista('view-home')" class="flex items-center space-x-2 text-blue-100 hover:text-white transition-colors text-xs font-semibold">
+                <span>← Volver al Menú Principal</span>
             </button>
-            <h2 class="text-sm font-bold text-white">Configuración Remota</h2>
+            <h2 class="text-base font-bold text-white">Configuración Remota</h2>
         </div>
 
-        <div id="settings-status-box" class="p-4 rounded-lg font-bold text-center hidden text-xs"></div>
+        <div id="settings-status-box" class="p-4 rounded-xl font-bold text-center hidden text-xs shadow-md"></div>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 md:p-6 custom-shadow space-y-4">
-            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-zinc-800 pb-4 gap-2">
-                <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        <div class="bg-white text-zinc-800 rounded-[2.5rem] p-6 md:p-8 shadow-2xl space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-100 pb-4 gap-2">
+                <h3 class="text-sm font-extrabold text-zinc-800 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
                     Credenciales del Repositorio
                 </h3>
                 <div class="flex gap-2">
-                    <button type="button" id="btn-edit-settings" onclick="habilitarEdicionConfig(true)" class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg">✏️ Editar</button>
-                    <button type="button" id="btn-save-settings" onclick="guardarConfiguracionGitHub()" disabled class="bg-emerald-600 hover:bg-emerald-500 text-zinc-950 text-xs font-extrabold px-3 py-1.5 rounded-lg disabled:opacity-50">💾 Guardar</button>
+                    <button type="button" id="btn-edit-settings" onclick="habilitarEdicionConfig(true)" class="bg-slate-100 hover:bg-slate-200 text-zinc-700 text-xs font-bold px-4 py-2 rounded-full transition-all">✏️ Editar</button>
+                    <button type="button" id="btn-save-settings" onclick="guardarConfiguracionGitHub()" disabled class="bg-[#3452c1] hover:bg-[#2841a1] text-white text-xs font-black px-4 py-2 rounded-full disabled:opacity-40 transition-all uppercase tracking-wide shadow-sm">💾 Guardar</button>
                 </div>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1">Usuario GitHub</label>
-                    <input type="text" id="gh-user" value="justintxu" readonly class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-xs focus:outline-none read-only:opacity-60">
+                    <label class="block text-xs font-bold text-zinc-500 mb-1">Usuario GitHub</label>
+                    <input type="text" id="gh-user" value="justintxu" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-zinc-800 text-xs font-semibold focus:outline-none focus:border-[#3452c1] read-only:opacity-60">
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1">Repositorio</label>
-                    <input type="text" id="gh-repo" value="repo" readonly class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-xs focus:outline-none read-only:opacity-60">
+                    <label class="block text-xs font-bold text-zinc-500 mb-1">Repositorio</label>
+                    <input type="text" id="gh-repo" value="repo" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-zinc-800 text-xs font-semibold focus:outline-none focus:border-[#3452c1] read-only:opacity-60">
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1">Ruta CSV Operaciones</label>
-                    <input type="text" id="gh-path" value="data2/operaciones.CSV" readonly class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-xs focus:outline-none read-only:opacity-60">
+                    <label class="block text-xs font-bold text-zinc-500 mb-1">Ruta CSV Operaciones</label>
+                    <input type="text" id="gh-path" value="data2/operaciones.CSV" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-zinc-800 text-xs font-semibold focus:outline-none focus:border-[#3452c1] read-only:opacity-60">
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1">GitHub Personal Token</label>
-                    <input type="password" id="gh-token" placeholder="Introduce tu Token Unificado" readonly class="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white text-xs focus:outline-none read-only:opacity-60">
+                    <label class="block text-xs font-bold text-zinc-500 mb-1">GitHub Personal Token</label>
+                    <input type="password" id="gh-token" placeholder="Introduce tu Token Unificado" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-zinc-800 text-xs font-semibold focus:outline-none focus:border-[#3452c1] read-only:opacity-60">
                 </div>
             </div>
 
-            <div class="pt-4 border-t border-zinc-800">
-                <h4 class="text-[10px] font-bold text-rose-500 uppercase tracking-wider mb-2">⚠️ Zona de Peligro</h4>
-                <div class="bg-rose-500/5 border border-rose-500/10 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                    <p class="text-zinc-500 text-[11px]">Eliminará permanentemente todas las operaciones de tu archivo CSV en GitHub.</p>
-                    <button type="button" onclick="peticionLimpiarTablaCSV()" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all whitespace-nowrap">💥 Vaciar CSV</button>
+            <div class="pt-4 border-t border-slate-100">
+                <h4 class="text-xs font-black text-rose-600 uppercase tracking-wider mb-2">⚠️ Zona de Peligro</h4>
+                <div class="bg-rose-50 border border-rose-100 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <p class="text-zinc-500 text-xs font-medium">Eliminará permanentemente todas las operaciones de tu archivo CSV en GitHub.</p>
+                    <button type="button" onclick="peticionLimpiarTablaCSV()" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold px-5 py-2 rounded-full transition-all whitespace-nowrap uppercase tracking-wider shadow-sm">💥 Vaciar CSV</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- MENÚ GLOBAL INFERIOR TÁCTIL (Exclusivo pantallas móviles para emular comportamiento de App nativa) -->
-<div class="md:hidden fixed bottom-0 left-0 right-0 bg-zinc-950 border-t border-zinc-800 px-6 py-2 flex justify-between items-center z-40 backdrop-blur-md bg-zinc-950/90">
-    <button onclick="cambiarVista('view-home')" class="flex flex-col items-center gap-0.5 text-zinc-400 active:text-emerald-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        <span class="text-[9px] font-bold">Inicio</span>
+<!-- MENÚ GLOBAL INFERIOR TÁCTIL (Exclusivo pantallas móviles estilo Captura App) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-6 py-2.5 flex justify-between items-center z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+    <button onclick="cambiarVista('view-home')" class="flex flex-col items-center gap-1 text-zinc-400 active:text-[#3452c1]">
+        <span class="text-lg">🏠</span>
+        <span class="text-[10px] font-extrabold tracking-wide">Inicio</span>
     </button>
-    <button onclick="cambiarVista('view-insert')" class="flex flex-col items-center gap-0.5 text-zinc-400 active:text-emerald-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        <span class="text-[9px] font-bold">Añadir</span>
+    <button onclick="cambiarVista('view-insert')" class="flex flex-col items-center gap-1 text-zinc-400 active:text-[#3452c1]">
+        <span class="text-lg">➕</span>
+        <span class="text-[10px] font-extrabold tracking-wide">Añadir</span>
     </button>
-    <button onclick="cargarListadoOperaciones()" class="flex flex-col items-center gap-0.5 text-zinc-400 active:text-indigo-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
-        <span class="text-[9px] font-bold">Historial</span>
+    <button onclick="cargarListadoOperaciones()" class="flex flex-col items-center gap-1 text-zinc-400 active:text-[#3452c1]">
+        <span class="text-lg">📅</span>
+        <span class="text-[10px] font-extrabold tracking-wide">Historial</span>
     </button>
-    <button onclick="irAConfiguraciones()" class="flex flex-col items-center gap-0.5 text-zinc-400 active:text-amber-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
-        <span class="text-[9px] font-bold">Ajustes</span>
+    <button onclick="irAConfiguraciones()" class="flex flex-col items-center gap-1 text-zinc-400 active:text-[#3452c1]">
+        <span class="text-lg">⚙️</span>
+        <span class="text-[10px] font-extrabold tracking-wide">Ajustes</span>
     </button>
 </div>
 
@@ -618,9 +604,9 @@
 
     async function guardarConfiguracionGitHub() {
         const statusBox = document.getElementById('settings-status-box');
-        statusBox.classList.remove('hidden', 'bg-rose-500/20', 'text-rose-400', 'bg-emerald-500/20', 'text-emerald-400');
-        statusBox.classList.add('block', 'bg-zinc-800', 'text-zinc-300');
-        statusBox.innerText = "🔄 Sincronizando contraseñas segmentadas...";
+        statusBox.style.display = 'block';
+        statusBox.className = "p-4 rounded-xl font-bold text-center bg-blue-50 text-[#3452c1] text-xs";
+        statusBox.innerText = "🔄 Sincronizando contraseñas...";
 
         const userVal = document.getElementById('gh-user').value.trim();
         const repoVal = document.getElementById('gh-repo').value.trim();
@@ -628,7 +614,7 @@
         const tokenVal = document.getElementById('gh-token').value.trim();
 
         if (!userVal || !repoVal || !pathVal || !tokenVal) {
-            statusBox.classList.add('bg-rose-500/20', 'text-rose-400');
+            statusBox.className = "p-4 rounded-xl font-bold text-center bg-rose-50 text-rose-600 text-xs";
             statusBox.innerText = "❌ Todos los campos son obligatorios.";
             return;
         }
@@ -669,14 +655,14 @@
             });
 
             if (responsePut.ok) {
-                statusBox.classList.add('bg-emerald-500/20', 'text-emerald-400');
+                statusBox.className = "p-4 rounded-xl font-bold text-center bg-emerald-50 text-emerald-600 text-xs";
                 statusBox.innerText = "✅ Credenciales guardadas y sincronizadas en GitHub.";
                 habilitarEdicionConfig(false);
             } else {
                 throw new Error("Acceso denegado de GitHub.");
             }
         } catch (error) {
-            statusBox.classList.add('bg-rose-500/20', 'text-rose-400');
+            statusBox.className = "p-4 rounded-xl font-bold text-center bg-rose-50 text-rose-600 text-xs";
             statusBox.innerText = "❌ " + error.message;
         }
     }
@@ -763,6 +749,7 @@
         return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");     
     }
 
+    // Corregida redundancia devolviendo op[key] directo si falla coincidencia o indice estructurado
     function getValor(op, key, index) {
         if (!op) return "";
         const normKey = normalizarLlave(key);
@@ -856,41 +843,41 @@
                 const parStr = getValor(op, "Par", 0) || "-";
                 const apalStr = getValor(op, "Apalancamiento", 2) || "-";
                 const margenStr = getValor(op, "Margen", 3) || "Aislado";
-                const direccionStr = getValor(op, "Direccion", 1) || "Largo";
 
-                const pnlColor = pnlVal >= 0 ? 'text-emerald-400' : 'text-rose-500';
-                const pnlBg = pnlVal >= 0 ? 'bg-emerald-500/10' : 'bg-rose-500/10';
+                const pnlColor = pnlVal >= 0 ? 'text-emerald-600' : 'text-rose-600';
+                const pnlBg = pnlVal >= 0 ? 'bg-emerald-50' : 'bg-rose-50';
+                const pnlBorder = pnlVal >= 0 ? 'border-emerald-100' : 'border-rose-100';
 
                 // Render para Escritorio (Tabla)
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-zinc-800/40 transition-colors";
+                tr.className = "hover:bg-slate-50 transition-colors";
                 tr.innerHTML = `
                     <td class="px-6 py-4 text-center">
-                        <button onclick="verDetalleOperacion(${index})" class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">🔍</button>
+                        <button onclick="verDetalleOperacion(${index})" class="px-3 py-1.5 rounded-full bg-blue-50 text-[#3452c1] font-bold text-xs border border-blue-100 hover:bg-blue-100">Ver</button>
                     </td>
-                    <td class="px-6 py-4 font-mono text-xs">${fechaStr}</td>
-                    <td class="px-6 py-4 font-bold text-white">${parStr}</td>
-                    <td class="px-6 py-4 text-zinc-400">${apalStr} (${margenStr})</td>
-                    <td class="px-6 py-4 font-bold ${pnlColor}">${pnlVal > 0 ? '+' : ''}${pnlStr} USDT</td>
-                    <td class="px-6 py-4 font-bold ${pnlColor}">${roiStr}%</td>
+                    <td class="px-6 py-4 font-mono text-xs text-zinc-500">${fechaStr}</td>
+                    <td class="px-6 py-4 font-extrabold text-zinc-900">${parStr}</td>
+                    <td class="px-6 py-4 text-zinc-500 text-xs">${apalStr} (${margenStr})</td>
+                    <td class="px-6 py-4 font-black ${pnlColor}">${pnlVal > 0 ? '+' : ''}${pnlStr} USDT</td>
+                    <td class="px-6 py-4 font-black ${pnlColor}">${roiStr}%</td>
                 `;
                 tableBody.appendChild(tr);
 
-                // Render para Móviles (Tarjetas Compactas Redimensionadas)
+                // Render para Móviles (Tarjetas Compactas Estilo Captura)
                 const mobileCard = document.createElement('div');
-                mobileCard.className = "bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex justify-between items-center gap-2";
+                mobileCard.className = "bg-white text-zinc-800 rounded-2xl p-4 flex justify-between items-center gap-2 shadow-md border border-slate-100";
                 mobileCard.onclick = () => verDetalleOperacion(index);
                 mobileCard.innerHTML = `
                     <div class="space-y-1">
                         <div class="flex items-center space-x-2">
-                            <span class="text-sm font-extrabold text-white tracking-wide">${parStr}</span>
-                            <span class="text-[9px] px-1.5 py-0.2 bg-zinc-800 rounded text-zinc-400">${apalStr}</span>
+                            <span class="text-base font-black text-zinc-900 tracking-wide">${parStr}</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-100 rounded-md text-zinc-500 font-bold">${apalStr}</span>
                         </div>
-                        <p class="text-[10px] text-zinc-500 font-mono">${fechaStr.slice(5, 16)}</p>
+                        <p class="text-[11px] text-zinc-400 font-bold font-mono">${fechaStr.slice(5, 16)}</p>
                     </div>
-                    <div class="text-right ${pnlBg} px-3 py-1.5 rounded-lg border border-white/5">
+                    <div class="text-right ${pnlBg} px-4 py-2 rounded-xl border ${pnlBorder}">
                         <div class="text-xs font-black ${pnlColor}">${pnlVal > 0 ? '+' : ''}${parseFloat(pnlStr).toFixed(2)} USDT</div>
-                        <div class="text-[10px] font-bold text-zinc-400">${roiStr}%</div>
+                        <div class="text-[10px] font-extrabold text-zinc-400">${roiStr}%</div>
                     </div>
                 `;
                 cardsMobileContainer.appendChild(mobileCard);
@@ -898,7 +885,7 @@
         });
 
         utilidadContador.innerText = `${utilidadFiltrada >= 0 ? '+' : ''}${utilidadFiltrada.toFixed(4)} USDT`;
-        utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-extrabold text-emerald-400" : "text-2xl font-extrabold text-rose-500";
+        utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-emerald-600" : "text-2xl font-black text-rose-600";
 
         if (contadorElementos > 0) {
             emptyState.classList.add('hidden');
@@ -928,13 +915,13 @@
         const bDirect = document.getElementById('detail-badge-direction');
         const esCorto = /corto|short|down/i.test(direccionStr);
         bDirect.innerText = esCorto ? "CORTO" : "LARGO";
-        bDirect.className = esCorto ? "px-2 py-0.5 rounded text-[10px] font-extrabold bg-rose-500/10 text-rose-400 border border-rose-500/20" : "px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+        bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-600 border border-emerald-100";
 
         const pnl = parseFloat(pnlStr);
         document.getElementById('detail-val-pnl').innerText = (pnl > 0 ? '+' : '') + pnlStr + " USDT";
-        document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-lg md:text-2xl font-black text-emerald-400" : "text-lg md:text-2xl font-black text-rose-500";
+        document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-2xl font-black text-emerald-600" : "text-xl md:text-2xl font-black text-rose-600";
         document.getElementById('detail-val-roi').innerText = roiStr + "%";
-        document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-lg md:text-2xl font-black text-emerald-400" : "text-lg md:text-2xl font-black text-rose-500";
+        document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-2xl font-black text-emerald-600" : "text-xl md:text-2xl font-black text-rose-600";
 
         document.getElementById('detail-val-par').innerText = parStr;
         document.getElementById('detail-val-apal').innerText = getValor(op, "Apalancamiento", 2) || "-";
@@ -983,7 +970,7 @@
     async function procesarCaptura(input) {
         const file = input.files[0]; if (!file) return;
         const ocrStatus = document.getElementById('ocr-status');
-        ocrStatus.innerHTML = '<span class="text-amber-400 animate-pulse text-xs">⏳ Leyendo imagen...</span>';
+        ocrStatus.innerHTML = '<span class="text-[#3452c1] animate-pulse text-xs">⏳ Leyendo imagen...</span>';
 
         try {
             const { data: { text } } = await Tesseract.recognize(file, 'eng+spa');
@@ -1025,16 +1012,17 @@
             document.getElementById('tiempo_abierto').value = ahora;
             document.getElementById('fecha_cierre').value = ahora;
 
-            ocrStatus.innerHTML = '<span class="text-emerald-400 text-xs">✨ ¡Procesado con éxito!</span>';
+            ocrStatus.innerHTML = '<span class="text-emerald-600 text-xs">✨ ¡Procesado con éxito!</span>';
         } catch (error) {
-            ocrStatus.innerHTML = '<span class="text-rose-500 text-xs">❌ Error OCR.</span>';
+            ocrStatus.innerHTML = '<span class="text-rose-600 text-xs">❌ Error OCR.</span>';
         }
     }
 
     document.getElementById('trading-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         const statusBox = document.getElementById('status-box');
-        statusBox.className = "p-3 rounded-lg font-bold text-center block bg-zinc-800 text-zinc-300 text-xs animate-pulse";
+        statusBox.style.display = 'block';
+        statusBox.className = "p-3 rounded-xl font-bold text-center bg-blue-50 text-[#3452c1] text-xs animate-pulse";
         statusBox.innerText = "🔄 Subiendo a GitHub...";
 
         const fields = [
@@ -1073,12 +1061,12 @@
             });
 
             if (responsePut.ok) {
-                statusBox.className = "p-3 rounded-lg font-bold text-center block bg-emerald-500/20 text-emerald-400 text-xs";
+                statusBox.className = "p-3 rounded-xl font-bold text-center bg-emerald-50 text-emerald-600 text-xs";
                 statusBox.innerText = "✅ ¡Sincronizado con éxito!";
                 limpiarFormulario();
             }
         } catch (error) {
-            statusBox.className = "p-3 rounded-lg font-bold text-center block bg-rose-500/20 text-rose-400 text-xs";
+            statusBox.className = "p-3 rounded-xl font-bold text-center bg-rose-50 text-rose-600 text-xs";
             statusBox.innerText = "❌ Error: " + error.message;
         }
     });
