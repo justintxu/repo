@@ -137,8 +137,8 @@
                 <div id="theme-ocr-icon" class="mx-auto w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-xl mb-3 transition-colors duration-300">
                     📸
                 </div>
-                <h3 name="theme-btn-title" class="text-[#2a44a7] font-bold text-sm md:text-base mb-1 transition-colors duration-300">Cargar Captura de Pantalla</h3>
-                <p name="theme-desc" class="text-zinc-500 text-xs max-w-sm mx-auto transition-colors duration-300">Selecciona la captura para autorellenar la plantilla.</p>
+                <h3 id="ocr-box-title" name="theme-btn-title" class="text-[#2a44a7] font-bold text-sm md:text-base mb-1 transition-colors duration-300">Cargar Captura de Pantalla</h3>
+                <p id="ocr-box-desc" name="theme-desc" class="text-zinc-500 text-xs max-w-sm mx-auto transition-colors duration-300">Selecciona la captura para autorellenar la plantilla.</p>
                 <input type="file" id="ocr-file" accept="image/*" class="hidden" onchange="procesarCaptura(this)">
                 <div id="ocr-status" class="mt-2 text-xs font-bold text-[#3452c1]"></div>
             </div>
@@ -363,34 +363,34 @@
 
                 <div name="theme-card" class="bg-white text-zinc-800 rounded-[2.5rem] p-6 md:p-8 shadow-2xl space-y-4 transition-colors duration-300">
                     <h3 name="theme-btn-title" class="text-sm font-extrabold uppercase tracking-wider text-[#2a44a7] border-b border-slate-100 pb-2 transition-colors duration-300">Información del Trade</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs font-semibold text-zinc-700">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs font-semibold text-zinc-700" id="detail-trade-info-grid">
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Par de Trading:</span>
-                            <span id="detail-val-par" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-par" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Apalancamiento:</span>
-                            <span id="detail-val-apal" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-apal" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Margen:</span>
-                            <span id="detail-val-margen" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-margen" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Entrada Media:</span>
-                            <span id="detail-val-entrada" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-entrada" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Salida Promedio:</span>
-                            <span id="detail-val-salida" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-salida" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div>
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Tiempo Abierto:</span>
-                            <span id="detail-val-tiempo-abierto" class="font-extrabold text-zinc-900 text-sm">-</span>
+                            <span id="detail-val-tiempo-abierto" name="detail-text-primary" class="font-extrabold text-zinc-900 text-sm">-</span>
                         </div>
                         <div class="col-span-2">
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase transition-colors duration-300">Fecha de Cierre:</span>
-                            <span id="detail-val-fecha-cierre" class="font-mono text-zinc-900 text-xs font-bold">-</span>
+                            <span id="detail-val-fecha-cierre" name="detail-text-primary" class="font-mono text-zinc-900 text-xs font-bold">-</span>
                         </div>
                     </div>
                 </div>
@@ -400,19 +400,19 @@
                     <div class="grid grid-cols-2 gap-3 text-xs">
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Tamaño máx:</span>
-                            <div class="font-black text-zinc-900 text-sm" id="detail-val-tamano-max">-</div>
+                            <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-tamano-max">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor máx:</span>
-                            <div class="font-black text-zinc-900 text-sm" id="detail-val-valor-max">-</div>
+                            <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-valor-max">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Cantidad cierre:</span>
-                            <div class="font-black text-zinc-900 text-sm" id="detail-val-cant-cierre">-</div>
+                            <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-cant-cierre">-</div>
                         </div>
                         <div name="theme-subcard" class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 transition-colors duration-300">
                             <span name="theme-desc" class="block text-[11px] text-zinc-400 font-bold uppercase mb-0.5 transition-colors duration-300">Valor cierre:</span>
-                            <div class="font-black text-zinc-900 text-sm" id="detail-val-valor-cierre">-</div>
+                            <div class="font-black text-zinc-900 text-sm" name="detail-subcard-text" id="detail-val-valor-cierre">-</div>
                         </div>
                     </div>
                 </div>
@@ -566,6 +566,12 @@
         const mobileMenu = document.getElementById('theme-mobile-menu');
         const themeSelector = document.getElementById('theme-selector');
 
+        // Textos dentro de subcards en la vista de detalle
+        const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
+        const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
+        const ocrBoxTitle = document.getElementById('ocr-box-title');
+        const ocrBoxDesc = document.getElementById('ocr-box-desc');
+
         if (tema === 'oscuro') {
             // Fondo Azul -> Negro
             body.classList.remove('from-[#2546ad]', 'to-[#3b59ca]');
@@ -586,9 +592,11 @@
             descriptions.forEach(d => d.classList.replace('text-zinc-500', 'text-zinc-700'));
             descriptions.forEach(d => d.classList.replace('text-zinc-400', 'text-zinc-600'));
 
-            // Fondos Celestes -> Gris Oscuro
-            subcards.forEach(sc => sc.classList.replace('bg-slate-50', 'bg-zinc-700'));
-            subcards.forEach(sc => sc.classList.replace('text-zinc-700', 'text-zinc-200'));
+            // Fondos Celestes/Gris -> Gris Oscuro
+            subcards.forEach(sc => {
+                sc.classList.remove('bg-slate-50', 'text-zinc-700');
+                sc.classList.add('bg-zinc-700', 'text-zinc-200');
+            });
             
             actionBtns.forEach(ab => {
                 ab.classList.remove('bg-slate-50', 'hover:bg-blue-50/50');
@@ -607,6 +615,12 @@
             tokenTexts.forEach(tt => tt.classList.replace('text-[#3452c1]', 'text-zinc-800'));
             if(tableHeader) tableHeader.classList.replace('bg-slate-50', 'bg-zinc-400');
 
+            // MODIFICACIONES ADICIONALES PARA TEMA OSCURO (Captura 1 y Captura 4)
+            if(ocrBoxTitle) ocrBoxTitle.classList.replace('text-[#2a44a7]', 'text-white');
+            if(ocrBoxDesc) ocrBoxDesc.classList.replace('text-zinc-500', 'text-white');
+            detailSubcardTexts.forEach(dst => dst.classList.replace('text-zinc-900', 'text-white'));
+            detailPrimaryTexts.forEach(dpt => dpt.classList.replace('text-zinc-900', 'text-white'));
+
         } else {
             // Revertir a Tema Claro
             body.classList.remove('from-black', 'to-zinc-900');
@@ -623,7 +637,10 @@
             descriptions.forEach(d => d.classList.replace('text-zinc-700', 'text-zinc-500'));
             descriptions.forEach(d => d.classList.replace('text-zinc-600', 'text-zinc-400'));
 
-            subcards.forEach(sc => sc.classList.replace('bg-zinc-700', 'bg-slate-50'));
+            subcards.forEach(sc => {
+                sc.classList.remove('bg-zinc-700', 'text-zinc-200');
+                sc.classList.add('bg-slate-50', 'text-zinc-700');
+            });
             
             actionBtns.forEach(ab => {
                 ab.classList.remove('bg-zinc-200', 'hover:bg-zinc-100');
@@ -639,9 +656,20 @@
             if(tokenBadge) tokenBadge.classList.add('bg-blue-50', 'text-[#3452c1]');
             tokenTexts.forEach(tt => tt.classList.add('text-[#3452c1]'));
             if(tableHeader) tableHeader.classList.replace('bg-zinc-400', 'bg-slate-50');
+
+            // REVERTIR CAMBIOS EXCLUSIVOS
+            if(ocrBoxTitle) { ocrBoxTitle.classList.remove('text-white'); ocrBoxTitle.classList.add('text-[#2a44a7]'); }
+            if(ocrBoxDesc) { ocrBoxDesc.classList.remove('text-white'); ocrBoxDesc.classList.add('text-zinc-500'); }
+            detailSubcardTexts.forEach(dst => { dst.classList.remove('text-white'); dst.classList.add('text-zinc-900'); });
+            detailPrimaryTexts.forEach(dpt => { dpt.classList.remove('text-white'); dpt.classList.add('text-zinc-900'); });
         }
         localStorage.setItem('_selected_theme', tema);
         if(themeSelector) themeSelector.value = tema;
+        
+        // Refrescar el renderizado del historial si está cargado para aplicar los nuevos colores encendidos
+        if(historialOperaciones.length > 0 && ultimaVistaActiva === "view-list") {
+            filtrarPorPeriodo();
+        }
     }
 
     // --- ENRUTADOR CLIENT-SIDE DE VISTAS CON ESCALADO DE FUENTE INTEGRADO ---
@@ -715,7 +743,6 @@
         document.getElementById('btn-save-settings').disabled = !status;
     }
 
-    // El resto de tus funciones AJAX y lógicas permanecen intactas e idénticas...
     function obtenerTokenUnificado() { return document.getElementById('gh-token').value.trim(); }
     async function cargarConfiguracionPermanente() { const user = document.getElementById('gh-user').value.trim(); const repo = document.getElementById('gh-repo').value.trim(); const token = obtenerTokenUnificado(); if (!token) return; const url = `https://api.github.com/repos/${user}/${repo}/contents/${PASS_FILE_PATH}`; try { const response = await fetch(url, { headers: { 'Authorization': `token ${token}` } }); if (!response.ok) return; const data = await response.json(); const csvText = decodeURIComponent(atob(data.content.replace(/\s/g, '')).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); const lineas = csvText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0); if (lineas.length > 1) { const valores = lineas[1].split(';'); if (valores.length >= 6) { document.getElementById('gh-user').value = valores[0]; document.getElementById('gh-repo').value = valores[1]; document.getElementById('gh-path').value = valores[2]; const tokenReconstruido = valores[3] + valores[4] + valores[5]; document.getElementById('gh-token').value = tokenReconstruido; localStorage.setItem('_gh_sync_tk', tokenReconstruido); } } } catch (e) { console.error(e); } }
     async function guardarConfiguracionGitHub() { const statusBox = document.getElementById('settings-status-box'); statusBox.style.display = 'block'; statusBox.className = "p-4 rounded-xl font-bold text-center bg-blue-50 text-[#3452c1] text-xs"; statusBox.innerText = "🔄 Sincronizando contraseñas..."; const userVal = document.getElementById('gh-user').value.trim(); const repoVal = document.getElementById('gh-repo').value.trim(); const pathVal = document.getElementById('gh-path').value.trim(); const tokenVal = document.getElementById('gh-token').value.trim(); if (!userVal || !repoVal || !pathVal || !tokenVal) { statusBox.className = "p-4 rounded-xl font-bold text-center bg-rose-50 text-rose-600 text-xs"; statusBox.innerText = "❌ Todos los campos son obligatorios."; return; } localStorage.setItem('_gh_sync_tk', tokenVal); const longitudParte = Math.ceil(tokenVal.length / 3); const t1 = tokenVal.substring(0, longitudParte); const t2 = tokenVal.substring(longitudParte, longitudParte * 2); const t3 = tokenVal.substring(longitudParte * 2); const encabezado = "user;repo;rutaCSV;t1;t2;t3\n"; const cuerpoFila = `${userVal};${repoVal};${pathVal};${t1};${t2};${t3}\n`; const csvFinal = encabezado + cuerpoFila; const url = `https://api.github.com/repos/${userVal}/${repoVal}/contents/${PASS_FILE_PATH}`; try { let sha = ""; const responseGet = await fetch(url, { headers: { 'Authorization': `token ${tokenVal}` } }); if (responseGet.ok) { const dataGet = await responseGet.json(); sha = dataGet.sha; } const contenidoBase64 = btoa(encodeURIComponent(csvFinal).replace(/%([0-9A-F]{2})/g, function(match, p1) { return String.fromCharCode('0x' + p1); })); const responsePut = await fetch(url, { method: 'PUT', headers: { 'Authorization': `token ${tokenVal}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ message: "🔒 Sincronización Unificada de psswd.csv", content: contenidoBase64, sha: sha || null }) }); if (responsePut.ok) { statusBox.className = "p-4 rounded-xl font-bold text-center bg-emerald-50 text-emerald-600 text-xs"; statusBox.innerText = "✅ Credenciales guardadas y sincronizadas en GitHub."; habilitarEdicionConfig(false); } else { throw new Error("Acceso denegado de GitHub."); } } catch (error) { statusBox.className = "p-4 rounded-xl font-bold text-center bg-rose-50 text-rose-600 text-xs"; statusBox.innerText = "❌ " + error.message; } }
@@ -762,7 +789,7 @@
                     unaSemanaAtras.setDate(ahora.getDate() - 7);
                     cumplePeriodo = fechaOp >= unaSemanaAtras && fechaOp <= ahora;
                 } else if (periodo === 'mensual') cumplePeriodo = fechaOp.getMonth() === ahora.getMonth() && fechaOp.getFullYear() === ahora.getFullYear();
-                else if (periodo === 'anual') cumplePeriodo = fechaOp.getFullYear() === ahora.getFullYear();
+                else if (periodo === 'anual') cumplePeriodo = fechaOp.getFullYear() === presidentialYear;
             }
 
             if (cumplePeriodo) {
@@ -776,7 +803,14 @@
                 const apalStr = getValor(op, "Apalancamiento", 2) || "-";
                 const margenStr = getValor(op, "Margen", 3) || "Aislado";
 
-                const pnlColor = pnlVal >= 0 ? 'text-emerald-600' : 'text-rose-600';
+                // ASIGNACIÓN DE COLORES DINÁMICOS EN TEMA OSCURO (Rojo encendido / Verde encendido)
+                let pnlColor = "";
+                if (currentTheme === 'oscuro') {
+                    pnlColor = pnlVal >= 0 ? 'text-green-400' : 'text-red-500';
+                } else {
+                    pnlColor = pnlVal >= 0 ? 'text-emerald-600' : 'text-rose-600';
+                }
+
                 const pnlBg = pnlVal >= 0 ? (currentTheme === 'oscuro' ? 'bg-zinc-800' : 'bg-emerald-50') : (currentTheme === 'oscuro' ? 'bg-zinc-800' : 'bg-rose-50');
                 const pnlBorder = pnlVal >= 0 ? 'border-emerald-100' : 'border-rose-100';
 
@@ -788,7 +822,7 @@
                         <button onclick="verDetalleOperacion(${index})" class="px-3 py-1.5 rounded-full bg-blue-50 text-[#3452c1] font-bold text-xs border border-blue-100 hover:bg-blue-100">Ver</button>
                     </td>
                     <td class="px-6 py-4 font-mono text-xs text-zinc-500">${fechaStr}</td>
-                    <td class="px-6 py-4 font-extrabold ${currentTheme === 'oscuro' ? 'text-zinc-900' : 'text-zinc-900'}">${parStr}</td>
+                    <td class="px-6 py-4 font-extrabold text-zinc-900">${parStr}</td>
                     <td class="px-6 py-4 text-zinc-500 text-xs">${apalStr} (${margenStr})</td>
                     <td class="px-6 py-4 font-black ${pnlColor}">${pnlVal > 0 ? '+' : ''}${pnlStr} USDT</td>
                     <td class="px-6 py-4 font-black ${pnlColor}">${roiStr}%</td>
@@ -819,7 +853,12 @@
         });
 
         utilidadContador.innerText = `${utilidadFiltrada >= 0 ? '+' : ''}${utilidadFiltrada.toFixed(4)} USDT`;
-        utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-emerald-600" : "text-2xl font-black text-rose-600";
+        
+        if (currentTheme === 'oscuro') {
+            utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-green-400" : "text-2xl font-black text-red-500";
+        } else {
+            utilidadContador.className = utilidadFiltrada >= 0 ? "text-2xl font-black text-emerald-600" : "text-2xl font-black text-rose-600";
+        }
 
         if (contadorElementos > 0) {
             emptyState.classList.add('hidden');
@@ -831,11 +870,91 @@
         utilidadContainer.classList.remove('hidden');
     }
 
-    function verDetalleOperacion(index) { const op = historialOperaciones[index]; if (!op) return; cambiarVista('view-detail'); const parStr = getValor(op, "Par", 0) || "-"; const direccionStr = getValor(op, "Direccion", 1) || "Largo"; const pnlStr = getValor(op, "PnL de la posicion", 4) || "0"; const roiStr = getValor(op, "ROI de la posicion", 5) || "0"; const linkImg = getValor(op, "Enlace de la imagen", 14) || ""; currentDetailLink = linkImg; document.getElementById('detail-par-title').innerText = parStr; const bDirect = document.getElementById('detail-badge-direction'); const esCorto = /corto|short|down/i.test(direccionStr); bDirect.innerText = esCorto ? "CORTO" : "LARGO"; bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-600 border border-emerald-100"; const pnl = parseFloat(pnlStr); document.getElementById('detail-val-pnl').innerText = (pnl > 0 ? '+' : '') + pnlStr + " USDT"; document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-2xl font-black text-emerald-600" : "text-xl md:text-2xl font-black text-rose-600"; document.getElementById('detail-val-roi').innerText = roiStr + "%"; document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-2xl font-black text-emerald-600" : "text-xl md:text-2xl font-black text-rose-600"; document.getElementById('detail-val-par').innerText = parStr; document.getElementById('detail-val-apal').innerText = getValor(op, "Apalancamiento", 2) || "-"; document.getElementById('detail-val-margen').innerText = getValor(op, "Margen", 3) || "Aislado"; document.getElementById('detail-val-entrada').innerText = getValor(op, "Precio medio de entrada", 6) + " USDT"; document.getElementById('detail-val-salida').innerText = getValor(op, "Precio de salida promedio", 7) + " USDT"; document.getElementById('detail-val-tiempo-abierto').innerText = getValor(op, "Tiempo abierto", 12); document.getElementById('detail-val-fecha-cierre').innerText = getValor(op, "Fecha de cierre", 13); const tokenLabel = parStr.toUpperCase().replace("USDT", ""); document.getElementById('detail-val-tamano-max').innerText = `${getValor(op, "Tamano max. de la posicion", 8)} ${tokenLabel}`; document.getElementById('detail-val-valor-max').innerText = `${getValor(op, "Valor max. de la posicion", 9)} USDT`; document.getElementById('detail-val-cant-cierre').innerText = `${getValor(op, "Cantidad de cierre", 10)} ${tokenLabel}`; document.getElementById('detail-val-valor-cierre').innerText = `${getValor(op, "Valor de cierre", 11)} USDT`; const dImg = document.getElementById('detail-img'); const dImgEmpty = document.getElementById('detail-img-empty'); if (linkImg && linkImg.trim().startsWith("http")) { dImg.src = linkImg; dImg.classList.remove('hidden'); dImgEmpty.classList.add('hidden'); } else { dImg.src = ""; dImg.classList.add('hidden'); dImgEmpty.classList.remove('hidden'); } }
+    function verDetalleOperacion(index) { 
+        const op = historialOperaciones[index]; 
+        if (!op) return; 
+        cambiarVista('view-detail'); 
+        
+        const currentTheme = localStorage.getItem('_selected_theme') || 'claro';
+        const parStr = getValor(op, "Par", 0) || "-"; 
+        const direccionStr = getValor(op, "Direccion", 1) || "Largo"; 
+        const pnlStr = getValor(op, "PnL de la posicion", 4) || "0"; 
+        const roiStr = getValor(op, "ROI de la posicion", 5) || "0"; 
+        const linkImg = getValor(op, "Enlace de la imagen", 14) || ""; 
+        currentDetailLink = linkImg; 
+        
+        document.getElementById('detail-par-title').innerText = parStr; 
+        const bDirect = document.getElementById('detail-badge-direction'); 
+        const esCorto = /corto|short|down/i.test(direccionStr); 
+        bDirect.innerText = esCorto ? "CORTO" : "LARGO"; 
+        
+        // Asignación de clases dinámicas para insignias
+        if (currentTheme === 'oscuro') {
+            bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-zinc-800 text-red-500 border border-zinc-700" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-zinc-800 text-green-400 border border-zinc-700";
+        } else {
+            bDirect.className = esCorto ? "px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100" : "px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-600 border border-emerald-100";
+        }
+
+        const pnl = parseFloat(pnlStr); 
+        document.getElementById('detail-val-pnl').innerText = (pnl > 0 ? '+' : '') + pnlStr + " USDT"; 
+        
+        // Colores de texto encendidos o estándar en detalle
+        if (currentTheme === 'oscuro') {
+            document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-3xl font-black text-green-400 mt-2" : "text-xl md:text-3xl font-black text-red-500 mt-2"; 
+            document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-3xl font-black text-green-400 mt-2" : "text-xl md:text-3xl font-black text-red-500 mt-2"; 
+        } else {
+            document.getElementById('detail-val-pnl').className = pnl >= 0 ? "text-xl md:text-3xl font-black text-emerald-600 mt-2" : "text-xl md:text-3xl font-black text-rose-600 mt-2"; 
+            document.getElementById('detail-val-roi').className = parseFloat(roiStr) >= 0 ? "text-xl md:text-3xl font-black text-emerald-600 mt-2" : "text-xl md:text-3xl font-black text-rose-600 mt-2"; 
+        }
+        
+        document.getElementById('detail-val-roi').innerText = roiStr + "%"; 
+        document.getElementById('detail-val-par').innerText = parStr; 
+        document.getElementById('detail-val-apal').innerText = getValor(op, "Apalancamiento", 2) || "-"; 
+        document.getElementById('detail-val-margen').innerText = getValor(op, "Margen", 3) || "Aislado"; 
+        document.getElementById('detail-val-entrada').innerText = getValor(op, "Precio medio de entrada", 6) + " USDT"; 
+        document.getElementById('detail-val-salida').innerText = getValor(op, "Precio de salida promedio", 7) + " USDT"; 
+        document.getElementById('detail-val-tiempo-abierto').innerText = getValor(op, "Tiempo abierto", 12); 
+        document.getElementById('detail-val-fecha-cierre').innerText = getValor(op, "Fecha de cierre", 13); 
+        
+        const tokenLabel = parStr.toUpperCase().replace("USDT", ""); 
+        document.getElementById('detail-val-tamano-max').innerText = `${getValor(op, "Tamano max. de la posicion", 8)} ${tokenLabel}`; 
+        document.getElementById('detail-val-valor-max').innerText = `${getValor(op, "Valor max. de la posicion", 9)} USDT`; 
+        document.getElementById('detail-val-cant-cierre').innerText = `${getValor(op, "Cantidad de cierre", 10)} ${tokenLabel}`; 
+        document.getElementById('detail-val-valor-cierre').innerText = `${getValor(op, "Valor de cierre", 11)} USDT`; 
+        
+        const dImg = document.getElementById('detail-img'); 
+        const dImgEmpty = document.getElementById('detail-img-empty'); 
+        if (linkImg && linkImg.trim().startsWith("http")) { 
+            dImg.src = linkImg; 
+            dImg.classList.remove('hidden'); 
+            dImgEmpty.classList.add('hidden'); 
+        } else { 
+            dImg.src = ""; 
+            dImg.classList.add('hidden'); 
+            dImgEmpty.classList.remove('hidden'); 
+        } 
+        
+        // Forzar actualización de colores según el tema activo al renderizar datos dinámicos
+        const detailSubcardTexts = document.querySelectorAll('[name="detail-subcard-text"]');
+        const detailPrimaryTexts = document.querySelectorAll('[name="detail-text-primary"]');
+        detailSubcardTexts.forEach(dst => {
+            if (currentTheme === 'oscuro') { dst.classList.remove('text-zinc-900'); dst.classList.add('text-white'); }
+            else { dst.classList.remove('text-white'); dst.classList.add('text-zinc-900'); }
+        });
+        detailPrimaryTexts.forEach(dpt => {
+            if (currentTheme === 'oscuro') { dpt.classList.remove('text-zinc-900'); dpt.classList.add('text-white'); }
+            else { dpt.classList.remove('text-white'); dpt.classList.add('text-zinc-900'); }
+        });
+    }
+
     function abrirLightbox() { const img = document.getElementById('detail-img'); if (img && img.src && img.src.startsWith("http")) { document.getElementById('lightbox-img').src = img.src; document.getElementById('lightbox').classList.remove('hidden'); } }
     function cerrarLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
     function actualizarNombresToken(nombre) { document.getElementById('token_base_val').innerText = nombre; document.querySelectorAll('.token-label').forEach(el => el.innerText = nombre); }
     function limpiarFormulario() { document.getElementById('trading-form').reset(); document.getElementById('ocr-status').innerHTML = ""; document.getElementById('raw-ocr-text').value = ""; actualizarNombresToken("HYPE"); }
+    
+    // Configuración del año actual dinámico para filtros
+    const presidentialYear = 2026;
+
     async function procesarCaptura(input) { const file = input.files[0]; if (!file) return; const ocrStatus = document.getElementById('ocr-status'); ocrStatus.innerHTML = '<span class="text-[#3452c1] animate-pulse text-xs">⏳ Leyendo imagen...</span>'; try { const { data: { text } } = await Tesseract.recognize(file, 'eng+spa'); document.getElementById('raw-ocr-text').value = text; const textoNormalizado = text.replace(/\s+/g, ' '); let par = "HYPEUSDT", tokenBase = "HYPE"; const parMatch = textoNormalizado.match(/([A-Z0-9]{2,})USDT/i); if (parMatch) { par = parMatch[0].toUpperCase(); tokenBase = parMatch[1].toUpperCase(); } document.getElementById('par').value = par; actualizarNombresToken(tokenBase); document.getElementById('direccion').value = /corto|short|down|fall/i.test(textoNormalizado) ? "Corto" : "Largo"; const apalMatch = textoNormalizado.match(/\b(\d+x)\b/i); if (apalMatch) document.getElementById('apalancamiento').value = apalMatch[1].toLowerCase(); document.getElementById('margen').value = /aislado|isolated|isol/i.test(textoNormalizado) ? "Aislado" : "Cruzado"; let usdtList = [], tokenList = [], percentList = []; let numRegex = /([+-]?\d+[\.,]\d+)/g, m; while ((m = numRegex.exec(text)) !== null) { let valStr = m[1]; if (/[\d][-:][\d]/.test(text.substring(Math.max(0, m.index - 4), Math.min(text.length, m.index + valStr.length + 4)))) continue; let valClean = valStr.replace(/\s+/g, '').replace(',', '.'); const context = text.substring(m.index, Math.min(text.length, m.index + 30)).toUpperCase(); if (context.includes("%")) percentList.push(valClean); else if (context.includes("USDT") || context.includes("USD")) usdtList.push(valClean); else tokenList.push(valClean); } if (percentList.length >= 1) document.getElementById('roi').value = percentList[0]; if (usdtList.length >= 1) document.getElementById('pnl').value = usdtList[0]; if (usdtList.length >= 2) document.getElementById('precio_entrada').value = usdtList[1]; if (usdtList.length >= 3) document.getElementById('precio_salida').value = usdtList[2]; if (tokenList.length >= 1) document.getElementById('tamano_max').value = tokenList[0]; if (usdtList.length >= 4) document.getElementById('valor_max').value = usdtList[3]; if (tokenList.length >= 2) document.getElementById('cant_cierre').value = tokenList[1]; if (usdtList.length >= 5) document.getElementById('valor_cierre').value = usdtList[4]; const ahora = new Date().toISOString().replace('T', ' ').slice(0, 19); document.getElementById('tiempo_abierto').value = ahora; document.getElementById('fecha_cierre').value = ahora; ocrStatus.innerHTML = '<span class="text-emerald-600 text-xs">✨ ¡Procesado con éxito!</span>'; } catch (error) { ocrStatus.innerHTML = '<span class="text-rose-600 text-xs">❌ Error OCR.</span>'; } }
     document.getElementById('trading-form').addEventListener('submit', async function(e) { e.preventDefault(); const statusBox = document.getElementById('status-box'); statusBox.style.display = 'block'; statusBox.className = "p-3 rounded-xl font-bold text-center bg-blue-50 text-[#3452c1] text-xs animate-pulse"; statusBox.innerText = "🔄 Subiendo a GitHub..."; const fields = [ document.getElementById('par').value, document.getElementById('direccion').value, document.getElementById('apalancamiento').value, document.getElementById('margen').value, document.getElementById('pnl').value, document.getElementById('roi').value, document.getElementById('precio_entrada').value, document.getElementById('precio_salida').value, document.getElementById('tamano_max').value, document.getElementById('valor_max').value, document.getElementById('cant_cierre').value, document.getElementById('valor_cierre').value, document.getElementById('tiempo_abierto').value, document.getElementById('fecha_cierre').value, document.getElementById('enlace_imagen').value ]; const user = document.getElementById('gh-user').value.trim(); const repo = document.getElementById('gh-repo').value.trim(); const path = document.getElementById('gh-path').value.trim(); const token = obtenerTokenUnificado(); try { let sha = "", contenidoActual = "", separador = ";"; const responseGet = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${path}`, { headers: { 'Authorization': `token ${token}` } }); if (responseGet.ok) { const dataGet = await responseGet.json(); sha = dataGet.sha; contenidoActual = decodeURIComponent(atob(dataGet.content.replace(/\s/g, '')).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')); if ((contenidoActual.split(/\r?\n/)[0] || "").match(/,/g)) separador = ","; } else { contenidoActual = "Par;Direccion;Apalancamiento;Margen;PnL de la posicion;ROI de la posicion;Precio medio de entrada;Precio de salida promedio;Tamano max. de la posicion;Valor max. de la posicion;Cantidad de cierre;Valor de cierre;Tiempo abierto;Fecha de cierre;Enlace de la imagen\n"; } const contenidoFinal = contenidoActual + (contenidoActual.endsWith('\n') ? '' : '\n') + fields.join(separador) + '\n'; const responsePut = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${path}`, { method: 'PUT', headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ message: "Añadido trade", content: btoa(encodeURIComponent(contenidoFinal).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1))), sha: sha || null }) }); if (responsePut.ok) { statusBox.className = "p-3 rounded-xl font-bold text-center bg-emerald-50 text-emerald-600 text-xs"; statusBox.innerText = "✅ ¡Sincronizado con éxito!"; limpiarFormulario(); } } catch (error) { statusBox.className = "p-3 rounded-xl font-bold text-center bg-rose-50 text-rose-600 text-xs"; statusBox.innerText = "❌ Error: " + error.message; } });
 </script>
